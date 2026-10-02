@@ -1,0 +1,104 @@
+{
+  "publication_date": "2026-10-02",
+  "files": [
+    {
+      "public_path": "APPENDIX_D_FIGURE_D1_CHAPTER_1_NAVIER_STOKES_FORMULA.png",
+      "source_repository": "SunTung/RRG",
+      "source_path": "RESEARCH_ARCHIVE/2026-09-12_Navier_Stokes_Official_First_Pass/APPENDIX_D_FIGURE_D1_CHAPTER_1_NAVIER_STOKES_FORMULA.png",
+      "source_ref": "refs/heads/main",
+      "source_commit": "f5132f8e079a2dcf133f7dfc1786421f116ac447",
+      "git_blob_sha": "c37c6a80291492d2fb67bffde174fda3ff451282",
+      "sha256": "397e6814abdc52fe77e3d41b966618faf6b80732fd4ce6af29519660405d49c0",
+      "bytes": 523308,
+      "copy_mode": "byte-identical"
+    },
+    {
+      "public_path": "APPENDIX_D_FIGURE_D2_CHAPTER_1_SMOOTH_NONZERO.png",
+      "source_repository": "SunTung/RRG",
+      "source_path": "RESEARCH_ARCHIVE/2026-09-12_Navier_Stokes_Official_First_Pass/APPENDIX_D_FIGURE_D2_CHAPTER_1_SMOOTH_NONZERO.png",
+      "source_ref": "refs/heads/main",
+      "source_commit": "f5132f8e079a2dcf133f7dfc1786421f116ac447",
+      "git_blob_sha": "1255fd0561e6c76898c3ad62f3dc5995eb892e46",
+      "sha256": "9028bc24e9c495ffb89ceb710403e7fd141bc401678a0423d3c01b1074d100b1",
+      "bytes": 615983,
+      "copy_mode": "byte-identical"
+    },
+    {
+      "public_path": "APPENDIX_D_PROOF_STATUS_AND_CHAPTER_1_FORMULAS_2026-09-14.md",
+      "source_repository": "SunTung/RRG",
+      "source_path": "RESEARCH_ARCHIVE/2026-09-12_Navier_Stokes_Official_First_Pass/APPENDIX_D_PROOF_STATUS_AND_CHAPTER_1_FORMULAS_2026-09-14.md",
+      "source_ref": "refs/heads/main",
+      "source_commit": "f5132f8e079a2dcf133f7dfc1786421f116ac447",
+      "git_blob_sha": "c3064a4ef548d7f6d9533224b0941a769270dc68",
+      "sha256": "ddb726fb6d0e2cf3c045a4f360d543ee5e9a5074cdb6f6a421cc3a23ad7525fd",
+      "bytes": 7133,
+      "copy_mode": "byte-identical"
+    },
+    {
+      "public_path": "PAPER_09_FROM_UNIVERSAL_VORTEX_STRUCTURE_TO_NS_SINGULARITY_METHOD.md",
+      "source_repository": "SunTung/RRG",
+      "source_path": "RESEARCH_ARCHIVE/2026-09-12_Navier_Stokes_Official_First_Pass/PAPER_09_FROM_UNIVERSAL_VORTEX_STRUCTURE_TO_NS_SINGULARITY_METHOD.md",
+      "source_ref": "refs/heads/main",
+      "source_commit": "f5132f8e079a2dcf133f7dfc1786421f116ac447",
+      "git_blob_sha": "87ced7f57fa35cac17c920846c9ebc7baee8935d",
+      "sha256": "ab774d599696a7c0dadb4eb04e58873c8d46328fa9d359120a47d6b483c47a8b",
+      "bytes": 6003,
+      "copy_mode": "byte-identical"
+    },
+    {
+      "public_path": "PAPER_10_PERIODIC_3D_NS_PURE_MATH_STRUCTURAL_REDUCTION_AND_P3_CRITICAL_FLUX_BARRIER_v1.0.md",
+      "source_repository": "SunTung/RRG",
+      "source_path": "RESEARCH_ARCHIVE/2026-09-12_Navier_Stokes_Official_First_Pass/PAPER_10_PERIODIC_3D_NS_PURE_MATH_STRUCTURAL_REDUCTION_AND_P3_CRITICAL_FLUX_BARRIER_v1.0.md",
+      "source_ref": "refs/heads/main",
+      "source_commit": "f5132f8e079a2dcf133f7dfc1786421f116ac447",
+      "git_blob_sha": "7e95a80ae40768ac75dae07762234b0bef5d760d",
+      "sha256": "36a6c7f3f0192842ce8a8f5435326dbd05d412933592775fd986e5777f3d9a0c",
+      "bytes": 5766,
+      "copy_mode": "byte-identical"
+    },
+    {
+      "public_path": "PAPER_11_LONG_MANUSCRIPT_EXACT_STRUCTURAL_REDUCTIONS_NAVIER_STOKES_2026-09-14.docx",
+      "source_repository": "SunTung/RRG",
+      "source_path": "RESEARCH_ARCHIVE/2026-09-12_Navier_Stokes_Official_First_Pass/PAPER_11_LONG_MANUSCRIPT_EXACT_STRUCTURAL_REDUCTIONS_NAVIER_STOKES_2026-09-14.docx",
+      "source_ref": "refs/heads/main",
+      "source_commit": "f5132f8e079a2dcf133f7dfc1786421f116ac447",
+      "git_blob_sha": "594782e43c22211e8a5db691397bc563498f63d7",
+      "sha256": "11ff61078829067053f2b18fafeb17051f51287c2abef536cc1a34ba2e638b51",
+      "bytes": 54712,
+      "copy_mode": "byte-identical"
+    },
+    {
+      "public_path": "PAPER_11_LONG_MANUSCRIPT_EXACT_STRUCTURAL_REDUCTIONS_NAVIER_STOKES_2026-09-14.pdf",
+      "source_repository": "SunTung/RRG",
+      "source_path": "RESEARCH_ARCHIVE/2026-09-12_Navier_Stokes_Official_First_Pass/PAPER_11_LONG_MANUSCRIPT_EXACT_STRUCTURAL_REDUCTIONS_NAVIER_STOKES_2026-09-14.pdf",
+      "source_ref": "refs/heads/main",
+      "source_commit": "f5132f8e079a2dcf133f7dfc1786421f116ac447",
+      "git_blob_sha": "8ecb70f593c06e23a435148f367a8753b6a82e2f",
+      "sha256": "b3e7a6b6653e7f0cbcd1d0c2048b07571e63ec12d86e5b1674fc05af327ac9d4",
+      "bytes": 145031,
+      "copy_mode": "byte-identical"
+    },
+    {
+      "public_path": "T67_2026-09-16_CONFIRMED_REDUCTION_WEIGHTED_TELESCOPING_RETURNS_TO_O_FINAL.md",
+      "source_repository": "SunTung/RRG",
+      "source_path": "RESEARCH_ARCHIVE/2026-09-12_Navier_Stokes_Official_First_Pass/T67_2026-09-16_CONFIRMED_REDUCTION_WEIGHTED_TELESCOPING_RETURNS_TO_O_FINAL.md",
+      "source_ref": "refs/heads/main",
+      "source_commit": "f5132f8e079a2dcf133f7dfc1786421f116ac447",
+      "git_blob_sha": "56809b71953ddfad62b033108eae986b146f8db9",
+      "sha256": "788b2ca2385e66d5e06ccd6f454b6d13e242c5e69f9f8c94bfdad021e341149d",
+      "bytes": 2679,
+      "copy_mode": "byte-identical"
+    },
+    {
+      "public_path": "APPENDIX_E_14_VOLUME_DATASET_CONCLUSION_2026-09-14.md",
+      "source_repository": "SunTung/RRG",
+      "source_path": "RESEARCH_ARCHIVE/2026-09-14_Navier_Stokes_Complete_14_Volume_Dataset/APPENDIX_E_14_VOLUME_DATASET_CONCLUSION_2026-09-14.md",
+      "source_ref": "refs/heads/codex/navier-stokes-14-volumes-20260914",
+      "source_commit": "523afa9d90e2f14fd567f5d7a9d0ea3bc853fcd3",
+      "git_blob_sha": "68e4faee7a43de2c2d14dd8df5eda6fcbdb19f7c",
+      "sha256": "eb7e66d1904d196e0317dac79113ef349e870dea519a7c31122347ef0567622c",
+      "bytes": 2692,
+      "copy_mode": "byte-identical"
+    }
+  ]
+}
