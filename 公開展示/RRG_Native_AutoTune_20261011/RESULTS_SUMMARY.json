@@ -1,0 +1,69 @@
+{
+  "date": "2026-10-11",
+  "model": "SmolLM 135M BF16",
+  "tensors": 272,
+  "layers": 30,
+  "raw_weights_bytes": 269030016,
+  "rrg_v10_bytes": 206828355,
+  "rrg_format": "tensorwise BF16 palette/bitpacked index (not full O8)",
+  "v21": {
+    "tokens": [
+      260,
+      2914,
+      553
+    ],
+    "native_cpp": true,
+    "kv_cache": true
+  },
+  "v22": {
+    "raw_median_seconds": 0.607703,
+    "raw_rss_kib": 2188,
+    "rrg_median_seconds": 1.105,
+    "rrg_rss_kib": 2248
+  },
+  "v24": {
+    "tokens": 12,
+    "uncached_seconds": 5.180651,
+    "cache_seconds": 5.236009,
+    "decode_seconds": 2.694688,
+    "io_seconds": 0.989127
+  },
+  "v25": {
+    "rows": [
+      1,
+      4,
+      16,
+      64
+    ],
+    "median_seconds": [
+      1.12,
+      0.813,
+      0.768,
+      0.741
+    ],
+    "io_calls": [
+      615012,
+      154500,
+      39372,
+      10590
+    ]
+  },
+  "v27": {
+    "best": "uniform_128",
+    "median_seconds": 0.7182,
+    "peak_rss_kib": 2568,
+    "repeats": 2,
+    "tokens": [
+      260,
+      2914,
+      553
+    ]
+  },
+  "limitations": [
+    "native tokenizer absent",
+    "100-token C++ test absent",
+    "not tensor-specific tuning",
+    "not complete O8",
+    "not proven lower RAM than raw C++"
+  ]
+}
