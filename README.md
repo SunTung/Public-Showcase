@@ -7,6 +7,10 @@
 
 這個 repository 是研究成果的公開展示區。內容只放可公開閱讀、可重現或可追溯的研究材料；私人信件、帳號、聯絡資料與投稿行政文件不放在這裡。
 
+## Android 手機軟體
+
+- [手機錄音器 PocketRecorder — APK 建置、使用說明與原始碼](./Android-PocketRecorder/README.md)：Android 原生錄音、播放、檔案管理、麥克風測試，附公開建置流程與限制說明。
+
 ## 展示項目
 
 - [Mario Krenn — K6,D=3 restricted result](./公開展示/Mario_Krenn_K6D3_Restricted/)
