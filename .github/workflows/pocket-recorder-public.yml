@@ -1,0 +1,58 @@
+name: Build Public PocketRecorder APK
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'Android-PocketRecorder/**'
+      - '.github/workflows/android-voice-recorder.yml'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'Android-PocketRecorder/**'
+      - '.github/workflows/android-voice-recorder.yml'
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: Android-PocketRecorder
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Install Android SDK 35
+        run: |
+          SDKMANAGER="$(find /usr/local/lib/android/sdk /opt/android-sdk -type f -name sdkmanager -print -quit 2>/dev/null || true)"
+          if [ -z "$SDKMANAGER" ]; then
+            mkdir -p "$HOME/android-sdk/cmdline-tools"
+            curl -fsSL -o /tmp/cmdline-tools.zip "https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip"
+            unzip -q /tmp/cmdline-tools.zip -d /tmp/android-tools
+            mv /tmp/android-tools/cmdline-tools "$HOME/android-sdk/cmdline-tools/latest"
+            export ANDROID_HOME="$HOME/android-sdk"
+            export ANDROID_SDK_ROOT="$HOME/android-sdk"
+            SDKMANAGER="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+          else
+            export ANDROID_HOME="/usr/local/lib/android/sdk"
+            export ANDROID_SDK_ROOT="$ANDROID_HOME"
+          fi
+          yes | "$SDKMANAGER" --sdk_root="$ANDROID_HOME" --licenses >/dev/null || true
+          "$SDKMANAGER" --sdk_root="$ANDROID_HOME" "platforms;android-35" "build-tools;35.0.0"
+          echo "ANDROID_HOME=$ANDROID_HOME" >> "$GITHUB_ENV"
+          echo "ANDROID_SDK_ROOT=$ANDROID_HOME" >> "$GITHUB_ENV"
+      - name: Install Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+      - name: Build debug APK
+        run: gradle --no-daemon :app:assembleDebug
+      - name: Upload installable APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: PocketRecorder-debug-APK
+          path: Android-PocketRecorder/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
