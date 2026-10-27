@@ -3,6 +3,7 @@
 ## 研究論文入口
 
 - [三維漩渦與週期 Navier–Stokes 研究論文](公開展示/Three_Dimensional_Vortex_Navier_Stokes/README.md)：第九、十篇全文、第十一篇 PDF／DOCX、結論附錄與後續 T67。現有研究仍未完成全域正則性證明。
+- [RRG Native AutoTune（2026-10-11）](公開展示/RRG_Native_AutoTune_20261011/README.md)：公開研究報告與結果摘要；性能與原生執行主張以該項目的實際測試證據為限。
 - [全部公開展示索引](公開展示/README.md)
 
 這個 repository 是研究成果的公開展示區。內容只放可公開閱讀、可重現或可追溯的研究材料；私人信件、帳號、聯絡資料與投稿行政文件不放在這裡。
