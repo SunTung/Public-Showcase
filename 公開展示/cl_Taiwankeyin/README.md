@@ -1,5 +1,13 @@
 # cl_Taiwankeyin｜繁體細胞注音輸入法（Windows + Android）
 
+## Android Alpha 2 修正版（2026-11-08）
+
+- **已完成真實 APK CI 編譯：** [Run #42478920166](https://github.com/SunTung/Public-Showcase/actions/runs/42478920166)，Android SDK 35、Java 197/197 測試、Gradle APK 打包與 Artifact 上傳全部 PASS。
+- **[下載 Alpha 2 並存測試 APK](https://drive.google.com/file/d/13mwQsDO6UWQUWl85XFJu1CWTPyInI5xx/view)**；[原始碼 ZIP](https://drive.google.com/file/d/1arIuiMVYUpGv68U4swBM5ksmDcCRD9_V/view)。這版將過大的注音鍵改為 10 欄等寬，且 **不按聲調也能空白選字、連續音節自動推進**。
+- Alpha 2 Debug 獨立套件 ID：`tw.cell.taiwankeyin.alpha2test`，可與 Alpha 1 並存而不覆蓋舊版學習資料；[完整發行驗收](ANDROID_ALPHA2_RELEASE_20261108.md)。
+- **限制：** APK 已通過 CI 編譯與雲端讀回，尚未在使用者手機實機驗證；小型示範詞庫仍待擴充。
+
+
 ## Android 手機版（2026-11-08）
 
 - [AndroidMobile 原生 Android IME 工程](AndroidMobile/)：Java 版大千注音鍵盤、候選列、十字經驗記憶、SQLite、本機詞庫匯入。
