@@ -12,7 +12,11 @@ import java.util.LinkedHashSet;
 /** Local-only personal learning; NEVER copy this database into public source archives. */
 public final class ExperienceDatabase extends SQLiteOpenHelper implements KeyinCore.LearningBackend {
     public ExperienceDatabase(Context context) {
-        super(context.getApplicationContext(), "cell_taiwankeyin_experience.sqlite3", null, 1);
+        this(context, "cell_taiwankeyin_experience.sqlite3");
+    }
+    // A unique isolated database is used by the Android debug integration probe.
+    ExperienceDatabase(Context context, String filename) {
+        super(context.getApplicationContext(), filename, null, 1);
         setWriteAheadLoggingEnabled(true);
     }
     @Override public void onCreate(SQLiteDatabase db) {
@@ -22,7 +26,13 @@ public final class ExperienceDatabase extends SQLiteOpenHelper implements KeyinC
     }
     @Override public void onConfigure(SQLiteDatabase db) {
         super.onConfigure(db);
-        db.execSQL("PRAGMA secure_delete=ON");
+        // PRAGMA secure_delete returns a row on Android. execSQL() rejects
+        // statements that return values: the original line crashed the IME
+        // on its very first SQLite database open (Android 35 reproduced).
+        try (Cursor state = db.rawQuery("PRAGMA secure_delete=ON", null)) {
+            if (!state.moveToFirst() || state.getInt(0) != 1)
+                throw new IllegalStateException("SQLite secure_delete could not be enabled");
+        }
     }
     @Override public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // No destructive migrations: first version has no older schema.
@@ -102,7 +112,11 @@ public final class ExperienceDatabase extends SQLiteOpenHelper implements KeyinC
             db.execSQL("DELETE FROM choice_stat");
             db.setTransactionSuccessful();
         } finally { db.endTransaction(); }
-        db.execSQL("PRAGMA wal_checkpoint(TRUNCATE)");
+        // Checkpoint also yields a result row; it is not an execSQL statement.
+        try (Cursor checkpoint = db.rawQuery("PRAGMA wal_checkpoint(TRUNCATE)", null)) {
+            if (checkpoint.moveToFirst() && checkpoint.getInt(0) != 0)
+                throw new IllegalStateException("SQLite WAL checkpoint was busy");
+        }
         db.execSQL("VACUUM");
     }
 }

@@ -24,7 +24,7 @@ public final class ImeProbeActivity extends Activity {
         setContentView(text);
         text.requestFocus();
         text.post(() -> {
-            try (ExperienceDatabase storage = new ExperienceDatabase(this)) {
+            try (ExperienceDatabase storage = new ExperienceDatabase(this, "cell_taiwankeyin_probe_only.sqlite3")) {
                 storage.erase(); // The debug package has an independent disposable testing database.
                 KeyinCore.Memory memory = new KeyinCore.Memory(storage);
                 KeyinCore.Lexicon words = new KeyinCore.Lexicon();

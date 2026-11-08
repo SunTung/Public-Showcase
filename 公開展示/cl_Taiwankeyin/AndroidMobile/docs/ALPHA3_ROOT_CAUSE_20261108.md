@@ -11,6 +11,16 @@
 
 **限制：** 以上是實際程式碼缺陷，不等於已經從使用者手機 logcat 取得導致 IME 程序關閉的確切 Java exception；具體手機 crash stacktrace 仍待 Android 端擷取。不能把假說當成已驗證的特定崩潰原因。
 
+## 已在 Android 35 模擬器實際重現的確切 SQL 崩潰點
+
+- CI Run #42480577292 模擬器 smoke FAILED，Logcat 顯示：
+  `android.database.sqlite.SQLiteException: unknown error (code 0 SQLITE_OK): Queries can be performed using SQLiteDatabase query or rawQuery methods only.`
+- Stacktrace 落在 `ExperienceDatabase.onConfigure(ExperienceDatabase.java:25)`，舊版執行 `db.execSQL("PRAGMA secure_delete=ON")`。
+- **這是比最初 transaction ordering 更直接、可重現的 Android 閃退原因。** 資料庫初次開啟時就能發生，完全不需要已上屏的文字。
+- 已改成 `db.rawQuery("PRAGMA secure_delete=ON", null)`，明確讀取驗證回傳結果；同時修正清除資料時 `PRAGMA wal_checkpoint(TRUNCATE)` 也不能再用 `execSQL`。
+- Debug Probe 使用獨立 SQLite 檔案 `cell_taiwankeyin_probe_only.sqlite3`，不會清除一般 Alpha3 使用者的學習庫。
+- 需以修正後的 Android Emulator 再次跑通，才可宣告 Android SQLite/編輯器整合 PASS。
+
 ## 修正
 
 1. 新增 `core/CommitBridge.java`，編輯器確實回傳 commit 成功後，才清除候選並記憶；拒絕/空連線/拋例外均保留注音，不讓文字悄悄消失。

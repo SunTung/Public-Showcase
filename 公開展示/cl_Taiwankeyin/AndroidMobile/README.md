@@ -6,6 +6,7 @@
 
 ## Alpha 3｜真實手機故障修復（2026-11-08）
 
+- **Android 35 模擬器已重現確切 SQLite 崩潰：** `ExperienceDatabase.onConfigure` 將會回傳結果的 `PRAGMA secure_delete=ON` 傳給 `execSQL`，Android 拋 `SQLiteException`；已更換為 `rawQuery` 並驗證游標結果。同時修復 `wal_checkpoint(TRUNCATE)` 的同類錯誤。
 - [實際程式碼缺陷分析](docs/ALPHA3_ROOT_CAUSE_20261108.md)：先清除組字、後向 Android 提交文字；若目標編輯框拒絕，候選就遺失。已修正為提交成功才清空，並加入 SQLite 錯誤保護。
 - 取消鍵盤上方 37dp 永久標題和教學字樣，僅保留動態候選列。
 - 聲調/標點排高度由 49dp → 36dp；保留每排10個等寬主注音鍵。

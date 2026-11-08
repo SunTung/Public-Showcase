@@ -32,7 +32,7 @@ public final class SettingsActivity extends Activity {
         LinearLayout content=new LinearLayout(this);content.setOrientation(LinearLayout.VERTICAL);
         content.setPadding(dp(24),dp(35),dp(24),dp(24));
         scroll.addView(content);setContentView(scroll);
-        TextView title=new TextView(this);title.setText("CELL 臺灣注音 · Alpha2 測試");title.setTextSize(24);
+        TextView title=new TextView(this);title.setText("CELL 臺灣注音 · Alpha3 測試");title.setTextSize(24);
         title.setGravity(Gravity.CENTER);content.addView(title);
         TextView desc=new TextView(this);
         desc.setText("大千注音｜十字上下文｜本機經驗選字\n目前內建測試詞庫；可匯入更完整的 UTF-8 注音 TSV 詞庫。");

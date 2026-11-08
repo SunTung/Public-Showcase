@@ -41,6 +41,6 @@ jobs:
       - name: Upload debug APK
         uses: actions/upload-artifact@v4
         with:
-          name: cl-Taiwankeyin-Android-alpha2-debug-apk
+          name: cl-Taiwankeyin-Android-alpha3-debug-apk
           path: '公開展示/cl_Taiwankeyin/AndroidMobile/app/build/outputs/apk/debug/app-debug.apk'
           retention-days: 14
