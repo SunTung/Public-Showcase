@@ -47,16 +47,30 @@ jobs:
             --output app/src/main/assets/full_zhuyin_mobile.sqlite3
           test -s app/src/main/assets/full_zhuyin_mobile.sqlite3
           test -s app/src/main/assets/full_lexicon_manifest.json
-      - name: Android APK compilation
+      - name: Build debug regression + unsigned unified release
         working-directory: '公開展示/cl_Taiwankeyin/AndroidMobile'
-        run: gradle --no-daemon --stacktrace :app:assembleDebug
-      - name: Verify APK and full lexicon exist
+        run: gradle --no-daemon --stacktrace :app:assembleDebug :app:assembleRelease
+      - name: Copy Android APK signing tool (signing stays OFF public CI)
+        run: |
+          mkdir -p signing-tools
+          cp "${ANDROID_HOME}/build-tools/35.0.0/lib/apksigner.jar" signing-tools/apksigner.jar
+          test -s signing-tools/apksigner.jar
+      - name: Verify unsigned release and full lexicon exist
         run: |
           test -s '公開展示/cl_Taiwankeyin/AndroidMobile/app/build/outputs/apk/debug/app-debug.apk'
+          test -s '公開展示/cl_Taiwankeyin/AndroidMobile/app/build/outputs/apk/release/app-release-unsigned.apk'
           test -s '公開展示/cl_Taiwankeyin/AndroidMobile/app/src/main/assets/full_zhuyin_mobile.sqlite3'
-      - name: Upload debug APK
+      - name: Upload unsigned release and apksigner for OFF-CI private signing
         uses: actions/upload-artifact@v4
         with:
-          name: cl-Taiwankeyin-Android-alpha5-palette-debug-apk
-          path: '公開展示/cl_Taiwankeyin/AndroidMobile/app/build/outputs/apk/debug/app-debug.apk'
+          name: cl-Taiwankeyin-unified-v1-unsigned-and-signing-tool
+          path: |
+            公開展示/cl_Taiwankeyin/AndroidMobile/app/build/outputs/apk/release/app-release-unsigned.apk
+            signing-tools/apksigner.jar
           retention-days: 14
+      - name: Upload debug regression APK (NOT for users)
+        uses: actions/upload-artifact@v4
+        with:
+          name: cl-Taiwankeyin-unified-v1-ci-debug-do-not-install
+          path: '公開展示/cl_Taiwankeyin/AndroidMobile/app/build/outputs/apk/debug/app-debug.apk'
+          retention-days: 7

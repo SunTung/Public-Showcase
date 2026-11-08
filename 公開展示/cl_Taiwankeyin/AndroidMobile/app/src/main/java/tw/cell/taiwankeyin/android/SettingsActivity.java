@@ -32,7 +32,7 @@ public final class SettingsActivity extends Activity {
         LinearLayout content=new LinearLayout(this);content.setOrientation(LinearLayout.VERTICAL);
         content.setPadding(dp(24),dp(35),dp(24),dp(24));
         scroll.addView(content);setContentView(scroll);
-        TextView title=new TextView(this);title.setText("CELL 臺灣注音 · Alpha5 測試");title.setTextSize(24);
+        TextView title=new TextView(this);title.setText("CELL 臺灣注音 · 整合版");title.setTextSize(24);
         title.setGravity(Gravity.CENTER);content.addView(title);
         TextView desc=new TextView(this);
         desc.setText("大千注音｜十字上下文｜本機經驗選字\n內建完整 Chewing 臺灣正體字詞庫（158,905筆）；也可自行匯入 UTF-8 TSV 詞庫補充。");
@@ -65,7 +65,7 @@ public final class SettingsActivity extends Activity {
         EditText test=new EditText(this);test.setHint("例如：你好，今天（台南）天氣很好。");
         test.setMinHeight(dp(110));test.setGravity(Gravity.TOP);content.addView(test);
         status=new TextView(this);status.setPadding(0,dp(18),0,0);status.setTextSize(14);
-        status.setText("版本：0.1.4-alpha5-test（可與 Alpha1 並存）。完整字詞庫由官方來源生成；罕字與候選排名仍需測試。");content.addView(status);
+        status.setText("版本：1.0.0-unified（可與 Alpha1 並存）。完整字詞庫由官方來源生成；罕字與候選排名仍需測試。");content.addView(status);
     }
     @Override protected void onActivityResult(int request,int result,Intent data) {
         super.onActivityResult(request,result,data);
