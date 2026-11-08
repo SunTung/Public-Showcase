@@ -13,6 +13,7 @@ import android.view.inputmethod.InputConnection;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
+import android.widget.Space;
 import android.widget.TextView;
 import tw.cell.taiwankeyin.core.KeyinCore;
 import java.io.File;
@@ -26,6 +27,7 @@ public final class TaiwanKeyinImeService extends InputMethodService {
     private static final int ACCENT = Color.rgb(63, 149, 229);
     private static final int WHITE = Color.rgb(244, 247, 252);
     private static final String LEXICON = "imported_lexicon.tsv";
+    private static final int PHONETIC_COLUMNS = 10; // Uniform 10-column touch targets across all Zhuyin rows.
     private ExperienceDatabase store;
     private KeyinCore.Memory memory;
     private KeyinCore.Lexicon lexicon;
@@ -162,6 +164,22 @@ public final class TaiwanKeyinImeService extends InputMethodService {
     private void phonetic(String glyph) {
         if (session.pressSymbol(glyph)) updatePreview();
     }
+    private void addEmptyCell(LinearLayout target) {
+        Space spacer = new Space(this); // Not a huge invisible clickable button.
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, dp(46), 1);
+        lp.setMargins(dp(1), dp(1), dp(1), dp(1));
+        target.addView(spacer, lp);
+    }
+    private void spaceBar() {
+        // Space chooses the first candidate when the syllable has no explicit tone.
+        // When the phonetics are incomplete, keep the preedit instead of inserting a space.
+        if (!englishMode && !symbolMode && session.active()) {
+            if (!session.candidates().isEmpty()) chooseCandidate(0);
+            else updatePreview();
+            return;
+        }
+        insertPlain(" ");
+    }
     private void rebuildKeys() {
         if (keysArea == null) return;
         keysArea.removeAllViews();
@@ -183,28 +201,29 @@ public final class TaiwanKeyinImeService extends InputMethodService {
                 for(char ch:keys.toCharArray()) addKey(strip,String.valueOf(ch),()->insertPlain(String.valueOf(ch)),1,PANEL,17);
             }
         } else {
-            for (int start=0; start<KeyinCore.SYMBOLS.length; start+=7) {
-                LinearLayout strip=row();
-                int end=Math.min(start+7,KeyinCore.SYMBOLS.length);
-                for (int i=start;i<end;i++) {
-                    String symbol=KeyinCore.SYMBOLS[i];
-                    addKey(strip,symbol,()->phonetic(symbol),1,PANEL,19);
+            // Phone-friendly equal-width 10 columns instead of the old seven oversized keys.
+            for (int start = 0; start < KeyinCore.SYMBOLS.length; start += PHONETIC_COLUMNS) {
+                LinearLayout strip = row();
+                int end = Math.min(start + PHONETIC_COLUMNS, KeyinCore.SYMBOLS.length);
+                for (int i = start; i < end; i++) {
+                    String symbol = KeyinCore.SYMBOLS[i];
+                    addKey(strip, symbol, () -> phonetic(symbol), 1, PANEL, 17);
                 }
-                // Fill the last short row with neutral cells for stable touch targets.
-                for (int i=end;i<start+7;i++) addKey(strip,"",()->{},1,BACKGROUND,16);
+                for (int i = end; i < start + PHONETIC_COLUMNS; i++) addEmptyCell(strip);
             }
-            LinearLayout tones=row();
-            for(String tone:KeyinCore.TONE_LABELS)
-                addKey(tones,tone,()->phonetic(tone),1,ACCENT,19);
+            // Five optional tones plus five quick punctuation keys in the same 10-slot row.
+            // Tones do not need to be pressed; Space confirms an untoned candidate.
+            LinearLayout tonesAndPunct = row();
+            for (String tone : KeyinCore.TONE_LABELS)
+                addKey(tonesAndPunct, tone, () -> phonetic(tone), 1, ACCENT, 16);
+            for (String mark : new String[]{"（", "）", "：", "，", "。"})
+                addKey(tonesAndPunct, mark, () -> insertPlain(mark), 1, PANEL, 16);
         }
-        LinearLayout punct=row();
-        addKey(punct,"（",()->insertPlain("（"),1,PANEL,14);
-        addKey(punct,"）",()->insertPlain("）"),1,PANEL,14);
-        addKey(punct,"：",()->insertPlain("："),1,PANEL,14);
-        addKey(punct,"，",()->insertPlain("，"),1,PANEL,14);
-        addKey(punct,"。",()->insertPlain("。"),1,PANEL,14);
-        addKey(punct,"？",()->insertPlain("？"),1,PANEL,14);
-        addKey(punct,"！",()->insertPlain("！"),1,PANEL,14);
+        if (englishMode) {
+            LinearLayout punct = row();
+            for (String mark : new String[]{"（", "）", "：", "，", "。", "？", "！"})
+                addKey(punct, mark, () -> insertPlain(mark), 1, PANEL, 14);
+        }
         LinearLayout controls=row();
         addKey(controls,englishMode?"注音":"ABC",()->{
             session.clear(); symbolMode=false; englishMode=!englishMode; rebuildKeys(); updatePreview();
@@ -212,7 +231,7 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         addKey(controls,symbolMode?"注音":"符號",()->{
             session.clear(); symbolMode=!symbolMode; englishMode=false; rebuildKeys(); updatePreview();
         },2,ACCENT,14);
-        addKey(controls,"空白",()->insertPlain(" "),2,PANEL,14);
+        addKey(controls,"空白 / 選字",this::spaceBar,3,PANEL,13);
         addKey(controls,"⌫",this::backspace,2,PANEL,23);
         addKey(controls,"↵",this::enter,2,ACCENT,19);
     }
@@ -232,7 +251,7 @@ public final class TaiwanKeyinImeService extends InputMethodService {
                     candidateRow.addView(suggested,lp);
                 }
             } else {
-                TextView placeholder = label(session.active()?"輸入聲調後選字":"請輸入注音",14,0xFFABB5C8);
+                TextView placeholder = label(session.active()?"繼續注音；完整音節按空白選字":"注音可不選聲調 · 空白直接選字",14,0xFFABB5C8);
                 candidateRow.addView(placeholder);
             }
         } else {
@@ -290,6 +309,7 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         if (keyCode==KeyEvent.KEYCODE_DEL) { backspace(); return true; }
         if (keyCode==KeyEvent.KEYCODE_ESCAPE) { session.clear();updatePreview();return true; }
         if (keyCode==KeyEvent.KEYCODE_ENTER) { enter();return true; }
+        if (keyCode==KeyEvent.KEYCODE_SPACE) { spaceBar();return true; }
         char c=(char)event.getUnicodeChar();
         if(c!='\0' && !englishMode && session.pressKey(c)) {updatePreview();return true;}
         return super.onKeyDown(keyCode,event);

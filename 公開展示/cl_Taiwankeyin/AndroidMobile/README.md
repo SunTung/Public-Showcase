@@ -1,22 +1,14 @@
 # cl_Taiwankeyin Android｜CELL 繁體細胞注音輸入法
 
-**Android 輸入法工程 alpha1；可在 Android Studio/CI 建置 APK。**
-
-## Alpha 1 APK 建置成功（2026-11-08）
-
-**Android Debug APK 已成功由 GitHub Actions 編譯並上傳。** [成功的 CI Run #42475919495](https://github.com/SunTung/Public-Showcase/actions/runs/42475919495) ｜ [Google Drive APK 備份](https://drive.google.com/file/d/1ScIZjfTvC52iBRveVWTmy9jcmOEIRa_Y/view) ｜ [APK 驗收報告](docs/APK_CI_ACCEPTANCE_20261108.md)。
-
-- 初次 Run #42475284999 因 Android SDK 安裝腳本要求不存在的 `tools` 套件失敗；已修正。
-- APK SHA-256：`7683e9b1092235468162a076aa6087703888c3c61f490f71e26b6d0aa4a6e184`（35,809 bytes）。
-- 已完成 CI 編譯與 APK 雙雲保存，但 **尚未完成 Android 手機實機安裝與試打驗收**。
-- GitHub Actions Artifact 會過期；Google Drive 保留 APK 備份。
-
+**Android 輸入法工程 alpha2（0.1.1-alpha2）**；承襲已通過 GitHub Actions 編譯的 alpha1，新增無聲調自動選字與觸控鍵盤縮放修復。alpha2 APK 的建置結果應以新的 GitHub Actions 執行為準。
 
 平台：Android 8.0+（API 26），系統 IME 使用官方 `InputMethodService` / `InputConnection`。
 
 ## 功能（目前實作）
 
-- 37 個大千注音根鍵、五聲調、候選列、單字與多音節組詞、退格、英文字母切換、常用繁體標點。
+- 37 個大千注音根鍵、五聲調（可選）、候選列、單字與多音節組詞、退格、英文字母切換、常用繁體標點。
+- 不用按聲調即可顯示候選，按「空白 / 選字」確認第一候選；連續輸入下一個聲母時會自動推進音節。
+- 手機注音按鍵改為四排，每排 10 個等寬格；第五排混合可選聲調與常用標點，減少過大的第一排按鍵。
 - 最後 **10 個有效字元** 的 CELL 經驗窗；遇 `，。！？、；` 與半形對應標點斷句；`（）〔〕〈〉｛｝：` 保留連接。
 - 只在 Android 編輯框確認接收文字後記入本機 SQLite；未選字時不學習。
 - 個人選字、上下文關聯與最多 10 字短句經驗；支援學習開關、清除資料、密碼欄位不學習。
@@ -43,7 +35,7 @@
 
 ## 當前限制與下一關
 
-- 此工作環境沒有 Android SDK / Gradle 安裝包，但 GitHub Actions Run #42475919495 已成功編譯並保存 Android Debug APK；**尚未在真機安裝驗收**。
+- alpha1 已在 GitHub Actions [#42475919495](https://github.com/SunTung/Public-Showcase/actions/runs/42475919495) 成功建置 APK。**alpha2 還需要自己的 CI 編譯結果與手機實機驗收**。
 - 臺灣全量繁體詞庫仍待匯入、異音字校對與詞頻驗收；不宣稱已完整可用。
 - Android Core Java 版為原生平台行為移植，尚未做與 Windows C++ 的逐案例跨語言一致性全面比對。
 - 後續追加完整候選分頁、全符號/英數鍵盤、語音、手勢、emoji、Android 真機性能與防撞誤觸設計。
@@ -56,4 +48,14 @@
 
 - [工程紀錄](docs/ENGINEERING_REPORT_20261108.md)
 - [R1/R2 與 Android Java 的版本關係](docs/SOURCE_LINEAGE.md)
-- 此版核心通過 **116** 項 Java 測試；Android APK 的編譯與真機通過狀態需另外查核 GitHub Actions 結果。
+- alpha2 核心已在 Linux Java 17 通過 **197** 項檢查（alpha1 為 116）。
+- [alpha2 修復驗收報告](docs/ALPHA2_FIX_REPORT_20261108.md)；APK 的編譯與真機通過狀態需另查 GitHub Actions。
+
+## alpha2 的手機試打案例
+
+- **無聲調**：輸入「ㄏ、ㄠ」，候選列即出現「好」，按「空白 / 選字」輸入「好」，**不會額外插入空格**。
+- **音節自動推進**：依序點「ㄋ、ㄧ、ㄏ、ㄠ」，候選列出現「你好」，按空白確認。
+- **有聲調**：也可先按「ㄏ、ㄠ、ˇ」，再選「好」；指定聲調只篩對應讀音。
+- 未組字時空白鍵才會插入一般空白；只輸入了不完整聲母時，按空白保留原始注音以供補全。
+
+目前仍屬小型示範詞庫，無法保證所有中文字都有候選。

@@ -83,6 +83,81 @@ public class KeyinCoreTest {
     check(!learning.phrases.containsKey("保密"),"privacy excludes text");
     memory.setSensitive(false);memory.erase();s.refreshCandidates();
     check(s.candidates().get(0).text.equals("在"),"erase resets rank");
+    // R0R2 regression: tone marks are optional. Space is handled by the Android host
+    // as a choose(0) event, not as another first-tone keystroke.
+    KeyinCore.Memory noToneMemory=new KeyinCore.Memory(new Learning());
+    KeyinCore.Session fast=new KeyinCore.Session(lex,noToneMemory);
+    check(fast.pressKey('c'),"hao initial without tone");
+    check(fast.candidates().isEmpty(),"partial hao does not offer fabricated candidate");
+    check(fast.pressKey('l'),"hao final without tone");
+    check(fast.candidates().size()>0,"hao appears without tone key");
+    check(fast.candidates().get(0).text.equals("好"),"untuned hao top candidate");
+    check(fast.preedit().equals("ㄏㄠ"),"preedit remains untoned");
+    check(fast.choose(0).text.equals("好"),"space can select untoned hao");
+    check(!fast.active(),"no stuck preedit after space selection");
+
+    check(fast.pressKey('s'),"no-tone ni initial");
+    check(fast.pressKey('u'),"no-tone ni medial");
+    check(fast.candidates().get(0).text.equals("你"),"ni preview before any tone");
+    check(fast.pressKey('c'),"new initial auto-advances ni without tone");
+    check(fast.preedit().equals("ㄋㄧ ㄏ"),"syllable boundary inserted automatically");
+    check(fast.candidates().isEmpty(),"no incomplete second syllable menu");
+    check(fast.pressKey('l'),"finish hao in phrase without tone");
+    check(fast.candidates().get(0).text.equals("你好"),"two-syllable phrase without any tones");
+    KeyinCore.Selection autoPhrase=fast.choose(0);
+    check(autoPhrase.text.equals("你好"),"space commits full untoned phrase");
+    check(autoPhrase.reading.equals("ㄋㄧˇ ㄏㄠˇ"),"learning stores resolved dictionary tones");
+    check(!fast.active(),"auto boundary phrase clears preedit");
+    noToneMemory.committed(autoPhrase.text,autoPhrase.reading);
+    check(noToneMemory.context().text().equals("你好"),"auto-commit feeds unchanged CELL Context10");
+
+    check(fast.pressKey('s'),"restart untoned reading");
+    check(fast.pressKey('u'),"finish untoned ni again");
+    check(fast.pressKey('c'),"start second syllable again");
+    check(fast.backspace(),"delete incomplete second syllable");
+    check(fast.candidates().get(0).text.equals("你"),"first syllable candidate restored");
+    check(fast.backspace(),"reopen prior untoned syllable");
+    check(fast.preedit().equals("ㄋㄧ"),"reopened untoned spelling retained");
+    check(fast.candidates().get(0).text.equals("你"),"reopened syllable candidates restored");
+    fast.clear();
+
+    check(fast.pressKey('y'),"homophone initial");
+    check(fast.pressKey('9'),"homophone final");
+    check(fast.candidates().size()==2,"no-tone homophones available without tone");
+    check(fast.pressKey('4'),"explicit fourth tone remains usable");
+    check(fast.reading().equals("ㄗㄞˋ"),"explicit tone is preserved");
+    check(fast.candidates().size()==2,"tone-filtered candidates still available");
+    check(fast.choose(0)!=null,"explicit tone confirmed");
+
+    check(fast.pressKey('s'),"invalid partial test initial");
+    check(!fast.pressKey('c'),"invalid incomplete phonetics must not auto-advance");
+    check(fast.preedit().equals("ㄋ"),"bad boundary doesn't discard input");
+    check(fast.candidates().isEmpty(),"partial phonetic key has no candidates");
+    fast.clear();
+    check(lex.lookupFlexible("ㄋㄧ",noToneMemory).size()>=1,"indexed tone-free lexicon lookup");
+    check(lex.lookupFlexible("ㄋㄧˊ",noToneMemory).isEmpty(),"explicit mismatched tone strictly filtered");
+
+    // Explicit tone on one syllable must not force a tone on the next one.
+    KeyinCore.Session mixed=new KeyinCore.Session(lex,noToneMemory);
+    check(mixed.pressKey('s'),"mixed first initial");
+    check(mixed.pressKey('u'),"mixed first medial");
+    check(mixed.pressKey('3'),"mixed first third tone");
+    check(mixed.candidates().get(0).text.equals("你"),"mixed first toned preview");
+    check(mixed.pressKey('c'),"next syllable starts after explicit tone");
+    check(mixed.pressKey('l'),"next syllable no tone");
+    check(mixed.candidates().get(0).text.equals("你好"),"mixed-tone phrase resolved");
+    check(mixed.choose(0).reading.equals("ㄋㄧˇ ㄏㄠˇ"),"dictionary supplies missing next tone");
+
+    KeyinCore.Session cap=new KeyinCore.Session(lex,noToneMemory);
+    for (int n=0;n<10;n++) {
+        check(cap.pressKey('s'),"10-syllable typed initial "+n);
+        check(cap.pressKey('u'),"10-syllable typed final "+n);
+        check(cap.pressKey('3'),"10-syllable typed tone "+n);
+    }
+    check(!cap.pressKey('s'),"hard 10-syllable limit prevents hidden overflow");
+    check(cap.reading().split(" ").length==10,"10-syllable composition remains intact");
+
+
     System.out.println("PASS: "+checks+" Android pure Java keyboard/experience checks");
   }
 }

@@ -160,13 +160,37 @@ public final class KeyinCore {
     }
     public static final class Lexicon {
         private final Map<String, Map<String, Double>> values = new HashMap<>();
+        // Tone-free index: untoned input must not scan the full lexicon on every keypress.
+        private final Map<String, List<String>> toneFreeReadings = new HashMap<>();
         private int count;
+
+        private static String withoutTones(String reading) {
+            return reading.replace("ˉ", "").replace("ˊ", "").replace("ˇ", "")
+                    .replace("ˋ", "").replace("˙", "");
+        }
+        private static boolean matchesTonePattern(String typed, String actual) {
+            String[] typedSyllables = typed.split(" ");
+            String[] actualSyllables = actual.split(" ");
+            if (typedSyllables.length != actualSyllables.length) return false;
+            for (int i = 0; i < typedSyllables.length; i++) {
+                if (!withoutTones(typedSyllables[i]).equals(withoutTones(actualSyllables[i]))) return false;
+                String s = typedSyllables[i];
+                char last = s.charAt(s.length() - 1);
+                if ("ˉˊˇˋ˙".indexOf(last) >= 0 && !s.equals(actualSyllables[i])) return false;
+            }
+            return true;
+        }
         public void add(String reading, String word, double baseline) {
             if (reading == null || reading.isEmpty() || word == null || word.isEmpty()
                     || reading.length() > 256 || !reading.matches("[ㄅ-ㄩㄚ-ㄦˉˊˇˋ˙ ]+")
                     || word.contains("\n") || word.contains("\r") || word.contains("\t")
                     || units(word).size() > 10 || !Double.isFinite(baseline)) return;
-            Map<String, Double> rows = values.computeIfAbsent(reading, k -> new HashMap<>());
+            Map<String, Double> rows = values.get(reading);
+            if (rows == null) {
+                rows = new HashMap<>();
+                values.put(reading, rows);
+                toneFreeReadings.computeIfAbsent(withoutTones(reading), k -> new ArrayList<>()).add(reading);
+            }
             if (!rows.containsKey(word)) count++;
             rows.merge(word, baseline, Math::max);
         }
@@ -184,15 +208,22 @@ public final class KeyinCore {
             }
         }
         public List<Candidate> lookup(String reading, Memory memory) {
-            Map<String, Double> rows = values.get(reading);
-            if (rows == null) return Collections.emptyList();
+            return lookupFlexible(reading, memory);
+        }
+        /** Missing tone marks are wildcards. Explicit tone marks remain strict filters. */
+        public List<Candidate> lookupFlexible(String typedReading, Memory memory) {
+            List<String> readings = toneFreeReadings.get(withoutTones(typedReading));
+            if (readings == null) return Collections.emptyList();
             List<Candidate> found = new ArrayList<>();
-            for (Map.Entry<String, Double> row : rows.entrySet()) {
-                double bonus = memory.bonus(reading, row.getKey());
-                found.add(new Candidate(row.getKey(), reading, row.getValue(), row.getValue() + bonus));
+            for (String actualReading : readings) {
+                if (!matchesTonePattern(typedReading, actualReading)) continue;
+                for (Map.Entry<String, Double> row : values.get(actualReading).entrySet()) {
+                    double bonus = memory.bonus(actualReading, row.getKey());
+                    found.add(new Candidate(row.getKey(), actualReading, row.getValue(), row.getValue() + bonus));
+                }
             }
             found.sort(Comparator.comparingDouble((Candidate c) -> c.score).reversed()
-                    .thenComparing(c -> c.text));
+                    .thenComparing(c -> c.text).thenComparing(c -> c.reading));
             return found;
         }
     }
@@ -232,21 +263,32 @@ public final class KeyinCore {
             return !(raw.length() == 1 && slot(raw.charAt(0)) == 0
                     && "5tgbyhn".indexOf(raw.charAt(0)) < 0);
         }
+        private String rawReading() {
+            StringBuilder reading = new StringBuilder();
+            for (int i = 0; i < raw.length(); i++) reading.append(symbolForKey(raw.charAt(i)));
+            return reading.toString();
+        }
         public boolean pressKey(char key) {
             key = Character.toLowerCase(key);
             int pos = KEY_CODES.indexOf(key);
             if (pos >= 0) {
-                if (!validPrefix(raw.toString() + key)) return false;
+                if (raw.length() == 0 && completed.size() >= 10) return false;
+                if (!validPrefix(raw.toString() + key)) {
+                    // A new initial begins the next syllable even if no tone was selected.
+                    // Do not silently discard a malformed or incomplete previous syllable.
+                    if (!validSyllable() || completed.size() >= 9 || !validPrefix(String.valueOf(key)))
+                        return false;
+                    completed.add(new Syllable(raw.toString(), rawReading()));
+                    raw.setLength(0);
+                }
                 raw.append(key);
-                menu = Collections.emptyList();
+                refresh();
                 return true;
             }
             String tone = symbolForKey(key);
             boolean isTone = key == ' ' || key == '6' || key == '3' || key == '4' || key == '7';
             if (!isTone || !validSyllable() || completed.size() >= 10) return false;
-            StringBuilder reading = new StringBuilder();
-            for (int i = 0; i < raw.length(); i++) reading.append(symbolForKey(raw.charAt(i)));
-            completed.add(new Syllable(raw.toString(), reading + tone));
+            completed.add(new Syllable(raw.toString(), rawReading() + tone));
             raw.setLength(0);
             refresh();
             return true;
@@ -263,7 +305,7 @@ public final class KeyinCore {
             }
             if (!completed.isEmpty()) {
                 raw.append(completed.remove(completed.size() - 1).keys);
-                menu = Collections.emptyList();
+                refresh();
                 return true;
             }
             return false;
@@ -288,27 +330,46 @@ public final class KeyinCore {
         }
         public List<Candidate> candidates() { return menu; }
         private void refresh() {
-            if (raw.length() > 0 || completed.isEmpty()) { menu = Collections.emptyList(); return; }
-            String reading = reading();
-            List<Candidate> matches = new ArrayList<>(lexicon.lookup(reading, memory));
-            if (matches.isEmpty() && completed.size() > 1) {
+            if (raw.length() > 0 && !validSyllable() ||
+                    completed.isEmpty() && raw.length() == 0) {
+                menu = Collections.emptyList();
+                return;
+            }
+            String typed = reading();
+            if (raw.length() > 0) {
+                if (!typed.isEmpty()) typed += " ";
+                typed += rawReading();
+            }
+            List<Candidate> matches = new ArrayList<>(lexicon.lookupFlexible(typed, memory));
+            int syllableCount = completed.size() + (raw.length() > 0 ? 1 : 0);
+            if (matches.isEmpty() && syllableCount > 1) {
                 StringBuilder composed = new StringBuilder();
+                StringBuilder actualReading = new StringBuilder();
                 double baseline = 0;
-                for (Syllable s : completed) {
-                    List<Candidate> one = lexicon.lookup(s.reading, memory);
+                List<String> syllables = new ArrayList<>();
+                for (Syllable s : completed) syllables.add(s.reading);
+                if (raw.length() > 0) syllables.add(rawReading());
+                for (String syllable : syllables) {
+                    List<Candidate> one = lexicon.lookupFlexible(syllable, memory);
                     if (one.isEmpty()) { composed.setLength(0); break; }
-                    composed.append(one.get(0).text);
-                    baseline += one.get(0).baseline;
+                    Candidate best = one.get(0);
+                    composed.append(best.text);
+                    if (actualReading.length() > 0) actualReading.append(' ');
+                    actualReading.append(best.reading);
+                    baseline += best.baseline;
                 }
-                if (composed.length() > 0) matches.add(new Candidate(composed.toString(), reading,
-                        baseline * 0.50, baseline * 0.50 + memory.bonus(reading, composed.toString())));
+                if (composed.length() > 0) {
+                    double approximateScore = baseline * 0.50;
+                    matches.add(new Candidate(composed.toString(), actualReading.toString(),
+                            approximateScore, approximateScore + memory.bonus(actualReading.toString(), composed.toString())));
+                }
             }
             menu = Collections.unmodifiableList(matches.size() > 24 ? matches.subList(0, 24) : matches);
         }
         public Selection choose(int index) {
-            if (raw.length() != 0 || index < 0 || index >= menu.size()) return null;
+            if (index < 0 || index >= menu.size()) return null;
             Candidate chosen = menu.get(index);
-            Selection result = new Selection(chosen.text, reading());
+            Selection result = new Selection(chosen.text, chosen.reading);
             clear();
             return result;
         }
