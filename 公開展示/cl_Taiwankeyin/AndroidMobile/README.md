@@ -2,6 +2,16 @@
 
 **Android 輸入法工程 alpha1；可在 Android Studio/CI 建置 APK。**
 
+## Alpha 1 APK 建置成功（2026-11-08）
+
+**Android Debug APK 已成功由 GitHub Actions 編譯並上傳。** [成功的 CI Run #42475919495](https://github.com/SunTung/Public-Showcase/actions/runs/42475919495) ｜ [Google Drive APK 備份](https://drive.google.com/file/d/1ScIZjfTvC52iBRveVWTmy9jcmOEIRa_Y/view) ｜ [APK 驗收報告](docs/APK_CI_ACCEPTANCE_20261108.md)。
+
+- 初次 Run #42475284999 因 Android SDK 安裝腳本要求不存在的 `tools` 套件失敗；已修正。
+- APK SHA-256：`7683e9b1092235468162a076aa6087703888c3c61f490f71e26b6d0aa4a6e184`（35,809 bytes）。
+- 已完成 CI 編譯與 APK 雙雲保存，但 **尚未完成 Android 手機實機安裝與試打驗收**。
+- GitHub Actions Artifact 會過期；Google Drive 保留 APK 備份。
+
+
 平台：Android 8.0+（API 26），系統 IME 使用官方 `InputMethodService` / `InputConnection`。
 
 ## 功能（目前實作）
@@ -33,7 +43,7 @@
 
 ## 當前限制與下一關
 
-- 此工作環境沒有 Android SDK / Gradle 安裝包，因此 **尚未在此環境實際編譯出 APK**，也未在真機安裝驗收；可經 GitHub Actions/Android Studio 建置。
+- 此工作環境沒有 Android SDK / Gradle 安裝包，但 GitHub Actions Run #42475919495 已成功編譯並保存 Android Debug APK；**尚未在真機安裝驗收**。
 - 臺灣全量繁體詞庫仍待匯入、異音字校對與詞頻驗收；不宣稱已完整可用。
 - Android Core Java 版為原生平台行為移植，尚未做與 Windows C++ 的逐案例跨語言一致性全面比對。
 - 後續追加完整候選分頁、全符號/英數鍵盤、語音、手勢、emoji、Android 真機性能與防撞誤觸設計。
