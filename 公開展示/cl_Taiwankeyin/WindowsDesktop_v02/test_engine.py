@@ -19,6 +19,14 @@ class TestWinEngine(unittest.TestCase):
         self.assertIn('是',self.e.followups(10))
         self.e.committed('。')
         self.assertEqual(self.e.context,'')
+    def test_explicit_tones(self):
+        for c in 'su':self.assertTrue(self.e.push(c))
+        self.assertTrue(self.e.tone('ˇ'))
+        self.assertIn('你',[x.text for x in self.e.choices])
+        self.assertTrue(self.e.push('c'))
+        self.assertTrue(self.e.push('l'))
+        self.assertTrue(self.e.tone('ˇ'))
+        self.assertIn('你好',[x.text for x in self.e.choices])
     def test_backspace(self):
         self.e.push('s');self.e.push('u');self.assertTrue(self.e.backspace())
         self.assertEqual(self.e.current_bare(),'ㄋ')

@@ -10,7 +10,7 @@ THEMES=[('#182334','#304259','#4A9EE6','#FFFFFF'),('#F1F3F8','#D9E0E9','#537BB8'
 class App:
     def __init__(self, root):
         self.root=root
-        root.title('CELL 臺灣注音・Windows 桌面預覽 v0.2')
+        root.title('CELL 臺灣注音・Windows 桌面預覽 v0.2.1')
         root.geometry('910x565')
         root.minsize(650,420)
         self.theme=0
@@ -42,6 +42,9 @@ class App:
     def keydown(self,event):
         if event.keysym in ('BackSpace','Delete') and self.engine.backspace():self.refresh();return 'break'
         if event.keysym=='Escape':self.cancel();return 'break'
+        if event.char and event.char in '3467' and (self.engine.raw or self.engine.parts):
+            tones={'3':'ˇ','4':'ˋ','6':'ˊ','7':'˙'}
+            if self.engine.tone(tones[event.char]):self.refresh();return 'break'
         if event.keysym=='space' and self.engine.choices:
             self.select(0);return 'break'
         if event.keysym in ('Return','KP_Enter') and self.engine.choices:
@@ -87,6 +90,8 @@ class App:
         tones=tk.Frame(self.key_area,bg=bg);tones.pack(fill='x')
         for label in ['ˉ','ˊ','ˇ','ˋ','˙']:
             tk.Label(tones,text=label,bg=accent,fg=fg,width=8).pack(side='left',expand=True,padx=2)
+    def press_tone(self,mark):
+        self.engine.tone(mark);self.refresh();self.edit.focus_set()
     def cancel(self):self.engine.clear();self.refresh()
     def copy(self):
         self.root.clipboard_clear();self.root.clipboard_append(self.edit.get('1.0','end-1c'))

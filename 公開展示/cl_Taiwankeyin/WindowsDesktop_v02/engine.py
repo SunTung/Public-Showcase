@@ -22,6 +22,7 @@ class Engine:
         self.db.execute('select 1 from lexicon_mobile limit 1').fetchone()
         self.raw=''
         self.parts=[]
+        self.explicit_tones=[]
         self.context=''
         self.choices=[]
         self.chosen={}
@@ -51,20 +52,29 @@ class Engine:
         if code not in MAP:return False
         if not self.valid(self.raw+code):
             if not self.complete(self.raw) or len(self.parts)>=9:return False
-            self.parts.append(self.translate(self.raw));self.raw=''
+            self.parts.append(self.translate(self.raw));self.explicit_tones.append('');self.raw=''
         self.raw+=code
         self.refresh()
         return True
     def backspace(self):
         if self.raw:self.raw=self.raw[:-1]
-        elif self.parts:self.raw=self._key_for(self.parts.pop())
+        elif self.parts:
+            self.raw=self._key_for(self.parts.pop())
+            self.explicit_tones.pop()
         else:return False
         self.refresh();return True
+    def tone(self, mark):
+        if mark not in TONES or not self.complete(self.raw) or len(self.parts)>=10:return False
+        self.parts.append(self.translate(self.raw))
+        self.explicit_tones.append('' if mark=='ˉ' else mark)
+        self.raw=''
+        self.refresh()
+        return True
     @staticmethod
     def _key_for(reading):
         reversed_map={v:k for k,v in MAP.items()}
         return ''.join(reversed_map.get(c,'') for c in reading if c not in TONES)
-    def clear(self):self.raw='';self.parts=[];self.choices=[]
+    def clear(self):self.raw='';self.parts=[];self.explicit_tones=[];self.choices=[]
     def refresh(self):
         bare=self.current_bare()
         self.choices=[]
@@ -75,8 +85,15 @@ class Engine:
         self.choices=[Candidate(*row) for row in rows if self._tone_match(row[1])][:18]
         self.choices.sort(key=lambda c:(-(c.frequency+self.chosen.get(c.text,0)*600),c.text))
     def _tone_match(self,actual):
-        # Windows preview accepts tone-optional phonetic readings.
-        return actual.translate(str.maketrans('','',TONES))==self.current_bare()
+        # Explicitly chosen tones filter the corresponding syllables.
+        syllables=actual.split(' ')
+        expected=self.explicit_tones + ([''] if self.raw else [])
+        if len(syllables)!=len(expected):return False
+        bare=' '.join(part.translate(str.maketrans('','',TONES)) for part in syllables)
+        if bare!=self.current_bare():return False
+        for syllable,tone in zip(syllables,expected):
+            if tone and not syllable.endswith(tone):return False
+        return True
     def choose(self,index=0):
         if index<0 or index>=len(self.choices):return None
         result=self.choices[index]
