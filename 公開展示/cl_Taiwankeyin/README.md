@@ -1,5 +1,14 @@
 # cl_Taiwankeyin｜繁體細胞注音輸入法（Windows + Android）
 
+## Android 單一正式版 v1.0.1｜彈性回彈＋每按鍵隨機調色
+
+- **固定 applicationId `tw.cell.taiwankeyin`、versionCode 101**；沿用 v1.0.0 正式簽章，可覆蓋更新，絕不另建 Alpha 鍵盤。
+- **[下載已簽署 v1.0.1 APK（Google Drive）](https://drive.google.com/file/d/1_kPc2hiqrK30WfkDCPBcpncUuB7BAfnK/view)** · [完整新版原始碼 ZIP](https://drive.google.com/file/d/1ZB5-TlNHjM1LVPgeceH_feJWFkRWKeoJ/view)。
+- 第七色塊「彩」啟動隨機配色：每次按鍵後，全部主鍵從六組顏色中重新分配，且按鍵幾何不變；保留彈性膨脹與回彈。
+- [詳細技術驗收報告](AndroidMobile/docs/UNIFIED_V101_ELASTIC_RANDOM_20261108.md) · [Release CI](https://github.com/SunTung/Public-Showcase/actions/runs/42496181137) · [Android 整合重測](https://github.com/SunTung/Public-Showcase/actions/runs/42496460708)。
+- 簽章 v2/v3 驗證成功、Java 763/763 PASS；真實 Android 手機的視覺與手感仍待驗收。
+
+
 ## 正式單一 Android 版 v1.0.0（2026-11-08）
 
 - **只保留一個正式套件 ID**：`tw.cell.taiwankeyin`，顯示名稱 `CELL 臺灣注音`。不再新增 `.alphaNtest` APK。
