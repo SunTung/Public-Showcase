@@ -1,0 +1,64 @@
+name: cl_Taiwankeyin R2B corpus and C++ regression
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '公開展示/cl_Taiwankeyin/**'
+      - '.github/workflows/cl_taiwankeyin_r2b.yml'
+  workflow_dispatch:
+
+jobs:
+  linux-r2b:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout public project
+        uses: actions/checkout@v4
+      - name: Install native deps
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends cmake g++ libicu-dev libsqlite3-dev python3 curl
+      - name: Configure and build R1+R2A+R2B
+        run: |
+          cmake -S '公開展示/cl_Taiwankeyin/R2_B_Dictionary' -B build-keyin -DCMAKE_BUILD_TYPE=Release
+          cmake --build build-keyin --parallel 2
+      - name: Run all regression tests
+        run: ctest --test-dir build-keyin --output-on-failure
+      - name: Fetch public reference lexicon
+        run: |
+          mkdir -p keyin-corpus
+          curl -fL --retry 3 --connect-timeout 15 --max-time 180 \
+            https://raw.githubusercontent.com/rime/rime-terra-pinyin/master/terra_pinyin.dict.yaml \
+            -o keyin-corpus/terra_pinyin.dict.yaml
+          sha256sum keyin-corpus/terra_pinyin.dict.yaml > keyin-corpus/source.sha256
+      - name: Import full corpus for validation
+        run: |
+          build-keyin/cellkeyin_import_terra \
+            keyin-corpus/terra_pinyin.dict.yaml \
+            keyin-corpus/cell_zhuyin_tw_generated.tsv | tee keyin-corpus/import.log
+          python3 - <<'PY'
+          from pathlib import Path
+          f=Path('keyin-corpus/cell_zhuyin_tw_generated.tsv')
+          lines=sum(bool(line.strip()) and not line.startswith('#') for line in f.open(encoding='utf8'))
+          assert lines > 1000, f'not enough imported entries: {lines}'
+          print(f'Full imported dictionary entries: {lines}')
+          PY
+          sha256sum keyin-corpus/cell_zhuyin_tw_generated.tsv > keyin-corpus/generated.sha256
+      - name: Retain source provenance
+        run: |
+          cat > keyin-corpus/UPSTREAM_PROVENANCE.txt <<'TEXT'
+          Rime Terra Pinyin upstream: https://github.com/rime/rime-terra-pinyin
+          Upstream repository is LGPL-3.0, and the dictionary header credits CC-CEDICT CC-BY-SA 3.0 and other components.
+          Generated derivative: CELL TaiwanKeyin R2B ICU transliteration. Verify upstream source provenance and applicable redistribution conditions.
+          TEXT
+      - name: Upload reproducible import evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: cl-Taiwankeyin-R2B-corpus-evidence
+          path: |
+            keyin-corpus/import.log
+            keyin-corpus/source.sha256
+            keyin-corpus/generated.sha256
+            keyin-corpus/UPSTREAM_PROVENANCE.txt
+            keyin-corpus/cell_zhuyin_tw_generated.tsv
+          retention-days: 7
