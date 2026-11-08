@@ -1,5 +1,12 @@
 # cl_Taiwankeyin｜繁體細胞注音輸入法（Windows + Android）
 
+## Android Alpha 3｜真機故障修復（2026-11-08）
+
+- [已重現並修復 Android SQLite 閃退](ANDROID_ALPHA3_RELEASE_20261108.md)：Alpha2 的 `execSQL("PRAGMA secure_delete=ON")` 導致 Android 35 拋出 SQLiteException；已改正為 `rawQuery`，並修正提交前清空組字等問題。
+- **[下載 Alpha3 修正版 APK（Google Drive）](https://drive.google.com/file/d/1u1aYavXDD526mxZ0oPh_Zdp1iAVVgL-K/view)**；[GitHub APK 編譯 SUCCESS](https://github.com/SunTung/Public-Showcase/actions/runs/42480967383)；[Android 35 SQLite／EditText 整合 SUCCESS](https://github.com/SunTung/Public-Showcase/actions/runs/42480967204)。
+- 介面已移除上方說明，聲調/符號列縮小，無聲調可直接空白選字。Alpha3 為獨立安裝測試版，不覆蓋 Alpha1/2 的記憶；**使用者真機試打仍需驗收**。
+
+
 ## Android Alpha 2 修正版（2026-11-08）
 
 - **已完成真實 APK CI 編譯：** [Run #42478920166](https://github.com/SunTung/Public-Showcase/actions/runs/42478920166)，Android SDK 35、Java 197/197 測試、Gradle APK 打包與 Artifact 上傳全部 PASS。
