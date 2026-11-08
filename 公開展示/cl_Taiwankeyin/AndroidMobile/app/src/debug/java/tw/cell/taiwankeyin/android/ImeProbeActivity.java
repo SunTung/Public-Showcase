@@ -29,6 +29,13 @@ public final class ImeProbeActivity extends Activity {
                 KeyinCore.Memory memory = new KeyinCore.Memory(storage);
                 KeyinCore.Lexicon words = new KeyinCore.Lexicon();
                 words.load(getAssets().open("seed_zhuyin_tw.tsv"));
+                try (FullLexiconStore full = new FullLexiconStore(this)) {
+                    require(full.rowCount() == 158905, "expected validated RGOS full corpus rows");
+                    words.setExternalLookup(full);
+                    require(words.lookupFlexible("ㄓㄨㄥ ㄨㄣ", memory).stream()
+                            .anyMatch(c -> "中文".equals(c.text)), "full corpus missing 中文");
+                    words.setExternalLookup(null); // Normal candidate commit test below still isolates the seed.
+                }
                 KeyinCore.Session composing = new KeyinCore.Session(words, memory);
                 require(composing.pressSymbol("ㄋ"), "ni initial");
                 require(composing.pressSymbol("ㄧ"), "ni medial");

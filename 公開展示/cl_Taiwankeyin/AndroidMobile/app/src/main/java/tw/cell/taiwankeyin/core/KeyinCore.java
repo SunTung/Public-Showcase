@@ -163,12 +163,20 @@ public final class KeyinCore {
         // Tone-free index: untoned input must not scan the full lexicon on every keypress.
         private final Map<String, List<String>> toneFreeReadings = new HashMap<>();
         private int count;
+        // The verified 158,905-row database stays on disk: the host supplies indexed
+        // candidates without allocating the entire lexicon in Java heap.
+        public interface ExternalLookup {
+            List<Candidate> find(String bareReading, String typedReading, int limit);
+        }
+        private ExternalLookup external;
+        public void setExternalLookup(ExternalLookup lookup) { this.external = lookup; }
+        public boolean hasExternalLookup() { return external != null; }
 
         private static String withoutTones(String reading) {
             return reading.replace("ˉ", "").replace("ˊ", "").replace("ˇ", "")
                     .replace("ˋ", "").replace("˙", "");
         }
-        private static boolean matchesTonePattern(String typed, String actual) {
+        public static boolean matchesTonePattern(String typed, String actual) {
             String[] typedSyllables = typed.split(" ");
             String[] actualSyllables = actual.split(" ");
             if (typedSyllables.length != actualSyllables.length) return false;
@@ -176,7 +184,11 @@ public final class KeyinCore {
                 if (!withoutTones(typedSyllables[i]).equals(withoutTones(actualSyllables[i]))) return false;
                 String s = typedSyllables[i];
                 char last = s.charAt(s.length() - 1);
-                if ("ˉˊˇˋ˙".indexOf(last) >= 0 && !s.equals(actualSyllables[i])) return false;
+                if ("ˉˊˇˋ˙".indexOf(last) >= 0 && !s.equals(actualSyllables[i])) {
+                    // Official Chewing stores first-tone readings without a marker;
+                    // the soft keyboard exposes an explicit ˉ key for consistency.
+                    if (!(last == 'ˉ' && withoutTones(s).equals(actualSyllables[i]))) return false;
+                }
             }
             return true;
         }
@@ -213,15 +225,32 @@ public final class KeyinCore {
         /** Missing tone marks are wildcards. Explicit tone marks remain strict filters. */
         public List<Candidate> lookupFlexible(String typedReading, Memory memory) {
             List<String> readings = toneFreeReadings.get(withoutTones(typedReading));
-            if (readings == null) return Collections.emptyList();
             List<Candidate> found = new ArrayList<>();
-            for (String actualReading : readings) {
+            if (readings != null) for (String actualReading : readings) {
                 if (!matchesTonePattern(typedReading, actualReading)) continue;
                 for (Map.Entry<String, Double> row : values.get(actualReading).entrySet()) {
                     double bonus = memory.bonus(actualReading, row.getKey());
                     found.add(new Candidate(row.getKey(), actualReading, row.getValue(), row.getValue() + bonus));
                 }
             }
+            if (external != null) {
+                // Bound candidate scoring; SQLite learning lookups occur only for
+                // the best rows returned by the indexed disk dictionary.
+                for (Candidate entry : external.find(withoutTones(typedReading), typedReading, 72)) {
+                    if (!matchesTonePattern(typedReading, entry.reading)) continue;
+                    double adjusted = entry.baseline + memory.bonus(entry.reading, entry.text);
+                    found.add(new Candidate(entry.text, entry.reading, entry.baseline, adjusted));
+                }
+            }
+            // Keep a single source of truth for one word+reading pair if the
+            // demonstration seed also occurs in the full official corpus.
+            Map<String, Candidate> unique = new HashMap<>();
+            for (Candidate c : found) {
+                String id = c.reading + "\u0000" + c.text;
+                Candidate previous = unique.get(id);
+                if (previous == null || c.score > previous.score) unique.put(id, c);
+            }
+            found = new ArrayList<>(unique.values());
             found.sort(Comparator.comparingDouble((Candidate c) -> c.score).reversed()
                     .thenComparing(c -> c.text).thenComparing(c -> c.reading));
             return found;

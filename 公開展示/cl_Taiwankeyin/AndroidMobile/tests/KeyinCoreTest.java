@@ -1,4 +1,5 @@
 import tw.cell.taiwankeyin.core.KeyinCore;
+import tw.cell.taiwankeyin.core.KeyboardLayout;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
@@ -202,6 +203,52 @@ public class KeyinCoreTest {
     check(failures[0]==1,"SQLite error emitted to error reporter");
     check(!brokenSession.active(),"already-committed word must not be reinserted");
 
+    // Alpha4: exact QWERTY-aligned Dachen positions cover every root once.
+    java.util.HashSet<String> roots = new java.util.HashSet<>(KeyboardLayout.allZhuyinKeys());
+    check(roots.size() == 37, "full Dachen physical keyboard has 37 unique glyphs");
+    check(KeyboardLayout.allZhuyinKeys().size() == 37, "all 37 root keys in touch layout");
+    for (char mappedKey : KeyinCore.KEY_CODES.toCharArray())
+        check(roots.contains(KeyinCore.symbolForKey(mappedKey)), "touch keyboard includes " + mappedKey);
+    check(KeyboardLayout.ZHUYIN_PHYSICAL_ROWS[0].equals("qwertyuiop"),"QWERTY top aligned");
+    check(KeyboardLayout.ZHUYIN_PHYSICAL_ROWS[1].equals("asdfghjkl;"),"QWERTY home aligned");
+    check(KeyboardLayout.ZHUYIN_PHYSICAL_ROWS[2].equals("zxcvbnm,./"),"QWERTY bottom aligned");
+    check(KeyboardLayout.pages() >= 6,"symbol categories");
+    int symbolCount=0;
+    for (int page=0;page<KeyboardLayout.pages();page++) {
+        String[] symbols=KeyboardLayout.page(page);
+        check(symbols.length >= 18,"full symbols in page "+page);
+        symbolCount+=symbols.length;
+    }
+    check(symbolCount>=100,"comprehensive symbols");
+    KeyboardLayout.LatinShift shift=new KeyboardLayout.LatinShift();
+    check(shift.print('a').equals("a"),"normal lowercase");
+    shift.pressShift();
+    check(shift.mode()==KeyboardLayout.LatinShift.Mode.NEXT_UPPER,"one shot shift state");
+    check(shift.label('n').equals("N"),"uppercase key label");
+    check(shift.print('n').equals("N"),"uppercase one shot inserted");
+    check(shift.print('a').equals("a"),"one shot returns lowercase");
+    shift.pressShift();shift.pressShift();
+    check(shift.mode()==KeyboardLayout.LatinShift.Mode.CAPS_LOCK,"caps lock");
+    check(shift.print('b').equals("B") && shift.print('c').equals("C"),"caps persisting");
+    shift.pressShift();
+    check(shift.mode()==KeyboardLayout.LatinShift.Mode.LOWER,"caps unlock");
+
+    // Full dictionary adapter: a new phonetic reading, absent from seed, is
+    // returned from indexed disk candidates and explicit tone remains strict.
+    KeyinCore.Lexicon enriched = new KeyinCore.Lexicon();
+    try (InputStream in=new FileInputStream(argv[0])) { enriched.load(in); }
+    enriched.setExternalLookup((bare,typed,limit) -> {
+        if (bare.equals("ㄓㄨㄥ ㄨㄣ"))
+            return java.util.Arrays.asList(new KeyinCore.Candidate("中文","ㄓㄨㄥ ㄨㄣˊ",240,240));
+        if (bare.equals("ㄕㄡ"))
+            return java.util.Arrays.asList(new KeyinCore.Candidate("手","ㄕㄡˇ",80,80),new KeyinCore.Candidate("收","ㄕㄡ",79,79));
+        return java.util.Collections.emptyList();
+    });
+    check(KeyinCore.Lexicon.matchesTonePattern("ㄓㄨㄥˉ", "ㄓㄨㄥ"),"unmarked Chewing first tone matches explicit first-tone key");
+    check(enriched.hasExternalLookup(),"disk lexicon connected");
+    check(enriched.lookupFlexible("ㄓㄨㄥ ㄨㄣ",noToneMemory).stream().anyMatch(c -> c.text.equals("中文")),"full lexicon missing seed word restored");
+    check(enriched.lookupFlexible("ㄕㄡˇ",noToneMemory).stream().anyMatch(c -> c.text.equals("手")),"tone-aware external candidate");
+    check(enriched.lookupFlexible("ㄕㄡˊ",noToneMemory).isEmpty(),"explicit tone filter external");
     System.out.println("PASS: "+checks+" Android pure Java keyboard/experience checks");
   }
 }

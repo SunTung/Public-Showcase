@@ -1,5 +1,18 @@
 # cl_Taiwankeyin Android｜CELL 繁體細胞注音輸入法
 
+## Alpha 4：完整字詞庫與日常鍵盤（2026-11-08）
+
+- **手機版改用 Google Drive 已有 RGOS/CELL 詞庫工作的來源及驗收基線**：釘選 Chewing 官方 CSV 上游 commit `c44e81aef24b06f1509f19e1be54c99812d0c43f`、兩個 Git Blob SHA、OpenCC 1.4.2 `s2twp`，重新產生可離線查詢的 SQLite 索引。CI 要求 158,905 條字詞對、133,505 條多音節詞、121,377 個讀音，不接受小詞庫冒充完整詞庫。
+- 原始 RGOS 私人倉庫 SQLite 不複製到公開 GitHub，CI 使用等價、已核對的**公開字詞來源**重建 Android 索引；經 CI 實測前，以上數量是來自既有 RGOS 驗收基線而非本次 Android 新版的完成聲明。
+- 注音鍵採熟悉的 **QWERTY 位置對照大千鍵位**，37 根鍵全部保留；不再僅依 ㄅㄆㄇ 的字典順序擺放。
+- 英文鍵盤提供 Shift 一次大寫、Caps Lock 連續大寫及小寫；符號鍵盤設 **常用／數字／括號／數學／貨幣／特殊** 六頁。
+- 只有鍵盤主輸入區，沒有多餘說明標題；聲調區保持精簡。
+- 直接用系統 SQLite 查候選，不把 15.9 萬條字詞全載入 Java Heap。保留 Alpha3 已修復的 `commitText`/SQLite 崩潰防護與十字經驗記憶。
+- Android Debug 使用獨立套件 ID `tw.cell.taiwankeyin.alpha4test`，以便與 Alpha1/2/3 並存，避免 debug 簽名差異導致覆蓋升級失敗；每版使用各自資料庫。
+
+**建置說明：** APK CI 必須先執行 `tools/stage_verified_full_lexicon.py --download` 將已驗證詞庫放入 `app/src/main/assets/full_zhuyin_mobile.sqlite3`；GitHub 公開原始碼只保存生成器與資料來源記錄，不將 RGOS 私人資料庫直接公開。Android Studio 離線建置前亦需先準備該 asset。
+
+
 **Android 輸入法工程 alpha3（0.1.2-alpha3-test）**；承襲已通過 GitHub Actions 編譯的 alpha1，新增無聲調自動選字與觸控鍵盤縮放修復。alpha2 APK 的建置結果應以新的 GitHub Actions 執行為準。
 
 平台：Android 8.0+（API 26），系統 IME 使用官方 `InputMethodService` / `InputConnection`。

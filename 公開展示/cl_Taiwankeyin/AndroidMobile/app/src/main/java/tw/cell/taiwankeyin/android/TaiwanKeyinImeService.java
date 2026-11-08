@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.util.Log;
 import tw.cell.taiwankeyin.core.CommitBridge;
 import tw.cell.taiwankeyin.core.KeyinCore;
+import tw.cell.taiwankeyin.core.KeyboardLayout;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -31,6 +32,9 @@ public final class TaiwanKeyinImeService extends InputMethodService {
     private static final String LEXICON = "imported_lexicon.tsv";
     private static final int PHONETIC_COLUMNS = 10; // Uniform 10-column touch targets across all Zhuyin rows.
     private ExperienceDatabase store;
+    private FullLexiconStore verifiedFullLexicon;
+    private final KeyboardLayout.LatinShift latinShift = new KeyboardLayout.LatinShift();
+    private int symbolPage;
     private KeyinCore.Memory memory;
     private KeyinCore.Lexicon lexicon;
     private KeyinCore.Session session;
@@ -49,6 +53,12 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         super.onCreate();
         store = new ExperienceDatabase(this);
         memory = new KeyinCore.Memory(store);
+        try {
+            verifiedFullLexicon = new FullLexiconStore(this);
+            Log.i(TAG, "Verified RGOS full Chinese lexicon ready: " + verifiedFullLexicon.rowCount());
+        } catch (Exception ex) {
+            Log.e(TAG, "Full corpus unavailable; retaining safe small fallback", ex);
+        }
         reloadLexicon();
         memory.setLearning(prefs().getBoolean("learning", true));
     }
@@ -60,6 +70,7 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         try {
             next.load(getAssets().open("seed_zhuyin_tw.tsv"));
             if (imported.exists()) try (FileInputStream in = new FileInputStream(imported)) { next.load(in); }
+            if (verifiedFullLexicon != null) next.setExternalLookup(verifiedFullLexicon);
             lexicon = next;
             lastLexiconModification = stamp;
             session = new KeyinCore.Session(lexicon, memory);
@@ -94,6 +105,7 @@ public final class TaiwanKeyinImeService extends InputMethodService {
     }
     @Override public void onDestroy() {
         if (store != null) store.close();
+        if (verifiedFullLexicon != null) verifiedFullLexicon.close();
         super.onDestroy();
     }
     @Override public void onUpdateSelection(int oldSelStart, int oldSelEnd,
@@ -158,10 +170,10 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         keysArea.addView(row,new LinearLayout.LayoutParams(-1,dp(height)));
         return row;
     }
-    private void addKey(LinearLayout target, String glyph, Runnable action, int weight, int color, int textSize) {
+    private void addKey(LinearLayout target, String glyph, Runnable action, float weight, int color, int textSize) {
         addKey(target, glyph, action, weight, color, textSize, 46);
     }
-    private void addKey(LinearLayout target, String glyph, Runnable action, int weight, int color, int textSize, int height) {
+    private void addKey(LinearLayout target, String glyph, Runnable action, float weight, int color, int textSize, int height) {
         Button button = key(glyph,action,color,textSize);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0,dp(height),weight);
         lp.setMargins(dp(1),dp(1),dp(1),dp(1));
@@ -195,56 +207,79 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         }
         insertPlain(" ");
     }
+    private void latinLetter(char letter) {
+        String emitted = latinShift.print(letter);
+        insertPlain(emitted);
+        // One-shot shift returns to lower after successful letter entry.
+        if (latinShift.mode() == KeyboardLayout.LatinShift.Mode.LOWER) rebuildKeys();
+    }
+    private void chooseSymbolPage(int delta) {
+        symbolPage = (symbolPage + delta + KeyboardLayout.pages()) % KeyboardLayout.pages();
+        rebuildKeys();
+    }
     private void rebuildKeys() {
         if (keysArea == null) return;
         keysArea.removeAllViews();
         if (symbolMode) {
-            String[][] rows = {
-                {"（","）","〔","〕","〈","〉","｛","｝"},
-                {"：","，","。","！","？","；","、","…"},
-                {"1","2","3","4","5","6","7","8","9","0"},
-                {"@","#","%","&","+","-","=","/"}
-            };
-            for(String[] glyphs:rows) {
-                LinearLayout strip=row();
-                for(String glyph:glyphs) addKey(strip,glyph,()->insertPlain(glyph),1,PANEL,17);
+            // A dedicated paged palette, not just the 10 punctuation shortcuts.
+            LinearLayout tabs = row(34);
+            addKey(tabs, "‹", () -> chooseSymbolPage(-1), 1, PANEL, 18, 31);
+            addKey(tabs, KeyboardLayout.SYMBOL_PAGE_NAMES[symbolPage],
+                    () -> chooseSymbolPage(1), 4, ACCENT, 15, 31);
+            addKey(tabs, "›", () -> chooseSymbolPage(1), 1, PANEL, 18, 31);
+            String[] symbols = KeyboardLayout.page(symbolPage);
+            for (int start = 0; start < symbols.length; start += 8) {
+                LinearLayout strip = row(45);
+                for (int i = start; i < Math.min(start + 8,symbols.length); i++) {
+                    String mark = symbols[i];
+                    addKey(strip, mark, () -> insertPlain(mark), 1, PANEL, 16, 42);
+                }
+                for (int i = Math.min(start+8,symbols.length); i < start+8; i++) addEmptyCell(strip);
             }
         } else if (englishMode) {
-            String[] rows = {"qwertyuiop","asdfghjkl","zxcvbnm"};
-            for(String keys:rows) {
-                LinearLayout strip=row();
-                for(char ch:keys.toCharArray()) addKey(strip,String.valueOf(ch),()->insertPlain(String.valueOf(ch)),1,PANEL,17);
-            }
-        } else {
-            // Phone-friendly equal-width 10 columns instead of the old seven oversized keys.
-            for (int start = 0; start < KeyinCore.SYMBOLS.length; start += PHONETIC_COLUMNS) {
-                LinearLayout strip = row();
-                int end = Math.min(start + PHONETIC_COLUMNS, KeyinCore.SYMBOLS.length);
-                for (int i = start; i < end; i++) {
-                    String symbol = KeyinCore.SYMBOLS[i];
-                    addKey(strip, symbol, () -> phonetic(symbol), 1, PANEL, 17);
+            // Familiar English QWERTY, including one-shot uppercase and Caps Lock.
+            for (int index = 0; index < KeyboardLayout.LATIN_ROWS.length; index++) {
+                LinearLayout strip = row(49);
+                if (index == 2) {
+                    String shiftGlyph = latinShift.mode() == KeyboardLayout.LatinShift.Mode.CAPS_LOCK ? "⇪"
+                            : latinShift.mode() == KeyboardLayout.LatinShift.Mode.NEXT_UPPER ? "⇧" : "↑";
+                    addKey(strip, shiftGlyph, () -> { latinShift.pressShift(); rebuildKeys(); },
+                            1.5f, ACCENT, 19);
                 }
-                for (int i = end; i < start + PHONETIC_COLUMNS; i++) addEmptyCell(strip);
+                for (char ch : KeyboardLayout.LATIN_ROWS[index].toCharArray()) {
+                    char value = ch;
+                    addKey(strip,latinShift.label(value),()->latinLetter(value),1,PANEL,18);
+                }
+                if (index == 2) addKey(strip, "⌫", this::backspace, 1.5f, PANEL, 20);
             }
-            // Five optional tones plus five quick punctuation keys in the same 10-slot row.
-            // Tones do not need to be pressed; Space confirms an untoned candidate.
-            LinearLayout tonesAndPunct = row(36);
+            LinearLayout punctuation = row(33);
+            for (String mark : new String[]{".", ",", "'", "?", "!", "@", "-", "/"})
+                addKey(punctuation,mark,()->insertPlain(mark),1,PANEL,14,30);
+        } else {
+            // QWERTY-aligned Dachen, preserving positions the typist already knows:
+            // 'qwertyuiop', 'asdfghjkl;', 'zxcvbnm,./' plus number-row roots.
+            for (String rowKeys : KeyboardLayout.ZHUYIN_PHYSICAL_ROWS) {
+                LinearLayout strip = row(49);
+                for (char keyChar : rowKeys.toCharArray()) {
+                    String glyph = KeyinCore.symbolForKey(keyChar);
+                    addKey(strip, glyph, () -> phonetic(glyph), 1, PANEL, 17);
+                }
+                for (int i = rowKeys.length(); i < 10; i++) addEmptyCell(strip);
+            }
+            LinearLayout thinTones = row(30);
             for (String tone : KeyinCore.TONE_LABELS)
-                addKey(tonesAndPunct, tone, () -> phonetic(tone), 1, ACCENT, 14, 33);
-            for (String mark : new String[]{"（", "）", "：", "，", "。"})
-                addKey(tonesAndPunct, mark, () -> insertPlain(mark), 1, PANEL, 14, 33);
+                addKey(thinTones, tone, () -> phonetic(tone), 1, ACCENT, 13, 27);
+            for (String mark : new String[]{"，", "。", "、", "？", "！"})
+                addKey(thinTones, mark, () -> insertPlain(mark), 1, PANEL, 13, 27);
         }
-        if (englishMode) {
-            LinearLayout punct = row();
-            for (String mark : new String[]{"（", "）", "：", "，", "。", "？", "！"})
-                addKey(punct, mark, () -> insertPlain(mark), 1, PANEL, 14);
-        }
-        LinearLayout controls=row();
-        addKey(controls,englishMode?"注音":"ABC",()->{
-            session.clear(); symbolMode=false; englishMode=!englishMode; rebuildKeys(); updatePreview();
+        LinearLayout controls=row(49);
+        addKey(controls, englishMode ? "注音" : "ABC", () -> {
+            session.clear(); symbolMode=false; englishMode=!englishMode;
+            rebuildKeys(); updatePreview();
         },2,ACCENT,14);
-        addKey(controls,symbolMode?"注音":"符號",()->{
-            session.clear(); symbolMode=!symbolMode; englishMode=false; rebuildKeys(); updatePreview();
+        addKey(controls, symbolMode ? "注音" : "符號", () -> {
+            session.clear(); symbolMode=!symbolMode; englishMode=false;
+            rebuildKeys(); updatePreview();
         },2,ACCENT,14);
         addKey(controls,"空白 / 選字",this::spaceBar,3,PANEL,13);
         addKey(controls,"⌫",this::backspace,2,PANEL,23);
