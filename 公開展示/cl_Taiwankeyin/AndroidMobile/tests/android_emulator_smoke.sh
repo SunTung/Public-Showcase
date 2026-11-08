@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 APK="公開展示/cl_Taiwankeyin/AndroidMobile/app/build/outputs/apk/debug/app-debug.apk"
-PACKAGE="tw.cell.taiwankeyin.alpha3test"
+PACKAGE="tw.cell.taiwankeyin.alpha4test"
 adb install -r "$APK"
 adb logcat -c
 adb shell am start -W -n "$PACKAGE/tw.cell.taiwankeyin.android.ImeProbeActivity"

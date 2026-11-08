@@ -28,6 +28,20 @@ jobs:
           packages: ''
           log-accepted-android-sdk-licenses: 'false'
       - run: sdkmanager --install 'platform-tools' 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Python 3.11 for full Taiwan lexicon
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned OpenCC converter
+        run: python -m pip install 'opencc==1.4.2'
+      - name: Stage all 158905 verified dictionary rows inside Android APK
+        working-directory: '公開展示/cl_Taiwankeyin/AndroidMobile'
+        run: |
+          python tools/stage_verified_full_lexicon.py --download \
+            --source-dir build/corpus_src \
+            --output app/src/main/assets/full_zhuyin_mobile.sqlite3
+          test -s app/src/main/assets/full_zhuyin_mobile.sqlite3
+          test -s app/src/main/assets/full_lexicon_manifest.json
       - name: Test JVM core and build debug APK
         run: |
           bash '公開展示/cl_Taiwankeyin/AndroidMobile/tests/run_java_tests.sh'
