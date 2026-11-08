@@ -4,7 +4,7 @@
 
 - [AndroidMobile 原生 Android IME 工程](AndroidMobile/)：Java 版大千注音鍵盤、候選列、十字經驗記憶、SQLite、本機詞庫匯入。
 - Android 平台核心 116/116 Java 測試通過；Android Manifest/XML 結構已檢查；公開程式檔案逐檔讀回 19/19 一致。
-- [Android APK 自動編譯工作流程](https://github.com/SunTung/Public-Showcase/actions/workflows/cell-taiwankeyin-android.yml)：需以該工作流程的實際成功記錄與 artifact 為 APK 建置依據；目前**尚未確認 APK 實機／CI 成功**。
+- [Android Debug APK 已編譯成功](https://github.com/SunTung/Public-Showcase/actions/runs/42475919495)：可從 [Google Drive 下載 APK](https://drive.google.com/file/d/1ScIZjfTvC52iBRveVWTmy9jcmOEIRa_Y/view)，或 [查看 APK 驗收報告](AndroidMobile/docs/APK_CI_ACCEPTANCE_20261108.md)；**手機實機安裝與試打尚未驗收**。
 - [手機版工程報告](AndroidMobile/docs/ENGINEERING_REPORT_20261108.md) · [Windows / Android 版本關係](AndroidMobile/docs/SOURCE_LINEAGE.md)。
 - 手機版是對既有 R1、R2 的 **Java 功能移植**，沒有修改原有的 Windows C++ 核心，也不把測試用小詞庫稱作完整詞庫。
 
