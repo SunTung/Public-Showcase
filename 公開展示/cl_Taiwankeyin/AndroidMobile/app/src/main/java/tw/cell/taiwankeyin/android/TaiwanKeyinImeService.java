@@ -1,14 +1,18 @@
 package tw.cell.taiwankeyin.android;
 
 import android.content.SharedPreferences;
+import android.view.MotionEvent;
 import android.inputmethodservice.InputMethodService;
 import android.text.InputType;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
+import android.graphics.drawable.GradientDrawable;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 import android.widget.Button;
+import android.animation.ValueAnimator;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.Space;
@@ -18,10 +22,13 @@ import tw.cell.taiwankeyin.core.CommitBridge;
 import tw.cell.taiwankeyin.core.KeyinCore;
 import tw.cell.taiwankeyin.core.KeyboardLayout;
 import tw.cell.taiwankeyin.core.KeyboardTheme;
+import tw.cell.taiwankeyin.core.ElasticKeyCurve;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Random;
 
 public final class TaiwanKeyinImeService extends InputMethodService {
     private static final String TAG = "CellTaiwanKeyin";
@@ -31,6 +38,10 @@ public final class TaiwanKeyinImeService extends InputMethodService {
     private final KeyboardLayout.LatinShift latinShift = new KeyboardLayout.LatinShift();
     private int symbolPage;
     private KeyboardTheme.Palette theme = KeyboardTheme.get(0);
+    private boolean randomColors;
+    private final Random colorRandom = new Random();
+    private final List<Button> coloredKeys = new ArrayList<>();
+    private final java.util.IdentityHashMap<Button,Integer> lastKeyColors = new java.util.IdentityHashMap<>();
     private KeyinCore.Memory memory;
     private KeyinCore.Lexicon lexicon;
     private KeyinCore.Session session;
@@ -47,7 +58,9 @@ public final class TaiwanKeyinImeService extends InputMethodService {
 
     @Override public void onCreate() {
         super.onCreate();
-        theme = KeyboardTheme.get(prefs().getInt("theme_index", 0));
+        int storedTheme = prefs().getInt("theme_index", 0);
+        randomColors = storedTheme == KeyboardTheme.RANDOM_MODE;
+        theme = KeyboardTheme.get(randomColors ? 0 : storedTheme);
         store = new ExperienceDatabase(this);
         memory = new KeyinCore.Memory(store);
         try {
@@ -131,6 +144,8 @@ public final class TaiwanKeyinImeService extends InputMethodService {
     @Override public View onCreateInputView() {
         root = new LinearLayout(this);
         root.setOrientation(LinearLayout.VERTICAL);
+        root.setClipChildren(false);
+        root.setClipToPadding(false);
         root.setBackgroundColor(theme.background);
         root.setPadding(dp(2),dp(2),dp(2),dp(2));
         HorizontalScrollView scroll = new HorizontalScrollView(this);
@@ -141,6 +156,8 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         root.addView(scroll,new LinearLayout.LayoutParams(-1,dp(42)));
         keysArea = new LinearLayout(this);
         keysArea.setOrientation(LinearLayout.VERTICAL);
+        keysArea.setClipChildren(false);
+        keysArea.setClipToPadding(false);
         root.addView(keysArea);
         rebuildKeys();
         updatePreview();
@@ -151,20 +168,66 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         button.setText(text); button.setTextSize(textSize);
         button.setAllCaps(false);
         button.setTextColor(theme.text);
-        button.setBackgroundTintList(android.content.res.ColorStateList.valueOf(color));
+        // Draw the key surface ourselves. Android's stock button tint would hide
+        // the elastic corner-radius animation.
+        GradientDrawable surface = new GradientDrawable();
+        surface.setColor(color);
+        surface.setCornerRadius(dp(7));
+        button.setBackgroundTintList(null);
+        button.setBackground(surface);
+        if (prefs().getBoolean("elastic_feedback", true)) attachElasticFeedback(button, surface);
         button.setIncludeFontPadding(false);
         button.setMinHeight(0);
         button.setMinimumHeight(0);
         button.setMinWidth(0);
         button.setMinimumWidth(0);
         button.setPadding(0,0,0,0);
-        button.setOnClickListener(view -> onClick.run());
+        button.setOnClickListener(view -> {
+            try { onClick.run(); }
+            finally { if (randomColors) redistributeKeyColors(); }
+        });
         return button;
+    }
+    /** Visual-only elastic key feedback: touch hit regions never change geometry.
+     * Each key has its own animation, so rapid neighbors naturally overlap and
+     * temporarily squeeze the visible gaps without overlapping input dispatch.
+     */
+    private void attachElasticFeedback(Button button, GradientDrawable surface) {
+        final ValueAnimator[] running = { null };
+        final float[] progress = { 0f };
+        button.setOnTouchListener((view, event) -> {
+            int action = event.getActionMasked();
+            if (action != MotionEvent.ACTION_DOWN && action != MotionEvent.ACTION_UP
+                    && action != MotionEvent.ACTION_CANCEL) return false;
+            if (running[0] != null) running[0].cancel();
+            final float from = progress[0];
+            final float to = action == MotionEvent.ACTION_DOWN ? 1f : 0f;
+            ValueAnimator animator = ValueAnimator.ofFloat(from, to);
+            animator.setDuration(action == MotionEvent.ACTION_DOWN
+                    ? ElasticKeyCurve.PRESS_MS : ElasticKeyCurve.RECOVER_MS);
+            animator.setInterpolator(new DecelerateInterpolator());
+            animator.addUpdateListener(a -> {
+                float amount = (Float) a.getAnimatedValue();
+                progress[0] = amount;
+                float scale = ElasticKeyCurve.scale(amount);
+                view.setScaleX(scale);
+                view.setScaleY(scale);
+                surface.setCornerRadius(dp(ElasticKeyCurve.cornerDp(amount)));
+                // Keep the pressed visual surface above adjacent keys only.
+                view.setTranslationZ(dp(ElasticKeyCurve.zDp(amount)));
+            });
+            running[0] = animator;
+            animator.start();
+            // Let Button handle its usual DOWN/UP/click; animation cannot steal a key.
+            return false;
+        });
     }
     private LinearLayout row() { return row(45); }
     private LinearLayout row(int height) {
         LinearLayout row = new LinearLayout(this);
         row.setOrientation(LinearLayout.HORIZONTAL);
+        row.setClipChildren(false);
+        row.setClipToPadding(false);
         keysArea.addView(row,new LinearLayout.LayoutParams(-1,dp(height)));
         return row;
     }
@@ -176,6 +239,22 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0,dp(height),weight);
         lp.setMargins(dp(1),dp(1),dp(1),dp(1));
         target.addView(button,lp);
+        coloredKeys.add(button);
+    }
+    private void redistributeKeyColors() {
+        if (!randomColors) return;
+        // Recolor existing button drawables in place: no layout rebuild, hit-area
+        // movement, animation restart or expensive SQLite access per key.
+        for (Button button : coloredKeys) {
+            if (button.getParent() == null) continue;
+            Integer old = lastKeyColors.get(button);
+            int color = KeyboardTheme.randomKeyColor(colorRandom, old == null ? 0 : old);
+            lastKeyColors.put(button, color);
+            android.graphics.drawable.Drawable drawable = button.getBackground();
+            if (drawable instanceof GradientDrawable)
+                ((GradientDrawable) drawable).setColor(color);
+            button.setTextColor(KeyboardTheme.readableText(color));
+        }
     }
     private void phonetic(String glyph) {
         try {
@@ -216,10 +295,12 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         rebuildKeys();
     }
     private void selectTheme(int index) {
-        KeyboardTheme.Palette selected = KeyboardTheme.get(index);
-        if (selected.index == theme.index) return;
-        theme = selected;
-        prefs().edit().putInt("theme_index", theme.index).apply();
+        if (index < 0 || index >= KeyboardTheme.modeCount()) return;
+        boolean switchToRandom = index == KeyboardTheme.RANDOM_MODE;
+        if (randomColors == switchToRandom && (switchToRandom || theme.index == index)) return;
+        randomColors = switchToRandom;
+        theme = KeyboardTheme.get(switchToRandom ? 0 : index);
+        prefs().edit().putInt("theme_index", index).apply();
         if (root != null) root.setBackgroundColor(theme.background);
         rebuildKeys();
         updatePreview();
@@ -228,6 +309,8 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         if (keysArea == null) return;
         if (root != null) root.setBackgroundColor(theme.background);
         keysArea.removeAllViews();
+        coloredKeys.clear();
+        lastKeyColors.clear();
         if (symbolMode) {
             // A dedicated paged palette, not just the 10 punctuation shortcuts.
             LinearLayout tabs = row(34);
@@ -264,8 +347,8 @@ public final class TaiwanKeyinImeService extends InputMethodService {
             for (String mark : new String[]{".", ",", "'", "?", "!", "@", "-", "/"})
                 addKey(punctuation,mark,()->insertPlain(mark),1,theme.panel,14,30);
         } else {
-            // True physical ordering: number-row Dachen roots are FIRST.
-            // The five optional tones share the first strip.
+            // True physical ordering: number-row Dachen roots are FIRST (not fourth).
+            // Five optional tones travel with the number-row roots in the top strip.
             LinearLayout numberAndTone = row(37);
             String numberRoots = KeyboardLayout.ZHUYIN_PHYSICAL_ROWS[0];
             for (char code : numberRoots.toCharArray()) {
@@ -274,7 +357,8 @@ public final class TaiwanKeyinImeService extends InputMethodService {
             }
             for (String tone : KeyinCore.TONE_LABELS)
                 addKey(numberAndTone, tone, () -> phonetic(tone), 1, theme.accent, 14, 34);
-            // The QWERTY / ASDF / ZXCV rows remain directly beneath.
+
+            // The familiar QWERTY / ASDF / ZXCV rows remain below the original number row.
             for (int r = 1; r < KeyboardLayout.ZHUYIN_PHYSICAL_ROWS.length; r++) {
                 String rowKeys = KeyboardLayout.ZHUYIN_PHYSICAL_ROWS[r];
                 LinearLayout strip = row(45);
@@ -284,20 +368,24 @@ public final class TaiwanKeyinImeService extends InputMethodService {
                 }
                 for (int i = rowKeys.length(); i < 10; i++) addEmptyCell(strip);
             }
-            // Punctuation and six direct-tap color swatches occupy one compact row.
+            // Keep punctuation below; add immediate palette controls beside it.
+            // This row replaces the old bottom tone row, without adding keyboard height.
             LinearLayout punctuationAndThemes = row(29);
             for (String mark : new String[]{"，", "。", "？", "！"})
                 addKey(punctuationAndThemes, mark, () -> insertPlain(mark), 1, theme.panel, 13, 26);
-            for (int index = 0; index < KeyboardTheme.count(); index++) {
+            for (int index = 0; index < KeyboardTheme.modeCount(); index++) {
                 final int selectedTheme = index;
-                KeyboardTheme.Palette palette = KeyboardTheme.get(index);
-                Button swatch = key(index == theme.index ? "✓" : "", () -> selectTheme(selectedTheme),
-                        palette.accent, 14);
+                boolean randomChoice = index == KeyboardTheme.RANDOM_MODE;
+                KeyboardTheme.Palette palette = KeyboardTheme.get(randomChoice ? 2 : index);
+                boolean active = randomChoice ? randomColors : !randomColors && index == theme.index;
+                Button swatch = key(randomChoice ? (active ? "✓彩" : "彩") : (active ? "✓" : ""),
+                        () -> selectTheme(selectedTheme), palette.accent, 12);
+                // The checkmark is white on all selected accent chips.
                 swatch.setTextColor(0xFFFFFFFF);
                 LinearLayout.LayoutParams chipParams = new LinearLayout.LayoutParams(0, dp(26), 1);
                 chipParams.setMargins(dp(2), dp(1), dp(2), dp(1));
                 punctuationAndThemes.addView(swatch, chipParams);
-                swatch.setContentDescription("鍵盤顏色：" + palette.name);
+                swatch.setContentDescription(randomChoice ? "鍵盤顏色：每按一次隨機重新分配" : "鍵盤顏色：" + palette.name);
             }
         }
         LinearLayout controls=row(46);
@@ -312,6 +400,7 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         addKey(controls,"空白 / 選字",this::spaceBar,3,theme.panel,13);
         addKey(controls,"⌫",this::backspace,2,theme.panel,23);
         addKey(controls,"↵",this::enter,2,theme.accent,19);
+        if (randomColors) redistributeKeyColors();
     }
     private void updatePreview() {
         if (candidateRow == null || session == null) return;

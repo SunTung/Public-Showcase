@@ -1,5 +1,6 @@
 package tw.cell.taiwankeyin.core;
 
+/** Fixed offline keyboard palettes; each choice persists as a small integer. */
 public final class KeyboardTheme {
     private KeyboardTheme() {}
     public static final class Palette {
@@ -18,6 +19,19 @@ public final class KeyboardTheme {
         new Palette(4,"暖橙",0xFF30231B,0xFF564033,0xFFE58B42,0xFFFFF5EE),
         new Palette(5,"淺色",0xFFF4F5F8,0xFFD9DDE8,0xFF487CD8,0xFF182235)
     };
+    public static final int RANDOM_MODE = 6;
     public static int count() { return PALETTES.length; }
+    public static int modeCount() { return count()+1; }
+    public static int randomKeyColor(java.util.Random random, int previous) {
+        // One of six existing accent colors, avoid leaving an individual key unchanged.
+        int first = random.nextInt(count());
+        if (PALETTES[first].accent == previous) first = (first+1+random.nextInt(count()-1))%count();
+        return PALETTES[first].accent;
+    }
+    public static int readableText(int background) {
+        int r=(background>>16)&255,g=(background>>8)&255,b=background&255;
+        int luminance=(299*r+587*g+114*b)/1000;
+        return luminance>145 ? 0xFF17212C : 0xFFFFFFFF;
+    }
     public static Palette get(int index) { return PALETTES[index >= 0 && index < PALETTES.length ? index : 0]; }
 }

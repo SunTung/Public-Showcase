@@ -10,8 +10,8 @@ android {
         applicationId 'tw.cell.taiwankeyin'
         minSdk 26
         targetSdk 35
-        versionCode 100
-        versionName '1.0.0-unified'
+        versionCode 101
+        versionName '1.0.1-unified'
         manifestPlaceholders = [imeLabel: 'CELL 臺灣注音']
     }
     compileOptions {
@@ -19,14 +19,13 @@ android {
         targetCompatibility JavaVersion.VERSION_17
     }
     buildTypes {
-        // Both build types share the canonical package ID. Android upgrades
-        // require an identical signing certificate as well as this ID.
+        // CI test signing keys change between runs; side-by-side identity protects
+        // the installed alpha1 user database instead of forcing an uninstall.
         debug {
+            
+            
             manifestPlaceholders = [imeLabel: 'CELL 臺灣注音']
         }
-        release {
-            minifyEnabled false
-            manifestPlaceholders = [imeLabel: 'CELL 臺灣注音']
-        }
+        release { minifyEnabled false }
     }
 }

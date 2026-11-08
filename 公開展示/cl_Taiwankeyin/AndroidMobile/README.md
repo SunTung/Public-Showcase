@@ -1,6 +1,22 @@
-# Alpha5｜第一排注音與即時調色（2026-11-08）
+# v1.0.1 Elastic + 隨機配色（增量）
 
-七個數字列注音鍵移到最上排，五聲調鍵同排；QWERTY、ASDF、ZXCV 三排留在下方。標點旁有六個色塊，點選立即切換深藍、深灰、紫色、綠色、暖橙或淺色，偏好保存於 Android SharedPreferences。鍵盤上下留白縮小，詞庫與十字記憶保持原樣。版本 0.1.4-alpha5-test，Debug 透過獨立 package ID 與舊版並存。
+保留唯一正式套件 `tw.cell.taiwankeyin`、versionCode 101 與長期簽章。第七種下方色塊「彩」可開啟隨機模式；每次點按注音、英語、符號、功能鍵或候選時，將畫面上所有主鍵逐一重新配置為既有六種配色中的一種。顏色即時改變但鍵位、觸控區與彈性形變動畫保持獨立。設定記入 `keyboard_settings/theme_index=6`；點選任一固定色塊即可取消。
+
+# v1.0.1 統一正式版｜Elastic Key 動態回饋
+
+本次沿用 **tw.cell.taiwankeyin** 唯一正式套件 ID，versionCode 101。保留 158,905 筆完整離線詞庫、十字記憶、六色調色框、第一排數字列注音＋聲調、QWERTY/英文大小寫與符號頁。
+
+按下時每鍵 65ms 內放大到 112.5%、圓角 7dp→23dp；放開後 240ms 恢復。相鄰鍵快速連續觸發時，兩個動畫同時存在、視覺邊緣短暫擠壓，隨後恢復縫隙。實際點擊判定範圍、位置、鍵距、鍵盤外框完全不改。使用者可在設定頁關閉動畫。
+
+更新必須使用 v1.0.0 統一版的同一張簽章憑證；GitHub Actions 僅編譯 unsigned Release，不在公開 CI 保存正式簽章或密碼。
+
+# Android Alpha 5 — 實體數字列優先＋快速調色（2026-11-08）
+
+- 最上排：大千實體數字列 125890- 的七個注音根鍵，緊接五個可選聲調鍵；下方保留 QWERTY、ASDF、ZXCV 三排注音。
+- 下方常用標點四鍵旁放置六個色塊：深藍、深灰、紫色、綠色、暖橙、淺色。直接點選立即套用，並以 SharedPreferences `theme_index` 記住。
+- 注音主鍵改為 45dp 高，數字/聲調排 37dp，底下標點/調色排29dp；候選條42dp。相較 Alpha4 精簡高度而不縮小主要注音字型。
+- 按鍵函數、單音及完整詞庫、可選聲調、英文 Shift/CapsLock、六頁符號表維持原本行為。Alpha5 Debug 使用獨立套件 ID `tw.cell.taiwankeyin.alpha5test`。
+- 本輪需以 GitHub Actions Android APK 編譯與模擬器測試結果驗收，不以 JVM 單元測試替代實機 UX。
 
 # cl_Taiwankeyin Android｜CELL 繁體細胞注音輸入法
 

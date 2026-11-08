@@ -1,6 +1,7 @@
 import tw.cell.taiwankeyin.core.KeyinCore;
 import tw.cell.taiwankeyin.core.KeyboardLayout;
 import tw.cell.taiwankeyin.core.KeyboardTheme;
+import tw.cell.taiwankeyin.core.ElasticKeyCurve;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
@@ -215,12 +216,37 @@ public class KeyinCoreTest {
     check(KeyboardLayout.ZHUYIN_PHYSICAL_ROWS[2].equals("asdfghjkl;"),"QWERTY home aligned");
     check(KeyboardLayout.ZHUYIN_PHYSICAL_ROWS[3].equals("zxcvbnm,./"),"QWERTY bottom aligned");
     check(KeyboardTheme.count()==6,"six persisted theme choices");
+    check(KeyboardTheme.modeCount()==7,"six palettes plus random recolor mode");
+    check(KeyboardTheme.RANDOM_MODE==6,"random palette selector is seventh");
+    java.util.Random colorRand=new java.util.Random(77);
+    int prev=0;
+    for(int i=0;i<150;i++) {
+        int color=KeyboardTheme.randomKeyColor(colorRand,prev);
+        check(color!=prev,"random key changes color on consecutive taps "+i);
+        boolean known=false;
+        for(int k=0;k<KeyboardTheme.count();k++) known|=color==KeyboardTheme.get(k).accent;
+        check(known,"random key color within approved set "+i);
+        int contrast=KeyboardTheme.readableText(color);
+        check(contrast==0xFF17212C||contrast==0xFFFFFFFF,"random key text readable "+i);
+        prev=color;
+    }
     for(int k=0;k<KeyboardTheme.count();k++){
-        KeyboardTheme.Palette t=KeyboardTheme.get(k);
-        check(t.index==k && t.name.length()>0,"valid theme swatch "+k);
-        check(t.background!=t.panel && t.panel!=t.accent,"palette contrast "+k);
+        KeyboardTheme.Palette theme=KeyboardTheme.get(k);
+        check(theme.index==k && theme.name.length()>0,"valid theme swatch "+k);
+        check(theme.background!=theme.panel && theme.panel!=theme.accent,"palette contrast "+k);
     }
     check(KeyboardTheme.get(-1).index==0 && KeyboardTheme.get(100).index==0,"invalid palette returns default");
+    check(ElasticKeyCurve.PRESS_MS>0 && ElasticKeyCurve.PRESS_MS<ElasticKeyCurve.RECOVER_MS,"elastic quick press slow release");
+    check(ElasticKeyCurve.RECOVER_MS<=350,"elastic release is bounded");
+    check(Math.abs(ElasticKeyCurve.scale(0)-1f)<.00001,"elastic initial size");
+    check(ElasticKeyCurve.scale(1)>1.10f && ElasticKeyCurve.scale(1)<1.15f,"elastic compressed gap");
+    check(ElasticKeyCurve.scale(-1)==1f && ElasticKeyCurve.scale(2)==ElasticKeyCurve.scale(1),"elastic bounded envelope");
+    check(ElasticKeyCurve.cornerDp(1)>ElasticKeyCurve.cornerDp(0),"elastic rounds corners on press");
+    check(ElasticKeyCurve.zDp(1)>ElasticKeyCurve.zDp(0),"elastic front key draws above neighbors");
+    for (int k=0;k<=10;k++) {
+        float q=k/10f;
+        check(ElasticKeyCurve.scale(q)>=1f && ElasticKeyCurve.scale(q)<=1.1251f,"elastic scale bounds "+k);
+    }
     check(KeyboardLayout.pages() >= 6,"symbol categories");
     int symbolCount=0;
     for (int page=0;page<KeyboardLayout.pages();page++) {
