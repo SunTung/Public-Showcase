@@ -17,6 +17,10 @@
 - 在本環境執行 `bash tests/run_java_tests.sh`：**197/197 PASS**，保留並通過原 116 項檢查。新增無聲調「ㄏㄠ→好」、無聲調「ㄋㄧㄏㄠ→你好」、候選立即可見、聲調混用、無聲調退格、10 音節上限、明確錯誤聲調不匹配等測試。
 - Android SDK 與 Gradle 未安裝於本地容器；**alpha2 尚未在此處建置 APK 或實機測試**。CI 修復後需以新的 GitHub Actions 執行結果確定打包與上傳狀態，不可引用 alpha1 成功結果冒充 alpha2。
 
+## 並存安裝的簽章處理
+
+已比較 GitHub CI Alpha1 APK 與 Alpha2 初版 APK 的 APK Signing Block v2 內憑證指紋，發現不同。Alpha1 cert SHA-256 為 `dfde7e5b1cbd461e00c1f44d540911c529f0248ea3c1904d54f100e6d1b2234e`；Alpha2 初版為 `f902518262bbfbea24a2cedee9ef623b806739ce6a470c801d14e4be1ca439d7`。故 Alpha2 Debug 套件改用 `tw.cell.taiwankeyin.alpha2test`，顯示「CELL 臺灣注音 Alpha2 測試」，使原有 Alpha1 的 SQLite 學習資料不需先卸載即可保留。並存安裝仍待 Android 手機實測。
+
 ## 保留及限制
 
 - 仍只在 Android InputConnection 確認成功後記憶選字；不記錄未選注音，維持密碼欄位隱私保護。

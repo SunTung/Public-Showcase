@@ -32,7 +32,7 @@ public final class SettingsActivity extends Activity {
         LinearLayout content=new LinearLayout(this);content.setOrientation(LinearLayout.VERTICAL);
         content.setPadding(dp(24),dp(35),dp(24),dp(24));
         scroll.addView(content);setContentView(scroll);
-        TextView title=new TextView(this);title.setText("CELL 臺灣注音 · Android");title.setTextSize(24);
+        TextView title=new TextView(this);title.setText("CELL 臺灣注音 · Alpha2 測試");title.setTextSize(24);
         title.setGravity(Gravity.CENTER);content.addView(title);
         TextView desc=new TextView(this);
         desc.setText("大千注音｜十字上下文｜本機經驗選字\n目前內建測試詞庫；可匯入更完整的 UTF-8 注音 TSV 詞庫。");
@@ -65,7 +65,7 @@ public final class SettingsActivity extends Activity {
         EditText test=new EditText(this);test.setHint("例如：你好，今天（台南）天氣很好。");
         test.setMinHeight(dp(110));test.setGravity(Gravity.TOP);content.addView(test);
         status=new TextView(this);status.setPadding(0,dp(18),0,0);status.setTextSize(14);
-        status.setText("版本：Android R0/R1 初版。正式全量繁體詞庫尚待驗收。");content.addView(status);
+        status.setText("版本：0.1.1-alpha2-test（可與 Alpha1 並存）。完整繁體詞庫仍待擴充。");content.addView(status);
     }
     @Override protected void onActivityResult(int request,int result,Intent data) {
         super.onActivityResult(request,result,data);

@@ -51,6 +51,10 @@
 - alpha2 核心已在 Linux Java 17 通過 **197** 項檢查（alpha1 為 116）。
 - [alpha2 修復驗收報告](docs/ALPHA2_FIX_REPORT_20261108.md)；APK 的編譯與真機通過狀態需另查 GitHub Actions。
 
+## Alpha 2 Debug 並存安裝（避免覆蓋 Alpha 1）
+
+因為 GitHub Actions 每次產生的 Debug 簽章憑證可能不同，已安裝的 Alpha 1 不能保證被 Alpha 2 直接覆蓋升級。**本版 Debug APK 採用獨立套件 ID `tw.cell.taiwankeyin.alpha2test`，顯示為「CELL 臺灣注音 Alpha2 測試」，可與 Alpha1 並存，避免要求使用者先清除舊版及其經驗資料。** Alpha2 測試版擁有自己的 SQLite 私有資料庫，不會直接共用 Alpha1 已學資料。正式更新版日後需使用持續穩定的簽章。
+
 ## alpha2 的手機試打案例
 
 - **無聲調**：輸入「ㄏ、ㄠ」，候選列即出現「好」，按「空白 / 選字」輸入「好」，**不會額外插入空格**。

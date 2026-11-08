@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-  <application android:allowBackup="false" android:fullBackupContent="false" android:dataExtractionRules="@xml/data_extraction_rules" android:label="CELL 臺灣注音" android:supportsRtl="false"
+  <application android:allowBackup="false" android:fullBackupContent="false" android:dataExtractionRules="@xml/data_extraction_rules" android:label="${imeLabel}" android:supportsRtl="false"
       android:theme="@android:style/Theme.Material.Light.NoActionBar" android:usesCleartextTraffic="false">
-    <activity android:name=".android.SettingsActivity" android:exported="true" android:label="CELL 臺灣注音設定">
+    <activity android:name=".android.SettingsActivity" android:exported="true" android:label="${imeLabel} 設定">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
     </activity>
     <service android:name=".android.TaiwanKeyinImeService" android:permission="android.permission.BIND_INPUT_METHOD"
-        android:exported="true" android:label="CELL 臺灣注音">
+        android:exported="true" android:label="${imeLabel}">
       <intent-filter>
         <action android:name="android.view.InputMethod"/>
       </intent-filter>
