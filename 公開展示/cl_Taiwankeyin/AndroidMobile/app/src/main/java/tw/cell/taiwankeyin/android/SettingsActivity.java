@@ -76,7 +76,7 @@ public final class SettingsActivity extends Activity {
         EditText test=new EditText(this);test.setHint("例如：你好，今天（台南）天氣很好。");
         test.setMinHeight(dp(110));test.setGravity(Gravity.TOP);content.addView(test);
         status=new TextView(this);status.setPadding(0,dp(18),0,0);status.setTextSize(14);
-        status.setText("版本：1.0.1-unified（可與 Alpha1 並存）。完整字詞庫由官方來源生成；罕字與候選排名仍需測試。");content.addView(status);
+        status.setText("版本：1.0.2-unified（可與 Alpha1 並存）。完整字詞庫由官方來源生成；罕字與候選排名仍需測試。");content.addView(status);
     }
     @Override protected void onActivityResult(int request,int result,Intent data) {
         super.onActivityResult(request,result,data);

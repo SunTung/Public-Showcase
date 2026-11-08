@@ -100,6 +100,7 @@ def build(source_dir:Path,dest:Path,allow_fixture:bool=False):
         db.executescript('''
           CREATE INDEX idx_mobile_bare_freq ON lexicon_mobile (bare,frequency DESC);
           CREATE INDEX idx_mobile_reading_freq ON lexicon_mobile (reading,frequency DESC);
+          CREATE INDEX idx_mobile_word_prefix ON lexicon_mobile (word,frequency DESC);
         ''')
         totals=db.execute('''SELECT COUNT(*),SUM(CASE WHEN instr(reading,' ')>0 THEN 1 ELSE 0 END),
                          COUNT(DISTINCT reading) FROM lexicon_mobile''').fetchone()

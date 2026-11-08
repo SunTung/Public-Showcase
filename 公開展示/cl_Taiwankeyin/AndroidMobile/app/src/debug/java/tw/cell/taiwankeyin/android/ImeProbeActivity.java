@@ -8,6 +8,7 @@ import android.view.inputmethod.InputConnection;
 import android.widget.EditText;
 import tw.cell.taiwankeyin.core.CommitBridge;
 import tw.cell.taiwankeyin.core.KeyinCore;
+import tw.cell.taiwankeyin.core.NextWordRanker;
 
 /** Only present in debug builds. Exercises Android's actual EditText InputConnection and SQLite. */
 public final class ImeProbeActivity extends Activity {
@@ -34,6 +35,13 @@ public final class ImeProbeActivity extends Activity {
                     words.setExternalLookup(full);
                     require(words.lookupFlexible("ㄓㄨㄥ ㄨㄣ", memory).stream()
                             .anyMatch(c -> "中文".equals(c.text)), "full corpus missing 中文");
+                    require(full.followups("你",12).stream().anyMatch(h->"好".equals(h.suffix)),
+                            "full corpus missing first-use next word prediction 你→好");
+                    require(full.followups("今天",12).stream().anyMatch(h->"是".equals(h.suffix)),
+                            "full corpus missing first-use next word prediction 今天→是");
+                    require(NextWordRanker.merge(java.util.Collections.emptyList(),
+                            full.followups("你",20),6).contains("的"),
+                            "full corpus next word ranking failed");
                     words.setExternalLookup(null); // Normal candidate commit test below still isolates the seed.
                 }
                 KeyinCore.Session composing = new KeyinCore.Session(words, memory);

@@ -2,6 +2,7 @@ import tw.cell.taiwankeyin.core.KeyinCore;
 import tw.cell.taiwankeyin.core.KeyboardLayout;
 import tw.cell.taiwankeyin.core.KeyboardTheme;
 import tw.cell.taiwankeyin.core.ElasticKeyCurve;
+import tw.cell.taiwankeyin.core.NextWordRanker;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
@@ -284,6 +285,19 @@ public class KeyinCoreTest {
     check(enriched.lookupFlexible("ㄓㄨㄥ ㄨㄣ",noToneMemory).stream().anyMatch(c -> c.text.equals("中文")),"full lexicon missing seed word restored");
     check(enriched.lookupFlexible("ㄕㄡˇ",noToneMemory).stream().anyMatch(c -> c.text.equals("手")),"tone-aware external candidate");
     check(enriched.lookupFlexible("ㄕㄡˊ",noToneMemory).isEmpty(),"explicit tone filter external");
+    java.util.List<NextWordRanker.Hit> dictionaryNext=java.util.Arrays.asList(
+        new NextWordRanker.Hit("好",1200,1),
+        new NextWordRanker.Hit("們",310,1),
+        new NextWordRanker.Hit("嗎",700,2),
+        new NextWordRanker.Hit("（",20000,1));
+    java.util.List<String> predictions=NextWordRanker.merge(
+        java.util.Arrays.asList("好","的"),dictionaryNext,4);
+    check(predictions.size()==4,"dictionary and personal next word merged");
+    check(predictions.get(0).equals("好"),"learned suggestion takes priority");
+    check(predictions.contains("們") && predictions.contains("嗎"),"phrase corpus continuations present");
+    check(!NextWordRanker.usable("（") && !NextWordRanker.usable(""),"invalid continuations excluded");
+    check(NextWordRanker.merge(java.util.Collections.emptyList(),dictionaryNext,2).size()==2,"bounded suggestions");
+    check(NextWordRanker.merge(null,null,3).isEmpty(),"empty prediction safe");
     System.out.println("PASS: "+checks+" Android pure Java keyboard/experience checks");
   }
 }

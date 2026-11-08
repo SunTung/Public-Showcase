@@ -23,6 +23,7 @@ import tw.cell.taiwankeyin.core.KeyinCore;
 import tw.cell.taiwankeyin.core.KeyboardLayout;
 import tw.cell.taiwankeyin.core.KeyboardTheme;
 import tw.cell.taiwankeyin.core.ElasticKeyCurve;
+import tw.cell.taiwankeyin.core.NextWordRanker;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -425,7 +426,11 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         } else if (!session.active()) {
             // Learning database failures must not kill the input-method process.
             try {
-                for (String next : memory.nextSuggestions(6)) {
+                List<String> learned = memory.nextSuggestions(12);
+                List<NextWordRanker.Hit> fromDictionary = verifiedFullLexicon == null
+                        ? java.util.Collections.emptyList()
+                        : verifiedFullLexicon.followups(memory.context().text(), 24);
+                for (String next : NextWordRanker.merge(learned,fromDictionary,6)) {
                     Button suggestion = key(next, () -> insertPlain(next), theme.panel, 17);
                     LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(-2, dp(43));
                     lp.setMargins(dp(2), 0, dp(2), 0);
