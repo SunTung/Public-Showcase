@@ -1,5 +1,13 @@
 # cl_Taiwankeyin｜繁體細胞注音輸入法（Windows + Android）
 
+## CELL 中英繁簡獨立概念字典｜2026-11-09
+
+- **新建，不是舊詞庫改名**：[CELL_Chinese_Lexicon_v0_1 原始碼與自編種子](CELL_Chinese_Lexicon_v0_1/README.md)。第一批 **90 概念／270 中英繁簡表述／180 讀音／8 歧義字形案例**；6 項 Python/SQLite 測試通過。
+- [Google Drive 專用工作資料夾](https://drive.google.com/drive/folders/1HXBHw6XymF4Z9GNH8RMyRoT-bWJj0s82) · [完整 SQLite+原始碼 ZIP](https://drive.google.com/file/d/1_adKcwxChSy6pgKYYO4YMJJC9hNkVm2V/view)。
+- 字典以 concept_id 關聯繁體、簡體、英文與讀音；歧義與地區差異分開保存。既有 158,905 筆 Chewing 派生詞庫**保留作輸入法穩定基線**，尚未用 90 條試驗種子取代。
+- 新專案詞條仍待多來源語義與讀音複核；外部資料僅用於比較驗證，不直接冒充 CELL 自編字典。完整版尚未完成。
+
+
 ## 最新有效版本｜2026-11-09
 
 - **Android v1.0.2 單一正式版**：已上字後的詞庫智慧接續推薦，沿用原 App ID 與正式簽章，可直接覆蓋 v1.0.1。[Google Drive APK](https://drive.google.com/file/d/16B-hg97Sn1w5qT-AikFyzwzhg9AM79Em/view)／[GitHub 769項測試+編譯](https://github.com/SunTung/Public-Showcase/actions/runs/42498189189)／[Android 35 模擬器驗收](https://github.com/SunTung/Public-Showcase/actions/runs/42498189515)。
