@@ -2,7 +2,6 @@ package tw.cell.taiwankeyin.android;
 
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.inputmethodservice.InputMethodService;
 import android.text.InputType;
 import android.view.Gravity;
@@ -15,6 +14,8 @@ import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.Space;
 import android.widget.TextView;
+import android.util.Log;
+import tw.cell.taiwankeyin.core.CommitBridge;
 import tw.cell.taiwankeyin.core.KeyinCore;
 import java.io.File;
 import java.io.FileInputStream;
@@ -26,6 +27,7 @@ public final class TaiwanKeyinImeService extends InputMethodService {
     private static final int PANEL = Color.rgb(39, 51, 70);
     private static final int ACCENT = Color.rgb(63, 149, 229);
     private static final int WHITE = Color.rgb(244, 247, 252);
+    private static final String TAG = "CellTaiwanKeyin";
     private static final String LEXICON = "imported_lexicon.tsv";
     private static final int PHONETIC_COLUMNS = 10; // Uniform 10-column touch targets across all Zhuyin rows.
     private ExperienceDatabase store;
@@ -36,7 +38,6 @@ public final class TaiwanKeyinImeService extends InputMethodService {
     private LinearLayout root;
     private LinearLayout candidateRow;
     private LinearLayout keysArea;
-    private TextView preedit;
     private boolean englishMode;
     private boolean symbolMode;
     private boolean sensitiveField;
@@ -102,8 +103,13 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         // The editor can change the caret independently. Do not associate future text with stale context.
         InputConnection connection = getCurrentInputConnection();
         if (connection == null) return;
-        CharSequence preceding = connection.getTextBeforeCursor(64, 0);
-        if (preceding != null && !preceding.toString().endsWith(memory.context().text())) {
+        try {
+            CharSequence preceding = connection.getTextBeforeCursor(64, 0);
+            if (preceding != null && !preceding.toString().endsWith(memory.context().text())) {
+                memory.resetContext();
+            }
+        } catch (RuntimeException ex) {
+            Log.w(TAG, "Editor cursor state unavailable; resetting stale context", ex);
             memory.resetContext();
         }
     }
@@ -118,10 +124,6 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         root.setOrientation(LinearLayout.VERTICAL);
         root.setBackgroundColor(BACKGROUND);
         root.setPadding(dp(3),dp(6),dp(3),dp(5));
-        preedit = label("CELL 注音", 16, WHITE);
-        preedit.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
-        preedit.setMinHeight(dp(35));
-        root.addView(preedit, new LinearLayout.LayoutParams(-1,dp(37)));
         HorizontalScrollView scroll = new HorizontalScrollView(this);
         scroll.setHorizontalScrollBarEnabled(false);
         candidateRow = new LinearLayout(this);
@@ -149,20 +151,33 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         button.setOnClickListener(view -> onClick.run());
         return button;
     }
-    private LinearLayout row() {
+    private LinearLayout row() { return row(49); }
+    private LinearLayout row(int height) {
         LinearLayout row = new LinearLayout(this);
         row.setOrientation(LinearLayout.HORIZONTAL);
-        keysArea.addView(row,new LinearLayout.LayoutParams(-1,dp(49)));
+        keysArea.addView(row,new LinearLayout.LayoutParams(-1,dp(height)));
         return row;
     }
     private void addKey(LinearLayout target, String glyph, Runnable action, int weight, int color, int textSize) {
+        addKey(target, glyph, action, weight, color, textSize, 46);
+    }
+    private void addKey(LinearLayout target, String glyph, Runnable action, int weight, int color, int textSize, int height) {
         Button button = key(glyph,action,color,textSize);
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0,dp(46),weight);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0,dp(height),weight);
         lp.setMargins(dp(1),dp(1),dp(1),dp(1));
         target.addView(button,lp);
     }
     private void phonetic(String glyph) {
-        if (session.pressSymbol(glyph)) updatePreview();
+        try {
+            if (session.pressSymbol(glyph)) updatePreview();
+        } catch (RuntimeException ex) {
+            // First candidate may read SQLite. If it is unavailable, fall back to
+            // non-learning baseline candidates without closing the keyboard.
+            Log.e(TAG, "Phonetic candidate retrieval failed", ex);
+            memory.setLearning(false);
+            try { session.refreshCandidates(); updatePreview(); }
+            catch (RuntimeException fallback) { Log.e(TAG, "Baseline candidate fallback failed", fallback); }
+        }
     }
     private void addEmptyCell(LinearLayout target) {
         Space spacer = new Space(this); // Not a huge invisible clickable button.
@@ -213,11 +228,11 @@ public final class TaiwanKeyinImeService extends InputMethodService {
             }
             // Five optional tones plus five quick punctuation keys in the same 10-slot row.
             // Tones do not need to be pressed; Space confirms an untoned candidate.
-            LinearLayout tonesAndPunct = row();
+            LinearLayout tonesAndPunct = row(36);
             for (String tone : KeyinCore.TONE_LABELS)
-                addKey(tonesAndPunct, tone, () -> phonetic(tone), 1, ACCENT, 16);
+                addKey(tonesAndPunct, tone, () -> phonetic(tone), 1, ACCENT, 14, 33);
             for (String mark : new String[]{"（", "）", "：", "，", "。"})
-                addKey(tonesAndPunct, mark, () -> insertPlain(mark), 1, PANEL, 16);
+                addKey(tonesAndPunct, mark, () -> insertPlain(mark), 1, PANEL, 14, 33);
         }
         if (englishMode) {
             LinearLayout punct = row();
@@ -236,51 +251,78 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         addKey(controls,"↵",this::enter,2,ACCENT,19);
     }
     private void updatePreview() {
-        if (preedit == null || candidateRow == null) return;
-        String pending=session.preedit();
-        preedit.setText(pending.isEmpty() ? "CELL 注音 · 十字經驗" : pending);
+        if (candidateRow == null || session == null) return;
         candidateRow.removeAllViews();
-        List<KeyinCore.Candidate> list=session.candidates();
-        if (list.isEmpty()) {
-            List<String> predicted = session.active()?java.util.Collections.emptyList():memory.nextSuggestions(6);
-            if (!predicted.isEmpty()) {
-                for (String next : predicted) {
-                    Button suggested = key(next,()->insertPlain(next),PANEL,17);
-                    LinearLayout.LayoutParams lp=new LinearLayout.LayoutParams(-2,dp(43));
-                    lp.setMargins(dp(2),0,dp(2),0);
-                    candidateRow.addView(suggested,lp);
-                }
-            } else {
-                TextView placeholder = label(session.active()?"繼續注音；完整音節按空白選字":"注音可不選聲調 · 空白直接選字",14,0xFFABB5C8);
-                candidateRow.addView(placeholder);
+        String pending = session.preedit();
+        // No permanent headline or instruction row. Show live preedit only in the candidate strip.
+        if (!pending.isEmpty()) {
+            TextView spelling = label(pending, 14, WHITE);
+            spelling.setSingleLine(true);
+            spelling.setBackgroundColor(BACKGROUND);
+            candidateRow.addView(spelling);
+        }
+        List<KeyinCore.Candidate> choices = session.candidates();
+        if (!choices.isEmpty()) {
+            for (int i = 0; i < choices.size(); i++) {
+                final int index = i;
+                Button selected = key(choices.get(i).text, () -> chooseCandidate(index), ACCENT, 18);
+                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(-2, dp(43));
+                lp.setMargins(dp(2), 0, dp(2), 0);
+                candidateRow.addView(selected, lp);
             }
-        } else {
-            for (int i=0;i<list.size();i++) {
-                final int index=i;
-                Button chosen=key(list.get(i).text,()->chooseCandidate(index),ACCENT,19);
-                LinearLayout.LayoutParams lp=new LinearLayout.LayoutParams(-2,dp(43));
-                lp.setMargins(dp(2),0,dp(2),0);
-                candidateRow.addView(chosen,lp);
+        } else if (!session.active()) {
+            // Learning database failures must not kill the input-method process.
+            try {
+                for (String next : memory.nextSuggestions(6)) {
+                    Button suggestion = key(next, () -> insertPlain(next), PANEL, 17);
+                    LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(-2, dp(43));
+                    lp.setMargins(dp(2), 0, dp(2), 0);
+                    candidateRow.addView(suggestion, lp);
+                }
+            } catch (RuntimeException ex) {
+                Log.e(TAG, "Failed to read local next-word predictions", ex);
+                memory.setLearning(false);
             }
         }
     }
+    private void warnLearningFailure(RuntimeException ex) {
+        Log.e(TAG, "Text delivered; disabling local learning after SQLite failure", ex);
+        memory.setLearning(false); // Keep IME usable; no silent inconsistent learning writes.
+    }
     private void chooseCandidate(int index) {
-        KeyinCore.Selection choice=session.choose(index);
-        if(choice==null) { updatePreview(); return; }
-        InputConnection connection=getCurrentInputConnection();
-        if (connection!=null && connection.commitText(choice.text,1)) {
-            memory.committed(choice.text,choice.reading);
+        InputConnection connection = getCurrentInputConnection();
+        if (connection == null) {
+            Log.w(TAG, "Candidate not committed: editor InputConnection is null");
+            updatePreview();
+            return; // Keep the pending composition.
+        }
+        try {
+            // Unlike Alpha2, never call session.choose() before Android commitText succeeds.
+            if (!CommitBridge.commitCandidate(session, memory, index,
+                    text -> connection.commitText(text, 1), this::warnLearningFailure)) {
+                Log.w(TAG, "Candidate not committed: target rejected text or selection invalid");
+            }
+        } catch (RuntimeException ex) {
+            Log.e(TAG, "InputConnection.commitText failed; retaining phonetic composition", ex);
         }
         updatePreview();
     }
     private void insertPlain(String text) {
         if (session.active()) {
-            // Composing text is never silently committed as letters or stale candidates.
-            if (!session.candidates().isEmpty()) chooseCandidate(0);
-            else session.clear();
+            if (!session.candidates().isEmpty()) {
+                chooseCandidate(0);
+                if (session.active()) return; // Do not insert punctuation if candidate was rejected.
+            } else session.clear();
         }
-        InputConnection connection=getCurrentInputConnection();
-        if (connection!=null && connection.commitText(text,1)) memory.committed(text,"");
+        InputConnection connection = getCurrentInputConnection();
+        try {
+            if (connection != null && connection.commitText(text, 1)) {
+                try { memory.committed(text, ""); }
+                catch (RuntimeException ex) { warnLearningFailure(ex); }
+            }
+        } catch (RuntimeException ex) {
+            Log.e(TAG, "Editor rejected plain text", ex);
+        }
         updatePreview();
     }
     private void backspace() {
@@ -311,7 +353,7 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         if (keyCode==KeyEvent.KEYCODE_ENTER) { enter();return true; }
         if (keyCode==KeyEvent.KEYCODE_SPACE) { spaceBar();return true; }
         char c=(char)event.getUnicodeChar();
-        if(c!='\0' && !englishMode && session.pressKey(c)) {updatePreview();return true;}
+        if(c!='\0' && !englishMode && KeyinCore.KEY_CODES.indexOf(Character.toLowerCase(c))>=0) { phonetic(KeyinCore.symbolForKey(c));return true; }
         return super.onKeyDown(keyCode,event);
     }
 }

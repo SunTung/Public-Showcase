@@ -10,8 +10,8 @@ android {
         applicationId 'tw.cell.taiwankeyin'
         minSdk 26
         targetSdk 35
-        versionCode 2
-        versionName '0.1.1-alpha2'
+        versionCode 3
+        versionName '0.1.2-alpha3'
         manifestPlaceholders = [imeLabel: 'CELL 臺灣注音']
     }
     compileOptions {
@@ -22,9 +22,9 @@ android {
         // CI test signing keys change between runs; side-by-side identity protects
         // the installed alpha1 user database instead of forcing an uninstall.
         debug {
-            applicationIdSuffix '.alpha2test'
+            applicationIdSuffix '.alpha3test'
             versionNameSuffix '-test'
-            manifestPlaceholders = [imeLabel: 'CELL 臺灣注音 Alpha2 測試']
+            manifestPlaceholders = [imeLabel: 'CELL 臺灣注音 Alpha3 測試']
         }
         release { minifyEnabled false }
     }

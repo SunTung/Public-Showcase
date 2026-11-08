@@ -1,8 +1,16 @@
 # cl_Taiwankeyin Android｜CELL 繁體細胞注音輸入法
 
-**Android 輸入法工程 alpha2（0.1.1-alpha2）**；承襲已通過 GitHub Actions 編譯的 alpha1，新增無聲調自動選字與觸控鍵盤縮放修復。alpha2 APK 的建置結果應以新的 GitHub Actions 執行為準。
+**Android 輸入法工程 alpha3（0.1.2-alpha3-test）**；承襲已通過 GitHub Actions 編譯的 alpha1，新增無聲調自動選字與觸控鍵盤縮放修復。alpha2 APK 的建置結果應以新的 GitHub Actions 執行為準。
 
 平台：Android 8.0+（API 26），系統 IME 使用官方 `InputMethodService` / `InputConnection`。
+
+## Alpha 3｜真實手機故障修復（2026-11-08）
+
+- [實際程式碼缺陷分析](docs/ALPHA3_ROOT_CAUSE_20261108.md)：先清除組字、後向 Android 提交文字；若目標編輯框拒絕，候選就遺失。已修正為提交成功才清空，並加入 SQLite 錯誤保護。
+- 取消鍵盤上方 37dp 永久標題和教學字樣，僅保留動態候選列。
+- 聲調/標點排高度由 49dp → 36dp；保留每排10個等寬主注音鍵。
+- 本機 JVM 回歸 **215/215 PASS**；另新增 Android Emulator 中實際 EditText/SQLite 的 Debug 整合測試。
+- Alpha3 Debug 套件 `tw.cell.taiwankeyin.alpha3test` 可與 Alpha1、Alpha2 並存，不覆蓋兩版學習資料。Android APK/模擬器與真機狀態請以該版 CI 和驗收報告為準。
 
 ## 功能（目前實作）
 

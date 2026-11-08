@@ -158,6 +158,50 @@ public class KeyinCoreTest {
     check(cap.reading().split(" ").length==10,"10-syllable composition remains intact");
 
 
+    // Alpha3: do not consume the composition before an editor has accepted it.
+    KeyinCore.Memory transactionMemory=new KeyinCore.Memory(new Learning());
+    KeyinCore.Session transaction=new KeyinCore.Session(lex,transactionMemory);
+    check(transaction.pressSymbol("ㄋ"),"commit bridge: begin ni");
+    check(transaction.pressSymbol("ㄧ"),"commit bridge: complete ni");
+    check(transaction.candidates().get(0).text.equals("你"),"commit bridge: candidate ready");
+    check(!tw.cell.taiwankeyin.core.CommitBridge.commitCandidate(transaction,transactionMemory,
+            0, value -> false, err -> { throw err; }),"commit bridge: rejected editor result");
+    check(transaction.active() && !transaction.candidates().isEmpty(),"rejection retains phonetic state");
+    check(transactionMemory.context().size()==0,"rejection does not teach memory");
+    check(!tw.cell.taiwankeyin.core.CommitBridge.commitCandidate(transaction,transactionMemory,
+            0, null, err -> { throw err; }),"commit bridge: missing connection");
+    check(transaction.active(),"missing connection preserves state");
+    check(tw.cell.taiwankeyin.core.CommitBridge.commitCandidate(transaction,transactionMemory,
+            0, value -> value.equals("你"), err -> { throw err; }),"successful text delivery");
+    check(!transaction.active(),"successful delivery ends composition");
+    check(transactionMemory.context().text().equals("你"),"learning occurs only after delivery");
+    check(!tw.cell.taiwankeyin.core.CommitBridge.commitCandidate(transaction,transactionMemory,
+            0, value -> true, err -> { throw err; }),"cannot duplicate stale selection");
+
+    KeyinCore.Session failingText=new KeyinCore.Session(lex,transactionMemory);
+    check(failingText.pressSymbol("ㄏ"),"connection exception prep");
+    check(failingText.pressSymbol("ㄠ"),"connection exception candidate prep");
+    try {
+        tw.cell.taiwankeyin.core.CommitBridge.commitCandidate(failingText,transactionMemory,
+            0, value -> { throw new IllegalStateException("editor detached"); }, err -> {});
+        check(false,"editor exception must propagate to IME host for logging");
+    } catch (IllegalStateException expected) {
+        check(failingText.active(),"editor exception retains composition");
+    }
+    final int[] failures={0};
+    KeyinCore.LearningBackend brokenBackend=new Learning() {
+      @Override public void learnChoice(String reading,String text,String before) {
+        throw new IllegalStateException("SQLite write failure");
+      }
+    };
+    KeyinCore.Memory brokenMemory=new KeyinCore.Memory(brokenBackend);
+    KeyinCore.Session brokenSession=new KeyinCore.Session(lex,brokenMemory);
+    brokenSession.pressSymbol("ㄏ");brokenSession.pressSymbol("ㄠ");
+    check(tw.cell.taiwankeyin.core.CommitBridge.commitCandidate(brokenSession,brokenMemory,
+       0, value -> value.equals("好"), err -> failures[0]++),"editor delivery persists despite learning failure");
+    check(failures[0]==1,"SQLite error emitted to error reporter");
+    check(!brokenSession.active(),"already-committed word must not be reinserted");
+
     System.out.println("PASS: "+checks+" Android pure Java keyboard/experience checks");
   }
 }
