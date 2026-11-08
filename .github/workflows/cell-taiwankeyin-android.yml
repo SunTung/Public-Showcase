@@ -26,10 +26,13 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.11.1'
-      - name: Android SDK
-        uses: android-actions/setup-android@v3
-      - name: Install SDK 35
-        run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Android SDK (do not install obsolete SDK tools package)
+        uses: android-actions/setup-android@v4
+        with:
+          packages: ''
+          log-accepted-android-sdk-licenses: 'false'
+      - name: Install SDK 35 and platform-tools
+        run: sdkmanager --install 'platform-tools' 'platforms;android-35' 'build-tools;35.0.0'
       - name: Android APK compilation
         working-directory: '公開展示/cl_Taiwankeyin/AndroidMobile'
         run: gradle --no-daemon --stacktrace :app:assembleDebug
