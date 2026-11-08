@@ -1,5 +1,14 @@
 # cl_Taiwankeyin｜繁體細胞注音輸入法（Windows + Android）
 
+## Android Alpha 4｜完整繁體詞庫與常用鍵盤（2026-11-08）
+
+- **158,905 筆詞庫已實際建置、驗證並備份 Google Drive。** [完整 SQLite](https://drive.google.com/file/d/198fo-6dOLGtgQl_mx7A0aF1ALG0gyceq/view) · [完整來源封裝](https://drive.google.com/file/d/1RQN5FA_xYxNjy-lOlQ1XVJMuqwaWKJ8T/view)
+- **[下載 Alpha4 已內建完整詞庫的 Android APK](https://drive.google.com/file/d/1C6ITw5BGfuQ5-9utmLdYNtrd_PBMgVls/view)** · [Alpha4 完整原始碼](https://drive.google.com/file/d/18gQoJklSJmJmNtwyDkZIgCHrF280i9nr/view)
+- 已實作 QWERTY 對照大千注音位置、英文字母 Shift/大寫鎖定、六頁符號鍵盤；Java **278/278 PASS**。
+- [詞庫完整 CI](https://github.com/SunTung/Public-Showcase/actions/runs/42485724924)、[APK 編譯 CI](https://github.com/SunTung/Public-Showcase/actions/runs/42486104911)、[Android 35 模擬器整合 CI](https://github.com/SunTung/Public-Showcase/actions/runs/42486104841) 均 SUCCESS。
+- [正式跨雲驗收報告](ANDROID_ALPHA4_FULL_LEXICON_RELEASE_20261108.md)；Android 16 手機操作及輸入手感仍需實機驗收。原 RGOS 私人原件沒有被公開搬移，這是固定來源重建的手機索引。
+
+
 ## Android Alpha 3｜真機故障修復（2026-11-08）
 
 - [已重現並修復 Android SQLite 閃退](ANDROID_ALPHA3_RELEASE_20261108.md)：Alpha2 的 `execSQL("PRAGMA secure_delete=ON")` 導致 Android 35 拋出 SQLiteException；已改正為 `rawQuery`，並修正提交前清空組字等問題。
