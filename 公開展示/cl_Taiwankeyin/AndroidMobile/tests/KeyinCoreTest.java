@@ -1,5 +1,6 @@
 import tw.cell.taiwankeyin.core.KeyinCore;
 import tw.cell.taiwankeyin.core.KeyboardLayout;
+import tw.cell.taiwankeyin.core.KeyboardTheme;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
@@ -209,9 +210,17 @@ public class KeyinCoreTest {
     check(KeyboardLayout.allZhuyinKeys().size() == 37, "all 37 root keys in touch layout");
     for (char mappedKey : KeyinCore.KEY_CODES.toCharArray())
         check(roots.contains(KeyinCore.symbolForKey(mappedKey)), "touch keyboard includes " + mappedKey);
-    check(KeyboardLayout.ZHUYIN_PHYSICAL_ROWS[0].equals("qwertyuiop"),"QWERTY top aligned");
-    check(KeyboardLayout.ZHUYIN_PHYSICAL_ROWS[1].equals("asdfghjkl;"),"QWERTY home aligned");
-    check(KeyboardLayout.ZHUYIN_PHYSICAL_ROWS[2].equals("zxcvbnm,./"),"QWERTY bottom aligned");
+    check(KeyboardLayout.ZHUYIN_PHYSICAL_ROWS[0].equals("125890-"),"physical number-row roots first");
+    check(KeyboardLayout.ZHUYIN_PHYSICAL_ROWS[1].equals("qwertyuiop"),"QWERTY below number row");
+    check(KeyboardLayout.ZHUYIN_PHYSICAL_ROWS[2].equals("asdfghjkl;"),"QWERTY home aligned");
+    check(KeyboardLayout.ZHUYIN_PHYSICAL_ROWS[3].equals("zxcvbnm,./"),"QWERTY bottom aligned");
+    check(KeyboardTheme.count()==6,"six persisted theme choices");
+    for(int k=0;k<KeyboardTheme.count();k++){
+        KeyboardTheme.Palette t=KeyboardTheme.get(k);
+        check(t.index==k && t.name.length()>0,"valid theme swatch "+k);
+        check(t.background!=t.panel && t.panel!=t.accent,"palette contrast "+k);
+    }
+    check(KeyboardTheme.get(-1).index==0 && KeyboardTheme.get(100).index==0,"invalid palette returns default");
     check(KeyboardLayout.pages() >= 6,"symbol categories");
     int symbolCount=0;
     for (int page=0;page<KeyboardLayout.pages();page++) {

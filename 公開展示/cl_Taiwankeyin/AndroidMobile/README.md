@@ -1,3 +1,7 @@
+# Alpha5｜第一排注音與即時調色（2026-11-08）
+
+七個數字列注音鍵移到最上排，五聲調鍵同排；QWERTY、ASDF、ZXCV 三排留在下方。標點旁有六個色塊，點選立即切換深藍、深灰、紫色、綠色、暖橙或淺色，偏好保存於 Android SharedPreferences。鍵盤上下留白縮小，詞庫與十字記憶保持原樣。版本 0.1.4-alpha5-test，Debug 透過獨立 package ID 與舊版並存。
+
 # cl_Taiwankeyin Android｜CELL 繁體細胞注音輸入法
 
 ## Alpha 4：完整字詞庫與日常鍵盤（2026-11-08）

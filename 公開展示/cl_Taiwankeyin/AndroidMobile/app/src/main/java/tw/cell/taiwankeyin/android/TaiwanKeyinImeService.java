@@ -1,7 +1,6 @@
 package tw.cell.taiwankeyin.android;
 
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.inputmethodservice.InputMethodService;
 import android.text.InputType;
 import android.view.Gravity;
@@ -18,23 +17,20 @@ import android.util.Log;
 import tw.cell.taiwankeyin.core.CommitBridge;
 import tw.cell.taiwankeyin.core.KeyinCore;
 import tw.cell.taiwankeyin.core.KeyboardLayout;
+import tw.cell.taiwankeyin.core.KeyboardTheme;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 
 public final class TaiwanKeyinImeService extends InputMethodService {
-    private static final int BACKGROUND = Color.rgb(22, 30, 43);
-    private static final int PANEL = Color.rgb(39, 51, 70);
-    private static final int ACCENT = Color.rgb(63, 149, 229);
-    private static final int WHITE = Color.rgb(244, 247, 252);
     private static final String TAG = "CellTaiwanKeyin";
     private static final String LEXICON = "imported_lexicon.tsv";
-    private static final int PHONETIC_COLUMNS = 10; // Uniform 10-column touch targets across all Zhuyin rows.
     private ExperienceDatabase store;
     private FullLexiconStore verifiedFullLexicon;
     private final KeyboardLayout.LatinShift latinShift = new KeyboardLayout.LatinShift();
     private int symbolPage;
+    private KeyboardTheme.Palette theme = KeyboardTheme.get(0);
     private KeyinCore.Memory memory;
     private KeyinCore.Lexicon lexicon;
     private KeyinCore.Session session;
@@ -51,6 +47,7 @@ public final class TaiwanKeyinImeService extends InputMethodService {
 
     @Override public void onCreate() {
         super.onCreate();
+        theme = KeyboardTheme.get(prefs().getInt("theme_index", 0));
         store = new ExperienceDatabase(this);
         memory = new KeyinCore.Memory(store);
         try {
@@ -134,14 +131,14 @@ public final class TaiwanKeyinImeService extends InputMethodService {
     @Override public View onCreateInputView() {
         root = new LinearLayout(this);
         root.setOrientation(LinearLayout.VERTICAL);
-        root.setBackgroundColor(BACKGROUND);
-        root.setPadding(dp(3),dp(6),dp(3),dp(5));
+        root.setBackgroundColor(theme.background);
+        root.setPadding(dp(2),dp(2),dp(2),dp(2));
         HorizontalScrollView scroll = new HorizontalScrollView(this);
         scroll.setHorizontalScrollBarEnabled(false);
         candidateRow = new LinearLayout(this);
         candidateRow.setOrientation(LinearLayout.HORIZONTAL);
         scroll.addView(candidateRow);
-        root.addView(scroll,new LinearLayout.LayoutParams(-1,dp(48)));
+        root.addView(scroll,new LinearLayout.LayoutParams(-1,dp(42)));
         keysArea = new LinearLayout(this);
         keysArea.setOrientation(LinearLayout.VERTICAL);
         root.addView(keysArea);
@@ -153,8 +150,9 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         Button button = new Button(this);
         button.setText(text); button.setTextSize(textSize);
         button.setAllCaps(false);
-        button.setTextColor(WHITE);
+        button.setTextColor(theme.text);
         button.setBackgroundTintList(android.content.res.ColorStateList.valueOf(color));
+        button.setIncludeFontPadding(false);
         button.setMinHeight(0);
         button.setMinimumHeight(0);
         button.setMinWidth(0);
@@ -163,7 +161,7 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         button.setOnClickListener(view -> onClick.run());
         return button;
     }
-    private LinearLayout row() { return row(49); }
+    private LinearLayout row() { return row(45); }
     private LinearLayout row(int height) {
         LinearLayout row = new LinearLayout(this);
         row.setOrientation(LinearLayout.HORIZONTAL);
@@ -171,7 +169,7 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         return row;
     }
     private void addKey(LinearLayout target, String glyph, Runnable action, float weight, int color, int textSize) {
-        addKey(target, glyph, action, weight, color, textSize, 46);
+        addKey(target, glyph, action, weight, color, textSize, 42);
     }
     private void addKey(LinearLayout target, String glyph, Runnable action, float weight, int color, int textSize, int height) {
         Button button = key(glyph,action,color,textSize);
@@ -217,22 +215,32 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         symbolPage = (symbolPage + delta + KeyboardLayout.pages()) % KeyboardLayout.pages();
         rebuildKeys();
     }
+    private void selectTheme(int index) {
+        KeyboardTheme.Palette selected = KeyboardTheme.get(index);
+        if (selected.index == theme.index) return;
+        theme = selected;
+        prefs().edit().putInt("theme_index", theme.index).apply();
+        if (root != null) root.setBackgroundColor(theme.background);
+        rebuildKeys();
+        updatePreview();
+    }
     private void rebuildKeys() {
         if (keysArea == null) return;
+        if (root != null) root.setBackgroundColor(theme.background);
         keysArea.removeAllViews();
         if (symbolMode) {
             // A dedicated paged palette, not just the 10 punctuation shortcuts.
             LinearLayout tabs = row(34);
-            addKey(tabs, "‹", () -> chooseSymbolPage(-1), 1, PANEL, 18, 31);
+            addKey(tabs, "‹", () -> chooseSymbolPage(-1), 1, theme.panel, 18, 31);
             addKey(tabs, KeyboardLayout.SYMBOL_PAGE_NAMES[symbolPage],
-                    () -> chooseSymbolPage(1), 4, ACCENT, 15, 31);
-            addKey(tabs, "›", () -> chooseSymbolPage(1), 1, PANEL, 18, 31);
+                    () -> chooseSymbolPage(1), 4, theme.accent, 15, 31);
+            addKey(tabs, "›", () -> chooseSymbolPage(1), 1, theme.panel, 18, 31);
             String[] symbols = KeyboardLayout.page(symbolPage);
             for (int start = 0; start < symbols.length; start += 8) {
                 LinearLayout strip = row(45);
                 for (int i = start; i < Math.min(start + 8,symbols.length); i++) {
                     String mark = symbols[i];
-                    addKey(strip, mark, () -> insertPlain(mark), 1, PANEL, 16, 42);
+                    addKey(strip, mark, () -> insertPlain(mark), 1, theme.panel, 16, 42);
                 }
                 for (int i = Math.min(start+8,symbols.length); i < start+8; i++) addEmptyCell(strip);
             }
@@ -244,46 +252,66 @@ public final class TaiwanKeyinImeService extends InputMethodService {
                     String shiftGlyph = latinShift.mode() == KeyboardLayout.LatinShift.Mode.CAPS_LOCK ? "⇪"
                             : latinShift.mode() == KeyboardLayout.LatinShift.Mode.NEXT_UPPER ? "⇧" : "↑";
                     addKey(strip, shiftGlyph, () -> { latinShift.pressShift(); rebuildKeys(); },
-                            1.5f, ACCENT, 19);
+                            1.5f, theme.accent, 19);
                 }
                 for (char ch : KeyboardLayout.LATIN_ROWS[index].toCharArray()) {
                     char value = ch;
-                    addKey(strip,latinShift.label(value),()->latinLetter(value),1,PANEL,18);
+                    addKey(strip,latinShift.label(value),()->latinLetter(value),1,theme.panel,18);
                 }
-                if (index == 2) addKey(strip, "⌫", this::backspace, 1.5f, PANEL, 20);
+                if (index == 2) addKey(strip, "⌫", this::backspace, 1.5f, theme.panel, 20);
             }
             LinearLayout punctuation = row(33);
             for (String mark : new String[]{".", ",", "'", "?", "!", "@", "-", "/"})
-                addKey(punctuation,mark,()->insertPlain(mark),1,PANEL,14,30);
+                addKey(punctuation,mark,()->insertPlain(mark),1,theme.panel,14,30);
         } else {
-            // QWERTY-aligned Dachen, preserving positions the typist already knows:
-            // 'qwertyuiop', 'asdfghjkl;', 'zxcvbnm,./' plus number-row roots.
-            for (String rowKeys : KeyboardLayout.ZHUYIN_PHYSICAL_ROWS) {
-                LinearLayout strip = row(49);
-                for (char keyChar : rowKeys.toCharArray()) {
-                    String glyph = KeyinCore.symbolForKey(keyChar);
-                    addKey(strip, glyph, () -> phonetic(glyph), 1, PANEL, 17);
+            // True physical ordering: number-row Dachen roots are FIRST.
+            // The five optional tones share the first strip.
+            LinearLayout numberAndTone = row(37);
+            String numberRoots = KeyboardLayout.ZHUYIN_PHYSICAL_ROWS[0];
+            for (char code : numberRoots.toCharArray()) {
+                String glyph = KeyinCore.symbolForKey(code);
+                addKey(numberAndTone, glyph, () -> phonetic(glyph), 1, theme.panel, 15, 34);
+            }
+            for (String tone : KeyinCore.TONE_LABELS)
+                addKey(numberAndTone, tone, () -> phonetic(tone), 1, theme.accent, 14, 34);
+            // The QWERTY / ASDF / ZXCV rows remain directly beneath.
+            for (int r = 1; r < KeyboardLayout.ZHUYIN_PHYSICAL_ROWS.length; r++) {
+                String rowKeys = KeyboardLayout.ZHUYIN_PHYSICAL_ROWS[r];
+                LinearLayout strip = row(45);
+                for (char code : rowKeys.toCharArray()) {
+                    String glyph = KeyinCore.symbolForKey(code);
+                    addKey(strip, glyph, () -> phonetic(glyph), 1, theme.panel, 17, 42);
                 }
                 for (int i = rowKeys.length(); i < 10; i++) addEmptyCell(strip);
             }
-            LinearLayout thinTones = row(30);
-            for (String tone : KeyinCore.TONE_LABELS)
-                addKey(thinTones, tone, () -> phonetic(tone), 1, ACCENT, 13, 27);
-            for (String mark : new String[]{"，", "。", "、", "？", "！"})
-                addKey(thinTones, mark, () -> insertPlain(mark), 1, PANEL, 13, 27);
+            // Punctuation and six direct-tap color swatches occupy one compact row.
+            LinearLayout punctuationAndThemes = row(29);
+            for (String mark : new String[]{"，", "。", "？", "！"})
+                addKey(punctuationAndThemes, mark, () -> insertPlain(mark), 1, theme.panel, 13, 26);
+            for (int index = 0; index < KeyboardTheme.count(); index++) {
+                final int selectedTheme = index;
+                KeyboardTheme.Palette palette = KeyboardTheme.get(index);
+                Button swatch = key(index == theme.index ? "✓" : "", () -> selectTheme(selectedTheme),
+                        palette.accent, 14);
+                swatch.setTextColor(0xFFFFFFFF);
+                LinearLayout.LayoutParams chipParams = new LinearLayout.LayoutParams(0, dp(26), 1);
+                chipParams.setMargins(dp(2), dp(1), dp(2), dp(1));
+                punctuationAndThemes.addView(swatch, chipParams);
+                swatch.setContentDescription("鍵盤顏色：" + palette.name);
+            }
         }
-        LinearLayout controls=row(49);
+        LinearLayout controls=row(46);
         addKey(controls, englishMode ? "注音" : "ABC", () -> {
             session.clear(); symbolMode=false; englishMode=!englishMode;
             rebuildKeys(); updatePreview();
-        },2,ACCENT,14);
+        },2,theme.accent,14);
         addKey(controls, symbolMode ? "注音" : "符號", () -> {
             session.clear(); symbolMode=!symbolMode; englishMode=false;
             rebuildKeys(); updatePreview();
-        },2,ACCENT,14);
-        addKey(controls,"空白 / 選字",this::spaceBar,3,PANEL,13);
-        addKey(controls,"⌫",this::backspace,2,PANEL,23);
-        addKey(controls,"↵",this::enter,2,ACCENT,19);
+        },2,theme.accent,14);
+        addKey(controls,"空白 / 選字",this::spaceBar,3,theme.panel,13);
+        addKey(controls,"⌫",this::backspace,2,theme.panel,23);
+        addKey(controls,"↵",this::enter,2,theme.accent,19);
     }
     private void updatePreview() {
         if (candidateRow == null || session == null) return;
@@ -291,16 +319,16 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         String pending = session.preedit();
         // No permanent headline or instruction row. Show live preedit only in the candidate strip.
         if (!pending.isEmpty()) {
-            TextView spelling = label(pending, 14, WHITE);
+            TextView spelling = label(pending, 14, theme.text);
             spelling.setSingleLine(true);
-            spelling.setBackgroundColor(BACKGROUND);
+            spelling.setBackgroundColor(theme.background);
             candidateRow.addView(spelling);
         }
         List<KeyinCore.Candidate> choices = session.candidates();
         if (!choices.isEmpty()) {
             for (int i = 0; i < choices.size(); i++) {
                 final int index = i;
-                Button selected = key(choices.get(i).text, () -> chooseCandidate(index), ACCENT, 18);
+                Button selected = key(choices.get(i).text, () -> chooseCandidate(index), theme.accent, 18);
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(-2, dp(43));
                 lp.setMargins(dp(2), 0, dp(2), 0);
                 candidateRow.addView(selected, lp);
@@ -309,7 +337,7 @@ public final class TaiwanKeyinImeService extends InputMethodService {
             // Learning database failures must not kill the input-method process.
             try {
                 for (String next : memory.nextSuggestions(6)) {
-                    Button suggestion = key(next, () -> insertPlain(next), PANEL, 17);
+                    Button suggestion = key(next, () -> insertPlain(next), theme.panel, 17);
                     LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(-2, dp(43));
                     lp.setMargins(dp(2), 0, dp(2), 0);
                     candidateRow.addView(suggestion, lp);

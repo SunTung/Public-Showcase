@@ -8,10 +8,10 @@ import java.util.List;
 /** Physically aligned Dachen/QWERTY key positions and fully enumerated symbols. */
 public final class KeyboardLayout {
     private KeyboardLayout() { }
-    // 30 letter positions in the same screen geometry as the familiar Latin keyboard.
-    // Remaining 7 Dachen root keys are a separate compact fourth row.
+    // Seven number-row roots sit on top, followed by the familiar Latin keyboard.
+    // Five optional tone keys share the top numeric-root strip.
     public static final String[] ZHUYIN_PHYSICAL_ROWS = {
-        "qwertyuiop", "asdfghjkl;", "zxcvbnm,./", "125890-"
+        "125890-", "qwertyuiop", "asdfghjkl;", "zxcvbnm,./"
     };
     public static final String[] LATIN_ROWS = { "qwertyuiop", "asdfghjkl", "zxcvbnm" };
     public static final String[] SYMBOL_PAGE_NAMES = {"常用", "數字", "括號", "數學", "貨幣", "特殊"};
