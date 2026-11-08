@@ -1,5 +1,14 @@
 # cl_Taiwankeyin｜繁體細胞注音輸入法（Windows + Android）
 
+## 正式單一 Android 版 v1.0.0（2026-11-08）
+
+- **只保留一個正式套件 ID**：`tw.cell.taiwankeyin`，顯示名稱 `CELL 臺灣注音`。不再新增 `.alphaNtest` APK。
+- **[下載固定簽章的統一版 Android APK（Google Drive）](https://drive.google.com/file/d/1X7jzBCAQ-ogJEKY1Zxrg3eD25TT_XyKu/view)**。
+- [正式統一版交付／資料安全與更新規則](UNIFIED_ANDROID_V1_RELEASE_20261108.md)；完整詞庫、十字記憶、數字列注音、六色主題保留。
+- [APK Release 編譯成功](https://github.com/SunTung/Public-Showcase/actions/runs/42493942210) · [Android 35 模擬器整合成功](https://github.com/SunTung/Public-Showcase/actions/runs/42493942177)。
+- 以後更新需使用**相同長期私有簽章**及提高 `versionCode`；原 Alpha 版本因不同 ID 不會自動繼承個人 SQLite 記憶。
+
+
 ## Android Alpha5｜數字注音第一排＋六色快選（2026-11-08）
 
 - 已將原本最下面的7個數字列注音移至**第一排**，與5個聲調鍵同排；原本 QWERTY／ASDF／ZXCV 三排保持在下方。
