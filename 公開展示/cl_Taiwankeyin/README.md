@@ -1,5 +1,14 @@
 # cl_Taiwankeyin｜繁體細胞注音輸入法（Windows + Android）
 
+## Android Alpha5｜數字注音第一排＋六色快選（2026-11-08）
+
+- 已將原本最下面的7個數字列注音移至**第一排**，與5個聲調鍵同排；原本 QWERTY／ASDF／ZXCV 三排保持在下方。
+- 標點列旁新增6個可直接點按的顏色框，選色立即更新整個鍵盤並記住偏好；整體高度縮減。
+- 完整詞庫 **158,905 筆**、Java **293/293 PASS**、[Alpha5 APK CI SUCCESS](https://github.com/SunTung/Public-Showcase/actions/runs/42492382617)、[Android35 模擬器 CI SUCCESS](https://github.com/SunTung/Public-Showcase/actions/runs/42492333373)。
+- [Google Drive Alpha5 APK Artifact ZIP](https://drive.google.com/file/d/1GYYoQbb4kRSHqPOjDpiF43Z2hJ-kLXbu/view)（解壓得 `app-debug.apk`） · [原始碼 ZIP](https://drive.google.com/file/d/1Ybq1o9wbnBL2V-kPcZinnCZqAbbm7Lpp/view) · [正式驗收報告](ANDROID_ALPHA5_RELEASE_20261108.md)。
+- 本版本與舊版並存，Samsung 真機畫面與觸感尚待驗收。
+
+
 ## Android Alpha 4｜完整繁體詞庫與常用鍵盤（2026-11-08）
 
 - **158,905 筆詞庫已實際建置、驗證並備份 Google Drive。** [完整 SQLite](https://drive.google.com/file/d/198fo-6dOLGtgQl_mx7A0aF1ALG0gyceq/view) · [完整來源封裝](https://drive.google.com/file/d/1RQN5FA_xYxNjy-lOlQ1XVJMuqwaWKJ8T/view)
