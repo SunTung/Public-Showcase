@@ -1,5 +1,13 @@
 # cl_Taiwankeyin｜繁體細胞注音輸入法（Windows + Android）
 
+## 最新有效版本｜2026-11-09
+
+- **Android v1.0.2 單一正式版**：已上字後的詞庫智慧接續推薦，沿用原 App ID 與正式簽章，可直接覆蓋 v1.0.1。[Google Drive APK](https://drive.google.com/file/d/16B-hg97Sn1w5qT-AikFyzwzhg9AM79Em/view)／[GitHub 769項測試+編譯](https://github.com/SunTung/Public-Showcase/actions/runs/42498189189)／[Android 35 模擬器驗收](https://github.com/SunTung/Public-Showcase/actions/runs/42498189515)。
+- **Windows v0.2.1 圖形預覽版**：最新 EXE 封裝內含 158905 筆離線詞庫，提供注音／可選聲調／候選選字／接續詞／四種配色／剪貼簿；**還不是 Windows TSF 系統 IME**。[Windows EXE ZIP](https://drive.google.com/file/d/1k0-gKoKlxI-j2VIl4_Xb9TYaqVfWcHci/view)／[原始碼](https://drive.google.com/file/d/1_wiZON_s3NxS0QfJoYhymhk5IFmrZh2m/view)／[Win CI](https://github.com/SunTung/Public-Showcase/actions/runs/42499718323)。
+- **備份已清理**：Alpha1～5 和重複資料包已移除，保留 Android 最新及兩個正式回退版本、完整詞庫和簽章金鑰；原 R1/R2 C++ 和 RGOS 研究基線保留。
+- **下一代規格（尚未完成）**：將配色列一枚按鈕更換為「注繁／拼簡」，真正接入漢語拼音解析、簡體字詞候選，不能只改 UI。[工作驗收及清理 Ledger](RELEASE_V102_WIN_V02_CLEANUP_20261109.md)。
+
+
 ## Android 單一正式版 v1.0.1｜彈性回彈＋每按鍵隨機調色
 
 - **固定 applicationId `tw.cell.taiwankeyin`、versionCode 101**；沿用 v1.0.0 正式簽章，可覆蓋更新，絕不另建 Alpha 鍵盤。
