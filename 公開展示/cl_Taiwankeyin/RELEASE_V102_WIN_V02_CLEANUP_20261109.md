@@ -1,4 +1,4 @@
-# CELL 臺灣注音｜Android v1.0.2／Windows v0.2／雙雲清理驗收
+# CELL 臺灣注音｜Android v1.0.2／Windows v0.2.1／雙雲清理驗收
 日期：2026-11-09（Asia/Taipei）
 
 ## 1. Android v1.0.2：已上字後的智慧接續詞
@@ -18,15 +18,15 @@
 ## 2. Windows 舊版更新
 
 在原 R1_CppCore、R2_Zhuyin、R2_B_Dictionary **不破壞已驗證 C++ 原件**的前提下，建立 `WindowsDesktop_v02/`：Python/Tkinter standalone Windows GUI（不是 Windows TSF 系統輸入法）。可開啟圖形鍵盤與文字欄，37 大千鍵、免聲調 `sucl` → 你好，15.9萬離線詞庫、候選選字、從詞庫推薦接續詞、四種顏色與複製全文。
-- [Windows Build #42498556921](https://github.com/SunTung/Public-Showcase/actions/runs/42498556921)：Windows 2022 CI **SUCCESS**，完整詞庫驗證，5 項 Engine Tests PASS，PyInstaller 生成 PE 格式 .exe，ZIP 解壓 CRC PASS。
-- ZIP 22,839,415 bytes SHA256 **14374a5923467777a3676d723d8f5599755e538ca70ef0c9031dbe51dff56bc1**，Google Drive 回讀一致。
-- [Windows v0.2 Desktop Preview ZIP](https://drive.google.com/file/d/1br6ExR184hDIVVNmO_2NZPD0oayX_23O/view)
-- [Windows v0.2 source ZIP](https://drive.google.com/file/d/1bJDNLkGa4rO1jnpxizo8q00e3Fswdbf8/view)
+- [Windows Build #42499718323](https://github.com/SunTung/Public-Showcase/actions/runs/42498556921)：Windows 2022 CI **SUCCESS**，完整詞庫驗證，6 項 Engine Tests PASS（包括聲調過濾），PyInstaller 生成 PE 格式 .exe，ZIP 解壓 CRC PASS。
+- ZIP 22,841,086 bytes SHA256 **b60e9ea2726c71b47d5a0768b24285f0195d6133b11b02dfd2d4438d2b01a760**，Google Drive 回讀一致。
+- [Windows v0.2.1 Desktop Preview ZIP](https://drive.google.com/file/d/1k0-gKoKlxI-j2VIl4_Xb9TYaqVfWcHci/view)
+- [Windows v0.2.1 source ZIP](https://drive.google.com/file/d/1_wiZON_s3NxS0QfJoYhymhk5IFmrZh2m/view)
 - **尚未完成 TSF 系統輸入法 DLL、安裝器與 Windows 真實 UI 人工試打。** 此 .exe 是可獨立啟動的圖形輸入與文字編輯預覽，不要稱為系統鍵盤。
 
 ## 3. Google Drive 備份清理
 
-在新的 Android v1.0.2 APK/原始碼、Windows v0.2 EXE/原始碼及字詞庫**全部獨立回讀並通過 SHA-256**後，才刪除備份區的 39 個過時/重複項目，包括 Alpha1～Alpha5 的 APK、舊來源、CI 暫存 ZIP、Git 中繼 JSON、重複 Doc，以及 v1.0.1 多份重複來源與舊 27MB 詞庫。Google Drive 每項回傳刪除成功，清理後重新列出手機資料夾確認剩餘 9 個有效項目：
+在新的 Android v1.0.2 APK/原始碼、Windows v0.2.1 EXE/原始碼及字詞庫**全部獨立回讀並通過 SHA-256**後，才刪除備份區的 44 個過時/重複項目，包括 Alpha1～Alpha5 的 APK、舊來源、CI 暫存 ZIP、Git 中繼 JSON、重複 Doc，以及 v1.0.1 多份重複來源與舊 27MB 詞庫。Google Drive 每項回傳刪除成功，清理後重新列出手機資料夾確認剩餘 9 個有效項目：
 
 1. Android v1.0.2 正式簽章 APK與完整原始碼。
 2. Android v1.0.1 上一可回退簽章 APK與驗證後原始碼。
