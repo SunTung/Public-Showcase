@@ -32,6 +32,7 @@ import tw.cell.taiwankeyin.core.NextWordRanker;
 import tw.cell.taiwankeyin.core.PinyinComposer;
 import tw.cell.taiwankeyin.core.ChineseMode;
 import tw.cell.taiwankeyin.core.InputModeState;
+import tw.cell.taiwankeyin.core.EnglishPredictor;
 import android.icu.text.Transliterator;
 import java.io.File;
 import java.io.FileInputStream;
@@ -387,6 +388,29 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         }catch(RuntimeException ex){Log.e(TAG,"Pinyin commit failed; composition retained",ex);}
         updatePreview();
     }
+    private String englishPrefix() {
+        if (!inputMode.isEnglish() || sensitiveField) return "";
+        InputConnection connection = getCurrentInputConnection();
+        if (connection == null) return "";
+        try {
+            CharSequence preceding = connection.getTextBeforeCursor(40, 0);
+            return EnglishPredictor.prefixFromText(preceding == null ? "" : preceding.toString());
+        } catch (RuntimeException ex) { return ""; }
+    }
+    private void chooseEnglish(String typed, String candidate) {
+        if (!inputMode.isEnglish() || !EnglishPredictor.validChoice(typed, candidate)) return;
+        InputConnection connection = getCurrentInputConnection();
+        if (connection == null || !typed.equals(englishPrefix())) return;
+        try {
+            connection.beginBatchEdit();
+            if (connection.deleteSurroundingText(typed.length(), 0)) {
+                connection.commitText(candidate, 1);
+            }
+        } finally {
+            connection.endBatchEdit();
+            updatePreview();
+        }
+    }
     private void spaceBar() {
         if(pinyinActive() && pinyin != null && pinyin.active()){
             if(!pinyin.candidates().isEmpty())choosePinyin(0);
@@ -408,6 +432,7 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         insertPlain(emitted);
         // Do not tear down the entire keyboard on every lowercase keystroke.
         if (before != latinShift.mode()) rebuildKeys();
+        if (inputMode.isEnglish()) updatePreview();
     }
     private void chooseSymbolPage(int delta) {
         symbolPage = (symbolPage + delta + KeyboardLayout.pages()) % KeyboardLayout.pages();
@@ -538,7 +563,8 @@ public final class TaiwanKeyinImeService extends InputMethodService {
     private void updatePreview() {
         if (candidateRow == null || session == null) return;
         candidateRow.removeAllViews();
-        String pending = pinyinActive() && pinyin != null ? pinyin.preedit() : session.preedit();
+        String pending = inputMode.isEnglish() ? englishPrefix()
+                : pinyinActive() && pinyin != null ? pinyin.preedit() : session.preedit();
         // No permanent headline or instruction row. Show live preedit only in the candidate strip.
         if (!pending.isEmpty()) {
             TextView spelling = label(pending, 14, theme.text);
@@ -546,6 +572,18 @@ public final class TaiwanKeyinImeService extends InputMethodService {
             spelling.setBackgroundColor(theme.background);
             candidateRow.addView(spelling);
         }
+        if (inputMode.isEnglish()) {
+            // Never show unrelated Chinese next-word learning while typing English.
+            // Typed letters are already in the editor; candidates replace only the current prefix.
+            for (String word : EnglishPredictor.predict(pending, 6)) {
+                Button suggestion = key(word, () -> chooseEnglish(pending, word), theme.accent, 17);
+                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(-2, dp(43));
+                lp.setMargins(dp(2), 0, dp(2), 0);
+                candidateRow.addView(suggestion, lp);
+            }
+            return;
+        }
+        if (inputMode.isSymbols()) return;
         List<KeyinCore.Candidate> choices = pinyinActive() && pinyin != null ? pinyin.candidates() : session.candidates();
         if (!choices.isEmpty()) {
             for (int i = 0; i < choices.size(); i++) {
