@@ -63,7 +63,15 @@ def assert_text_suffix(suffix):
 
 def main():
     apk = "公開展示/cl_Taiwankeyin/AndroidMobile/app/build/outputs/apk/pinyinTest/app-pinyinTest.apk"
-    adb("install", "-r", apk, timeout=120)
+    print("APK installation:", adb("install", "-r", apk, timeout=120), flush=True)
+    print("Installed package:", adb("shell", "pm", "path", PACKAGE), flush=True)
+    # Launch an exported activity to leave the post-install stopped state.
+    # Android 15 may defer IME service discovery for a freshly installed stopped package.
+    adb("shell", "am", "start", "-W", "-n", ACTIVITY)
+    time.sleep(2)
+    print("Declared input-method services:",
+          adb("shell", "cmd", "package", "query-services", "-a", "android.view.InputMethod"),
+          flush=True)
     # Android PackageManager/IME service registration can lag behind adb install.
     # Use the actual ID from InputMethodManager rather than guessing its component syntax.
     registered = None
@@ -77,6 +85,7 @@ def main():
         time.sleep(1)
     if not registered:
         details = adb("shell", "dumpsys", "input_method")
+        print("Package dump:", adb("shell", "dumpsys", "package", PACKAGE)[-8000:], flush=True)
         raise AssertionError("IME not registered after install. ime list -s: {!r}; dumpsys: {}".format(
             available, details[-3000:]))
     adb("shell", "ime", "enable", registered)
