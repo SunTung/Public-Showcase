@@ -7,7 +7,7 @@ import xml.etree.ElementTree as ET
 
 PACKAGE = "tw.cell.taiwankeyin.englishfix"
 IME = PACKAGE + "/tw.cell.taiwankeyin.android.TaiwanKeyinImeService"
-ACTIVITY = PACKAGE + "/tw.cell.taiwankeyin.android.SettingsActivity"
+ACTIVITY = PACKAGE + "/tw.cell.taiwankeyin.android.ImeSmokeActivity"
 
 def adb(*args, timeout=90):
     p = subprocess.run(["adb", *args], capture_output=True, text=True, timeout=timeout)
@@ -82,22 +82,13 @@ def main():
     adb("shell", "ime", "enable", registered)
     adb("shell", "ime", "set", registered)
     adb("shell", "am", "start", "-W", "-n", ACTIVITY)
-    time.sleep(2)
-    # Scroll the SettingsActivity to its built-in typing field.
-    size = adb("shell", "wm", "size")
-    match = re.search(r"(\d+)x(\d+)", size)
-    width,height = map(int,match.groups()) if match else (1080,2200)
-    for _ in range(4):
-        snapshot = nodes()
-        editors = [n for n in snapshot if n.attrib.get("class") == "android.widget.EditText"]
-        if editors:
-            tap_node(editors[-1])
-            break
-        adb("shell", "input", "swipe", str(width//2),str(height*3//4),
-            str(width//2),str(height//4),"350")
-        time.sleep(0.5)
-    else:
-        raise AssertionError("SettingsActivity typing field unavailable")
+    time.sleep(3)
+    editors = [n for n in nodes() if n.attrib.get("class") == "android.widget.EditText"]
+    if not editors:
+        raise AssertionError("Pilot IME smoke editor missing")
+    if editors[-1].attrib.get("focused") != "true":
+        tap_node(editors[-1])
+    time.sleep(1)
     wait_node("ABC")
     tap("ABC")
     wait_node("中")
