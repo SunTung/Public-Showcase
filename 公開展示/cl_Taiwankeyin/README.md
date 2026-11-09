@@ -1,5 +1,13 @@
 # cl_Taiwankeyin｜繁體細胞注音輸入法（Windows + Android）
 
+## CELL 中英繁簡細胞字典 v0.9｜最新有效版本（2026-11-09）
+
+- [v0.9 原始碼與觀測對照](CELL_Chinese_Lexicon_v0_9/README.md)：保留 585 個概念／1,755 筆表述，首次逐筆比對教育部五個真實詞目（謝謝、再見、早安、晚安、今天）；5/5 詞目、注音與拼音觀測結果一致。
+- [Google Drive 完整 ZIP](https://drive.google.com/file/d/1_4HyFyWs_MpHZXFJGQiLDh-RaOml4Qa0/view)；回讀 SHA-256 6adc5ed24eb1e74d7d67a538f900c7dfcecdf32a19f4acd05b40805ee351f6ec 一致，36 個 ZIP 成員 CRC PASS。
+- [GitHub v0.9 CI SUCCESS](https://github.com/SunTung/Public-Showcase/actions/runs/42543287220)：116/116 測試。
+- 限制：五筆資料是有來源 URL 的網頁觀測對照，而不是完整頁面快照或雙人詞義批准；仍 0 筆發布許可。Android／Windows 仍使用原穩定正式詞庫。
+
+
 ## CELL 中英繁簡細胞字典 v0.8｜最新有效版本（2026-11-09）
 
 - [v0.8 最新原始碼](CELL_Chinese_Lexicon_v0_8/README.md)：保留 v0.7 全部 585 概念／1,755 表述；新增更嚴格的發布查詢閘門、唯讀雙庫回退與 100 條待核任務 TSV 匯出。
