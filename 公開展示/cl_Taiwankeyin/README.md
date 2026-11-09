@@ -1,5 +1,13 @@
 # cl_Taiwankeyin｜繁體細胞注音輸入法（Windows + Android）
 
+## CELL 中英繁簡字典 v0.10｜最新增量（2026-11-09）
+
+- [v0.10 原始碼與測試](CELL_Chinese_Lexicon_v0_10/README.md)：保留 585 個概念／1,755 筆表述，新增第一批教育部詞條讀音比對、衝突報告及 5 項測試。
+- [v0.10 完整備份](https://drive.google.com/file/d/1huaEo9If6p1NJLDnFKtiDYn9mWXNv3Mq/view)：SHA256 `08273b1fd231f8326772c19050d0ca026aae6f1983d75f627d461e6d48223d3e`，雲端回讀一致。
+- [GitHub 獨立 CI](https://github.com/SunTung/Public-Showcase/actions/runs/42554414322)：127/127 PASS。
+- **重要發現**：`頭髮` 原種子的輕聲標示與兩份教育部辭典網頁讀音不同，已列為衝突待審，不覆寫舊資料、不偽稱已人工核准。
+
+
 ## CELL 中英繁簡細胞字典 v0.9｜最新有效版本（2026-11-09）
 
 - [v0.9 原始碼與觀測對照](CELL_Chinese_Lexicon_v0_9/README.md)：保留 585 個概念／1,755 筆表述，首次逐筆比對教育部五個真實詞目（謝謝、再見、早安、晚安、今天）；5/5 詞目、注音與拼音觀測結果一致。
