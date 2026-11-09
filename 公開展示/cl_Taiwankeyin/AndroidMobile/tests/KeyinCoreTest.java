@@ -324,6 +324,26 @@ public class KeyinCoreTest {
     check(pinyinTest.preedit().equals("niha"),"Pinyin deletion not committed");
     pinyinTest.clear();
     check(!pinyinTest.active(),"Pinyin mode-switch clear");
+    tw.cell.taiwankeyin.core.PinyinComposer simplifiedTest =
+        new tw.cell.taiwankeyin.core.PinyinComposer(lex,noToneMemory,(reading,limit) -> {
+            if(reading.equals("ㄓㄨㄥ ㄍㄨㄛ"))
+                return java.util.Arrays.asList(
+                    new KeyinCore.Candidate("中国","ㄓㄨㄥ ㄍㄨㄛˊ",100,100));
+            if(reading.equals("ㄋㄧ ㄏㄠ"))
+                return java.util.Arrays.asList(
+                    new KeyinCore.Candidate("你好","ㄋㄧˇ ㄏㄠˇ",120,120));
+            return java.util.Collections.emptyList();
+        });
+    for(char c:"zhongguo".toCharArray())check(simplifiedTest.type(c),"indexed Pinyin input accepted");
+    check(simplifiedTest.candidates().stream().anyMatch(c->c.text.equals("中国")),
+        "indexed simplified candidate from native corpus");
+    simplifiedTest.clear();
+    for(char c:"ni'hao".toCharArray())check(simplifiedTest.type(c),"segmented Pinyin accepted");
+    check(simplifiedTest.candidates().stream().anyMatch(c->c.text.equals("你好")),
+        "Pinyin apostrophe segmentation preserves candidate");
+    simplifiedTest.clear();
+    check(!simplifiedTest.type((char)39),"leading apostrophe rejected");
+
     System.out.println("PASS: "+checks+" Android pure Java keyboard/experience checks");
   }
 }
