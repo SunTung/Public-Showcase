@@ -2,6 +2,8 @@ package tw.cell.taiwankeyin.android;
 
 import android.content.SharedPreferences;
 import android.view.MotionEvent;
+import android.os.Handler;
+import android.os.Looper;
 import android.inputmethodservice.InputMethodService;
 import android.text.InputType;
 import android.view.Gravity;
@@ -53,6 +55,45 @@ public final class TaiwanKeyinImeService extends InputMethodService {
     private boolean englishMode;
     private boolean symbolMode;
     private boolean sensitiveField;
+    private final Handler deleteHandler = new Handler(Looper.getMainLooper());
+    private boolean deleteHeld;
+    private final Runnable deleteRepeat = new Runnable() {
+        @Override public void run() {
+            if (!deleteHeld) return;
+            backspace();
+            deleteHandler.postDelayed(this, 65L);
+        }
+    };
+    private void stopDeleteRepeat() {
+        deleteHeld = false;
+        deleteHandler.removeCallbacks(deleteRepeat);
+    }
+    private void attachRepeatDelete(Button button) {
+        button.setOnTouchListener((view, event) -> {
+            switch (event.getActionMasked()) {
+                case MotionEvent.ACTION_DOWN:
+                    stopDeleteRepeat();
+                    deleteHeld = true;
+                    view.setPressed(true);
+                    backspace();
+                    deleteHandler.postDelayed(deleteRepeat, 420L);
+                    return true;
+                case MotionEvent.ACTION_UP:
+                case MotionEvent.ACTION_CANCEL:
+                    stopDeleteRepeat();
+                    view.setPressed(false);
+                    return true;
+                case MotionEvent.ACTION_MOVE:
+                    if (event.getX() < 0 || event.getY() < 0
+                            || event.getX() >= view.getWidth() || event.getY() >= view.getHeight()) {
+                        stopDeleteRepeat();
+                        view.setPressed(false);
+                    }
+                    return true;
+                default: return true;
+            }
+        });
+    }
 
     private int dp(float value) { return Math.round(value * getResources().getDisplayMetrics().density); }
     private SharedPreferences prefs() { return getSharedPreferences("keyboard_settings", MODE_PRIVATE); }
@@ -101,6 +142,7 @@ public final class TaiwanKeyinImeService extends InputMethodService {
     }
     @Override public void onStartInput(EditorInfo attribute, boolean restarting) {
         super.onStartInput(attribute, restarting);
+        stopDeleteRepeat();
         reloadLexicon();
         memory.resetContext();
         session.clear();
@@ -110,11 +152,13 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         if (root != null) updatePreview();
     }
     @Override public void onFinishInput() {
+        stopDeleteRepeat();
         session.clear();
         memory.resetContext();
         super.onFinishInput();
     }
     @Override public void onDestroy() {
+        stopDeleteRepeat();
         if (store != null) store.close();
         if (verifiedFullLexicon != null) verifiedFullLexicon.close();
         super.onDestroy();
@@ -187,6 +231,7 @@ public final class TaiwanKeyinImeService extends InputMethodService {
             try { onClick.run(); }
             finally { if (randomColors) redistributeKeyColors(); }
         });
+        if ("⌫".equals(text)) attachRepeatDelete(button);
         return button;
     }
     /** Visual-only elastic key feedback: touch hit regions never change geometry.
@@ -483,11 +528,29 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         updatePreview();
     }
     private void backspace() {
-        if (!session.backspace()) {
-            InputConnection connection=getCurrentInputConnection();
-            if (connection!=null) connection.deleteSurroundingTextInCodePoints(1,0);
-            memory.resetContext(); // preceding context is now unknown; prevent stale association
+        if (session.active() && session.backspace()) {
+            updatePreview();
+            return;
         }
+        InputConnection connection = getCurrentInputConnection();
+        if (connection != null) {
+            try {
+                CharSequence selected = connection.getSelectedText(0);
+                boolean deleted = selected != null && selected.length() > 0
+                        ? connection.commitText("", 1)
+                        : connection.deleteSurroundingTextInCodePoints(1, 0);
+                if (!deleted) {
+                    long now = android.os.SystemClock.uptimeMillis();
+                    connection.sendKeyEvent(new KeyEvent(now, now, KeyEvent.ACTION_DOWN,
+                            KeyEvent.KEYCODE_DEL, 0));
+                    connection.sendKeyEvent(new KeyEvent(now, now, KeyEvent.ACTION_UP,
+                            KeyEvent.KEYCODE_DEL, 0));
+                }
+            } catch (RuntimeException ex) {
+                Log.w(TAG, "Editor deletion failed", ex);
+            }
+        }
+        memory.resetContext();
         updatePreview();
     }
     private void enter() {
