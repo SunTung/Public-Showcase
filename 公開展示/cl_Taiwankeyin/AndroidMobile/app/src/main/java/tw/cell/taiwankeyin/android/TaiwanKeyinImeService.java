@@ -433,6 +433,7 @@ public final class TaiwanKeyinImeService extends InputMethodService {
             LinearLayout punctuation=row(33);
             for(String mark:new String[]{"，","。","？","！","、","；","："})
                 addKey(punctuation,mark,()->insertPlain(mark),1,theme.panel,14,30);
+            addKey(punctuation,"拼簡/注繁",this::toggleChineseMode,2,theme.accent,12,30);
         } else if (englishMode) {
             // Familiar English QWERTY, including one-shot uppercase and Caps Lock.
             for (int index = 0; index < KeyboardLayout.LATIN_ROWS.length; index++) {
