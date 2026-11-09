@@ -1,0 +1,69 @@
+{
+  "schema": "cell.multilingual.concept.v0.9",
+  "source_observations": 5,
+  "consistent_reading_pairs": 5,
+  "verified_snapshot_count": 0,
+  "human_approved_count": 0,
+  "records": [
+    {
+      "concept_id": "CELL-C0002",
+      "headword": "謝謝",
+      "source_url": "https://dict.revised.moe.edu.tw/dictView.jsp?ID=106288&la=0&powerMode=0",
+      "source_name": "教育部《重編國語辭典修訂本》",
+      "headword_match": true,
+      "pinyin_match": true,
+      "zhuyin_match": true,
+      "check_state": "observed_comparison_only",
+      "editorial_note": "Neutral-tone dot placement normalized; no source-derived pronunciation rewrite",
+      "source_status": "web_display_observed_not_archived_snapshot"
+    },
+    {
+      "concept_id": "CELL-C0003",
+      "headword": "再見",
+      "source_url": "https://dict.concised.moe.edu.tw/dictView.jsp?ID=37061&la=0&powerMode=0",
+      "source_name": "教育部《國語辭典簡編本》",
+      "headword_match": true,
+      "pinyin_match": true,
+      "zhuyin_match": true,
+      "check_state": "observed_comparison_only",
+      "editorial_note": "Observation matched recorded seed",
+      "source_status": "web_display_observed_not_archived_snapshot"
+    },
+    {
+      "concept_id": "CELL-C0004",
+      "headword": "早安",
+      "source_url": "https://dict.concised.moe.edu.tw/dictView.jsp?ID=37151&la=0&powerMode=0",
+      "source_name": "教育部《國語辭典簡編本》",
+      "headword_match": true,
+      "pinyin_match": true,
+      "zhuyin_match": true,
+      "check_state": "observed_comparison_only",
+      "editorial_note": "Observation matched recorded seed",
+      "source_status": "web_display_observed_not_archived_snapshot"
+    },
+    {
+      "concept_id": "CELL-C0005",
+      "headword": "晚安",
+      "source_url": "https://dict.concised.moe.edu.tw/dictView.jsp?ID=43752&la=0&powerMode=0",
+      "source_name": "教育部《國語辭典簡編本》",
+      "headword_match": true,
+      "pinyin_match": true,
+      "zhuyin_match": true,
+      "check_state": "observed_comparison_only",
+      "editorial_note": "Observation matched recorded seed",
+      "source_status": "web_display_observed_not_archived_snapshot"
+    },
+    {
+      "concept_id": "CELL-C0006",
+      "headword": "今天",
+      "source_url": "https://dict.concised.moe.edu.tw/dictView.jsp?ID=23128&la=0&powerMode=0",
+      "source_name": "教育部《國語辭典簡編本》",
+      "headword_match": true,
+      "pinyin_match": true,
+      "zhuyin_match": true,
+      "check_state": "observed_comparison_only",
+      "editorial_note": "Observation matched recorded seed",
+      "source_status": "web_display_observed_not_archived_snapshot"
+    }
+  ]
+}
