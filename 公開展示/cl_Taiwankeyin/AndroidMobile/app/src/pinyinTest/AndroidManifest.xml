@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+  <application>
+    <!-- Pilot-only automation surface; not included in the production release. -->
+    <activity android:name="tw.cell.taiwankeyin.android.ImeSmokeActivity"
+        android:exported="true" android:permission="android.permission.DUMP"
+        android:windowSoftInputMode="stateAlwaysVisible"/>
+  </application>
+</manifest>
