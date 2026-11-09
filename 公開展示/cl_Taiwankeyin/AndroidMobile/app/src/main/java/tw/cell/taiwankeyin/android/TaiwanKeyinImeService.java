@@ -1,6 +1,9 @@
 package tw.cell.taiwankeyin.android;
 
 import android.content.SharedPreferences;
+import android.content.ClipboardManager;
+import android.content.ClipData;
+import android.content.Context;
 import android.view.MotionEvent;
 import android.os.Handler;
 import android.os.Looper;
@@ -443,6 +446,7 @@ public final class TaiwanKeyinImeService extends InputMethodService {
             session.clear(); symbolMode=!symbolMode; englishMode=false;
             rebuildKeys(); updatePreview();
         },2,theme.accent,14);
+        addKey(controls,"貼上",this::pasteClipboard,1.5f,theme.accent,14);
         addKey(controls,"空白 / 選字",this::spaceBar,3,theme.panel,13);
         addKey(controls,"⌫",this::backspace,2,theme.panel,23);
         addKey(controls,"↵",this::enter,2,theme.accent,19);
@@ -526,6 +530,35 @@ public final class TaiwanKeyinImeService extends InputMethodService {
             Log.e(TAG, "Editor rejected plain text", ex);
         }
         updatePreview();
+    }
+    /** Paste the current system clipboard into the focused external editor.
+     * Read only on explicit user tap; never retain or learn clipboard contents.
+     */
+    private void pasteClipboard() {
+        InputConnection connection = getCurrentInputConnection();
+        if (connection == null) {
+            Log.w(TAG, "Paste skipped: no focused editor");
+            return;
+        }
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        if (clipboard == null || !clipboard.hasPrimaryClip()) return;
+        try {
+            ClipData clip = clipboard.getPrimaryClip();
+            if (clip == null || clip.getItemCount() == 0) return;
+            CharSequence text = clip.getItemAt(0).coerceToText(this);
+            if (text == null || text.length() == 0) return;
+            // Do not send unfinished Zhuyin preedit along with pasted text.
+            // Keep it intact if the target editor rejects the paste.
+            if (connection.commitText(text, 1)) {
+                session.clear();
+                memory.resetContext();
+                updatePreview();
+            } else {
+                Log.w(TAG, "Paste rejected by editor");
+            }
+        } catch (RuntimeException ex) {
+            Log.w(TAG, "Unable to read clipboard or paste into editor", ex);
+        }
     }
     private void backspace() {
         if (session.active() && session.backspace()) {
