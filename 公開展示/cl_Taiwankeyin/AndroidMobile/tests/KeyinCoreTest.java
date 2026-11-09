@@ -298,6 +298,21 @@ public class KeyinCoreTest {
     check(!NextWordRanker.usable("（") && !NextWordRanker.usable(""),"invalid continuations excluded");
     check(NextWordRanker.merge(java.util.Collections.emptyList(),dictionaryNext,2).size()==2,"bounded suggestions");
     check(NextWordRanker.merge(null,null,3).isEmpty(),"empty prediction safe");
+    check(tw.cell.taiwankeyin.core.PinyinComposer.syllable("ni").equals("ㄋㄧ"),"Pinyin ni");
+    check(tw.cell.taiwankeyin.core.PinyinComposer.syllable("hao").equals("ㄏㄠ"),"Pinyin hao");
+    check(tw.cell.taiwankeyin.core.PinyinComposer.syllable("zhong").equals("ㄓㄨㄥ"),"Pinyin zhong");
+    check(tw.cell.taiwankeyin.core.PinyinComposer.syllable("guo").equals("ㄍㄨㄛ"),"Pinyin guo");
+    check(tw.cell.taiwankeyin.core.PinyinComposer.syllable("shi").equals("ㄕ"),"Pinyin shi");
+    check(tw.cell.taiwankeyin.core.PinyinComposer.syllable("yue").equals("ㄩㄝ"),"Pinyin yue");
+    check(tw.cell.taiwankeyin.core.PinyinComposer.syllable("invalid")==null,"invalid pinyin");
+    tw.cell.taiwankeyin.core.PinyinComposer pinyinTest=new tw.cell.taiwankeyin.core.PinyinComposer(lex,noToneMemory);
+    for(char c:"nihao".toCharArray())check(pinyinTest.type(c),"Pinyin input accepted");
+    check(pinyinTest.preedit().equals("nihao"),"Pinyin preedit retained");
+    check(pinyinTest.candidates().stream().anyMatch(c->c.text.equals("你好")),"Pinyin nihao candidates");
+    check(pinyinTest.backspace(),"Pinyin backspace");
+    check(pinyinTest.preedit().equals("niha"),"Pinyin deletion not committed");
+    pinyinTest.clear();
+    check(!pinyinTest.active(),"Pinyin mode-switch clear");
     System.out.println("PASS: "+checks+" Android pure Java keyboard/experience checks");
   }
 }
