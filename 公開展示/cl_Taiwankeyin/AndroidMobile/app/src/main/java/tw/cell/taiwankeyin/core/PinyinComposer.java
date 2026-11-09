@@ -27,21 +27,33 @@ public final class PinyinComposer {
     String finalSound=F.get(s);if(finalSound==null)return null;
     return (initial.isEmpty()?"":I.get(initial))+finalSound;
   }
+  public interface SimplifiedLookup {
+    List<KeyinCore.Candidate> findSimplified(String bareReading, int limit);
+  }
   private final KeyinCore.Lexicon lexicon; private final KeyinCore.Memory memory;
+  private final SimplifiedLookup simplifiedLookup;
   private final StringBuilder input=new StringBuilder();
   private List<KeyinCore.Candidate> menu=Collections.emptyList();
-  public PinyinComposer(KeyinCore.Lexicon l,KeyinCore.Memory m){lexicon=l;memory=m;}
+  public PinyinComposer(KeyinCore.Lexicon l,KeyinCore.Memory m){this(l,m,null);}
+  public PinyinComposer(KeyinCore.Lexicon l,KeyinCore.Memory m,SimplifiedLookup s){lexicon=l;memory=m;simplifiedLookup=s;}
   public boolean active(){return input.length()>0;}
   public String preedit(){return input.toString();}
   public List<KeyinCore.Candidate> candidates(){return menu;}
   public void clear(){input.setLength(0);menu=Collections.emptyList();}
   public boolean backspace(){if(!active())return false;input.setLength(input.length()-1);refresh();return true;}
-  public boolean type(char c){if(c<'a'||c>'z'||input.length()>=48)return false;input.append(c);refresh();return true;}
+  public boolean type(char c){
+    if(input.length()>=48 || !(c>='a'&&c<='z') && c!='\'')return false;
+    if(c=='\'' && (input.length()==0 || input.charAt(input.length()-1)=='\''))return false;
+    input.append(c);refresh();return true;
+  }
   private static void segment(String raw,int pos,List<String> parts,List<String> out){
     if(out.size()>=24)return;
     if(pos==raw.length()){if(!parts.isEmpty())out.add(String.join(" ",parts));return;}
     if(parts.size()>=8)return;
+    if(raw.charAt(pos)=='\''){segment(raw,pos+1,parts,out);return;}
+    int separator=raw.indexOf('\'',pos);
     for(int end=Math.min(raw.length(),pos+6);end>pos;end--){
+      if(separator>=0 && end>separator)continue;
       String reading=syllable(raw.substring(pos,end));if(reading==null)continue;
       parts.add(reading);segment(raw,end,parts,out);parts.remove(parts.size()-1);
     }
@@ -51,9 +63,14 @@ public final class PinyinComposer {
     List<String> readings=new ArrayList<>();segment(input.toString(),0,new ArrayList<>(),readings);
     Map<String,KeyinCore.Candidate> unique=new LinkedHashMap<>();
     for(String reading:readings){
-      for(KeyinCore.Candidate c:lexicon.lookupFlexible(reading,memory)){
-        KeyinCore.Candidate old=unique.get(c.text);
-        if(old==null||old.score<c.score)unique.put(c.text,c);
+      List<KeyinCore.Candidate> available = simplifiedLookup == null
+          ? lexicon.lookupFlexible(reading,memory)
+          : simplifiedLookup.findSimplified(reading,72);
+      for(KeyinCore.Candidate c:available){
+        double adjusted = simplifiedLookup == null ? c.score : c.baseline + memory.bonus(c.reading,c.text);
+        KeyinCore.Candidate candidate = new KeyinCore.Candidate(c.text,c.reading,c.baseline,adjusted);
+        KeyinCore.Candidate old=unique.get(candidate.text);
+        if(old==null||old.score<candidate.score)unique.put(candidate.text,candidate);
       }
       if(unique.size()>80)break;
     }
