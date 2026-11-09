@@ -1,0 +1,61 @@
+domain	traditional	simplified	english	pos
+verbs	知道	知道	to know	verb
+verbs	了解	了解	to understand	verb
+verbs	相信	相信	to believe	verb
+verbs	懷疑	怀疑	to doubt	verb
+verbs	記得	记得	to remember	verb
+verbs	忘記	忘记	to forget	verb
+verbs	尋找	寻找	to search for	verb
+verbs	找到	找到	to find	verb
+verbs	幫助	帮助	to help	verb
+verbs	等待	等待	to wait	verb
+verbs	嘗試	尝试	to attempt	verb
+verbs	解釋	解释	to explain	verb
+verbs	表達	表达	to express	verb
+verbs	思考	思考	to think	verb
+verbs	認識	认识	to recognize	verb
+verbs	接受	接受	to accept	verb
+verbs	拒絕	拒绝	to refuse	verb
+verbs	保護	保护	to protect	verb
+verbs	支持	支持	to support	verb
+verbs	反對	反对	to oppose	verb
+verbs	使用	使用	to use	verb
+verbs	操作	操作	to operate	verb
+verbs	連接	连接	to connect	verb
+verbs	中斷	中断	to interrupt	verb
+verbs	下載	下载	to download	verb
+verbs	上傳	上传	to upload	verb
+verbs	安裝	安装	to install	verb
+verbs	卸載	卸载	to uninstall	verb
+verbs	啟動	启动	to start up	verb
+verbs	停止	停止	to stop	verb
+verbs	關閉程式	关闭程序	to close a program	verb
+verbs	重新啟動	重新启动	to restart	verb
+verbs	複製	复制	to copy	verb
+verbs	貼上	粘贴	to paste	verb
+verbs	剪下	剪切	to cut selected text	verb
+verbs	移動	移动	to move	verb
+verbs	搜尋	搜索	to search	verb
+verbs	排序	排序	to sort	verb
+verbs	篩選	筛选	to filter	verb
+verbs	比較結果	比较结果	to compare results	verb
+adjective	重要	重要	important	adjective
+adjective	簡單	简单	simple	adjective
+adjective	困難	困难	difficult	adjective
+adjective	容易	容易	easy	adjective
+adjective	可靠	可靠	reliable	adjective
+adjective	完整	完整	complete	adjective
+adjective	部分	部分	partial	adjective
+adjective	相同	相同	identical	adjective
+adjective	不同	不同	different	adjective
+adjective	有效	有效	effective	adjective
+adjective	無效	无效	invalid	adjective
+adjective	可用	可用	available	adjective
+adjective	不可用	不可用	unavailable	adjective
+adjective	公開	公开	public	adjective
+adjective	私人	私人	private	adjective
+adjective	穩定	稳定	stable	adjective
+adjective	不穩定	不稳定	unstable	adjective
+adjective	快速	快速	rapid	adjective
+adjective	緩慢	缓慢	slow-moving	adjective
+adjective	準確	准确	accurate	adjective
