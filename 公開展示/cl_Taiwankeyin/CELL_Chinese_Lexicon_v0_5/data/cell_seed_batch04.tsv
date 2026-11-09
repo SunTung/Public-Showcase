@@ -1,0 +1,103 @@
+domain	traditional	simplified	english	pos
+people	父親	父亲	father	noun
+people	母親	母亲	mother	noun
+people	兒子	儿子	son	noun
+people	女兒	女儿	daughter	noun
+people	哥哥	哥哥	older brother	noun
+people	姐姐	姐姐	older sister	noun
+people	弟弟	弟弟	younger brother	noun
+people	妹妹	妹妹	younger sister	noun
+people	丈夫	丈夫	husband	noun
+people	妻子	妻子	wife	noun
+people	孩子	孩子	child	noun
+people	鄰居	邻居	neighbor	noun
+people	同事	同事	coworker	noun
+people	顧客	顾客	customer	noun
+people	醫生	医生	medical doctor	noun
+people	司機	司机	driver	noun
+people	農夫	农民	farmer	noun
+people	工程師	工程师	engineer	noun
+people	科學家	科学家	scientist	noun
+people	藝術家	艺术家	artist	noun
+verbs	吃	吃	to eat	verb
+verbs	喝	喝	to drink	verb
+verbs	走	走	to walk	verb
+verbs	跑	跑	to run	verb
+verbs	看	看	to look	verb
+verbs	聽	听	to listen	verb
+verbs	說	说	to speak	verb
+verbs	讀	读	to read	verb
+verbs	寫	写	to write	verb
+verbs	買	买	to buy	verb
+verbs	賣	卖	to sell	verb
+verbs	開	开	to open	verb
+verbs	關	关	to close	verb
+verbs	進入	进入	to enter	verb
+verbs	離開	离开	to leave	verb
+verbs	開始	开始	to begin	verb
+verbs	結束	结束	to finish	verb
+verbs	選取	选取	to select	verb
+verbs	儲存	保存	to save	verb
+verbs	刪除	删除	to delete	verb
+verbs	更新	更新	to update	verb
+verbs	修改	修改	to modify	verb
+verbs	建立	建立	to create	verb
+verbs	完成	完成	to complete	verb
+adjective	高	高	tall	adjective
+adjective	矮	矮	short in height	adjective
+adjective	大	大	large	adjective
+adjective	小	小	small	adjective
+adjective	快	快	fast	adjective
+adjective	慢	慢	slow	adjective
+adjective	新	新	new	adjective
+adjective	舊	旧	old	adjective
+adjective	冷	冷	cold	adjective
+adjective	熱	热	hot	adjective
+adjective	長	长	long	adjective
+adjective	短	短	short in length	adjective
+adjective	清楚	清楚	clear	adjective
+adjective	模糊	模糊	blurry	adjective
+adjective	安全	安全	safe	adjective
+adjective	危險	危险	dangerous	adjective
+language	頭髮	头发	hair on the head	noun
+language	發送	发送	to send	verb
+language	發行	发行	to issue	verb
+language	後來	后来	later	adverb
+language	王后	王后	queen consort	noun
+language	乾淨	干净	clean	adjective
+language	樹幹	树干	tree trunk	noun
+language	裡外	里外	inside and outside	noun
+language	里程	里程	distance traveled	noun
+language	麵條	面条	noodles	noun
+language	見面	见面	to meet face to face	verb
+language	鐘錶	钟表	clock and watch	noun
+language	時鐘	时钟	timepiece	noun
+language	資料分析	数据分析	data analysis	noun
+language	智慧型手機	智能手机	smartphone	noun
+language	記憶卡	存储卡	memory card	noun
+language	電池	电池	battery	noun
+language	充電	充电	to charge a battery	verb
+language	相機	相机	camera	noun
+language	照片	照片	photograph	noun
+language	影像	图像	image	noun
+language	聲音輸入	语音输入	voice input	noun
+language	文字辨識	文字识别	text recognition	noun
+language	語音辨識	语音识别	speech recognition	noun
+language	語音合成	语音合成	speech synthesis	noun
+language	候選字	候选字	candidate character	noun
+language	候選詞	候选词	candidate phrase	noun
+language	拼寫	拼写	spelling	noun
+language	輸入框	输入框	input field	noun
+language	按鍵	按键	key button	noun
+language	觸控	触控	touch input	noun
+language	詞頻	词频	word frequency	noun
+language	上下文	上下文	context	noun
+language	消歧	消歧	disambiguation	noun
+language	詞形	词形	word form	noun
+language	字形轉換	字形转换	script conversion	noun
+language	簡繁轉換	简繁转换	simplified-traditional conversion	noun
+language	字元編碼	字符编码	character encoding	noun
+language	統一碼	统一码	Unicode	noun
+language	語料	语料	corpus	noun
+language	詞庫	词库	word lexicon	noun
+language	字形映射	字形映射	character mapping	noun
