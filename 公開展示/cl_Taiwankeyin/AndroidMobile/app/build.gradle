@@ -33,5 +33,12 @@ android {
             versionNameSuffix '-sidecar'
             manifestPlaceholders = [imeLabel: 'CELL 臺灣注音（貼上測試）']
         }
+        // Distributable debug-signed pilot only. Distinct from production and paste sidecar.
+        pinyinTest {
+            initWith debug
+            applicationIdSuffix '.pinyintest'
+            versionNameSuffix '-pinyin-pilot'
+            manifestPlaceholders = [imeLabel: 'CELL 臺灣注音（繁注／簡拼測試）']
+        }
     }
 }
