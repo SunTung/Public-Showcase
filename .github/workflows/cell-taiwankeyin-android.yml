@@ -2,7 +2,7 @@ name: CELL TaiwanKeyin Android APK
 
 on:
   push:
-    branches: [main]
+    branches: [main, feature/taiwankeyin-pinyin-toggle-20261109]
     paths:
       - '公開展示/cl_Taiwankeyin/AndroidMobile/**'
       - '.github/workflows/cell-taiwankeyin-android.yml'
