@@ -1,0 +1,33 @@
+name: CELL multilingual concept lexicon v0.10 independent CI
+on:
+  push:
+    branches: [main]
+    paths:
+      - '公開展示/cl_Taiwankeyin/CELL_Chinese_Lexicon_v0_10/**'
+      - '.github/workflows/cell-concept-lexicon-v10.yml'
+  workflow_dispatch:
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Rebuild v0.8 baseline from original CELL seeds
+        working-directory: 公開展示/cl_Taiwankeyin/CELL_Chinese_Lexicon_v0_10
+        run: python src/build_v08.py
+      - name: Compare observed MOE lexical readings with historical seed
+        working-directory: 公開展示/cl_Taiwankeyin/CELL_Chinese_Lexicon_v0_10
+        run: python src/comparison_v10.py
+      - name: Verify 127 regressions and lexical discrepancies
+        working-directory: 公開展示/cl_Taiwankeyin/CELL_Chinese_Lexicon_v0_10
+        run: python -m unittest discover -s tests -q
+      - uses: actions/upload-artifact@v4
+        with:
+          name: CELL_Chinese_Lexicon_v10_Verified
+          path: |
+            公開展示/cl_Taiwankeyin/CELL_Chinese_Lexicon_v0_10/build/cell_concepts.sqlite3
+            公開展示/cl_Taiwankeyin/CELL_Chinese_Lexicon_v0_10/build/comparison_report_v10.json
+            公開展示/cl_Taiwankeyin/CELL_Chinese_Lexicon_v0_10/build/manifest.json
+          if-no-files-found: error
