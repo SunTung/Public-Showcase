@@ -31,6 +31,7 @@ import tw.cell.taiwankeyin.core.ElasticKeyCurve;
 import tw.cell.taiwankeyin.core.NextWordRanker;
 import tw.cell.taiwankeyin.core.PinyinComposer;
 import tw.cell.taiwankeyin.core.ChineseMode;
+import tw.cell.taiwankeyin.core.InputModeState;
 import android.icu.text.Transliterator;
 import java.io.File;
 import java.io.FileInputStream;
@@ -55,15 +56,13 @@ public final class TaiwanKeyinImeService extends InputMethodService {
     private KeyinCore.Lexicon lexicon;
     private KeyinCore.Session session;
     private PinyinComposer pinyin;
-    private ChineseMode chineseMode = ChineseMode.TRAD_ZHUYIN;
+    private final InputModeState inputMode = new InputModeState();
     private Transliterator toSimplified;
     private Transliterator toTraditional;
     private long lastLexiconModification = Long.MIN_VALUE;
     private LinearLayout root;
     private LinearLayout candidateRow;
     private LinearLayout keysArea;
-    private boolean englishMode;
-    private boolean symbolMode;
     private boolean sensitiveField;
     private final Handler deleteHandler = new Handler(Looper.getMainLooper());
     private boolean deleteHeld;
@@ -122,13 +121,13 @@ public final class TaiwanKeyinImeService extends InputMethodService {
             Log.e(TAG, "Full corpus unavailable; retaining safe small fallback", ex);
         }
         reloadLexicon();
-        chineseMode = prefs().contains("chinese_mode")
-                ? ChineseMode.fromId(prefs().getInt("chinese_mode", 0))
-                : (prefs().getBoolean("pinyin_mode", false) ? ChineseMode.SIMP_PINYIN : ChineseMode.TRAD_ZHUYIN);
+        inputMode.restoreChineseMode(prefs().contains("chinese_mode")
+                ? prefs().getInt("chinese_mode", 0)
+                : (prefs().getBoolean("pinyin_mode", false) ? ChineseMode.SIMP_PINYIN.ordinal() : 0));
         try { toSimplified = Transliterator.getInstance("Traditional-Simplified");
               toTraditional = Transliterator.getInstance("Simplified-Traditional"); }
         catch (RuntimeException ex) { Log.e(TAG, "Simplified conversion unavailable", ex); }
-        if (pinyin != null) pinyin.setSimplifiedOutput(chineseMode.simplified);
+        if (pinyin != null) pinyin.setSimplifiedOutput(inputMode.chineseMode().simplified);
         memory.setLearning(prefs().getBoolean("learning", true));
     }
     private void reloadLexicon() {
@@ -144,9 +143,11 @@ public final class TaiwanKeyinImeService extends InputMethodService {
             lastLexiconModification = stamp;
             session = new KeyinCore.Session(lexicon, memory);
             pinyin = new PinyinComposer(lexicon, memory, verifiedFullLexicon);
+            pinyin.setSimplifiedOutput(inputMode.chineseMode().simplified);
         } catch (IOException ex) {
             // Retain the previous dictionary if a user-imported file is invalid/unreadable.
-            if (lexicon == null) { lexicon = next; session = new KeyinCore.Session(lexicon, memory); pinyin = new PinyinComposer(lexicon, memory, verifiedFullLexicon); }
+            if (lexicon == null) { lexicon = next; session = new KeyinCore.Session(lexicon, memory); pinyin = new PinyinComposer(lexicon, memory, verifiedFullLexicon);
+                pinyin.setSimplifiedOutput(inputMode.chineseMode().simplified); }
         }
     }
     private static boolean isPassword(EditorInfo info) {
@@ -340,10 +341,10 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         lp.setMargins(dp(1), dp(1), dp(1), dp(1));
         target.addView(spacer, lp);
     }
-    private boolean pinyinActive() { return chineseMode.pinyin && !englishMode && !symbolMode; }
-    private boolean simplifiedActive() { return chineseMode.simplified && !englishMode && !symbolMode; }
+    private boolean pinyinActive() { return inputMode.isPinyin(); }
+    private boolean simplifiedActive() { return inputMode.isSimplified(); }
     private String candidateOutput(String word, boolean pinyinCandidate) {
-        if (!chineseMode.simplified) return word;
+        if (!inputMode.chineseMode().simplified) return word;
         return pinyinCandidate && verifiedFullLexicon != null ? word : simplified(word);
     }
     private String simplifiedToTraditional(String word) {
@@ -355,10 +356,10 @@ public final class TaiwanKeyinImeService extends InputMethodService {
     private void toggleChineseMode() {
         session.clear();
         if (pinyin != null) pinyin.clear();
-        chineseMode = chineseMode.next();
-        if (pinyin != null) pinyin.setSimplifiedOutput(chineseMode.simplified);
-        englishMode = false; symbolMode = false;
-        prefs().edit().putInt("chinese_mode", chineseMode.ordinal()).apply();
+        inputMode.cycleChinese();
+        if (pinyin != null) pinyin.setSimplifiedOutput(inputMode.chineseMode().simplified);
+
+        prefs().edit().putInt("chinese_mode", inputMode.chineseMode().ordinal()).apply();
         rebuildKeys(); updatePreview();
     }
     private void typePinyin(char key) {
@@ -394,7 +395,7 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         }
         // Space chooses the first candidate when the syllable has no explicit tone.
         // When the phonetics are incomplete, keep the preedit instead of inserting a space.
-        if (!englishMode && !symbolMode && session.active()) {
+        if (!inputMode.isEnglish() && !inputMode.isSymbols() && session.active()) {
             if (!session.candidates().isEmpty()) chooseCandidate(0);
             else updatePreview();
             return;
@@ -402,10 +403,11 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         insertPlain(" ");
     }
     private void latinLetter(char letter) {
+        KeyboardLayout.LatinShift.Mode before = latinShift.mode();
         String emitted = latinShift.print(letter);
         insertPlain(emitted);
-        // One-shot shift returns to lower after successful letter entry.
-        if (latinShift.mode() == KeyboardLayout.LatinShift.Mode.LOWER) rebuildKeys();
+        // Do not tear down the entire keyboard on every lowercase keystroke.
+        if (before != latinShift.mode()) rebuildKeys();
     }
     private void chooseSymbolPage(int delta) {
         symbolPage = (symbolPage + delta + KeyboardLayout.pages()) % KeyboardLayout.pages();
@@ -428,7 +430,7 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         keysArea.removeAllViews();
         coloredKeys.clear();
         lastKeyColors.clear();
-        if (symbolMode) {
+        if (inputMode.isSymbols()) {
             // A dedicated paged palette, not just the 10 punctuation shortcuts.
             LinearLayout tabs = row(34);
             addKey(tabs, "‹", () -> chooseSymbolPage(-1), 1, theme.panel, 18, 31);
@@ -455,8 +457,8 @@ public final class TaiwanKeyinImeService extends InputMethodService {
             LinearLayout punctuation=row(33);
             for(String mark:new String[]{"，","。","？","！","、","；","\'"})
                 addKey(punctuation,mark,()-> { if ("\'".equals(mark)) typePinyin((char)39); else insertPlain(mark); },1,theme.panel,14,30);
-            addKey(punctuation,chineseMode.label,this::toggleChineseMode,2,theme.accent,14,30);
-        } else if (englishMode) {
+            addKey(punctuation,inputMode.chineseMode().label,this::toggleChineseMode,2,theme.accent,14,30);
+        } else if (inputMode.isEnglish()) {
             // Familiar English QWERTY, including one-shot uppercase and Caps Lock.
             for (int index = 0; index < KeyboardLayout.LATIN_ROWS.length; index++) {
                 LinearLayout strip = row(49);
@@ -516,15 +518,15 @@ public final class TaiwanKeyinImeService extends InputMethodService {
                 punctuationAndThemes.addView(swatch, chipParams);
                 swatch.setContentDescription(randomChoice ? "鍵盤顏色：每按一次隨機重新分配" : "鍵盤顏色：" + palette.name);
             }
-            addKey(punctuationAndThemes,chineseMode.label,this::toggleChineseMode,1.8f,theme.accent,13,26);
+            addKey(punctuationAndThemes,inputMode.chineseMode().label,this::toggleChineseMode,1.8f,theme.accent,13,26);
         }
         LinearLayout controls=row(46);
-        addKey(controls, englishMode ? chineseMode.label : "ABC", () -> {
-            session.clear(); if(pinyin!=null)pinyin.clear(); symbolMode=false; englishMode=!englishMode;
+        addKey(controls, inputMode.englishButton(), () -> {
+            session.clear(); if(pinyin!=null)pinyin.clear(); inputMode.toggleEnglish();
             rebuildKeys(); updatePreview();
         },2,theme.accent,14);
-        addKey(controls, symbolMode ? chineseMode.label : "符號", () -> {
-            session.clear(); if(pinyin!=null)pinyin.clear(); symbolMode=!symbolMode; englishMode=false;
+        addKey(controls, inputMode.symbolsButton(), () -> {
+            session.clear(); if(pinyin!=null)pinyin.clear(); inputMode.toggleSymbols();
             rebuildKeys(); updatePreview();
         },2,theme.accent,14);
         addKey(controls,"貼上",this::pasteClipboard,1.5f,theme.accent,14);
@@ -589,7 +591,7 @@ public final class TaiwanKeyinImeService extends InputMethodService {
             // Unlike Alpha2, never call session.choose() before Android commitText succeeds.
             if (!CommitBridge.commitCandidate(session, memory, index,
                     text -> connection.commitText(text, 1), this::warnLearningFailure,
-                    text -> chineseMode.simplified ? simplified(text) : text)) {
+                    text -> inputMode.chineseMode().simplified ? simplified(text) : text)) {
                 Log.w(TAG, "Candidate not committed: target rejected text or selection invalid");
             }
         } catch (RuntimeException ex) {
@@ -696,7 +698,10 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         char c=(char)event.getUnicodeChar();
         if(pinyinActive() && c==39){typePinyin(c);return true;}
         if(pinyinActive() && c>='a' && c<='z'){typePinyin(c);return true;}
-        if(c!='\0' && !englishMode && !chineseMode.pinyin && KeyinCore.KEY_CODES.indexOf(Character.toLowerCase(c))>=0) { phonetic(KeyinCore.symbolForKey(c));return true; }
+        if (inputMode.isEnglish() && c >= 32 && !Character.isISOControl(c)) {
+            insertPlain(String.valueOf(c)); return true;
+        }
+        if(c!='\0' && !inputMode.isEnglish() && !inputMode.isSymbols() && !inputMode.chineseMode().pinyin && KeyinCore.KEY_CODES.indexOf(Character.toLowerCase(c))>=0) { phonetic(KeyinCore.symbolForKey(c));return true; }
         return super.onKeyDown(keyCode,event);
     }
 }
