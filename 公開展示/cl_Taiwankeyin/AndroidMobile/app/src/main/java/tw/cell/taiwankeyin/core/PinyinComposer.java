@@ -32,6 +32,8 @@ public final class PinyinComposer {
   }
   private final KeyinCore.Lexicon lexicon; private final KeyinCore.Memory memory;
   private final SimplifiedLookup simplifiedLookup;
+  private boolean simplifiedOutput=true;
+  public void setSimplifiedOutput(boolean enabled){if(simplifiedOutput!=enabled){simplifiedOutput=enabled;refresh();}}
   private final StringBuilder input=new StringBuilder();
   private List<KeyinCore.Candidate> menu=Collections.emptyList();
   public PinyinComposer(KeyinCore.Lexicon l,KeyinCore.Memory m){this(l,m,null);}
@@ -63,11 +65,11 @@ public final class PinyinComposer {
     List<String> readings=new ArrayList<>();segment(input.toString(),0,new ArrayList<>(),readings);
     Map<String,KeyinCore.Candidate> unique=new LinkedHashMap<>();
     for(String reading:readings){
-      List<KeyinCore.Candidate> available = simplifiedLookup == null
+      List<KeyinCore.Candidate> available = (!simplifiedOutput || simplifiedLookup == null)
           ? lexicon.lookupFlexible(reading,memory)
           : simplifiedLookup.findSimplified(reading,72);
       for(KeyinCore.Candidate c:available){
-        double adjusted = simplifiedLookup == null ? c.score : c.baseline + memory.bonus(c.reading,c.text);
+        double adjusted = (!simplifiedOutput || simplifiedLookup == null) ? c.score : c.baseline + memory.bonus(c.reading,c.text);
         KeyinCore.Candidate candidate = new KeyinCore.Candidate(c.text,c.reading,c.baseline,adjusted);
         KeyinCore.Candidate old=unique.get(candidate.text);
         if(old==null||old.score<candidate.score)unique.put(candidate.text,candidate);
