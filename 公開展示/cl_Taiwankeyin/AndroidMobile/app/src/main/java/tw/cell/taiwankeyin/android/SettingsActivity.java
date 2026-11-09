@@ -32,7 +32,7 @@ public final class SettingsActivity extends Activity {
         LinearLayout content=new LinearLayout(this);content.setOrientation(LinearLayout.VERTICAL);
         content.setPadding(dp(24),dp(35),dp(24),dp(24));
         scroll.addView(content);setContentView(scroll);
-        TextView title=new TextView(this);title.setText(getPackageName().endsWith(".pinyintest")
+        TextView title=new TextView(this);title.setText(getPackageName().endsWith(".englishfix")
                 ? "CELL 臺灣注音 · 四模式圖標測試版" : "CELL 臺灣注音 · 單一正式版");title.setTextSize(24);
         title.setGravity(Gravity.CENTER);content.addView(title);
         TextView desc=new TextView(this);
@@ -78,7 +78,7 @@ public final class SettingsActivity extends Activity {
         EditText test=new EditText(this);test.setHint("例如：你好，今天（台南）天氣很好。");
         test.setMinHeight(dp(110));test.setGravity(Gravity.TOP);content.addView(test);
         status=new TextView(this);status.setPadding(0,dp(18),0,0);status.setTextSize(14);
-        status.setText(getPackageName().endsWith(".pinyintest")
+        status.setText(getPackageName().endsWith(".englishfix")
                 ? "四模式圖標測試版：中文模式鍵循環繁注／簡注／繁拼／簡拼；ABC 鍵切換英文。仍待實機驗收。"
                 : "版本：1.0.2-unified。完整字詞庫由官方來源生成。");content.addView(status);
     }
