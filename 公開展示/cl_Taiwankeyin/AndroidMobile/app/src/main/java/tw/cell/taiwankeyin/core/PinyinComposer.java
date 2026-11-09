@@ -14,7 +14,7 @@ public final class PinyinComposer {
     if(s.equals("yi"))s="i"; else if(s.equals("wu"))s="u"; else if(s.equals("yu"))s="v";
     else if(s.startsWith("y")){
       String t=s.substring(1);
-      s=t.equals("ou")?"iu":t.equals("ue")?"ve":t.equals("uan")?"van":t.equals("un")?"vn":t.startsWith("u")?"v"+t.substring(1):"i"+t;
+      s=t.equals("ou")?"iu":t.equals("in")?"in":t.equals("ing")?"ing":t.equals("ue")?"ve":t.equals("uan")?"van":t.equals("un")?"vn":t.startsWith("u")?"v"+t.substring(1):"i"+t;
     }else if(s.startsWith("w")){
       String t=s.substring(1);s=t.equals("ei")?"ui":t.equals("en")?"un":t.equals("eng")?"ueng":"u"+t;
     }
