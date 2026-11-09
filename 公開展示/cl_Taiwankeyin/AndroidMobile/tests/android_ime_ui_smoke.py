@@ -64,8 +64,23 @@ def assert_text_suffix(suffix):
 def main():
     apk = "公開展示/cl_Taiwankeyin/AndroidMobile/app/build/outputs/apk/pinyinTest/app-pinyinTest.apk"
     adb("install", "-r", apk, timeout=120)
-    adb("shell", "ime", "enable", IME)
-    adb("shell", "ime", "set", IME)
+    # Android PackageManager/IME service registration can lag behind adb install.
+    # Use the actual ID from InputMethodManager rather than guessing its component syntax.
+    registered = None
+    for attempt in range(20):
+        available = adb("shell", "ime", "list", "-s")
+        registered = next((line.strip() for line in available.splitlines()
+                           if line.strip().startswith(PACKAGE + "/")
+                           and "TaiwanKeyinImeService" in line), None)
+        if registered:
+            break
+        time.sleep(1)
+    if not registered:
+        details = adb("shell", "dumpsys", "input_method")
+        raise AssertionError("IME not registered after install. ime list -s: {!r}; dumpsys: {}".format(
+            available, details[-3000:]))
+    adb("shell", "ime", "enable", registered)
+    adb("shell", "ime", "set", registered)
     adb("shell", "am", "start", "-W", "-n", ACTIVITY)
     time.sleep(2)
     # Scroll the SettingsActivity to its built-in typing field.
