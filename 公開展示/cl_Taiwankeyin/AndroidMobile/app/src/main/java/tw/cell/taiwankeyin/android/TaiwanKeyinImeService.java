@@ -586,7 +586,8 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         try {
             // Unlike Alpha2, never call session.choose() before Android commitText succeeds.
             if (!CommitBridge.commitCandidate(session, memory, index,
-                    text -> connection.commitText(chineseMode.simplified ? simplified(text) : text, 1), this::warnLearningFailure)) {
+                    text -> connection.commitText(text, 1), this::warnLearningFailure,
+                    text -> chineseMode.simplified ? simplified(text) : text)) {
                 Log.w(TAG, "Candidate not committed: target rejected text or selection invalid");
             }
         } catch (RuntimeException ex) {
