@@ -56,6 +56,7 @@ def fetch_pinned(folder:Path):
 def build(source_dir:Path,dest:Path,allow_fixture:bool=False):
     from opencc import OpenCC
     cc=OpenCC('s2twp')
+    simple_cc=OpenCC('t2s')
     if not allow_fixture:
         for name,sha in SOURCES.items():
             file=source_dir/name
@@ -69,7 +70,7 @@ def build(source_dir:Path,dest:Path,allow_fixture:bool=False):
         db.executescript('''PRAGMA journal_mode=DELETE; PRAGMA synchronous=FULL;
           CREATE TABLE lexicon_mobile (
             bare TEXT NOT NULL, reading TEXT NOT NULL, word TEXT NOT NULL,
-            frequency INTEGER NOT NULL,
+            simplified TEXT NOT NULL, frequency INTEGER NOT NULL,
             PRIMARY KEY (bare,reading,word)
           ) WITHOUT ROWID;''')
         for name in SOURCES:
@@ -89,16 +90,17 @@ def build(source_dir:Path,dest:Path,allow_fixture:bool=False):
                     stats[name+'_parsed']+=1
                     if new_word != word:stats[name+'_converted']+=1
                     bare=''.join(ch for ch in normalized if ch not in TONES)
-                    buf.append((bare,normalized,new_word,int(freq)))
+                    buf.append((bare,normalized,new_word,simple_cc.convert(new_word),int(freq)))
                     if len(buf)>=5000:
-                        db.executemany('''INSERT INTO lexicon_mobile VALUES (?,?,?,?)
+                        db.executemany('''INSERT INTO lexicon_mobile VALUES (?,?,?,?,?)
                           ON CONFLICT(bare,reading,word) DO UPDATE SET frequency=max(lexicon_mobile.frequency,excluded.frequency)''',buf)
                         buf.clear()
             if buf:
-                db.executemany('''INSERT INTO lexicon_mobile VALUES (?,?,?,?)
+                db.executemany('''INSERT INTO lexicon_mobile VALUES (?,?,?,?,?)
                    ON CONFLICT(bare,reading,word) DO UPDATE SET frequency=max(lexicon_mobile.frequency,excluded.frequency)''',buf)
         db.executescript('''
           CREATE INDEX idx_mobile_bare_freq ON lexicon_mobile (bare,frequency DESC);
+          CREATE INDEX idx_mobile_simple_bare_freq ON lexicon_mobile (bare,simplified,frequency DESC);
           CREATE INDEX idx_mobile_reading_freq ON lexicon_mobile (reading,frequency DESC);
           CREATE INDEX idx_mobile_word_prefix ON lexicon_mobile (word,frequency DESC);
         ''')
@@ -115,12 +117,12 @@ def build(source_dir:Path,dest:Path,allow_fixture:bool=False):
         db.close()
     pending.replace(dest)
     manifest={
-        'schema':'cell.taiwankeyin.mobile.full_lexicon.v1',
+        'schema':'cell.taiwankeyin.mobile.full_lexicon.v3',
         'source':SOURCE_REPO,
         'source_commit':UPSTREAM_COMMIT,
         'source_sha_git_blobs':SOURCES,
         'source_data_license':'LGPL-2.1-or-later (source metadata)',
-        'normalization':'OpenCC 1.4.2 s2twp (Taiwan variants and phrases)',
+        'normalization':'OpenCC 1.4.2 s2twp source + t2s simplified phrase forms',
         'prior_verified_rgos_rows':EXPECTED_ROWS,
         'prior_verified_rgos_sha256':'57d3d3f332710d6dcab0bbef997407edeb56ca5e9483652fd42fb7404cc01586',
         'data_counts':dict(stats),'mobile_rows':totals[0],
