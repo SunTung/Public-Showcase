@@ -38,7 +38,7 @@ android {
             initWith debug
             applicationIdSuffix '.pinyintest'
             versionNameSuffix '-pinyin-pilot'
-            manifestPlaceholders = [imeLabel: 'CELL 臺灣注音（繁注／簡拼測試）']
+            manifestPlaceholders = [imeLabel: 'CELL 臺灣注音（四模式測試）']
         }
     }
 }
