@@ -304,6 +304,17 @@ public class KeyinCoreTest {
     check(tw.cell.taiwankeyin.core.PinyinComposer.syllable("guo").equals("ㄍㄨㄛ"),"Pinyin guo");
     check(tw.cell.taiwankeyin.core.PinyinComposer.syllable("shi").equals("ㄕ"),"Pinyin shi");
     check(tw.cell.taiwankeyin.core.PinyinComposer.syllable("yue").equals("ㄩㄝ"),"Pinyin yue");
+    check(tw.cell.taiwankeyin.core.PinyinComposer.syllable("yin").equals("ㄧㄣ"),"Pinyin yin");
+    check(tw.cell.taiwankeyin.core.PinyinComposer.syllable("ying").equals("ㄧㄥ"),"Pinyin ying");
+    check(tw.cell.taiwankeyin.core.PinyinComposer.syllable("you").equals("ㄧㄡ"),"Pinyin you");
+    check(tw.cell.taiwankeyin.core.PinyinComposer.syllable("yuan").equals("ㄩㄢ"),"Pinyin yuan");
+    check(tw.cell.taiwankeyin.core.PinyinComposer.syllable("yun").equals("ㄩㄣ"),"Pinyin yun");
+    check(tw.cell.taiwankeyin.core.PinyinComposer.syllable("wei").equals("ㄨㄟ"),"Pinyin wei");
+    check(tw.cell.taiwankeyin.core.PinyinComposer.syllable("wen").equals("ㄨㄣ"),"Pinyin wen");
+    check(tw.cell.taiwankeyin.core.PinyinComposer.syllable("xue").equals("ㄒㄩㄝ"),"Pinyin xue");
+    check(tw.cell.taiwankeyin.core.PinyinComposer.syllable("ju").equals("ㄐㄩ"),"Pinyin ju");
+    check(tw.cell.taiwankeyin.core.PinyinComposer.syllable("lü").equals("ㄌㄩ"),"Pinyin lü");
+    check(tw.cell.taiwankeyin.core.PinyinComposer.syllable("shang").equals("ㄕㄤ"),"Pinyin shang");
     check(tw.cell.taiwankeyin.core.PinyinComposer.syllable("invalid")==null,"invalid pinyin");
     tw.cell.taiwankeyin.core.PinyinComposer pinyinTest=new tw.cell.taiwankeyin.core.PinyinComposer(lex,noToneMemory);
     for(char c:"nihao".toCharArray())check(pinyinTest.type(c),"Pinyin input accepted");
