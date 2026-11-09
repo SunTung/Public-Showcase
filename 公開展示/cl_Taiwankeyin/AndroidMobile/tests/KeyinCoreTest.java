@@ -401,6 +401,24 @@ public class KeyinCoreTest {
     englishShift.pressShift();englishShift.pressShift();
     check(englishShift.print('d').equals("D") && englishShift.print('e').equals("E"),
         "English caps lock stays enabled");
+    check(tw.cell.taiwankeyin.core.EnglishPredictor.prefixFromText("hello wor").equals("wor"),
+        "English prefix tracks current editor word only");
+    check(tw.cell.taiwankeyin.core.EnglishPredictor.prefixFromText("hello ").isEmpty(),
+        "space clears English prefix");
+    check(tw.cell.taiwankeyin.core.EnglishPredictor.predict("hel", 6).contains("help"),
+        "English prefix predicts help");
+    check(tw.cell.taiwankeyin.core.EnglishPredictor.predict("hel", 6).contains("hello"),
+        "English prefix predicts hello");
+    check(tw.cell.taiwankeyin.core.EnglishPredictor.predict("hel", 6).stream()
+        .allMatch(w -> w.startsWith("hel")),"English candidates strictly match typed prefix");
+    check(tw.cell.taiwankeyin.core.EnglishPredictor.predict("", 6).isEmpty(),
+        "English empty prefix never shows random memory");
+    check(tw.cell.taiwankeyin.core.EnglishPredictor.predict("你好", 6).isEmpty(),
+        "English predictor does not use Chinese candidates");
+    check(tw.cell.taiwankeyin.core.EnglishPredictor.validChoice("hel","hello"),
+        "candidate can replace matching English prefix");
+    check(!tw.cell.taiwankeyin.core.EnglishPredictor.validChoice("hel","world"),
+        "candidate cannot replace unrelated word");
     System.out.println("PASS: "+checks+" Android pure Java keyboard/experience checks");
   }
 }
