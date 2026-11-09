@@ -32,10 +32,12 @@ public final class SettingsActivity extends Activity {
         LinearLayout content=new LinearLayout(this);content.setOrientation(LinearLayout.VERTICAL);
         content.setPadding(dp(24),dp(35),dp(24),dp(24));
         scroll.addView(content);setContentView(scroll);
-        TextView title=new TextView(this);title.setText("CELL 臺灣注音 · 單一正式版");title.setTextSize(24);
+        TextView title=new TextView(this);title.setText(getPackageName().endsWith(".pinyintest")
+                ? "CELL 臺灣注音 · 四模式圖標測試版" : "CELL 臺灣注音 · 單一正式版");title.setTextSize(24);
         title.setGravity(Gravity.CENTER);content.addView(title);
         TextView desc=new TextView(this);
-        desc.setText("大千注音｜十字上下文｜本機經驗選字\n內建完整 Chewing 臺灣正體字詞庫（158,905筆）；也可自行匯入 UTF-8 TSV 詞庫補充。");
+        desc.setText("繁注 → 簡注 → 繁拼 → 簡拼｜獨立 ABC 英文輸入\n"
+                + "內建完整 Chewing 臺灣正體字詞庫（158,905筆）；也可匯入 UTF-8 TSV 詞庫補充。");
         desc.setTextSize(15);desc.setPadding(0,dp(14),0,dp(12));content.addView(desc);
         add(content,"1. 開啟 Android 輸入法設定",()->startActivity(new Intent(Settings.ACTION_INPUT_METHOD_SETTINGS)));
         add(content,"2. 選擇 CELL 臺灣注音鍵盤",()->{
@@ -76,7 +78,9 @@ public final class SettingsActivity extends Activity {
         EditText test=new EditText(this);test.setHint("例如：你好，今天（台南）天氣很好。");
         test.setMinHeight(dp(110));test.setGravity(Gravity.TOP);content.addView(test);
         status=new TextView(this);status.setPadding(0,dp(18),0,0);status.setTextSize(14);
-        status.setText("版本：1.0.2-unified（可與 Alpha1 並存）。完整字詞庫由官方來源生成；罕字與候選排名仍需測試。");content.addView(status);
+        status.setText(getPackageName().endsWith(".pinyintest")
+                ? "四模式圖標測試版：中文模式鍵循環繁注／簡注／繁拼／簡拼；ABC 鍵切換英文。仍待實機驗收。"
+                : "版本：1.0.2-unified。完整字詞庫由官方來源生成。");content.addView(status);
     }
     @Override protected void onActivityResult(int request,int result,Intent data) {
         super.onActivityResult(request,result,data);
