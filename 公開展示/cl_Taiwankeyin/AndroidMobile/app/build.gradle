@@ -10,8 +10,8 @@ android {
         applicationId 'tw.cell.taiwankeyin'
         minSdk 26
         targetSdk 35
-        versionCode 102
-        versionName '1.0.2-unified'
+        versionCode 103
+        versionName '1.0.3-fourmode'
         manifestPlaceholders = [imeLabel: 'CELL 臺灣注音']
     }
     compileOptions {
@@ -36,9 +36,9 @@ android {
         // Distributable debug-signed pilot only. Distinct from production and paste sidecar.
         pinyinTest {
             initWith debug
-            applicationIdSuffix '.pinyintest'
-            versionNameSuffix '-pinyin-pilot'
-            manifestPlaceholders = [imeLabel: 'CELL 臺灣注音（四模式測試）']
+            applicationIdSuffix '.englishfix'
+            versionNameSuffix '-english-fix-icon-pilot'
+            manifestPlaceholders = [imeLabel: 'CELL 臺灣注音（四模式修正版）']
         }
     }
 }
