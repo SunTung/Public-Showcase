@@ -365,6 +365,42 @@ public class KeyinCoreTest {
     }
     check(state==tw.cell.taiwankeyin.core.ChineseMode.TRAD_ZHUYIN,"four-mode wraps to traditional Zhuyin");
     check(tw.cell.taiwankeyin.core.ChineseMode.fromId(999)==state,"invalid persisted mode safe");
+    tw.cell.taiwankeyin.core.InputModeState layers = new tw.cell.taiwankeyin.core.InputModeState();
+    check(!layers.isEnglish() && !layers.isSymbols() && !layers.isPinyin(),
+        "start in Chinese Zhuyin; English available separately");
+    check(layers.englishButton().equals("ABC"),"English entry key always present");
+    layers.toggleEnglish();
+    check(layers.isEnglish() && layers.englishButton().equals("中") && !layers.isPinyin(),
+        "ABC opens true English QWERTY");
+    layers.toggleSymbols();
+    check(layers.isSymbols() && !layers.isEnglish(),"English to symbols is exclusive");
+    layers.toggleEnglish();
+    check(layers.isEnglish() && !layers.isSymbols(),"symbols to English is exclusive");
+    layers.toggleEnglish();
+    check(!layers.isEnglish() && !layers.isSymbols(),"English returns to Chinese");
+    for(int i=0;i<4;i++){
+        layers.cycleChinese();
+        check(!layers.isEnglish() && !layers.isSymbols(),"Chinese cycle resets layer");
+        layers.toggleEnglish();
+        check(layers.isEnglish() && !layers.isPinyin(),"English works from every Chinese script");
+        layers.toggleEnglish();
+        check(!layers.isEnglish() && layers.englishButton().equals("ABC"),
+            "return from English preserves current Chinese script");
+    }
+    layers.restoreChineseMode(3);
+    check(layers.isSimplified() && layers.isPinyin(),"restore simplified Pinyin");
+    layers.toggleEnglish();
+    check(!layers.isPinyin() && !layers.isSimplified(),"English not hijacked by Pinyin state");
+    layers.toggleEnglish();
+    check(layers.isPinyin() && layers.isSimplified(),"Chinese Pinyin restored after English");
+    KeyboardLayout.LatinShift englishShift = new KeyboardLayout.LatinShift();
+    check(englishShift.print('a').equals("a"),"English lowercase output");
+    englishShift.pressShift();
+    check(englishShift.print('b').equals("B"),"English one-shot uppercase");
+    check(englishShift.print('c').equals("c"),"English returns to lowercase");
+    englishShift.pressShift();englishShift.pressShift();
+    check(englishShift.print('d').equals("D") && englishShift.print('e').equals("E"),
+        "English caps lock stays enabled");
     System.out.println("PASS: "+checks+" Android pure Java keyboard/experience checks");
   }
 }
