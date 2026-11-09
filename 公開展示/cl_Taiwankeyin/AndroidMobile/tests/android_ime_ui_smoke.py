@@ -5,7 +5,7 @@ import subprocess
 import time
 import xml.etree.ElementTree as ET
 
-PACKAGE = "tw.cell.taiwankeyin.pinyintest"
+PACKAGE = "tw.cell.taiwankeyin.englishfix"
 IME = PACKAGE + "/tw.cell.taiwankeyin.android.TaiwanKeyinImeService"
 ACTIVITY = PACKAGE + "/tw.cell.taiwankeyin.android.SettingsActivity"
 
