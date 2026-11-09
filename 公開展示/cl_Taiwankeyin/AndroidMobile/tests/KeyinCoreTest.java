@@ -343,6 +343,16 @@ public class KeyinCoreTest {
         "Pinyin apostrophe segmentation preserves candidate");
     simplifiedTest.clear();
     check(!simplifiedTest.type((char)39),"leading apostrophe rejected");
+    simplifiedTest.setSimplifiedOutput(false);
+    for(char c:"nihao".toCharArray())check(simplifiedTest.type(c),"traditional Pinyin accepted");
+    check(simplifiedTest.candidates().stream().anyMatch(c->c.text.equals("你好")),
+        "traditional Pinyin uses original Zhuyin dictionary");
+    simplifiedTest.clear();
+    simplifiedTest.setSimplifiedOutput(true);
+    for(char c:"zhongguo".toCharArray())check(simplifiedTest.type(c),"simplified Pinyin restored");
+    check(simplifiedTest.candidates().stream().anyMatch(c->c.text.equals("中国")),
+        "simplified Pinyin restores direct simplified lookup");
+    simplifiedTest.clear();
 
     tw.cell.taiwankeyin.core.ChineseMode state = tw.cell.taiwankeyin.core.ChineseMode.TRAD_ZHUYIN;
     String[] modeLabels = {"繁注","簡注","繁拼","簡拼"};
