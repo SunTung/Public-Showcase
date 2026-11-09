@@ -344,6 +344,17 @@ public class KeyinCoreTest {
     simplifiedTest.clear();
     check(!simplifiedTest.type((char)39),"leading apostrophe rejected");
 
+    tw.cell.taiwankeyin.core.ChineseMode state = tw.cell.taiwankeyin.core.ChineseMode.TRAD_ZHUYIN;
+    String[] modeLabels = {"繁注","簡注","繁拼","簡拼"};
+    for(int i=0;i<4;i++){
+        check(state.label.equals(modeLabels[i]),"four-mode cyclic label "+i);
+        check(state.pinyin==(i>=2),"four-mode keyboard layout "+i);
+        check(state.simplified==(i%2==1),"four-mode script "+i);
+        check(tw.cell.taiwankeyin.core.ChineseMode.fromId(i)==state,"four-mode restore "+i);
+        state=state.next();
+    }
+    check(state==tw.cell.taiwankeyin.core.ChineseMode.TRAD_ZHUYIN,"four-mode wraps to traditional Zhuyin");
+    check(tw.cell.taiwankeyin.core.ChineseMode.fromId(999)==state,"invalid persisted mode safe");
     System.out.println("PASS: "+checks+" Android pure Java keyboard/experience checks");
   }
 }
