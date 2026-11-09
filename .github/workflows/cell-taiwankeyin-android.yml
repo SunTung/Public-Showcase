@@ -49,7 +49,7 @@ jobs:
           test -s app/src/main/assets/full_lexicon_manifest.json
       - name: Build debug regression + unsigned unified release
         working-directory: '公開展示/cl_Taiwankeyin/AndroidMobile'
-        run: gradle --no-daemon --stacktrace :app:assembleDebug :app:assembleRelease :app:assembleSidecar
+        run: gradle --no-daemon --stacktrace :app:assembleDebug :app:assembleRelease :app:assembleSidecar :app:assemblePinyinTest
       - name: Copy Android APK signing tool (signing stays OFF public CI)
         run: |
           mkdir -p signing-tools
@@ -60,6 +60,8 @@ jobs:
           test -s '公開展示/cl_Taiwankeyin/AndroidMobile/app/build/outputs/apk/debug/app-debug.apk'
           test -s '公開展示/cl_Taiwankeyin/AndroidMobile/app/build/outputs/apk/release/app-release-unsigned.apk'
           test -s '公開展示/cl_Taiwankeyin/AndroidMobile/app/build/outputs/apk/sidecar/app-sidecar-unsigned.apk'
+          test -s '公開展示/cl_Taiwankeyin/AndroidMobile/app/build/outputs/apk/pinyinTest/app-pinyinTest.apk'
+          "${ANDROID_HOME}/build-tools/35.0.0/apksigner" verify --verbose '公開展示/cl_Taiwankeyin/AndroidMobile/app/build/outputs/apk/pinyinTest/app-pinyinTest.apk'
           test -s '公開展示/cl_Taiwankeyin/AndroidMobile/app/src/main/assets/full_zhuyin_mobile.sqlite3'
       - name: Upload unsigned release and apksigner for OFF-CI private signing
         uses: actions/upload-artifact@v4
@@ -81,4 +83,11 @@ jobs:
         with:
           name: cl-Taiwankeyin-paste-sidecar-unsigned
           path: '公開展示/cl_Taiwankeyin/AndroidMobile/app/build/outputs/apk/sidecar/app-sidecar-unsigned.apk'
+          retention-days: 14
+
+      - name: Upload installable debug-signed Chinese toggle pilot APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: CELL-TaiwanKeyin-Zhuyin-Pinyin-pilot-signed-debug
+          path: '公開展示/cl_Taiwankeyin/AndroidMobile/app/build/outputs/apk/pinyinTest/app-pinyinTest.apk'
           retention-days: 14
