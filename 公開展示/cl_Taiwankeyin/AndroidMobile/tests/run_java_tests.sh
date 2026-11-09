@@ -12,5 +12,6 @@ javac -encoding UTF-8 -d "$ROOT/build-java-tests" \
  "$ROOT/app/src/main/java/tw/cell/taiwankeyin/core/PinyinComposer.java" \
  "$ROOT/app/src/main/java/tw/cell/taiwankeyin/core/ChineseMode.java" \
  "$ROOT/app/src/main/java/tw/cell/taiwankeyin/core/InputModeState.java" \
+ "$ROOT/app/src/main/java/tw/cell/taiwankeyin/core/EnglishPredictor.java" \
  "$ROOT/tests/KeyinCoreTest.java"
 java -cp "$ROOT/build-java-tests" KeyinCoreTest "$ROOT/app/src/main/assets/seed_zhuyin_tw.tsv"
