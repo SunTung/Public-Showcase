@@ -13,7 +13,7 @@ public final class EnglishPredictor {
     private static final List<String> DICTIONARY;
     static {
         ArrayList<String> words = new ArrayList<>(Arrays.asList(WORDS));
-        Collections.sort(words);
+        // Input order is an approximate frequency prior, not alphabetical order.
         DICTIONARY = Collections.unmodifiableList(words);
     }
     private EnglishPredictor() {}
