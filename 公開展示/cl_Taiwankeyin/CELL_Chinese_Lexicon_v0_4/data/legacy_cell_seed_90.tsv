@@ -1,0 +1,91 @@
+concept_id	traditional	simplified	english	pinyin	zhuyin	domain	status
+CELL-C0001	你好	你好	hello	ni3 hao3	ㄋㄧˇ ㄏㄠˇ	greeting	curated_seed
+CELL-C0002	謝謝	谢谢	thank you	xie4 xie5	ㄒㄧㄝˋ ㄒㄧㄝ˙	greeting	curated_seed
+CELL-C0003	再見	再见	goodbye	zai4 jian4	ㄗㄞˋ ㄐㄧㄢˋ	greeting	curated_seed
+CELL-C0004	早安	早安	good morning	zao3 an1	ㄗㄠˇ ㄢ	greeting	curated_seed
+CELL-C0005	晚安	晚安	good night	wan3 an1	ㄨㄢˇ ㄢ	greeting	curated_seed
+CELL-C0006	今天	今天	today	jin1 tian1	ㄐㄧㄣ ㄊㄧㄢ	time	curated_seed
+CELL-C0007	明天	明天	tomorrow	ming2 tian1	ㄇㄧㄥˊ ㄊㄧㄢ	time	curated_seed
+CELL-C0008	昨天	昨天	yesterday	zuo2 tian1	ㄗㄨㄛˊ ㄊㄧㄢ	time	curated_seed
+CELL-C0009	現在	现在	now	xian4 zai4	ㄒㄧㄢˋ ㄗㄞˋ	time	curated_seed
+CELL-C0010	時間	时间	time	shi2 jian1	ㄕˊ ㄐㄧㄢ	time	curated_seed
+CELL-C0011	世界	世界	world	shi4 jie4	ㄕˋ ㄐㄧㄝˋ	general	curated_seed
+CELL-C0012	中文	中文	Chinese language	zhong1 wen2	ㄓㄨㄥ ㄨㄣˊ	language	curated_seed
+CELL-C0013	英文	英文	English language	ying1 wen2	ㄧㄥ ㄨㄣˊ	language	curated_seed
+CELL-C0014	繁體中文	繁体中文	Traditional Chinese	fan2 ti3 zhong1 wen2	ㄈㄢˊ ㄊㄧˇ ㄓㄨㄥ ㄨㄣˊ	language	curated_seed
+CELL-C0015	簡體中文	简体中文	Simplified Chinese	jian3 ti3 zhong1 wen2	ㄐㄧㄢˇ ㄊㄧˇ ㄓㄨㄥ ㄨㄣˊ	language	curated_seed
+CELL-C0016	輸入法	输入法	input method	shu1 ru4 fa3	ㄕㄨ ㄖㄨˋ ㄈㄚˇ	software	curated_seed
+CELL-C0017	鍵盤	键盘	keyboard	jian4 pan2	ㄐㄧㄢˋ ㄆㄢˊ	software	curated_seed
+CELL-C0018	字典	字典	dictionary	zi4 dian3	ㄗˋ ㄉㄧㄢˇ	language	curated_seed
+CELL-C0019	詞典	词典	lexicon	ci2 dian3	ㄘˊ ㄉㄧㄢˇ	language	curated_seed
+CELL-C0020	詞彙	词汇	vocabulary	ci2 hui4	ㄘˊ ㄏㄨㄟˋ	language	curated_seed
+CELL-C0021	字詞	字词	word or character	zi4 ci2	ㄗˋ ㄘˊ	language	curated_seed
+CELL-C0022	發展	发展	development	fa1 zhan3	ㄈㄚ ㄓㄢˇ	general	curated_seed
+CELL-C0023	頭髮	头发	hair	tou2 fa5	ㄊㄡˊ ㄈㄚ˙	body	curated_seed
+CELL-C0024	發現	发现	discover	fa1 xian4	ㄈㄚ ㄒㄧㄢˋ	general	curated_seed
+CELL-C0025	後面	后面	behind	hou4 mian4	ㄏㄡˋ ㄇㄧㄢˋ	space	curated_seed
+CELL-C0026	皇后	皇后	queen	huang2 hou4	ㄏㄨㄤˊ ㄏㄡˋ	history	curated_seed
+CELL-C0027	裡面	里面	inside	li3 mian4	ㄌㄧˇ ㄇㄧㄢˋ	space	curated_seed
+CELL-C0028	公里	公里	kilometer	gong1 li3	ㄍㄨㄥ ㄌㄧˇ	measurement	curated_seed
+CELL-C0029	乾燥	干燥	dry	gan1 zao4	ㄍㄢ ㄗㄠˋ	general	curated_seed
+CELL-C0030	幹部	干部	cadre	gan4 bu4	ㄍㄢˋ ㄅㄨˋ	society	curated_seed
+CELL-C0031	乾杯	干杯	cheers	gan1 bei1	ㄍㄢ ㄅㄟ	greeting	curated_seed
+CELL-C0032	資料	资料	data	zi1 liao4	ㄗ ㄌㄧㄠˋ	computing	curated_seed
+CELL-C0033	資料庫	数据库	database	zi1 liao4 ku4	ㄗ ㄌㄧㄠˋ ㄎㄨˋ	computing	curated_seed
+CELL-C0034	程式	程序	program	cheng2 shi4	ㄔㄥˊ ㄕˋ	computing	curated_seed
+CELL-C0035	程式語言	编程语言	programming language	cheng2 shi4 yu3 yan2	ㄔㄥˊ ㄕˋ ㄩˇ ㄧㄢˊ	computing	curated_seed
+CELL-C0036	電腦	电脑	computer	dian4 nao3	ㄉㄧㄢˋ ㄋㄠˇ	computing	curated_seed
+CELL-C0037	軟體	软件	software	ruan3 ti3	ㄖㄨㄢˇ ㄊㄧˇ	computing	curated_seed
+CELL-C0038	硬體	硬件	hardware	ying4 ti3	ㄧㄥˋ ㄊㄧˇ	computing	curated_seed
+CELL-C0039	硬碟	硬盘	hard disk	ying4 die2	ㄧㄥˋ ㄉㄧㄝˊ	computing	curated_seed
+CELL-C0040	網路	网络	network	wang3 lu4	ㄨㄤˇ ㄌㄨˋ	computing	curated_seed
+CELL-C0041	網頁	网页	webpage	wang3 ye4	ㄨㄤˇ ㄧㄝˋ	computing	curated_seed
+CELL-C0042	檔案	文件	file	dang3 an4	ㄉㄤˇ ㄢˋ	computing	curated_seed
+CELL-C0043	記憶體	内存	computer memory	ji4 yi4 ti3	ㄐㄧˋ ㄧˋ ㄊㄧˇ	computing	curated_seed
+CELL-C0044	滑鼠	鼠标	computer mouse	hua2 shu3	ㄏㄨㄚˊ ㄕㄨˇ	computing	curated_seed
+CELL-C0045	螢幕	屏幕	screen	ying2 mu4	ㄧㄥˊ ㄇㄨˋ	computing	curated_seed
+CELL-C0046	行動電話	手机	mobile phone	xing2 dong4 dian4 hua4	ㄒㄧㄥˊ ㄉㄨㄥˋ ㄉㄧㄢˋ ㄏㄨㄚˋ	technology	curated_seed
+CELL-C0047	手機	手机	mobile phone	shou3 ji1	ㄕㄡˇ ㄐㄧ	technology	curated_seed
+CELL-C0048	人工智慧	人工智能	artificial intelligence	ren2 gong1 zhi4 hui4	ㄖㄣˊ ㄍㄨㄥ ㄓˋ ㄏㄨㄟˋ	technology	curated_seed
+CELL-C0049	學習	学习	learning	xue2 xi2	ㄒㄩㄝˊ ㄒㄧˊ	education	curated_seed
+CELL-C0050	研究	研究	research	yan2 jiu1	ㄧㄢˊ ㄐㄧㄡ	research	curated_seed
+CELL-C0051	科學	科学	science	ke1 xue2	ㄎㄜ ㄒㄩㄝˊ	science	curated_seed
+CELL-C0052	技術	技术	technology	ji4 shu4	ㄐㄧˋ ㄕㄨˋ	technology	curated_seed
+CELL-C0053	醫學	医学	medicine	yi1 xue2	ㄧ ㄒㄩㄝˊ	medicine	curated_seed
+CELL-C0054	醫院	医院	hospital	yi1 yuan4	ㄧ ㄩㄢˋ	medicine	curated_seed
+CELL-C0055	細胞	细胞	cell	xi4 bao1	ㄒㄧˋ ㄅㄠ	biology	curated_seed
+CELL-C0056	生命	生命	life	sheng1 ming4	ㄕㄥ ㄇㄧㄥˋ	biology	curated_seed
+CELL-C0057	生物	生物	organism	sheng1 wu4	ㄕㄥ ㄨˋ	biology	curated_seed
+CELL-C0058	化學	化学	chemistry	hua4 xue2	ㄏㄨㄚˋ ㄒㄩㄝˊ	science	curated_seed
+CELL-C0059	物理	物理	physics	wu4 li3	ㄨˋ ㄌㄧˇ	science	curated_seed
+CELL-C0060	數學	数学	mathematics	shu4 xue2	ㄕㄨˋ ㄒㄩㄝˊ	science	curated_seed
+CELL-C0061	自然	自然	nature	zi4 ran2	ㄗˋ ㄖㄢˊ	nature	curated_seed
+CELL-C0062	地球	地球	Earth	di4 qiu2	ㄉㄧˋ ㄑㄧㄡˊ	geography	curated_seed
+CELL-C0063	太陽	太阳	Sun	tai4 yang2	ㄊㄞˋ ㄧㄤˊ	astronomy	curated_seed
+CELL-C0064	月亮	月亮	Moon	yue4 liang4	ㄩㄝˋ ㄌㄧㄤˋ	astronomy	curated_seed
+CELL-C0065	星球	星球	planetary body	xing1 qiu2	ㄒㄧㄥ ㄑㄧㄡˊ	astronomy	curated_seed
+CELL-C0066	台灣	台湾	Taiwan	tai2 wan1	ㄊㄞˊ ㄨㄢ	place	curated_seed
+CELL-C0067	中國	中国	China	zhong1 guo2	ㄓㄨㄥ ㄍㄨㄛˊ	place	curated_seed
+CELL-C0068	美國	美国	United States	mei3 guo2	ㄇㄟˇ ㄍㄨㄛˊ	place	curated_seed
+CELL-C0069	英國	英国	United Kingdom	ying1 guo2	ㄧㄥ ㄍㄨㄛˊ	place	curated_seed
+CELL-C0070	人民	人民	people	ren2 min2	ㄖㄣˊ ㄇㄧㄣˊ	society	curated_seed
+CELL-C0071	社會	社会	society	she4 hui4	ㄕㄜˋ ㄏㄨㄟˋ	society	curated_seed
+CELL-C0072	文化	文化	culture	wen2 hua4	ㄨㄣˊ ㄏㄨㄚˋ	culture	curated_seed
+CELL-C0073	語言	语言	language	yu3 yan2	ㄩˇ ㄧㄢˊ	language	curated_seed
+CELL-C0074	文學	文学	literature	wen2 xue2	ㄨㄣˊ ㄒㄩㄝˊ	culture	curated_seed
+CELL-C0075	歷史	历史	history	li4 shi3	ㄌㄧˋ ㄕˇ	history	curated_seed
+CELL-C0076	書本	书本	book	shu1 ben3	ㄕㄨ ㄅㄣˇ	culture	curated_seed
+CELL-C0077	閱讀	阅读	reading	yue4 du2	ㄩㄝˋ ㄉㄨˊ	education	curated_seed
+CELL-C0078	寫作	写作	writing	xie3 zuo4	ㄒㄧㄝˇ ㄗㄨㄛˋ	culture	curated_seed
+CELL-C0079	工作	工作	work	gong1 zuo4	ㄍㄨㄥ ㄗㄨㄛˋ	general	curated_seed
+CELL-C0080	生活	生活	daily life	sheng1 huo2	ㄕㄥ ㄏㄨㄛˊ	general	curated_seed
+CELL-C0081	早上	早上	morning	zao3 shang4	ㄗㄠˇ ㄕㄤˋ	time	curated_seed
+CELL-C0082	下午	下午	afternoon	xia4 wu3	ㄒㄧㄚˋ ㄨˇ	time	curated_seed
+CELL-C0083	晚上	晚上	evening	wan3 shang4	ㄨㄢˇ ㄕㄤˋ	time	curated_seed
+CELL-C0084	好的	好的	okay	hao3 de5	ㄏㄠˇ ㄉㄜ˙	greeting	curated_seed
+CELL-C0085	可以	可以	can	ke3 yi3	ㄎㄜˇ ㄧˇ	general	curated_seed
+CELL-C0086	需要	需要	need	xu1 yao4	ㄒㄩ ㄧㄠˋ	general	curated_seed
+CELL-C0087	問題	问题	question	wen4 ti2	ㄨㄣˋ ㄊㄧˊ	general	curated_seed
+CELL-C0088	答案	答案	answer	da2 an4	ㄉㄚˊ ㄢˋ	general	curated_seed
+CELL-C0089	正確	正确	correct	zheng4 que4	ㄓㄥˋ ㄑㄩㄝˋ	general	curated_seed
+CELL-C0090	錯誤	错误	error	cuo4 wu4	ㄘㄨㄛˋ ㄨˋ	general	curated_seed
