@@ -61,6 +61,21 @@ public final class ImeProbeActivity extends Activity {
                     }), "editor commitText returned false");
                 require(learningFailures[0] == 0, "SQLite learning failed");
                 require(text.getText().toString().contains("你好"), "candidate not delivered to EditText");
+                // Exercise the exact production deletion bridge against a real EditText.
+                text.setText("文件測試ABC");
+                text.setSelection(text.length());
+                require(EditorDeleteBridge.deleteOne(editor), "delete trailing ASCII failed");
+                require("文件測試AB".contentEquals(text.getText()), "editor text did not delete");
+                text.setSelection(2, 4);
+                require(EditorDeleteBridge.deleteOne(editor), "delete selection failed");
+                require("文件AB".contentEquals(text.getText()), "selected range not removed");
+                text.setText("甲😀乙");
+                text.setSelection("甲😀".length());
+                require(EditorDeleteBridge.deleteOne(editor), "delete emoji failed");
+                require("甲乙".contentEquals(text.getText()), "surrogate pair was split");
+                text.setSelection(0);
+                require(EditorDeleteBridge.deleteOne(editor), "start of document delete rejected");
+                require("甲乙".contentEquals(text.getText()), "deletion at start changed text");
                 require(memory.context().text().equals("你好"), "remembered context differs");
                 require(storage.candidateBonus("ㄋㄧˇ ㄏㄠˇ", "你好", "") > 0, "missing choice statistic");
                 memory.resetContext();

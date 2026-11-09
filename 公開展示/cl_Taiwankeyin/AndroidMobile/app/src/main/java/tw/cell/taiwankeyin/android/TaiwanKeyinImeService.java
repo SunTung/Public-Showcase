@@ -535,17 +535,7 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         InputConnection connection = getCurrentInputConnection();
         if (connection != null) {
             try {
-                CharSequence selected = connection.getSelectedText(0);
-                boolean deleted = selected != null && selected.length() > 0
-                        ? connection.commitText("", 1)
-                        : connection.deleteSurroundingTextInCodePoints(1, 0);
-                if (!deleted) {
-                    long now = android.os.SystemClock.uptimeMillis();
-                    connection.sendKeyEvent(new KeyEvent(now, now, KeyEvent.ACTION_DOWN,
-                            KeyEvent.KEYCODE_DEL, 0));
-                    connection.sendKeyEvent(new KeyEvent(now, now, KeyEvent.ACTION_UP,
-                            KeyEvent.KEYCODE_DEL, 0));
-                }
+                EditorDeleteBridge.deleteOne(connection);
             } catch (RuntimeException ex) {
                 Log.w(TAG, "Editor deletion failed", ex);
             }
