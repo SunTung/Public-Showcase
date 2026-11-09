@@ -25,3 +25,12 @@
 - Need independent Simplified lexicon, phrase-aware OpenCC conversion and ranking parity for production-quality 拼簡. Current ICU conversion is a preliminary adapter; conversion may be context-sensitive and requires validation.
 - CI does not sign permanent-package release APK. Only the isolated debug-signed pilot should be installed for testing; its signing certificate can differ across runs.
 - No merge to production before confirming the above.
+
+## Round 3 — simplified corpus and regression (2026-11-09)
+- Pinned 158,905-row source identity, frequency and traditional candidate pipeline retained; SQLite schema v3 now stores `simplified` via offline OpenCC 1.4.2 `t2s` at asset-build time. This is a separate indexed simplified candidate **surface**, not a separately sourced Simplified corpus.
+- Runtime `PinyinComposer.SimplifiedLookup` uses the stored simplified word, original reading and dictionary baseline; user memory reranking uses the simplified word actually sent to the editor.
+- `FullLexiconStore` changes its immutable asset installation marker to `simplified_phrase_schema_v3.ready`; preexisting user experience SQLite is not migrated or deleted.
+- Existing six fixed themes plus random mode are preserved; both Zhuyin and Pinyin keyboards expose the Chinese mode toggle. Pinyin punctuation row exposes an apostrophe syllable boundary.
+- Explicit new JVM cases include indexed `zhongguo → 中国`, `ni'hao`, rejection of leading apostrophe, and prior y/w/ü regression examples.
+- Until on-device acceptance: phonetic sequence ambiguity resolution, top-candidate accuracy and phrase segmentation are pilot features, not production-quality Chinese IME parity.
+- The pilot is under `tw.cell.taiwankeyin.pinyintest`, independent of the formal package. A new CI run and APK signing verification must correspond to the final commit before a release claim.
