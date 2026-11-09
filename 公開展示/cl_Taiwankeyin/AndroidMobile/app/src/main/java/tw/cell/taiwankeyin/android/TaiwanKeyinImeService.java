@@ -438,8 +438,8 @@ public final class TaiwanKeyinImeService extends InputMethodService {
                     addKey(strip,"⌫",this::backspace,1.5f,theme.panel,20);
             }
             LinearLayout punctuation=row(33);
-            for(String mark:new String[]{"，","。","？","！","、","；","："})
-                addKey(punctuation,mark,()->insertPlain(mark),1,theme.panel,14,30);
+            for(String mark:new String[]{"，","。","？","！","、","；","\'"})
+                addKey(punctuation,mark,()-> { if ("\'".equals(mark)) typePinyin((char)39); else insertPlain(mark); },1,theme.panel,14,30);
             addKey(punctuation,"拼簡/注繁",this::toggleChineseMode,2,theme.accent,12,30);
         } else if (englishMode) {
             // Familiar English QWERTY, including one-shot uppercase and Caps Lock.
@@ -488,7 +488,6 @@ public final class TaiwanKeyinImeService extends InputMethodService {
             for (String mark : new String[]{"，", "。", "？", "！"})
                 addKey(punctuationAndThemes, mark, () -> insertPlain(mark), 1, theme.panel, 13, 26);
             for (int index = 0; index < KeyboardTheme.modeCount(); index++) {
-                if (index == 5) continue; // Reserve one palette position for the Chinese-mode toggle.
                 final int selectedTheme = index;
                 boolean randomChoice = index == KeyboardTheme.RANDOM_MODE;
                 KeyboardTheme.Palette palette = KeyboardTheme.get(randomChoice ? 2 : index);
