@@ -1,5 +1,13 @@
 # cl_Taiwankeyin｜繁體細胞注音輸入法（Windows + Android）
 
+## CELL 中英繁簡細胞字典 v0.6｜最新有效版本（2026-11-09）
+
+- **[v0.6 完整原始碼](CELL_Chinese_Lexicon_v0_6/README.md)**：保留 v0.5 全部 585 概念、1,755 三語表述與 1,090 待審任務，新增詞義／讀音等證據紀錄、兩名不同審閱者核准與唯讀正式候選檢視表。現在 **0 筆獲批准**，草稿不得進入正式輸入法。
+- [Google Drive v0.6 完整 ZIP](https://drive.google.com/file/d/1VFCEFXcIVTRcO22kMWPgp62gSmNBV8lB/view) · [字典工作區](https://drive.google.com/drive/folders/1HXBHw6XymF4Z9GNH8RMyRoT-bWJj0s82)，Drive 回讀 SHA-256 `0d407a69a4971865e5b54d33f9441cf6f35214164de9b1f1ed8193ceb4cea927` 一致。
+- [GitHub v0.6 獨立 CI 成功](https://github.com/SunTung/Public-Showcase/actions/runs/42540834479)：75/75 項回歸測試。
+- **聲明：** 程式可以驗證審閱流程及證據格式，但無法憑空證明外部來源內容真實；正式 Android/Windows 詞庫尚未變更。
+
+
 ## CELL 中英繁簡細胞字典 v0.5｜最新有效基線（2026-11-09）
 
 - [GitHub v0.5 原始碼與測試](CELL_Chinese_Lexicon_v0_5/README.md)：累計 **585 個概念、1,755 筆繁／簡／英表述**，保存 v0.4 的全部 525 個概念 ID。
