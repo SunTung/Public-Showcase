@@ -137,10 +137,10 @@ public final class TaiwanKeyinImeService extends InputMethodService {
             lexicon = next;
             lastLexiconModification = stamp;
             session = new KeyinCore.Session(lexicon, memory);
-            pinyin = new PinyinComposer(lexicon, memory);
+            pinyin = new PinyinComposer(lexicon, memory, verifiedFullLexicon);
         } catch (IOException ex) {
             // Retain the previous dictionary if a user-imported file is invalid/unreadable.
-            if (lexicon == null) { lexicon = next; session = new KeyinCore.Session(lexicon, memory); pinyin = new PinyinComposer(lexicon, memory); }
+            if (lexicon == null) { lexicon = next; session = new KeyinCore.Session(lexicon, memory); pinyin = new PinyinComposer(lexicon, memory, verifiedFullLexicon); }
         }
     }
     private static boolean isPassword(EditorInfo info) {
@@ -347,14 +347,21 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         rebuildKeys(); updatePreview();
     }
     private void typePinyin(char key) {
-        if (pinyin != null && pinyin.type(Character.toLowerCase(key))) updatePreview();
+        try {
+            if (pinyin != null && pinyin.type(Character.toLowerCase(key))) updatePreview();
+        } catch (RuntimeException ex) {
+            Log.e(TAG,"Pinyin candidate lookup failed",ex);
+            memory.setLearning(false);
+            try { if (pinyin != null) { pinyin.refresh(); updatePreview(); } }
+            catch (RuntimeException fallback) { Log.e(TAG,"Pinyin fallback also failed",fallback); }
+        }
     }
     private void choosePinyin(int index) {
         if (pinyin == null || index < 0 || index >= pinyin.candidates().size())return;
         InputConnection connection=getCurrentInputConnection();
         if(connection==null)return;
         KeyinCore.Candidate selected=pinyin.candidates().get(index);
-        String result=simplified(selected.text);
+        String result=verifiedFullLexicon == null ? simplified(selected.text) : selected.text;
         try {
             if(connection.commitText(result,1)){
                 pinyin.clear();
@@ -527,7 +534,7 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         if (!choices.isEmpty()) {
             for (int i = 0; i < choices.size(); i++) {
                 final int index = i;
-                Button selected = key(pinyinActive() ? simplified(choices.get(i).text) : choices.get(i).text,
+                Button selected = key(pinyinActive() && verifiedFullLexicon == null ? simplified(choices.get(i).text) : choices.get(i).text,
                         () -> { if(pinyinActive())choosePinyin(index);else chooseCandidate(index); }, theme.accent, 18);
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(-2, dp(43));
                 lp.setMargins(dp(2), 0, dp(2), 0);
@@ -541,7 +548,8 @@ public final class TaiwanKeyinImeService extends InputMethodService {
                         ? java.util.Collections.emptyList()
                         : verifiedFullLexicon.followups(memory.context().text(), 24);
                 for (String next : NextWordRanker.merge(learned,fromDictionary,6)) {
-                    Button suggestion = key(next, () -> insertPlain(next), theme.panel, 17);
+                    String displayed = pinyinActive() ? simplified(next) : next;
+                    Button suggestion = key(displayed, () -> insertPlain(displayed), theme.panel, 17);
                     LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(-2, dp(43));
                     lp.setMargins(dp(2), 0, dp(2), 0);
                     candidateRow.addView(suggestion, lp);
@@ -579,7 +587,7 @@ public final class TaiwanKeyinImeService extends InputMethodService {
             if(!pinyin.candidates().isEmpty()){
                 choosePinyin(0);
                 if(pinyin.active())return;
-            }else pinyin.clear();
+            }else { updatePreview(); return; }
         }
         if (session.active()) {
             if (!session.candidates().isEmpty()) {
@@ -649,7 +657,7 @@ public final class TaiwanKeyinImeService extends InputMethodService {
     }
     private void enter() {
         if(pinyinActive() && pinyin!=null && pinyin.active()){
-            if(pinyin.candidates().isEmpty()){pinyin.clear();}
+            if(pinyin.candidates().isEmpty()){updatePreview();return;}
             else { choosePinyin(0); if(pinyin.active())return; }
         }
         if(session.active() && !session.candidates().isEmpty()) chooseCandidate(0);
@@ -671,6 +679,7 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         if (keyCode==KeyEvent.KEYCODE_ENTER) { enter();return true; }
         if (keyCode==KeyEvent.KEYCODE_SPACE) { spaceBar();return true; }
         char c=(char)event.getUnicodeChar();
+        if(pinyinActive() && c==39){typePinyin(c);return true;}
         if(pinyinActive() && c>='a' && c<='z'){typePinyin(c);return true;}
         if(c!='\0' && !englishMode && !pinyinMode && KeyinCore.KEY_CODES.indexOf(Character.toLowerCase(c))>=0) { phonetic(KeyinCore.symbolForKey(c));return true; }
         return super.onKeyDown(keyCode,event);
