@@ -1,0 +1,4 @@
+concept_id	headword	source	source_url	pinyin	zhuyin	meaning_note	retrieval	status
+CELL-C0023	頭髮	教育部國語辭典簡編本	https://dict.concised.moe.edu.tw/dictView.jsp?ID=10351	tou2 fa3	ㄊㄡˊ ㄈㄚˇ	頭上的毛髮	web_result_observation	independent_comparison_pending
+CELL-C0023	頭髮	教育部重編國語辭典修訂本	https://dict.revised.moe.edu.tw/dictView.jsp?ID=50716&la=0&powerMode=0	tou2 fa3	ㄊㄡˊ ㄈㄚˇ	頭上的毛髮	web_result_observation	independent_comparison_pending
+CELL-C0004	早安	教育部國語辭典簡編本	https://dict.concised.moe.edu.tw/dictView.jsp?ID=37151&la=0&powerMode=0	zao3 an1	ㄗㄠˇ ㄢ	早晨見面時的問候語	web_result_observation	independent_comparison_pending

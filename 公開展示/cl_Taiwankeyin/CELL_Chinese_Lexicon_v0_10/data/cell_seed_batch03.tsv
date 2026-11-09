@@ -1,0 +1,128 @@
+domain	traditional	simplified	english	pos
+daily	早餐	早餐	breakfast	noun
+daily	午餐	午餐	lunch	noun
+daily	晚餐	晚餐	dinner	noun
+daily	食物	食物	food	noun
+daily	飲料	饮料	beverage	noun
+daily	牛奶	牛奶	milk	noun
+daily	咖啡	咖啡	coffee	noun
+daily	茶葉	茶叶	tea leaves	noun
+daily	麵包	面包	bread	noun
+daily	米飯	米饭	cooked rice	noun
+daily	雞蛋	鸡蛋	egg	noun
+daily	蔬菜	蔬菜	vegetable	noun
+daily	水果	水果	fruit	noun
+daily	蘋果	苹果	apple	noun
+daily	香蕉	香蕉	banana	noun
+daily	食鹽	食盐	salt	noun
+daily	糖	糖	sugar	noun
+daily	餐廳	餐厅	restaurant	noun
+daily	廚房	厨房	kitchen	noun
+daily	浴室	浴室	bathroom	noun
+daily	臥室	卧室	bedroom	noun
+daily	客廳	客厅	living room	noun
+daily	桌子	桌子	table	noun
+daily	椅子	椅子	chair	noun
+daily	窗戶	窗户	window	noun
+daily	門口	门口	doorway	noun
+daily	衣服	衣服	clothing	noun
+daily	鞋子	鞋子	shoes	noun
+daily	雨傘	雨伞	umbrella	noun
+daily	背包	背包	backpack	noun
+time	星期	星期	week	noun
+time	月份	月份	month	noun
+time	年份	年份	year	noun
+time	日期	日期	date	noun
+time	時鐘	时钟	clock	noun
+time	分鐘	分钟	minute	noun
+time	秒鐘	秒钟	second of time	noun
+time	週末	周末	weekend	noun
+time	季節	季节	season	noun
+time	春天	春天	spring season	noun
+time	夏天	夏天	summer season	noun
+time	秋天	秋天	autumn season	noun
+time	冬天	冬天	winter season	noun
+travel	機場	机场	airport	noun
+travel	火車站	火车站	railway station	noun
+travel	車票	车票	ticket	noun
+travel	旅館	旅馆	hotel	noun
+travel	旅客	旅客	traveler	noun
+travel	地圖	地图	map	noun
+travel	方向	方向	direction	noun
+travel	距離	距离	distance	noun
+travel	速度	速度	speed	noun
+travel	入口	入口	entrance	noun
+travel	出口	出口	exit	noun
+travel	護照	护照	passport	noun
+travel	行李	行李	luggage	noun
+travel	火車	火车	train	noun
+travel	汽車	汽车	automobile	noun
+travel	腳踏車	自行车	bicycle	noun
+travel	公車	公交车	public bus	noun
+health	醫師	医生	physician	noun
+health	護士	护士	nurse	noun
+health	病人	病人	patient	noun
+health	疾病	疾病	disease	noun
+health	症狀	症状	symptom	noun
+health	診斷	诊断	diagnosis	noun
+health	治療	治疗	treatment	noun
+health	藥物	药物	medication	noun
+health	藥局	药店	pharmacy	noun
+health	血液	血液	blood	noun
+health	心臟	心脏	heart organ	noun
+health	肺部	肺部	lungs	noun
+health	肝臟	肝脏	liver organ	noun
+health	腎臟	肾脏	kidney organ	noun
+health	骨骼	骨骼	skeleton	noun
+health	肌肉	肌肉	muscle	noun
+health	皮膚	皮肤	skin	noun
+health	神經	神经	nerve	noun
+health	體溫	体温	body temperature	noun
+health	血壓	血压	blood pressure	noun
+health	疫苗	疫苗	vaccine	noun
+health	健康	健康	health	noun
+science	觀察	观察	observation	noun
+science	假說	假说	hypothesis	noun
+science	實驗	实验	experiment	noun
+science	測量	测量	measurement	noun
+science	精確度	精确度	accuracy	noun
+science	誤差	误差	measurement error	noun
+science	單位	单位	measurement unit	noun
+science	質量	质量	mass	noun
+science	密度	密度	density	noun
+science	溫度	温度	temperature	noun
+science	壓力	压力	pressure	noun
+science	重力	重力	gravity	noun
+science	光線	光线	light ray	noun
+science	聲音	声音	sound	noun
+science	波長	波长	wavelength	noun
+science	頻率	频率	frequency	noun
+science	電流	电流	electric current	noun
+science	電壓	电压	voltage	noun
+science	電阻	电阻	electrical resistance	noun
+science	磁場	磁场	magnetic field	noun
+writing	詩歌	诗歌	poetry	noun
+writing	小說	小说	novel	noun
+writing	散文	散文	prose	noun
+writing	角色	角色	character in a story	noun
+writing	情節	情节	plot in a story	noun
+writing	敘事	叙事	narration	noun
+writing	主題	主题	theme	noun
+writing	比喻	比喻	metaphor	noun
+writing	象徵	象征	symbolism	noun
+writing	修辭	修辞	rhetoric	noun
+writing	標點符號	标点符号	punctuation mark	noun
+writing	引號	引号	quotation mark	noun
+writing	括號	括号	parentheses	noun
+writing	目錄	目录	table of contents	noun
+writing	章節	章节	chapter or section	noun
+communication	訊息	消息	message	noun
+communication	通知	通知	notification	noun
+communication	電子郵件	电子邮件	email	noun
+communication	通話	通话	phone call	noun
+communication	討論	讨论	discussion	noun
+communication	意見	意见	opinion	noun
+communication	建議	建议	suggestion	noun
+communication	請求	请求	request	noun
+communication	回覆	回复	reply	noun
+communication	確認	确认	confirmation	noun
