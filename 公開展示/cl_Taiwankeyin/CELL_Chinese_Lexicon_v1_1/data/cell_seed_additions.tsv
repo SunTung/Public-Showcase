@@ -1,0 +1,207 @@
+domain	traditional	simplified	english	pos
+language	字元	字符	character	noun
+language	字形	字形	character form	noun
+language	字義	字义	character meaning	noun
+language	詞義	词义	word meaning	noun
+language	語義	语义	semantics	noun
+language	詞性	词性	part of speech	noun
+language	名詞	名词	noun	noun
+language	動詞	动词	verb	noun
+language	形容詞	形容词	adjective	noun
+language	副詞	副词	adverb	noun
+language	代名詞	代词	pronoun	noun
+language	介系詞	介词	preposition	noun
+language	語法	语法	grammar	noun
+language	句子	句子	sentence	noun
+language	段落	段落	paragraph	noun
+language	文章	文章	article	noun
+language	發音	发音	pronunciation	noun
+language	聲調	声调	tone	noun
+language	拼音	拼音	pinyin	noun
+language	注音	注音	zhuyin	noun
+language	音節	音节	syllable	noun
+language	母音	元音	vowel	noun
+language	子音	辅音	consonant	noun
+language	翻譯	翻译	translation	noun
+language	字體	字体	font	noun
+language	方言	方言	dialect	noun
+language	同義詞	同义词	synonym	noun
+language	反義詞	反义词	antonym	noun
+language	多義詞	多义词	polysemous word	noun
+language	同音字	同音字	homophone	noun
+computing	演算法	算法	algorithm	noun
+computing	變數	变量	variable	noun
+computing	函式	函数	function	noun
+computing	類別	类	class	noun
+computing	物件	对象	object	noun
+computing	陣列	数组	array	noun
+computing	字串	字符串	string	noun
+computing	整數	整数	integer	noun
+computing	浮點數	浮点数	floating-point number	noun
+computing	布林值	布尔值	Boolean value	noun
+computing	指標	指针	pointer	noun
+computing	索引	索引	index	noun
+computing	雜湊	哈希	hash	noun
+computing	雜湊表	哈希表	hash table	noun
+computing	樹狀結構	树结构	tree structure	noun
+computing	圖形結構	图结构	graph structure	noun
+computing	節點	节点	node	noun
+computing	邊	边	edge	noun
+computing	佇列	队列	queue	noun
+computing	堆疊	栈	stack	noun
+computing	迴圈	循环	loop	noun
+computing	條件判斷	条件判断	conditional statement	noun
+computing	編譯器	编译器	compiler	noun
+computing	直譯器	解释器	interpreter	noun
+computing	執行緒	线程	thread	noun
+computing	處理程序	进程	process	noun
+computing	處理器	处理器	processor	noun
+computing	顯示卡	显卡	graphics card	noun
+computing	記憶體位址	内存地址	memory address	noun
+computing	緩衝區	缓冲区	buffer	noun
+computing	快取	缓存	cache	noun
+computing	壓縮	压缩	compression	noun
+computing	解壓縮	解压缩	decompression	noun
+computing	加密	加密	encryption	noun
+computing	解密	解密	decryption	noun
+computing	驗證	验证	validation	noun
+computing	測試	测试	test	noun
+computing	除錯	调试	debugging	noun
+computing	版本	版本	version	noun
+computing	介面	接口	interface	noun
+computing	使用者介面	用户界面	user interface	noun
+computing	作業系統	操作系统	operating system	noun
+computing	檔案系統	文件系统	file system	noun
+computing	資料結構	数据结构	data structure	noun
+computing	資料表	数据表	database table	noun
+computing	資料列	数据行	database row	noun
+computing	資料欄位	数据字段	database field	noun
+computing	資料型別	数据类型	data type	noun
+computing	關聯式資料庫	关系数据库	relational database	noun
+computing	查詢	查询	query	noun
+computing	交易	事务	transaction	noun
+computing	備份	备份	backup	noun
+computing	還原	恢复	restore	noun
+computing	權限	权限	permission	noun
+computing	身分驗證	身份验证	authentication	noun
+computing	授權	授权	authorization	noun
+computing	安全性	安全性	security	noun
+computing	隱私	隐私	privacy	noun
+computing	錯誤訊息	错误消息	error message	noun
+computing	輸入	输入	input	noun
+computing	輸出	输出	output	noun
+computing	延遲	延迟	latency	noun
+computing	吞吐量	吞吐量	throughput	noun
+computing	效能	性能	performance	noun
+computing	資源	资源	resource	noun
+computing	記錄檔	日志文件	log file	noun
+computing	原始碼	源代码	source code	noun
+computing	機器碼	机器码	machine code	noun
+computing	虛擬機器	虚拟机	virtual machine	noun
+mathematics	加法	加法	addition	noun
+mathematics	減法	减法	subtraction	noun
+mathematics	乘法	乘法	multiplication	noun
+mathematics	除法	除法	division	noun
+mathematics	分數	分数	fraction	noun
+mathematics	小數	小数	decimal number	noun
+mathematics	方程式	方程式	equation	noun
+mathematics	不等式	不等式	inequality	noun
+mathematics	函數	函数	mathematical function	noun
+mathematics	矩陣	矩阵	matrix	noun
+mathematics	向量	向量	vector	noun
+mathematics	集合	集合	set	noun
+mathematics	機率	概率	probability	noun
+mathematics	統計	统计	statistics	noun
+mathematics	平均值	平均值	mean	noun
+mathematics	中位數	中位数	median	noun
+mathematics	標準差	标准差	standard deviation	noun
+mathematics	微分	微分	differentiation	noun
+mathematics	積分	积分	integration	noun
+mathematics	極限	极限	limit	noun
+mathematics	無窮大	无穷大	infinity	noun
+mathematics	幾何	几何	geometry	noun
+mathematics	代數	代数	algebra	noun
+mathematics	拓樸	拓扑	topology	noun
+biology	基因	基因	gene	noun
+biology	基因組	基因组	genome	noun
+biology	核糖核酸	核糖核酸	RNA	noun
+biology	去氧核糖核酸	脱氧核糖核酸	DNA	noun
+biology	蛋白質	蛋白质	protein	noun
+biology	胺基酸	氨基酸	amino acid	noun
+biology	酵素	酶	enzyme	noun
+biology	細胞核	细胞核	cell nucleus	noun
+biology	細胞膜	细胞膜	cell membrane	noun
+biology	粒線體	线粒体	mitochondrion	noun
+biology	核糖體	核糖体	ribosome	noun
+biology	組織	组织	tissue	noun
+biology	器官	器官	organ	noun
+biology	代謝	代谢	metabolism	noun
+biology	免疫	免疫	immunity	noun
+biology	抗體	抗体	antibody	noun
+biology	病毒	病毒	virus	noun
+biology	細菌	细菌	bacterium	noun
+biology	真菌	真菌	fungus	noun
+biology	神經元	神经元	neuron	noun
+biology	幹細胞	干细胞	stem cell	noun
+biology	再生	再生	regeneration	noun
+biology	細胞分裂	细胞分裂	cell division	noun
+biology	突變	突变	mutation	noun
+biology	演化	演化	evolution	noun
+society	政府	政府	government	noun
+society	法律	法律	law	noun
+society	經濟	经济	economy	noun
+society	貨幣	货币	currency	noun
+society	市場	市场	market	noun
+society	企業	企业	enterprise	noun
+society	公司	公司	company	noun
+society	產品	产品	product	noun
+society	服務	服务	service	noun
+society	使用者	用户	user	noun
+society	教育	教育	education	noun
+society	學校	学校	school	noun
+society	教師	教师	teacher	noun
+society	學生	学生	student	noun
+society	家庭	家庭	family	noun
+society	朋友	朋友	friend	noun
+society	社區	社区	community	noun
+society	城市	城市	city	noun
+society	鄉村	乡村	village	noun
+society	道路	道路	road	noun
+society	交通	交通	transportation	noun
+society	環境	环境	environment	noun
+society	能源	能源	energy	noun
+society	電力	电力	electricity	noun
+society	水資源	水资源	water resources	noun
+society	天氣	天气	weather	noun
+society	氣候	气候	climate	noun
+society	災害	灾害	disaster	noun
+society	風險	风险	risk	noun
+society	機會	机会	opportunity	noun
+society	選擇	选择	choice	noun
+society	決策	决策	decision	noun
+society	目標	目标	goal	noun
+society	計畫	计划	plan	noun
+society	任務	任务	task	noun
+society	結果	结果	result	noun
+society	原因	原因	cause	noun
+society	效果	效果	effect	noun
+society	關係	关系	relationship	noun
+society	經驗	经验	experience	noun
+society	知識	知识	knowledge	noun
+society	理解	理解	understanding	noun
+society	判斷	判断	judgment	noun
+society	證據	证据	evidence	noun
+society	方法	方法	method	noun
+society	規則	规则	rule	noun
+society	系統	系统	system	noun
+society	模型	模型	model	noun
+society	結構	结构	structure	noun
+society	流程	流程	workflow	noun
+society	機制	机制	mechanism	noun
+society	分類	分类	classification	noun
+society	分析	分析	analysis	noun
+society	比較	比较	comparison	noun
+society	預測	预测	prediction	noun
+society	探索	探索	exploration	noun
+society	發明	发明	invention	noun
+society	創新	创新	innovation	noun

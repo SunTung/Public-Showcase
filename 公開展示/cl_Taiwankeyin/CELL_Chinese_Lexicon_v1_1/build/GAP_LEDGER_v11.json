@@ -1,0 +1,29 @@
+{
+  "baseline": "v1.0 CI SUCCESS; 135/135",
+  "v11_tests": "149/149 local PASS",
+  "concepts": 585,
+  "expressions": 1755,
+  "external_official_source_download": "BLOCKED: container network DNS unavailable; official ZIP not acquired",
+  "official_entries_compared": 0,
+  "human_approved": 0,
+  "native_android_ime_test": "NOT RUN: Android runtime/device and native project unavailable",
+  "native_windows_tsf_test": "NOT RUN: Windows environment unavailable",
+  "production_dictionary_modified": false,
+  "completed": [
+    "TSV/XLSX batch intake",
+    "column mapping",
+    "585 concept full comparison",
+    "source digest provenance",
+    "fail closed validation",
+    "14 new tests",
+    "fixture-only end-to-end report"
+  ],
+  "pending": [
+    "official source bytes download and parse",
+    "actual 585 word comparison",
+    "human semantic/phonetic review",
+    "persist verified snapshots and approvals",
+    "Android/Windows native integration and rollback",
+    "CI and cloud validation"
+  ]
+}
