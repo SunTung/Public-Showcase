@@ -18,7 +18,7 @@ import tw.cell.taiwankeyin.core.NextWordRanker;
 
 /** Read-only mobile lookup generated from the existing verified RGOS/Chewing lexicon.
  * No user input is ever written to this system dictionary. */
-public final class FullLexiconStore implements KeyinCore.Lexicon.ExternalLookup, AutoCloseable {
+public final class FullLexiconStore implements KeyinCore.Lexicon.ExternalLookup, tw.cell.taiwankeyin.core.PinyinComposer.SimplifiedLookup, AutoCloseable {
     public static final String ASSET = "full_zhuyin_mobile.sqlite3";
     private static final String TAG = "CellFullLexicon";
     private static final int MIN_ROWS = 150000;
@@ -35,7 +35,7 @@ public final class FullLexiconStore implements KeyinCore.Lexicon.ExternalLookup,
         File dest = new File(folder, ASSET);
         // A versioned marker forces replacement when the APK gains a new index.
         // Do not repeatedly copy the 27+ MB corpus on every IME activation.
-        File schemaMarker = new File(folder, "word_prefix_index_v2.ready");
+        File schemaMarker = new File(folder, "simplified_phrase_schema_v3.ready");
         long expected;
         try (android.content.res.AssetFileDescriptor d = app.getAssets().openFd(ASSET)) {
             expected = d.getLength();
@@ -85,6 +85,27 @@ public final class FullLexiconStore implements KeyinCore.Lexicon.ExternalLookup,
                 int frequency = c.getInt(2);
                 double baseline = 12.0 * Math.log1p(Math.max(0,frequency));
                 out.add(new KeyinCore.Candidate(word,actual,baseline,baseline));
+            }
+        }
+        return out;
+    }
+    /** Direct Simplified Chinese candidate lookup using precomputed OpenCC t2s phrase forms.
+     * Uses the same verified reading/frequency baseline, with a distinct simplified surface.
+     * User-learned rank adjustments are performed by PinyinComposer after lookup.
+     */
+    @Override public synchronized List<KeyinCore.Candidate> findSimplified(String bare, int limit) {
+        List<KeyinCore.Candidate> out = new ArrayList<>();
+        if (bare == null || bare.isEmpty() || limit <= 0) return out;
+        int n = Math.min(limit, 96);
+        try (Cursor c = db.rawQuery("SELECT reading,simplified,MAX(frequency) AS f "
+                + "FROM lexicon_mobile WHERE bare=? GROUP BY reading,simplified "
+                + "ORDER BY f DESC LIMIT ?",
+                new String[]{bare,String.valueOf(n)})) {
+            while (c.moveToNext()) {
+                String reading = c.getString(0), word = c.getString(1);
+                int frequency = c.getInt(2);
+                double baseline = 12.0 * Math.log1p(Math.max(0,frequency));
+                out.add(new KeyinCore.Candidate(word,reading,baseline,baseline));
             }
         }
         return out;
