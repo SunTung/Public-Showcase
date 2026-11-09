@@ -2,7 +2,7 @@ name: CELL TaiwanKeyin Android emulator smoke
 
 on:
   push:
-    branches: [main]
+    branches: [main, feature/taiwankeyin-pinyin-toggle-20261109]
     paths:
       - '公開展示/cl_Taiwankeyin/AndroidMobile/**'
       - '.github/workflows/cell-taiwankeyin-android-emulator.yml'
@@ -46,13 +46,13 @@ jobs:
         run: |
           bash '公開展示/cl_Taiwankeyin/AndroidMobile/tests/run_java_tests.sh'
           cd '公開展示/cl_Taiwankeyin/AndroidMobile'
-          gradle --no-daemon :app:assembleDebug
+          gradle --no-daemon :app:assembleDebug :app:assemblePinyinTest
       - name: Enable KVM permissions for emulator
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
           sudo udevadm control --reload-rules
           sudo udevadm trigger --name-match=kvm || true
-      - name: Android 35 EditText and SQLite integration smoke
+      - name: Android 35 real IME English and four-mode UI regression
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 35
@@ -61,4 +61,4 @@ jobs:
           profile: pixel_4
           disable-animations: true
           emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
-          script: bash '公開展示/cl_Taiwankeyin/AndroidMobile/tests/android_emulator_smoke.sh'
+          script: python3 '公開展示/cl_Taiwankeyin/AndroidMobile/tests/android_ime_ui_smoke.py'
