@@ -3,7 +3,7 @@ on:
   push:
     branches: [main]
     paths:
-      - '公開展示/cl_Taiwankeyin/CELL_Chinese_Lexicon_v0_4/**'
+      - '公開展示/cl_Taiwankeyin/CELL_Chinese_Lexicon_v0_5/**'
       - '.github/workflows/cell-concept-lexicon.yml'
   workflow_dispatch:
 
@@ -17,26 +17,26 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Rebuild v0.4 concept dictionary from CELL seed batches
-        working-directory: '公開展示/cl_Taiwankeyin/CELL_Chinese_Lexicon_v0_4'
-        run: python src/build_v04.py
+      - name: Rebuild v0.5 concept dictionary from CELL seed batches
+        working-directory: '公開展示/cl_Taiwankeyin/CELL_Chinese_Lexicon_v0_5'
+        run: python src/build_v05.py
       - name: Verify all prior and incremental concept tests
-        working-directory: '公開展示/cl_Taiwankeyin/CELL_Chinese_Lexicon_v0_4'
+        working-directory: '公開展示/cl_Taiwankeyin/CELL_Chinese_Lexicon_v0_5'
         run: python -m unittest discover -s tests -v
       - name: Query three-language dictionary and ambiguity forms
-        working-directory: '公開展示/cl_Taiwankeyin/CELL_Chinese_Lexicon_v0_4'
+        working-directory: '公開展示/cl_Taiwankeyin/CELL_Chinese_Lexicon_v0_5'
         run: |
           python src/query_v04.py --locale en --word 'speech synthesis'
           python src/query_v04.py --locale zh-Hans-CN --form 发
           python src/query_v04.py --review pronunciation
       - name: Export cross-platform JSON
-        working-directory: '公開展示/cl_Taiwankeyin/CELL_Chinese_Lexicon_v0_4'
+        working-directory: '公開展示/cl_Taiwankeyin/CELL_Chinese_Lexicon_v0_5'
         run: python src/query_v04.py --export build/cell_concepts.json
       - uses: actions/upload-artifact@v4
         with:
-          name: CELL_Chinese_Lexicon_v0_4_verified
+          name: CELL_Chinese_Lexicon_v0_5_verified
           path: |
-            公開展示/cl_Taiwankeyin/CELL_Chinese_Lexicon_v0_4/build/cell_concepts.sqlite3
-            公開展示/cl_Taiwankeyin/CELL_Chinese_Lexicon_v0_4/build/cell_concepts.json
-            公開展示/cl_Taiwankeyin/CELL_Chinese_Lexicon_v0_4/build/manifest.json
+            公開展示/cl_Taiwankeyin/CELL_Chinese_Lexicon_v0_5/build/cell_concepts.sqlite3
+            公開展示/cl_Taiwankeyin/CELL_Chinese_Lexicon_v0_5/build/cell_concepts.json
+            公開展示/cl_Taiwankeyin/CELL_Chinese_Lexicon_v0_5/build/manifest.json
           if-no-files-found: error
