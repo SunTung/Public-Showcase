@@ -128,6 +128,7 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         try { toSimplified = Transliterator.getInstance("Traditional-Simplified");
               toTraditional = Transliterator.getInstance("Simplified-Traditional"); }
         catch (RuntimeException ex) { Log.e(TAG, "Simplified conversion unavailable", ex); }
+        if (pinyin != null) pinyin.setSimplifiedOutput(chineseMode.simplified);
         memory.setLearning(prefs().getBoolean("learning", true));
     }
     private void reloadLexicon() {
@@ -342,7 +343,7 @@ public final class TaiwanKeyinImeService extends InputMethodService {
     private boolean pinyinActive() { return chineseMode.pinyin && !englishMode && !symbolMode; }
     private boolean simplifiedActive() { return chineseMode.simplified && !englishMode && !symbolMode; }
     private String candidateOutput(String word, boolean pinyinCandidate) {
-        if (!chineseMode.simplified) return pinyinCandidate && verifiedFullLexicon != null ? simplifiedToTraditional(word) : word;
+        if (!chineseMode.simplified) return word;
         return pinyinCandidate && verifiedFullLexicon != null ? word : simplified(word);
     }
     private String simplifiedToTraditional(String word) {
@@ -355,6 +356,7 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         session.clear();
         if (pinyin != null) pinyin.clear();
         chineseMode = chineseMode.next();
+        if (pinyin != null) pinyin.setSimplifiedOutput(chineseMode.simplified);
         englishMode = false; symbolMode = false;
         prefs().edit().putInt("chinese_mode", chineseMode.ordinal()).apply();
         rebuildKeys(); updatePreview();
