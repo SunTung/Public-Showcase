@@ -27,5 +27,11 @@ android {
             manifestPlaceholders = [imeLabel: 'CELL 臺灣注音']
         }
         release { minifyEnabled false }
+        sidecar {
+            initWith release
+            applicationIdSuffix '.paste'
+            versionNameSuffix '-sidecar'
+            manifestPlaceholders = [imeLabel: 'CELL 臺灣注音（貼上測試）']
+        }
     }
 }

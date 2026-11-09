@@ -49,7 +49,7 @@ jobs:
           test -s app/src/main/assets/full_lexicon_manifest.json
       - name: Build debug regression + unsigned unified release
         working-directory: '公開展示/cl_Taiwankeyin/AndroidMobile'
-        run: gradle --no-daemon --stacktrace :app:assembleDebug :app:assembleRelease
+        run: gradle --no-daemon --stacktrace :app:assembleDebug :app:assembleRelease :app:assembleSidecar
       - name: Copy Android APK signing tool (signing stays OFF public CI)
         run: |
           mkdir -p signing-tools
@@ -59,6 +59,7 @@ jobs:
         run: |
           test -s '公開展示/cl_Taiwankeyin/AndroidMobile/app/build/outputs/apk/debug/app-debug.apk'
           test -s '公開展示/cl_Taiwankeyin/AndroidMobile/app/build/outputs/apk/release/app-release-unsigned.apk'
+          test -s '公開展示/cl_Taiwankeyin/AndroidMobile/app/build/outputs/apk/sidecar/app-sidecar-unsigned.apk'
           test -s '公開展示/cl_Taiwankeyin/AndroidMobile/app/src/main/assets/full_zhuyin_mobile.sqlite3'
       - name: Upload unsigned release and apksigner for OFF-CI private signing
         uses: actions/upload-artifact@v4
@@ -74,3 +75,10 @@ jobs:
           name: cl-Taiwankeyin-unified-v1-ci-debug-do-not-install
           path: '公開展示/cl_Taiwankeyin/AndroidMobile/app/build/outputs/apk/debug/app-debug.apk'
           retention-days: 7
+
+      - name: Upload side-by-side paste test APK for signing
+        uses: actions/upload-artifact@v4
+        with:
+          name: cl-Taiwankeyin-paste-sidecar-unsigned
+          path: '公開展示/cl_Taiwankeyin/AndroidMobile/app/build/outputs/apk/sidecar/app-sidecar-unsigned.apk'
+          retention-days: 14
