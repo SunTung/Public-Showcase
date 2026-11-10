@@ -14,7 +14,7 @@ android {
         versionCode = 2
         versionName = "1.2.0"
         manifestPlaceholders["admobAppId"] = appId
-        buildConfigField("String", "BANNER_AD_UNIT_ID", "\\"" + bannerId + "\\"")
+        buildConfigField("String", "BANNER_AD_UNIT_ID", "\"" + bannerId + "\"")
         buildConfigField("boolean", "USES_LIVE_ADS", liveAds.toString())
     }
     buildFeatures { buildConfig = true }
