@@ -62,3 +62,19 @@
 - **注意：廣告 SDK 可能蒐集／分享裝置識別碼、互動資訊及診斷資訊**，不可再以無網路權限或完全離線蒐集零資料描述本版本。錄音內容本身仍設計為 App 私有本機保存，未主動上傳。
 
 開發者的公開個人資訊與真實廣告 ID 應由本人審核後填入，避免將私人聯絡資料直接暴露在公開 GitHub。
+
+## AdMob 廣告單元設定（2026-11-11）
+
+| 欄位 | 值 |
+|---|---|
+| 廣告單元名稱 | 橫向banner_細胞麥克風_1_2026_1111A0001 |
+| 正式 Banner Ad Unit ID | `ca-app-pub-1343937669240075/3821085574` |
+| 正式 AdMob App ID | **尚未提供**（格式：`ca-app-pub-1343937669240075~XXXXXXXXXX`） |
+| 目前預設編譯模式 | **測試廣告**，不計入正式收益 |
+
+- 本專案的 Activity 使用 Kotlin **原生動態 UI**，不使用 `activity_main.xml`；廣告位於主畫面底部的固定容器。
+- `app/build.gradle.kts` 已註冊正式 Banner ID。只有提供格式正確、Publisher ID 一致的 `ADMOB_APP_ID` Gradle property 或環境變數，才會將它與正式 Banner 一起啟用；否則自動使用 Google 官方測試 App ID 與 Banner ID，避免混用。
+- 正式打包示例：`./gradlew :app:bundleRelease -PADMOB_APP_ID=ca-app-pub-1343937669240075~<在AdMob後台查得的10位數>`。
+- **不要直接複製字串中的 `XXXXXXXXXX` 作為 App ID**，它是待填佔位符。
+- 仍須確認 AdMob 後台「應用程式設定」→ **應用程式 ID**；若要測試自己的正式廣告單元，先在 AdMob 設定測試裝置。正式 AdMob Banner 應在正式上架配置與必要同意測試後啟用。
+- 所有實際收益由你自己的 AdMob 帳號處理；GitHub 只提供編譯程式，不會接收廣告收益。
