@@ -145,7 +145,7 @@ class MainActivity : Activity() {
     private fun showDeveloperInfo() {
         android.app.AlertDialog.Builder(this)
             .setTitle("關於手機錄音器")
-            .setMessage("PocketRecorder v1.2.0\n開發者：SunTung\n原始碼：github.com/SunTung/Public-Showcase\n\n錄音儲存在手機 App 私有空間，沒有自動上傳功能。此版使用 Google AdMob 測試廣告；廣告 SDK 可能處理裝置識別資訊與使用資料。正式發布前需公布完整隱私權政策及聯絡方式。")
+            .setMessage("PocketRecorder v1.2.0\n開發者：SunTung\n原始碼：github.com/SunTung/Public-Showcase\n\n錄音儲存在手機 App 私有空間，沒有自動上傳功能。本版廣告模式：${if (BuildConfig.USES_LIVE_ADS) "正式 Banner" else "AdMob 測試 Banner"}；廣告 SDK 可能處理裝置識別資訊與使用資料。正式發布前需公布完整隱私權政策及聯絡方式。")
             .setPositiveButton("公開專案") { _, _ ->
                 startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/SunTung/Public-Showcase/tree/main/Android-PocketRecorder")))
             }
@@ -182,7 +182,7 @@ class MainActivity : Activity() {
                     if (isFinishing || isDestroyed) return@runOnUiThread
                     val widthDp = (resources.displayMetrics.widthPixels / resources.displayMetrics.density).toInt() - 32
                     val ad = AdView(this)
-                    ad.adUnitId = "ca-app-pub-3940256099942544/9214589741"
+                    ad.adUnitId = BuildConfig.BANNER_AD_UNIT_ID
                     ad.setAdSize(AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(this, widthDp.coerceAtLeast(300)))
                     banner = ad
                     adSlot.removeAllViews()
