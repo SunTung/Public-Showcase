@@ -12,6 +12,15 @@ import android.view.Gravity
 import android.view.View
 import android.widget.*
 import android.graphics.Color
+import android.content.Intent
+import android.net.Uri
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
+import com.google.android.ump.ConsentRequestParameters
+import com.google.android.ump.UserMessagingPlatform
+import com.google.android.ump.ConsentInformation
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.File
@@ -33,6 +42,10 @@ class MainActivity : Activity() {
     private var startedAt = 0L
     private var testing = false
     private var recording = false
+    private var banner: AdView? = null
+    private var adRequested = false
+    private lateinit var adSlot: FrameLayout
+    private lateinit var consent: ConsentInformation
     private val tick = object : Runnable {
         override fun run() {
             if (recording) {
@@ -63,6 +76,15 @@ class MainActivity : Activity() {
         }
         val title = TextView(this).apply { text = "手機錄音器"; textSize = 26f; setTypeface(null, android.graphics.Typeface.BOLD); setTextColor(Color.rgb(26,43,68)); gravity = Gravity.CENTER }
         root.addView(title, LinearLayout.LayoutParams(-1, dp(60)))
+        val about = TextView(this).apply {
+            text = "開發者資訊  ·  隱私權"
+            textSize = 13f
+            gravity = Gravity.CENTER
+            setTextColor(Color.rgb(40, 105, 165))
+            setPadding(0, dp(2), 0, dp(8))
+            setOnClickListener { showDeveloperInfo() }
+        }
+        root.addView(about, LinearLayout.LayoutParams(-1, dp(36)))
         status = TextView(this).apply { text = "待機中"; textSize = 20f; gravity = Gravity.CENTER; setTypeface(null, android.graphics.Typeface.BOLD); setTextColor(Color.rgb(0,129,115)) }
         root.addView(status, LinearLayout.LayoutParams(-1, dp(54)))
         timer = TextView(this).apply { text = "00:00"; textSize = 34f; setTextColor(Color.rgb(35,55,80)); gravity = Gravity.CENTER }
@@ -83,7 +105,13 @@ class MainActivity : Activity() {
         items = LinearLayout(this).apply { orientation = LinearLayout.VERTICAL }
         scroller.addView(items)
         root.addView(scroller, LinearLayout.LayoutParams(-1, 0, 1f))
+        adSlot = FrameLayout(this).apply {
+            setBackgroundColor(Color.rgb(235, 242, 247))
+            minimumHeight = dp(54)
+        }
+        root.addView(adSlot, LinearLayout.LayoutParams(-1, dp(60)))
         setContentView(root)
+        setupTestAds()
         load()
         render()
     }
@@ -113,6 +141,58 @@ class MainActivity : Activity() {
         val margins = LinearLayout.LayoutParams(0, dp(60), 1f)
         setOnClickListener { action() }
     }
+
+    private fun showDeveloperInfo() {
+        android.app.AlertDialog.Builder(this)
+            .setTitle("關於手機錄音器")
+            .setMessage("PocketRecorder v1.2.0\n開發者：SunTung\n原始碼：github.com/SunTung/Public-Showcase\n\n錄音儲存在手機 App 私有空間，沒有自動上傳功能。此版使用 Google AdMob 測試廣告；廣告 SDK 可能處理裝置識別資訊與使用資料。正式發布前需公布完整隱私權政策及聯絡方式。")
+            .setPositiveButton("公開專案") { _, _ ->
+                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/SunTung/Public-Showcase/tree/main/Android-PocketRecorder")))
+            }
+            .setNeutralButton("隱私選項") { _, _ ->
+                if (::consent.isInitialized && consent.privacyOptionsRequirementStatus == ConsentInformation.PrivacyOptionsRequirementStatus.REQUIRED) {
+                    UserMessagingPlatform.showPrivacyOptionsForm(this) {}
+                } else Toast.makeText(this, "目前沒有需要調整的隱私選項", Toast.LENGTH_SHORT).show()
+            }
+            .setNegativeButton("關閉", null)
+            .show()
+    }
+
+    private fun setupTestAds() {
+        consent = UserMessagingPlatform.getConsentInformation(this)
+        val params = ConsentRequestParameters.Builder().build()
+        consent.requestConsentInfoUpdate(
+            this, params,
+            {
+                UserMessagingPlatform.loadAndShowConsentFormIfRequired(this) {
+                    maybeLoadBanner()
+                }
+                maybeLoadBanner()
+            },
+            { maybeLoadBanner() }
+        )
+    }
+
+    private fun maybeLoadBanner() {
+        if (adRequested || !consent.canRequestAds()) return
+        adRequested = true
+        Thread {
+            MobileAds.initialize(this) {
+                runOnUiThread {
+                    if (isFinishing || isDestroyed) return@runOnUiThread
+                    val widthDp = (resources.displayMetrics.widthPixels / resources.displayMetrics.density).toInt() - 32
+                    val ad = AdView(this)
+                    ad.adUnitId = "ca-app-pub-3940256099942544/9214589741"
+                    ad.setAdSize(AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(this, widthDp.coerceAtLeast(300)))
+                    banner = ad
+                    adSlot.removeAllViews()
+                    adSlot.addView(ad, FrameLayout.LayoutParams(-1, -2, Gravity.CENTER))
+                    ad.loadAd(AdRequest.Builder().build())
+                }
+            }
+        }.start()
+    }
+
     private fun ensureMicrophone(action: () -> Unit) {
         if (checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) action()
         else requestPermissions(arrayOf(Manifest.permission.RECORD_AUDIO), 12)
@@ -298,6 +378,7 @@ class MainActivity : Activity() {
     override fun onDestroy() {
         if (recording) stopRecording()
         stopPlayback()
+        banner?.destroy()
         super.onDestroy()
     }
 }
