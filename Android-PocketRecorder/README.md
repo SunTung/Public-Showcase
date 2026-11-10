@@ -1,3 +1,5 @@
+> **Play 上架準備版 v1.2（2026-11-11）**：專案現已加入公開開發者資訊入口、AdMob 測試 Banner、Google UMP 同意流程、target API 36，以及 AAB 建置步驟。正式廣告 ID、客服聯絡資料、商店正式簽章與實際上架尚未完成。
+
 # 手機錄音器 PocketRecorder（Android）
 
 **狀態：公開原始碼、可由 GitHub Actions 建置的測試版。**  
@@ -49,3 +51,14 @@
 
 ## 授權
 目前尚未附上開源授權條款；程式碼可公開閱讀，但不要自行假設已獲授權進行再發佈或商業使用。
+
+## Google Play 上架準備 v1.2
+
+- 應用程式內「開發者資訊 · 隱私權」顯示公開開發者名稱 **SunTung**、GitHub 專案入口與測試版隱私說明。**不包含私人地址、私人電話或未確認的電子郵件**。
+- 底部固定廣告容器採 Google AdMob 官方測試 ID；**沒有接入任何實際廣告收益帳號**。
+- 在廣告請求前執行 UMP 同意更新，僅在可請求廣告時載入 Banner。
+- Android 16 / API 36、建立 Debug APK 與 **unsigned release AAB**；正式上傳 Play 必須使用自己的發布簽章或由 Play App Signing 流程完成上傳金鑰設定。
+- 真正上架前須填妥開發者聯絡信箱、AdMob App ID / Banner Unit ID、隱私權政策網址、Play Console Data safety / Contains ads 聲明、商店圖片、正式簽署 AAB，並執行實機與封閉測試。
+- **注意：廣告 SDK 可能蒐集／分享裝置識別碼、互動資訊及診斷資訊**，不可再以無網路權限或完全離線蒐集零資料描述本版本。錄音內容本身仍設計為 App 私有本機保存，未主動上傳。
+
+開發者的公開個人資訊與真實廣告 ID 應由本人審核後填入，避免將私人聯絡資料直接暴露在公開 GitHub。
