@@ -1,17 +1,17 @@
-name: Build Public PocketRecorder APK
+name: Build Public PocketRecorder APK and AAB
 on:
   push:
     branches:
       - main
     paths:
       - 'Android-PocketRecorder/**'
-      - '.github/workflows/android-voice-recorder.yml'
+      - '.github/workflows/pocket-recorder-public.yml'
   pull_request:
     branches:
       - main
     paths:
       - 'Android-PocketRecorder/**'
-      - '.github/workflows/android-voice-recorder.yml'
+      - '.github/workflows/pocket-recorder-public.yml'
   workflow_dispatch:
 jobs:
   build:
@@ -25,7 +25,7 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
-      - name: Install Android SDK 35
+      - name: Install Android SDK 36
         run: |
           SDKMANAGER="$(find /usr/local/lib/android/sdk /opt/android-sdk -type f -name sdkmanager -print -quit 2>/dev/null || true)"
           if [ -z "$SDKMANAGER" ]; then
