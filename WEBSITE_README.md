@@ -6,7 +6,7 @@ This is the public-only studio website. The canonical internal research projects
 
 - Original 1536×864 logo A examined for its actual color clusters: warm paper `#FAFAF7`, inner navy `#112C53`, medium blue `#20446C`, lilac `#987DAF`, orange `#EA8C53`, golden yellow `#E5CF5B`, and burgundy `#C03E49`.
 - Website canvas and navigation use logo-paper off-white. Information cards retain legible dark navy; accents reflect the logo’s hand-drawn rainbow, not a generic neon palette.
-- Preserves content, bilingual controls, 37 project entries, 23/37 review counter, original image assets, and private/public boundary.
+- Preserves content, bilingual controls, 37 project entries, 24/37 review counter, original image assets, and private/public boundary.
 
 ## Visual palette update (2026-11-11)
 
@@ -16,9 +16,9 @@ This is the public-only studio website. The canonical internal research projects
 
 ## Audit tracker update (2026-11-11)
 
-- The public first-pass review counter now shows **23 of 37 reviewed**, next **024 NAVIER-STOKES**. This is NOT project completion or a monthly progress percentage.
+- The public first-pass review counter now shows **24 of 37 reviewed**, next **025 PERFECT-CUBOID**. This is NOT project completion or a monthly progress percentage.
 - The audit tracker contains only public-safe counts and the already-public project name. No private report link, internal experiment result, source location or research architecture is exposed.
-- The monthly progress figures and original 37 portfolio items remain unchanged. The website now displays reviewed/not-yet-reviewed status and a curated one-line milestone for each of the first 23 entries; these summaries do not publish internal evidence, locations, or secrets.
+- The monthly progress figures and original 37 portfolio items remain unchanged. The website now displays reviewed/not-yet-reviewed status and a curated one-line milestone for each of the first 24 entries; these summaries do not publish internal evidence, locations, or secrets.
 
 ## Public data boundary
 
@@ -54,10 +54,10 @@ For Actions deployment, select **GitHub Actions** as the Pages build-and-deploym
 
 This branch is intentionally isolated from `main` until reviewed.
 
-## Public review synchronization (2026-11-11, through item 023)
+## Public review synchronization (2026-11-11, through item 024)
 
-- `index.html` displays **23/37** deep reviews, followed by **024 NAVIER-STOKES**, separately from project development completion or monthly plan percentages.
-- Reviewed entries 001–023 display concise, public-safe status summaries; remaining entries display an explicit review-pending note.
+- `index.html` displays **24/37** deep reviews, followed by **025 PERFECT-CUBOID**, separately from project development completion or monthly plan percentages.
+- Reviewed entries 001–024 display concise, public-safe status summaries; remaining entries display an explicit review-pending note.
 - Bilingual rendering, project search/category filtering, existing monthly progress bars, logo imagery and gray background are preserved.
 - Approved public copy is manually curated. Internal/private audit ledgers, paths, training data, architecture, model weights and detailed test reports are not embedded or requested from the browser.
 - Latest website update uses the existing GitHub Pages CI validation and deployment workflow.
@@ -66,11 +66,11 @@ This branch is intentionally isolated from `main` until reviewed.
 
 - Added `estimates.json` for all 37 public portfolio entries. Each shows a **coarse range** of readiness, a confidence label, and a brief public-safe reason, based on the available engineering/research phase evidence.
 - **These are subjective estimates, not experimentally measured percentages, not scientific proof progress, and not release-acceptance percentages.** Research manuscripts, datasets, games, and compilers have different acceptance obligations; ranges cannot be averaged or compared as interchangeable quantities.
-- First 23 entries draw on in-depth audits; remaining 14 use high-level source/registry discovery and explicitly have **low confidence**. No new in-depth audit was claimed.
+- First 24 entries draw on in-depth audits; remaining 13 use high-level source/registry discovery and explicitly have **low confidence**. No new in-depth audit was claimed.
 - Original **seven studio-provided monthly-plan percentages** in `portfolio.json` and `progress.json` remain unchanged and separately displayed.
 - Page shows a horizontal **uncertainty band** from estimate low to high, not a fabricated exact-point completion or a progress bar with a single authoritative value.
 - JSON fields are strictly allowlisted by `scripts/validate_site.py`; GitHub Pages workflow validates and includes `estimates.json` in deployment.
-- Review counter is **23/37**; estimating the other 19 does not count as their deep audits.
+- Review counter is **24/37**; estimating the other 19 does not count as their deep audits.
 
 ## Featured R&D and portfolio synchronization (2026-11-11)
 
@@ -111,3 +111,10 @@ This branch is intentionally isolated from `main` until reviewed.
 - Newly added GitHub Actions [run 43035015201](https://github.com/SunTung/Simulation-Field-Animation-Mathematical-Structure-Algorithms/actions/runs/43035015201) **SUCCESS**: retained Python reference 05–13 suite PASS and independently authored nine-family guards/conservation checks PASS. **Not Rl-native or hardware tests.**
 - B Space A-to-AB has separately reported, bounded Rl-native evidence; full CFD, coupled world, visuals and physical hardware acceptance are not proven. Formula-world v0.3/v0.5 Drive papers remain **candidate specifications**.
 - Audit tracker **23/37**, next **024 NAVIER-STOKES**; public subjective readiness range remains **20–45%**, with upgraded medium-confidence evidence label.
+
+## 024 Navier–Stokes finite-scale closure audit
+
+- **Confirmed closure:** Theorem 10.1 of the Sept 18 Google Drive manuscript states and establishes finite-scale/finite-order **representation closure** on every already-smooth finite classical cylinder `T < T*`, with return to the original Eulerian pair after dyadic reconstruction, mixed derivative recovery, pressure and auxiliary elimination. It is not merely a proposed manuscript.
+- The theorem's `C_T` is uniform in dyadic step `h`, via Grönwall coefficients using time integrals of solution gradient norms; the paper does not thereby establish uniform continuation as `T` approaches `T*`. Global arbitrary-data regularity remains a distinct claim, not established by Theorem 10.1.
+- New archival claim-status checker GitHub Actions #43036631844 **SUCCESS** validates the status ledger, not a new theorem or independent peer review.
+- Deep audit **24/37**, next **025 Perfect Cuboid**. Public subjective manuscript readiness estimate remains 25–50%, not proof completion.
