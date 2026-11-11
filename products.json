@@ -20,8 +20,7 @@
       "category": "GAME",
       "description": "細胞防禦主題手機遊戲，開發中。",
       "description_en": "Cell-defense themed mobile game, in development.",
-      "public": true,
-      "url": "https://github.com/SunTung/CELL-DEFENDER"
+      "public": true
     }
   ]
 }
