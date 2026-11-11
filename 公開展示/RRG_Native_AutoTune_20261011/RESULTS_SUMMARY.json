@@ -1,9 +1,0 @@
-{
-  "project": "RRG",
-  "public_scope": "concept_only",
-  "category": "software_and_ai_research",
-  "status": "research",
-  "description_zh": "探索人工智慧系統在資料組織、資源管理與執行效率方面的可能性。",
-  "description_en": "Research on data organization, resource management and execution efficiency in AI systems.",
-  "notice": "Internal designs, experimental results and implementation details are not published."
-}

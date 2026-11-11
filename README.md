@@ -1,30 +1,5 @@
-# 公開展示
+# Sun Tung × CELL Research Lab — Official Website
 
-## 研究論文入口
+此分支僅保存官方網站必要的靜態資產、經核准的月度進度與產品資訊。研究來源、內部設計、工程測試、資料庫、演算法與開發原始碼不公開。
 
-- [三維漩渦與週期 Navier–Stokes 研究論文](公開展示/Three_Dimensional_Vortex_Navier_Stokes/README.md)：第九、十篇全文、第十一篇 PDF／DOCX、結論附錄與後續 T67。現有研究仍未完成全域正則性證明。
-- [全部公開展示索引](公開展示/README.md)
-
-本公開倉庫僅展示經核准的研究方向與軟體成品；研究架構、演算法、原始碼、內部紀錄及私人資料均不應放入公開區。
-
-## Android 手機軟體
-
-- [手機錄音器 PocketRecorder — APK 建置、使用說明與原始碼](./Android-PocketRecorder/README.md)：Android 原生錄音、播放、檔案管理、麥克風測試，附公開建置流程與限制說明。
-
-## 展示項目
-
-- [Mario Krenn — K6,D=3 restricted result](./公開展示/Mario_Krenn_K6D3_Restricted/)
-
-這個項目展示一個 restricted fixed-endpoint-colour simple `K6,D=3` perfect-matching model 的結構結果與兩支 exact finite verifier。
-
-## 證據邊界
-
-- `23/23` support-orbit representatives 通過兩條 finite verifier 路線。
-- direct verifier 檢查 `1,217,855` 個 semantic endpoint-colour assignments。
-- 本展示不宣稱解決 unrestricted Krenn–Gu conjecture。
-- DeepMind formal-conjectures 的獨立 Lean formalization 與 upstream PR 仍是後續工作，沒有在此假裝已完成。
-- 對方既有 unrestricted Lean proof 以公開 repository 及固定 commit 引用。
-
-## 版本與來源
-
-展示內容整理自 `SunTung/Finished-Products-Showcase` 的 `K6D3-Restricted-Dual-Route-v1.1` 成品；本公開副本移除了作者聯絡與投稿行政 metadata。
+查看 [公開資料移轉公告](TRANSFER_NOTICE.md)。
