@@ -6,7 +6,7 @@ This is the public-only studio website. The canonical internal research projects
 
 - Original 1536×864 logo A examined for its actual color clusters: warm paper `#FAFAF7`, inner navy `#112C53`, medium blue `#20446C`, lilac `#987DAF`, orange `#EA8C53`, golden yellow `#E5CF5B`, and burgundy `#C03E49`.
 - Website canvas and navigation use logo-paper off-white. Information cards retain legible dark navy; accents reflect the logo’s hand-drawn rainbow, not a generic neon palette.
-- Preserves content, bilingual controls, 37 project entries, 25/37 review counter, original image assets, and private/public boundary.
+- Preserves content, bilingual controls, 37 project entries, 26/37 review counter, original image assets, and private/public boundary.
 
 ## Visual palette update (2026-11-11)
 
@@ -16,9 +16,9 @@ This is the public-only studio website. The canonical internal research projects
 
 ## Audit tracker update (2026-11-11)
 
-- The public first-pass review counter now shows **25 of 37 reviewed**, next **026 KRENN**. This is NOT project completion or a monthly progress percentage.
+- The public first-pass review counter now shows **26 of 37 reviewed**, next **027 JSP-000244**. This is NOT project completion or a monthly progress percentage.
 - The audit tracker contains only public-safe counts and the already-public project name. No private report link, internal experiment result, source location or research architecture is exposed.
-- The monthly progress figures and original 37 portfolio items remain unchanged. The website now displays reviewed/not-yet-reviewed status and a curated one-line milestone for each of the first 25 entries; these summaries do not publish internal evidence, locations, or secrets.
+- The monthly progress figures and original 37 portfolio items remain unchanged. The website now displays reviewed/not-yet-reviewed status and a curated one-line milestone for each of the first 26 entries; these summaries do not publish internal evidence, locations, or secrets.
 
 ## Public data boundary
 
@@ -54,10 +54,10 @@ For Actions deployment, select **GitHub Actions** as the Pages build-and-deploym
 
 This branch is intentionally isolated from `main` until reviewed.
 
-## Public review synchronization (2026-11-11, through item 025)
+## Public review synchronization (2026-11-11, through item 026)
 
-- `index.html` displays **25/37** deep reviews, followed by **026 KRENN**, separately from project development completion or monthly plan percentages.
-- Reviewed entries 001–025 display concise, public-safe status summaries; remaining entries display an explicit review-pending note.
+- `index.html` displays **26/37** deep reviews, followed by **027 JSP-000244**, separately from project development completion or monthly plan percentages.
+- Reviewed entries 001–026 display concise, public-safe status summaries; remaining entries display an explicit review-pending note.
 - Bilingual rendering, project search/category filtering, existing monthly progress bars, logo imagery and gray background are preserved.
 - Approved public copy is manually curated. Internal/private audit ledgers, paths, training data, architecture, model weights and detailed test reports are not embedded or requested from the browser.
 - Latest website update uses the existing GitHub Pages CI validation and deployment workflow.
@@ -66,11 +66,11 @@ This branch is intentionally isolated from `main` until reviewed.
 
 - Added `estimates.json` for all 37 public portfolio entries. Each shows a **coarse range** of readiness, a confidence label, and a brief public-safe reason, based on the available engineering/research phase evidence.
 - **These are subjective estimates, not experimentally measured percentages, not scientific proof progress, and not release-acceptance percentages.** Research manuscripts, datasets, games, and compilers have different acceptance obligations; ranges cannot be averaged or compared as interchangeable quantities.
-- First 25 entries draw on in-depth audits; remaining 12 use high-level source/registry discovery and explicitly have **low confidence**. No new in-depth audit was claimed.
+- First 26 entries draw on in-depth audits; remaining 11 use high-level source/registry discovery and explicitly have **low confidence**. No new in-depth audit was claimed.
 - Original **seven studio-provided monthly-plan percentages** in `portfolio.json` and `progress.json` remain unchanged and separately displayed.
 - Page shows a horizontal **uncertainty band** from estimate low to high, not a fabricated exact-point completion or a progress bar with a single authoritative value.
 - JSON fields are strictly allowlisted by `scripts/validate_site.py`; GitHub Pages workflow validates and includes `estimates.json` in deployment.
-- Review counter is **25/37**; estimating the other 19 does not count as their deep audits.
+- Review counter is **26/37**; estimating the other 19 does not count as their deep audits.
 
 ## Featured R&D and portfolio synchronization (2026-11-11)
 
@@ -124,3 +124,10 @@ This branch is intentionally isolated from `main` until reviewed.
 - The newer Sept 22 anti-recompute ledger supersedes the Aug 28 archive: certified bounded Ring/OBSERVE U=5,000,000; rational-angle q≤700 with 4,288,819,733 pair checks and no Perfect Cuboid; fixed denominator(u)≤50,000 with 268,260,332 rational states. Historical denominator≤100,000 attempt was interrupted and is **not** a complete search.
 - Fixed (399,26) family has exact genus-5 covering, elliptic and genus-2 quotients; the elliptic rational torsion `Z/4 × Z/2` has exact small-prime certificate. New GitHub Actions 43039388737 **SUCCESS** for existing PCLIFT 001/002/003C-D-E-F exact small certificates and saved receipt consistency. Large searches were **not rerun**.
 - Rank, Mordell–Weil generators, complete successive lifts, whole fixed-family exclusion and global Perfect Cuboid remain **OPEN**. Public subjective readiness estimate 30–55% remains unchanged; source confidence moved from low to medium. Coverage 25/37; next 026 KRENN.
+
+## 026 Krenn restricted K6,D3 double verification
+
+- The frozen 2026-09-21 v1.1 manuscript defines **restricted simple K6**, one primitive edge and one fixed ordered endpoint-colour pair per vertex pair; three monochromatic target amplitudes one and mixed target amplitudes zero. Not the unrestricted multi-edge-type conjecture.
+- The direct verifier checks 1,217,855 distinct semantic assignments; 23/23 symmetry-reduced support orbits UNSAT. A different symbolic verifier certifies 23/23 exact equality UNSAT cores of size at most three. New GitHub Actions [43041263800](https://github.com/SunTung/Finished-Products-Showcase/actions/runs/43041263800) reran **both Python programs** successfully and matched their frozen receipts.
+- Earlier attempted local Lean re-verification runs 35558519393 and 35558559543 failed. Do **not** conflate them with the Python PASS or upstream stronger Lean artifact. Manuscript submission is prepared; a portal receipt is not verified.
+- Public readiness band remains 35–60% as a subjective research-packaging estimate, **not a theorem completion percentage**. Audit coverage 26/37; next 027 JSP-000244.
