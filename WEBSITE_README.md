@@ -71,3 +71,11 @@ This branch is intentionally isolated from `main` until reviewed.
 - Page shows a horizontal **uncertainty band** from estimate low to high, not a fabricated exact-point completion or a progress bar with a single authoritative value.
 - JSON fields are strictly allowlisted by `scripts/validate_site.py`; GitHub Pages workflow validates and includes `estimates.json` in deployment.
 - Review counter remains **18/37**; estimating the other 19 does not count as their deep audits.
+
+## Featured R&D and portfolio synchronization (2026-11-11)
+
+- Featured seven R&D cards now resolve **project name → public portfolio ID → shared estimate** from the same `portfolio.json` and `estimates.json` used in the 37-item overview.
+- Both surfaces show the **same estimated readiness low–high range** and public milestone text. A link on each featured card selects the corresponding project in the portfolio list.
+- The historical **monthly-plan** value stays visible as a separate annotation; the featured readiness range never copies or overwrites it.
+- `scripts/validate_site.py` now verifies that all featured entries have a matching portfolio ID and public estimate, and that the dashboard actually uses the shared estimate.
+- `history/*.json`, `progress.json`, original seven studio-provided monthly figures and audit counter (18/37) remain unchanged.
