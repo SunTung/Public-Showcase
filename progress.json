@@ -1,0 +1,40 @@
+{
+  "month": "2026-11",
+  "projects": [
+    {
+      "name": "CELL 人工細胞智能",
+      "progress": 14,
+      "status": "研究中"
+    },
+    {
+      "name": "RRG 管理模式",
+      "progress": 13,
+      "status": "研究中"
+    },
+    {
+      "name": "RL Game Studio V1.0",
+      "progress": 19,
+      "status": "開發中"
+    },
+    {
+      "name": "CELO 編譯工作平台",
+      "progress": 42,
+      "status": "開發中"
+    },
+    {
+      "name": "無盡遠征｜大型復古遊戲",
+      "progress": 15,
+      "status": "開發中"
+    },
+    {
+      "name": "SOP 通用搜尋結構理論",
+      "progress": 65,
+      "status": "研究中"
+    },
+    {
+      "name": "量子模擬 SRV 技術",
+      "progress": 75,
+      "status": "研究中"
+    }
+  ]
+}

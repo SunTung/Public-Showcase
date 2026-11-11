@@ -1,0 +1,27 @@
+{
+  "products": [
+    {
+      "title": "CELL 臺灣注音輸入法",
+      "title_en": "CELL Taiwan Keyboard",
+      "category": "ANDROID",
+      "description": "繁體中文輸入工具，公開下載資訊待核准。",
+      "description_en": "Traditional Chinese keyboard. Public download pending approval.",
+      "public": true
+    },
+    {
+      "title": "PocketRecorder",
+      "category": "ANDROID",
+      "description": "行動錄音工具，正式產品發布資訊整理中。",
+      "description_en": "Mobile recorder. Public release details pending.",
+      "public": true
+    },
+    {
+      "title": "CELL DEFENDER",
+      "category": "GAME",
+      "description": "細胞防禦主題手機遊戲，開發中。",
+      "description_en": "Cell-defense themed mobile game, in development.",
+      "public": true,
+      "url": "https://github.com/SunTung/CELL-DEFENDER"
+    }
+  ]
+}
