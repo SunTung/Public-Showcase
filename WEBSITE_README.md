@@ -6,19 +6,19 @@ This is the public-only studio website. The canonical internal research projects
 
 - Original 1536×864 logo A examined for its actual color clusters: warm paper `#FAFAF7`, inner navy `#112C53`, medium blue `#20446C`, lilac `#987DAF`, orange `#EA8C53`, golden yellow `#E5CF5B`, and burgundy `#C03E49`.
 - Website canvas and navigation use logo-paper off-white. Information cards retain legible dark navy; accents reflect the logo’s hand-drawn rainbow, not a generic neon palette.
-- Preserves content, bilingual controls, 37 project entries, 5/37 review counter, original image assets, and private/public boundary.
+- Preserves content, bilingual controls, 37 project entries, 16/37 review counter, original image assets, and private/public boundary.
 
 ## Visual palette update (2026-11-11)
 
 - Palette inspired by the user-provided **Space V1 icon A**: navy core plus restrained pastel rainbow accents (lilac, coral, gold, mint, sky).
-- The site remains readable, research-focused and dark themed; mobile layout, bilingual controls and portfolio data remain unchanged.
+- The site retains navy information cards and a neutral gray page canvas; mobile layout, bilingual controls and portfolio data remain unchanged.
 - This commit changes CSS only; it does not upload or reproduce the icon artwork, alter the monthly percentage values, or expose private research materials.
 
 ## Audit tracker update (2026-11-11)
 
-- An independent first-pass review counter now shows **5 of 37 audited**, next **006 RRG**. This is NOT project completion or a monthly progress percentage.
+- The public first-pass review counter now shows **16 of 37 reviewed**, next **017 DR_CELL**. This is NOT project completion or a monthly progress percentage.
 - The audit tracker contains only public-safe counts and the already-public project name. No private report link, internal experiment result, source location or research architecture is exposed.
-- The monthly progress figures in `progress.json` and the 37 portfolio entries are unchanged.
+- The monthly progress figures and original 37 portfolio items remain unchanged. The website now displays reviewed/not-yet-reviewed status and a curated one-line milestone for each of the first 16 entries; these summaries do not publish internal evidence, locations, or secrets.
 
 ## Public data boundary
 
@@ -53,3 +53,11 @@ Workflow: `.github/workflows/studio-site.yml`.
 For Actions deployment, select **GitHub Actions** as the Pages build-and-deployment source in repository Settings → Pages. The workflow validates the public data and extracted JavaScript before attempting deployment. If repository Pages is not enabled, deployment remains blocked until GitHub settings are configured.
 
 This branch is intentionally isolated from `main` until reviewed.
+
+## Public review synchronization (2026-11-11, through item 016)
+
+- `index.html` displays **16/37** deep reviews, followed by **017 DR_CELL**, separately from project development completion or monthly plan percentages.
+- Reviewed entries 001–016 display concise, public-safe status summaries; remaining entries display an explicit review-pending note.
+- Bilingual rendering, project search/category filtering, existing monthly progress bars, logo imagery and gray background are preserved.
+- Approved public copy is manually curated. Internal/private audit ledgers, paths, training data, architecture, model weights and detailed test reports are not embedded or requested from the browser.
+- Latest website update uses the existing GitHub Pages CI validation and deployment workflow.
