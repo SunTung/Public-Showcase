@@ -6,7 +6,7 @@ This is the public-only studio website. The canonical internal research projects
 
 - Original 1536×864 logo A examined for its actual color clusters: warm paper `#FAFAF7`, inner navy `#112C53`, medium blue `#20446C`, lilac `#987DAF`, orange `#EA8C53`, golden yellow `#E5CF5B`, and burgundy `#C03E49`.
 - Website canvas and navigation use logo-paper off-white. Information cards retain legible dark navy; accents reflect the logo’s hand-drawn rainbow, not a generic neon palette.
-- Preserves content, bilingual controls, 37 project entries, 17/37 review counter, original image assets, and private/public boundary.
+- Preserves content, bilingual controls, 37 project entries, 18/37 review counter, original image assets, and private/public boundary.
 
 ## Visual palette update (2026-11-11)
 
@@ -16,9 +16,9 @@ This is the public-only studio website. The canonical internal research projects
 
 ## Audit tracker update (2026-11-11)
 
-- The public first-pass review counter now shows **17 of 37 reviewed**, next **018 SOP**. This is NOT project completion or a monthly progress percentage.
+- The public first-pass review counter now shows **18 of 37 reviewed**, next **019 SRV-QUANTUM**. This is NOT project completion or a monthly progress percentage.
 - The audit tracker contains only public-safe counts and the already-public project name. No private report link, internal experiment result, source location or research architecture is exposed.
-- The monthly progress figures and original 37 portfolio items remain unchanged. The website now displays reviewed/not-yet-reviewed status and a curated one-line milestone for each of the first 17 entries; these summaries do not publish internal evidence, locations, or secrets.
+- The monthly progress figures and original 37 portfolio items remain unchanged. The website now displays reviewed/not-yet-reviewed status and a curated one-line milestone for each of the first 18 entries; these summaries do not publish internal evidence, locations, or secrets.
 
 ## Public data boundary
 
@@ -54,10 +54,10 @@ For Actions deployment, select **GitHub Actions** as the Pages build-and-deploym
 
 This branch is intentionally isolated from `main` until reviewed.
 
-## Public review synchronization (2026-11-11, through item 017)
+## Public review synchronization (2026-11-11, through item 018)
 
-- `index.html` displays **17/37** deep reviews, followed by **018 SOP**, separately from project development completion or monthly plan percentages.
-- Reviewed entries 001–017 display concise, public-safe status summaries; remaining entries display an explicit review-pending note.
+- `index.html` displays **18/37** deep reviews, followed by **019 SRV-QUANTUM**, separately from project development completion or monthly plan percentages.
+- Reviewed entries 001–018 display concise, public-safe status summaries; remaining entries display an explicit review-pending note.
 - Bilingual rendering, project search/category filtering, existing monthly progress bars, logo imagery and gray background are preserved.
 - Approved public copy is manually curated. Internal/private audit ledgers, paths, training data, architecture, model weights and detailed test reports are not embedded or requested from the browser.
 - Latest website update uses the existing GitHub Pages CI validation and deployment workflow.
