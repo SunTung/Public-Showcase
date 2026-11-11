@@ -82,7 +82,7 @@ def main():
     estimates = read_json("estimates.json")
     assert set(estimates) == {"schema", "as_of", "method", "scope_note_zh", "scope_note_en", "reviewed_count", "total_count", "items"}
     assert estimates["schema"] == "public_stage_estimates_v1"
-    assert re.fullmatch(r"\\d{4}-\\d{2}-\\d{2}", estimates["as_of"])
+    assert re.fullmatch(r"\d{4}-\d{2}-\d{2}", estimates["as_of"])
     assert estimates["reviewed_count"] == 18 and estimates["total_count"] == 37
     assert len(estimates["items"]) == len(portfolio["items"]) == 37
     estimate_fields = {"id", "low", "high", "confidence", "scope", "note_zh", "note_en"}
