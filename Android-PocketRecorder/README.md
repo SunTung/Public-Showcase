@@ -1,4 +1,4 @@
-> **Play 上架準備版 v1.2（2026-11-11）**：專案現已加入公開開發者資訊入口、AdMob 測試 Banner、Google UMP 同意流程、target API 36，以及 AAB 建置步驟。正式廣告 ID、客服聯絡資料、商店正式簽章與實際上架尚未完成。
+> **Play 上架準備版 v1.2（2026-11-11）**：專案現已加入公開開發者資訊入口、AdMob 測試 Banner、Google UMP 同意流程、target API 36，以及 AAB 建置步驟。客服聯絡資料、商店正式簽章與實際上架尚未完成。
 
 # 手機錄音器 PocketRecorder（Android）
 
@@ -69,12 +69,12 @@
 |---|---|
 | 廣告單元名稱 | 橫向banner_細胞麥克風_1_2026_1111A0001 |
 | 正式 Banner Ad Unit ID | `ca-app-pub-1343937669240075/3821085574` |
-| 正式 AdMob App ID | **尚未提供**（格式：`ca-app-pub-1343937669240075~XXXXXXXXXX`） |
-| 目前預設編譯模式 | **測試廣告**，不計入正式收益 |
+| 正式 AdMob App ID | `ca-app-pub-1343937669240075~7835518057` |
+| 目前預設編譯模式 | **Debug：測試廣告；Release：正式廣告** |
 
 - 本專案的 Activity 使用 Kotlin **原生動態 UI**，不使用 `activity_main.xml`；廣告位於主畫面底部的固定容器。
-- `app/build.gradle.kts` 已註冊正式 Banner ID。只有提供格式正確、Publisher ID 一致的 `ADMOB_APP_ID` Gradle property 或環境變數，才會將它與正式 Banner 一起啟用；否則自動使用 Google 官方測試 App ID 與 Banner ID，避免混用。
-- 正式打包示例：`./gradlew :app:bundleRelease -PADMOB_APP_ID=ca-app-pub-1343937669240075~<在AdMob後台查得的10位數>`。
+- `app/build.gradle.kts` 已註冊正式 App ID 與 Banner ID。Debug 使用 Google 測試 ID；Release 使用正式 ID，避免混用。
+- 正式發布建置：`gradle :app:bundleRelease`，但需配置發布簽章才能交付 Google Play。
 - **不要直接複製字串中的 `XXXXXXXXXX` 作為 App ID**，它是待填佔位符。
 - 仍須確認 AdMob 後台「應用程式設定」→ **應用程式 ID**；若要測試自己的正式廣告單元，先在 AdMob 設定測試裝置。正式 AdMob Banner 應在正式上架配置與必要同意測試後啟用。
 - 所有實際收益由你自己的 AdMob 帳號處理；GitHub 只提供編譯程式，不會接收廣告收益。
