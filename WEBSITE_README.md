@@ -2,6 +2,12 @@
 
 This is the public-only studio website. The canonical internal research projects remain separate.
 
+## Visual palette update (2026-11-11)
+
+- Palette inspired by the user-provided **Space V1 icon A**: navy core plus restrained pastel rainbow accents (lilac, coral, gold, mint, sky).
+- The site remains readable, research-focused and dark themed; mobile layout, bilingual controls and portfolio data remain unchanged.
+- This commit changes CSS only; it does not upload or reproduce the icon artwork, alter the monthly percentage values, or expose private research materials.
+
 ## Audit tracker update (2026-11-11)
 
 - An independent first-pass review counter now shows **5 of 37 audited**, next **006 RRG**. This is NOT project completion or a monthly progress percentage.
