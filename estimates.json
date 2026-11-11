@@ -221,7 +221,7 @@
       "confidence": "medium",
       "scope": "paper",
       "note_zh": "9月18日正式論文 Theorem 10.1 已完成既有光滑有限時間區間上的尺度表示、導數及壓力重建閉合；全域延拓為另一未證關卡",
-      "note_en": "Sept 18 Theorem 10.1 closes finite classical-cylinder representation, derivatives and pressure reconstruction; arbitrary-data global continuation remains separate"
+      "note_en": "Sept 18 Theorem 10.1 closes finite-cylinder representation and pressure reconstruction; global continuation remains a separate open problem"
     },
     {
       "id": "PERFECT-CUBOID",
