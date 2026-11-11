@@ -1,0 +1,57 @@
+name: Website validate and deploy
+on:
+  push:
+    branches: [website-v1-20261111]
+    paths:
+      - index.html
+      - progress.json
+      - products.json
+      - history/**
+      - scripts/validate_site.py
+      - .github/workflows/studio-site.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: studio-pages
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Public data allowlist and consistency
+        run: python scripts/validate_site.py
+      - name: JavaScript syntax check
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          html = Path("index.html").read_text(encoding="utf-8")
+          script = html.split("<script>",1)[1].split("</script>",1)[0]
+          Path("/tmp/studio-site.js").write_text(script,encoding="utf-8")
+          PY
+          node --check /tmp/studio-site.js
+
+  deploy:
+    needs: validate
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - id: deployment
+        uses: actions/deploy-pages@v4
