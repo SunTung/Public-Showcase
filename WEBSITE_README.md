@@ -6,7 +6,7 @@ This is the public-only studio website. The canonical internal research projects
 
 - Original 1536×864 logo A examined for its actual color clusters: warm paper `#FAFAF7`, inner navy `#112C53`, medium blue `#20446C`, lilac `#987DAF`, orange `#EA8C53`, golden yellow `#E5CF5B`, and burgundy `#C03E49`.
 - Website canvas and navigation use logo-paper off-white. Information cards retain legible dark navy; accents reflect the logo’s hand-drawn rainbow, not a generic neon palette.
-- Preserves content, bilingual controls, 37 project entries, 20/37 review counter, original image assets, and private/public boundary.
+- Preserves content, bilingual controls, 37 project entries, 21/37 review counter, original image assets, and private/public boundary.
 
 ## Visual palette update (2026-11-11)
 
@@ -16,9 +16,9 @@ This is the public-only studio website. The canonical internal research projects
 
 ## Audit tracker update (2026-11-11)
 
-- The public first-pass review counter now shows **20 of 37 reviewed**, next **021 RGOS**. This is NOT project completion or a monthly progress percentage.
+- The public first-pass review counter now shows **21 of 37 reviewed**, next **022 CLAW**. This is NOT project completion or a monthly progress percentage.
 - The audit tracker contains only public-safe counts and the already-public project name. No private report link, internal experiment result, source location or research architecture is exposed.
-- The monthly progress figures and original 37 portfolio items remain unchanged. The website now displays reviewed/not-yet-reviewed status and a curated one-line milestone for each of the first 20 entries; these summaries do not publish internal evidence, locations, or secrets.
+- The monthly progress figures and original 37 portfolio items remain unchanged. The website now displays reviewed/not-yet-reviewed status and a curated one-line milestone for each of the first 21 entries; these summaries do not publish internal evidence, locations, or secrets.
 
 ## Public data boundary
 
@@ -54,10 +54,10 @@ For Actions deployment, select **GitHub Actions** as the Pages build-and-deploym
 
 This branch is intentionally isolated from `main` until reviewed.
 
-## Public review synchronization (2026-11-11, through item 020)
+## Public review synchronization (2026-11-11, through item 021)
 
-- `index.html` displays **20/37** deep reviews, followed by **021 RGOS**, separately from project development completion or monthly plan percentages.
-- Reviewed entries 001–020 display concise, public-safe status summaries; remaining entries display an explicit review-pending note.
+- `index.html` displays **21/37** deep reviews, followed by **022 CLAW**, separately from project development completion or monthly plan percentages.
+- Reviewed entries 001–021 display concise, public-safe status summaries; remaining entries display an explicit review-pending note.
 - Bilingual rendering, project search/category filtering, existing monthly progress bars, logo imagery and gray background are preserved.
 - Approved public copy is manually curated. Internal/private audit ledgers, paths, training data, architecture, model weights and detailed test reports are not embedded or requested from the browser.
 - Latest website update uses the existing GitHub Pages CI validation and deployment workflow.
@@ -66,11 +66,11 @@ This branch is intentionally isolated from `main` until reviewed.
 
 - Added `estimates.json` for all 37 public portfolio entries. Each shows a **coarse range** of readiness, a confidence label, and a brief public-safe reason, based on the available engineering/research phase evidence.
 - **These are subjective estimates, not experimentally measured percentages, not scientific proof progress, and not release-acceptance percentages.** Research manuscripts, datasets, games, and compilers have different acceptance obligations; ranges cannot be averaged or compared as interchangeable quantities.
-- First 20 entries draw on in-depth audits; remaining 17 use high-level source/registry discovery and explicitly have **low confidence**. No new in-depth audit was claimed.
+- First 21 entries draw on in-depth audits; remaining 16 use high-level source/registry discovery and explicitly have **low confidence**. No new in-depth audit was claimed.
 - Original **seven studio-provided monthly-plan percentages** in `portfolio.json` and `progress.json` remain unchanged and separately displayed.
 - Page shows a horizontal **uncertainty band** from estimate low to high, not a fabricated exact-point completion or a progress bar with a single authoritative value.
 - JSON fields are strictly allowlisted by `scripts/validate_site.py`; GitHub Pages workflow validates and includes `estimates.json` in deployment.
-- Review counter is **20/37**; estimating the other 19 does not count as their deep audits.
+- Review counter is **21/37**; estimating the other 19 does not count as their deep audits.
 
 ## Featured R&D and portfolio synchronization (2026-11-11)
 
@@ -91,3 +91,10 @@ This branch is intentionally isolated from `main` until reviewed.
 - The separate `SunTung/RG-Decision-Search-Lab` holds a historical six-solver 100-layer by 100x100 dynamic maze host-reference benchmark; all six solvers completed 100/100 layers with no invalid paths in archived results. This **does not** establish universal performance or Rl-native search.
 - A new non-destructive GitHub Actions current-scope validation on existing sources returned **17/17 PASS**, plus archived aggregate internal consistency PASS. Historical race was **not** rerun. Original legacy regression workflow is still failing and must not be represented as fixed.
 - Public review counter is **20/37**, next project **021 RGOS**. Decision search public estimated readiness remains **30–55%** with updated evidence note and medium confidence.
+
+## 021 RGOS / RGSS audit update
+
+- A true scope-specific RlEC Quick Verify failure came from using the **historical frozen README certificate** against the later edited README. Three existing reference/native-hash/P1B test consumers were repaired to retrieve and verify the **certificate-pinned Git blob** without overwriting or relaxing the original certificate. Current run 43017848846 passed. Conditional self-hosted native job was skipped, not a qualified Rl-only production OS boot.
+- RGOS host/freestanding Taiwanese Zhuyin validations on 2026-11-08 had PASS results for **158,905** entries and portable target compilation; these are *not* full RGOS physical keyboard/display acceptance.
+- 100 STEP and 28 work orders identify planned and scoped work, not 100 completed product gates. STEP005 hardware certification remains open. Estimated readiness remains **25–50% (subjective band)**.
+- Public overview is **21/37** deeply reviewed; next is **022 CLAW**.
