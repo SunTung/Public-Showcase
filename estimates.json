@@ -4,7 +4,7 @@
   "method": "manual_evidence_informed_stage_readiness_ranges_not_measured_completion",
   "scope_note_zh": "此區間僅為對目前工程、原型、研究文稿或資料建置階段的主觀推估，並非精確完成率，也不代表科學假說、未解數學問題或產品已通過驗收。不同專案間不可直接比較或平均。",
   "scope_note_en": "Ranges are subjective evidence-informed estimates of engineering, prototype, dataset, or manuscript readiness. They are not measured completion rates, scientific proof progress, or product acceptance. Do not compare or average across projects.",
-  "reviewed_count": 20,
+  "reviewed_count": 21,
   "total_count": 37,
   "items": [
     {
@@ -191,10 +191,10 @@
       "id": "RGOS",
       "low": 25,
       "high": 50,
-      "confidence": "low",
+      "confidence": "medium",
       "scope": "platform",
-      "note_zh": "Drive 已有 28 項／100 STEP 工程索引及部分原生關卡；全系統尚未驗收",
-      "note_en": "Drive tracks 28 work packages / 100 steps and scoped native gates; whole OS open"
+      "note_zh": "100 STEP／28 施工單有局部驗收；RlEC 歷史憑證回放 CI 已修復通過，15.89 萬筆注音主機端驗證成功；STEP005 實體開機仍待驗",
+      "note_en": "100-step/28-order plan has scoped tests; RlEC frozen-cert CI repaired and 158,905 Zhuyin entries host-verified; STEP005 physical boot remains open"
     },
     {
       "id": "CLAW",
