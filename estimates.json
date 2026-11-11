@@ -4,7 +4,7 @@
   "method": "manual_evidence_informed_stage_readiness_ranges_not_measured_completion",
   "scope_note_zh": "此區間僅為對目前工程、原型、研究文稿或資料建置階段的主觀推估，並非精確完成率，也不代表科學假說、未解數學問題或產品已通過驗收。不同專案間不可直接比較或平均。",
   "scope_note_en": "Ranges are subjective evidence-informed estimates of engineering, prototype, dataset, or manuscript readiness. They are not measured completion rates, scientific proof progress, or product acceptance. Do not compare or average across projects.",
-  "reviewed_count": 25,
+  "reviewed_count": 26,
   "total_count": 37,
   "items": [
     {
@@ -236,10 +236,10 @@
       "id": "KRENN",
       "low": 35,
       "high": 60,
-      "confidence": "low",
+      "confidence": "medium",
       "scope": "paper",
-      "note_zh": "GitHub 限制型結果已保留；本輪 Drive 未找到 Krenn 同名完整權威稿",
-      "note_en": "GitHub retains restricted result; no authoritative Krenn-named Drive manuscript found"
+      "note_zh": "固定端點顏色 simple K6、D=3 受限模型，雙路精確證書 23/23 PASS；非受限命題的獨立 Lean 重跑未通過",
+      "note_en": "Restricted simple K6,D3 fixed endpoint-colour theorem has dual exact 23/23 CI PASS; independent unrestricted Lean rerun unverified"
     },
     {
       "id": "JSP-000244",
