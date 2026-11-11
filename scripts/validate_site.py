@@ -83,7 +83,7 @@ def main():
     assert set(estimates) == {"schema", "as_of", "method", "scope_note_zh", "scope_note_en", "reviewed_count", "total_count", "items"}
     assert estimates["schema"] == "public_stage_estimates_v1"
     assert re.fullmatch(r"\d{4}-\d{2}-\d{2}", estimates["as_of"])
-    assert estimates["reviewed_count"] == 18 and estimates["total_count"] == 37
+    assert estimates["reviewed_count"] == 19 and estimates["total_count"] == 37
     assert len(estimates["items"]) == len(portfolio["items"]) == 37
     estimate_fields = {"id", "low", "high", "confidence", "scope", "note_zh", "note_en"}
     mapping = {x["id"]: x for x in estimates["items"]}
@@ -99,7 +99,7 @@ def main():
             assert isinstance(row[key], str) and 10 <= len(row[key]) <= 160
         serialized = json.dumps(row, ensure_ascii=False)
         assert not re.search(r"(?:github\\.com|drive\\.google\\.com|/mnt/|[a-zA-Z]:\\\\|token|password|private_repo|model_path|sha256|commit_sha)", serialized, re.I)
-    assert all(mapping[e["id"]]["confidence"] == "low" for e in portfolio["items"][18:])
+    assert all(mapping[e["id"]]["confidence"] == "low" for e in portfolio["items"][19:])
     assert sum(e["monthly_progress_pct"] is not None for e in portfolio["items"]) == len(current["projects"]), "Mismatch with monthly dashboard"
     # Featured dashboard cards must share portfolio IDs and estimates with the overview.
     public_names = {entry["name"]: entry["id"] for entry in portfolio["items"]}
