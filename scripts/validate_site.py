@@ -101,6 +101,16 @@ def main():
         assert not re.search(r"(?:github\\.com|drive\\.google\\.com|/mnt/|[a-zA-Z]:\\\\|token|password|private_repo|model_path|sha256|commit_sha)", serialized, re.I)
     assert all(mapping[e["id"]]["confidence"] == "low" for e in portfolio["items"][18:])
     assert sum(e["monthly_progress_pct"] is not None for e in portfolio["items"]) == len(current["projects"]), "Mismatch with monthly dashboard"
+    # Featured dashboard cards must share portfolio IDs and estimates with the overview.
+    public_names = {entry["name"]: entry["id"] for entry in portfolio["items"]}
+    assert len(public_names) == len(portfolio["items"]), "Duplicate public display names"
+    for featured in current["projects"]:
+        assert featured["name"] in public_names, "Featured project has no linked portfolio item"
+        assert public_names[featured["name"]] in mapping, "Featured project has no linked estimate"
+    assert 'const project=portfolio.find(x=>x.name===p.name)' in page, "Dashboard is not linked to portfolio identity"
+    assert 'const estimate=project&&estimates[project.id]' in page, "Dashboard does not use shared estimates"
+    assert 'text(monthly,(language==="zh"?"原本本月計畫："' in page, "Monthly plan must stay distinct from estimate"
+
     print(f"PASS: HTML, {len(months)} month(s), {len(current['projects'])} monthly progress entries, {len(portfolio['items'])} public portfolio items, {len(products['products'])} products")
 
 if __name__ == "__main__":
