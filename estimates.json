@@ -4,7 +4,7 @@
   "method": "manual_evidence_informed_stage_readiness_ranges_not_measured_completion",
   "scope_note_zh": "此區間僅為對目前工程、原型、研究文稿或資料建置階段的主觀推估，並非精確完成率，也不代表科學假說、未解數學問題或產品已通過驗收。不同專案間不可直接比較或平均。",
   "scope_note_en": "Ranges are subjective evidence-informed estimates of engineering, prototype, dataset, or manuscript readiness. They are not measured completion rates, scientific proof progress, or product acceptance. Do not compare or average across projects.",
-  "reviewed_count": 21,
+  "reviewed_count": 22,
   "total_count": 37,
   "items": [
     {
@@ -200,10 +200,10 @@
       "id": "CLAW",
       "low": 10,
       "high": 30,
-      "confidence": "low",
+      "confidence": "medium",
       "scope": "agent",
-      "note_zh": "已保留中文 donor 模型與代理規劃；本輪 Drive 未找到明確 CLAW 主論文",
-      "note_en": "Chinese donor checkpoint and agent plans exist; no canonical CLAW paper located in Drive search"
+      "note_zh": "正式 donor 已核實為 R7H step2600；R3／R4 局部語義測試存在，R7H、R7I-B、R7M、R8 自由生成皆未通過，代理操作仍待驗",
+      "note_en": "R7H step2600 is formal donor; bounded R3/R4 probes exist, R7H/R7I-B/R7M/R8 free generation failed; agent execution unverified"
     },
     {
       "id": "SPACE-SIM",
