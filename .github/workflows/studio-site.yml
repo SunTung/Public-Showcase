@@ -1,9 +1,10 @@
 name: Website validate and deploy
 on:
   push:
-    branches: [website-v1-20261111]
+    branches: [main, website-v1-20261111]
     paths:
       - index.html
+      - assets/**
       - progress.json
       - products.json
       - portfolio.json
@@ -56,6 +57,7 @@ jobs:
           mkdir -p _site
           cp index.html progress.json products.json portfolio.json _site/
           cp -R history _site/history
+          cp -R assets _site/assets
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
