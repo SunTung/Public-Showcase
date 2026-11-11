@@ -22,8 +22,8 @@
       "high": 25,
       "confidence": "medium",
       "scope": "capability",
-      "note_zh": "十階段已有工程框架；自然語言外部評測尚弱",
-      "note_en": "Ten-stage framework exists; external language validation remains limited"
+      "note_zh": "G27–G33 對話、分層記憶與決策架構有實驗紀錄；開放式語言能力待驗",
+      "note_en": "G27–G33 dialogue and layered-memory experiments documented; open-language ability unverified"
     },
     {
       "id": "CELL-EN",
@@ -40,8 +40,8 @@
       "high": 35,
       "confidence": "medium",
       "scope": "research",
-      "note_zh": "已進行實驗；部分關鍵假說未獲支持",
-      "note_en": "Experiments completed; key hypotheses remain unsupported"
+      "note_zh": "NERVE 論文及材料／觸手實驗已成形；核心自發學習假說仍有反例",
+      "note_en": "NERVE papers and material/tentacle trials exist; self-learning hypotheses still face counterevidence"
     },
     {
       "id": "CELL-M",
@@ -58,8 +58,8 @@
       "high": 60,
       "confidence": "medium",
       "scope": "framework",
-      "note_zh": "結構規格與局部演算法已具成果；整體執行未閉合",
-      "note_en": "Structural design and scoped algorithms exist; full runtime open"
+      "note_zh": "MIE→RG 理論體系及量子結構編譯已有論文與限定實驗；通用 Runtime 未驗收",
+      "note_en": "MIE→RG papers and scoped quantum structural tests exist; general runtime not accepted"
     },
     {
       "id": "CELO",
@@ -175,8 +175,8 @@
       "high": 50,
       "confidence": "low",
       "scope": "research",
-      "note_zh": "量子模擬相關成果已編目，正式 SRV 基線待定位",
-      "note_en": "Related quantum work indexed; canonical SRV baseline unconfirmed"
+      "note_zh": "SSQC／RRG 結構量子模擬有封閉態族實驗；尚不能等同獨立 SRV 完成",
+      "note_en": "SSQC/RRG structured quantum tests exist for restricted states; standalone SRV unverified"
     },
     {
       "id": "DECISION-SEARCH",
@@ -184,8 +184,8 @@
       "high": 55,
       "confidence": "low",
       "scope": "research",
-      "note_zh": "已存在搜尋實作與評測資料；最新結果待核",
-      "note_en": "Search implementations and benchmarks exist; newest results unreviewed"
+      "note_zh": "決策意向控制器論文記載 16/16 結構測試；真實跨域搜尋仍待驗",
+      "note_en": "Decision-intent controller paper reports 16/16 structural checks; cross-domain search open"
     },
     {
       "id": "RGOS",
@@ -220,8 +220,8 @@
       "high": 50,
       "confidence": "low",
       "scope": "paper",
-      "note_zh": "已有論文與條件性結果；不代表全域正則性證明",
-      "note_en": "Manuscripts and conditional results exist; no global proof claim"
+      "note_zh": "已有長論文、有限 classical cylinder 閉合與反例研究；全域正則性未證",
+      "note_en": "Long manuscripts, conditional finite-cylinder closure and counterexamples; global regularity open"
     },
     {
       "id": "PERFECT-CUBOID",
@@ -229,8 +229,8 @@
       "high": 55,
       "confidence": "low",
       "scope": "paper",
-      "note_zh": "已有有限精確搜尋成果；全域數學問題未解",
-      "note_en": "Finite exact-search results exist; global problem unresolved"
+      "note_zh": "有限精確搜尋達 4.29B 次配對及 268M 有理狀態；全域存在命題未解",
+      "note_en": "Finite exact search reports 4.29B pair checks and 268M rational states; global question open"
     },
     {
       "id": "KRENN",
@@ -238,8 +238,8 @@
       "high": 60,
       "confidence": "low",
       "scope": "paper",
-      "note_zh": "限制條件下的結果已有紀錄，通用證明仍待核",
-      "note_en": "Restricted-case findings documented; unrestricted proof unverified"
+      "note_zh": "K6,D3 限定研究有 31/31 教師引導驗證；不代表一般證明完成",
+      "note_en": "K6,D3 restricted proof steps verified under teacher forcing; unrestricted proof open"
     },
     {
       "id": "JSP-000244",
@@ -265,8 +265,8 @@
       "high": 55,
       "confidence": "low",
       "scope": "paper",
-      "note_zh": "相關技術論文已保存，論證與引用驗收尚缺",
-      "note_en": "Technical drafts archived; evidence review remains"
+      "note_zh": "CELL IV 認知與 RRG／量子結構多篇論文已形成；普遍性與原生整合待驗",
+      "note_en": "CELL IV cognition and RRG quantum-structure papers exist; generality and native integration open"
     },
     {
       "id": "DECISION-PAPERS",
@@ -274,8 +274,8 @@
       "high": 50,
       "confidence": "low",
       "scope": "paper",
-      "note_zh": "論文草稿存在，完整驗證及發表準備待查",
-      "note_en": "Drafts exist; validation and publication readiness unassessed"
+      "note_zh": "決策意向論文含可執行控制器與 16/16 結構檢查；非通用解題證明",
+      "note_en": "Decision-intent paper has executable controller and 16/16 structural checks; not general reasoning proof"
     },
     {
       "id": "RL-MATH-PAPERS",
@@ -283,8 +283,8 @@
       "high": 50,
       "confidence": "low",
       "scope": "paper",
-      "note_zh": "已有數學與證明材料，形式驗證仍待核",
-      "note_en": "Mathematics and proof materials exist; formal validation pending"
+      "note_zh": "MathMother 七環、31/31 與 35/35 教師引導驗證已有紀錄；IMO 實測未執行",
+      "note_en": "MathMother seven-ring design, teacher-forced checks recorded; IMO test not executed"
     },
     {
       "id": "RI-STORY",
