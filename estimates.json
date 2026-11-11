@@ -4,7 +4,7 @@
   "method": "manual_evidence_informed_stage_readiness_ranges_not_measured_completion",
   "scope_note_zh": "此區間僅為對目前工程、原型、研究文稿或資料建置階段的主觀推估，並非精確完成率，也不代表科學假說、未解數學問題或產品已通過驗收。不同專案間不可直接比較或平均。",
   "scope_note_en": "Ranges are subjective evidence-informed estimates of engineering, prototype, dataset, or manuscript readiness. They are not measured completion rates, scientific proof progress, or product acceptance. Do not compare or average across projects.",
-  "reviewed_count": 23,
+  "reviewed_count": 24,
   "total_count": 37,
   "items": [
     {
@@ -218,10 +218,10 @@
       "id": "NAVIER-STOKES",
       "low": 25,
       "high": 50,
-      "confidence": "low",
+      "confidence": "medium",
       "scope": "paper",
-      "note_zh": "已有長論文、有限 classical cylinder 閉合與反例研究；全域正則性未證",
-      "note_en": "Long manuscripts, conditional finite-cylinder closure and counterexamples; global regularity open"
+      "note_zh": "9月18日正式論文 Theorem 10.1 已完成既有光滑有限時間區間上的尺度表示、導數及壓力重建閉合；全域延拓為另一未證關卡",
+      "note_en": "Sept 18 Theorem 10.1 closes finite classical-cylinder representation, derivatives and pressure reconstruction; arbitrary-data global continuation remains separate"
     },
     {
       "id": "PERFECT-CUBOID",
