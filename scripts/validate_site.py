@@ -79,6 +79,27 @@ def main():
         assert entry["progress_basis"] == ("not_assessed" if pct is None else "user_supplied_monthly_plan")
         serialized = json.dumps(entry, ensure_ascii=False)
         assert not re.search(r"(?:github\.com|drive\.google\.com|/mnt/|[a-zA-Z]:\\\\|token|password|private_repo|model_path|source\.repository|source\.path|sha256|commit_sha)", serialized, re.I), "Potential private source or credential in portfolio"
+    estimates = read_json("estimates.json")
+    assert set(estimates) == {"schema", "as_of", "method", "scope_note_zh", "scope_note_en", "reviewed_count", "total_count", "items"}
+    assert estimates["schema"] == "public_stage_estimates_v1"
+    assert re.fullmatch(r"\\d{4}-\\d{2}-\\d{2}", estimates["as_of"])
+    assert estimates["reviewed_count"] == 18 and estimates["total_count"] == 37
+    assert len(estimates["items"]) == len(portfolio["items"]) == 37
+    estimate_fields = {"id", "low", "high", "confidence", "scope", "note_zh", "note_en"}
+    mapping = {x["id"]: x for x in estimates["items"]}
+    assert len(mapping) == 37 and set(mapping) == seen_ids
+    for row in estimates["items"]:
+        assert set(row) == estimate_fields, "Unexpected estimate field"
+        assert type(row["low"]) is int and type(row["high"]) is int
+        assert 0 <= row["low"] <= row["high"] <= 100
+        assert row["low"] % 5 == row["high"] % 5 == 0, "Do not imply false numeric precision"
+        assert row["confidence"] in {"low", "medium", "high"}
+        assert re.fullmatch(r"[a-z_]+", row["scope"])
+        for key in ("note_zh", "note_en"):
+            assert isinstance(row[key], str) and 10 <= len(row[key]) <= 160
+        serialized = json.dumps(row, ensure_ascii=False)
+        assert not re.search(r"(?:github\\.com|drive\\.google\\.com|/mnt/|[a-zA-Z]:\\\\|token|password|private_repo|model_path|sha256|commit_sha)", serialized, re.I)
+    assert all(mapping[e["id"]]["confidence"] == "low" for e in portfolio["items"][18:])
     assert sum(e["monthly_progress_pct"] is not None for e in portfolio["items"]) == len(current["projects"]), "Mismatch with monthly dashboard"
     print(f"PASS: HTML, {len(months)} month(s), {len(current['projects'])} monthly progress entries, {len(portfolio['items'])} public portfolio items, {len(products['products'])} products")
 
