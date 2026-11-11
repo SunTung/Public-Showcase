@@ -54,7 +54,7 @@ nav .logo::before{display:none}
 /* Space V1 A exact-artwork palette: sampled 2026-11-11 */
 :root {
   color-scheme:light;
-  --paper:#FAFAF7; --navy:#112C53; --blue:#20446C;
+  --paper:#E2E2E0; --navy:#112C53; --blue:#20446C;
   --lilac:#987DAF; --orange:#EA8C53; --yellow:#E5CF5B;
   --rose:#C03E49; --ink:#202A3A;
   --muted:#516174; --panel-ink:#EFF4FA;
@@ -68,12 +68,12 @@ body {
     var(--paper);
   color:var(--ink);
 }
-nav{background:rgba(250,250,247,.96);border-bottom:1px solid #D9D7DF;box-shadow:0 2px 18px #112C530B}
+nav{background:rgba(226,226,224,.96);border-bottom:1px solid #C9CBD0;box-shadow:0 2px 18px #112C530B}
 nav .logo{color:var(--navy)}
 nav .links a{color:#2C4260}
 nav .links a:hover,a:hover{color:#A93C53}
 a{color:#244E78}
-.hero{border-bottom:1px solid #E8E4E5}
+.hero{border-bottom:1px solid #C9CBD0}
 .hero::before{opacity:.13;filter:blur(24px)}
 .hero-art{box-shadow:0 12px 32px #112C5312;border:1px solid #ECE6DC;border-radius:16px}
 .brand-mark{background:var(--paper)}
@@ -100,7 +100,7 @@ button,select,.portfolio-filters input{background:#FFFFFF;color:#203653;border:1
 button:hover,select:hover,.portfolio-filters input:focus{border-color:#987DAF}
 button:focus-visible,select:focus-visible,.portfolio-filters input:focus-visible{outline:3px solid #987DAF;outline-offset:2px}
 .product-tags{color:#F2CF71}
-footer{border-top-color:#D6D4DD;color:#637085}
+footer{border-top-color:#C9CBD0;color:#526177}
 #error{color:#AD364A}
 </style></head><body><nav><a class="logo" href="#top"><img src="./assets/space-v1-logo-a.webp" alt="" width="86" height="48" class="brand-mark">SUN TUNG × CELL</a><div class="links"><button id="langToggle" type="button" aria-label="Switch language">EN</button><a href="#progress">研發進度</a><a href="#portfolio">總覽</a><a href="#research">研究領域</a><a href="#software">產品</a><a href="#about">關於</a></div></nav><main><div id="top" class="hero"><img class="hero-art" src="./assets/space-v1-logo-a.webp" width="270" height="152" alt="Space V1 手繪品牌標誌，彩虹環繞深藍色星空與齒輪眼睛"><div class="eyebrow">Independent research & software development</div><h1>探索知識。<br><em>創造可能。</em></h1><p>孫東正 × CELL 科技研究工作室<br>Sun Tung × CELL Research Lab</p><p>探索人工智慧、軟體工程、科學與數位創作，將研究理念轉化成實際可用的作品。</p><a class="button" href="#progress">查看本月研發進度</a></div><section id="progress"><div class="eyebrow">R&D DASHBOARD</div><h2>研究與開發進度</h2><p class="sub">本月計畫完成比例。數值由工作室提供，並不等於整體專案完成率或經公開驗證的技術成熟度。</p><div class="month-line"><label id="monthLabel" for="monthSelect">月份</label><select id="monthSelect" aria-label="月份"><option value="2026-11">2026-11</option></select><span class="small" id="month">2026 年 11 月</span></div><div id="list" class="grid"></div><p id="error">進度資料暫時無法載入。</p></section><section id="portfolio"><div class="eyebrow">PROJECT PORTFOLIO</div><h2 id="portfolioHeading">研究、論文與工程總覽</h2><p id="portfolioNote" class="sub">共有 37 項研究與創作追蹤項目。進度百分比代表工作室提供的本月計畫完成率；沒有確認數值的項目顯示待評估，不代表沒有實際成果。</p><div id="auditSummary" class="card" style="margin-top:18px" role="status" aria-live="polite"><div class="eyebrow" id="auditEyebrow">RESEARCH REVIEW TRACKER</div><h3 id="auditTitle">研究與工程清查｜5 / 37 項</h3><p id="auditDescription">已完成前五項第一輪研究進度清查。此數字為清查項目數，不是研究完成百分比；未評估項目不代表沒有成果。</p><div class="small" id="auditNext">下一項：006｜RRG 管理模式 · 2026-11-11</div></div><div class="portfolio-filters"><input id="portfolioSearch" type="search" placeholder="搜尋研究名稱或工程目標" autocomplete="off" aria-label="搜尋研究項目"><select id="portfolioCategory" aria-label="篩選領域"><option value="all">全部領域</option></select></div><p class="small" id="portfolioCount" aria-live="polite"></p><div id="portfolioList" class="portfolio-list" aria-live="polite"></div><p id="portfolioError" class="small" hidden>目前無法讀取研究總覽。</p></section><section id="research"><div class="eyebrow">FIELDS OF EXPLORATION</div><h2>研究領域</h2><div class="grid three"><div class="card"><h3>人工智慧與知識探索</h3><p>探索理解、學習、知識保存與人機協作的可能性。</p></div><div class="card"><h3>軟體工程</h3><p>研究實用開發工具、行動應用與數位創作技術。</p></div><div class="card"><h3>科學與人文</h3><p>關注數學、物理、生命科學與文學的跨領域探索。</p></div></div></section><section id="software"><div class="eyebrow">PRODUCTS</div><h2>軟體與遊戲作品</h2><div id="products" class="grid three"></div></section><section id="about"><div class="eyebrow">ABOUT THE LAB</div><h2>關於工作室</h2><div class="card"><p>Sun Tung × CELL Research Lab 是跨領域研究與軟體開發的獨立工作室品牌。本站只展示研究方向、目標、經核准的進度數字及公開產品，不公開私人資料庫、研究架構、演算法、原始碼或內部紀錄。</p></div></section></main><footer>© <span id="year">2026</span> Sun Tung × CELL Research Lab</footer><!-- Website V1.1 deployment verification 2026-11-11 --><script>const translations={
 "zh":{nav:["研發進度","總覽","研究領域","產品","關於"],eyebrow:"獨立研究與軟體開發",headline:"探索知識。<br><em>創造可能。</em>",subtitle:"孫東正 × CELL 科技研究工作室<br>Sun Tung × CELL Research Lab",intro:"探索人工智慧、軟體工程、科學與數位創作，將研究理念轉化成實際可用的作品。",cta:"查看本月研發進度",progressTitle:"研究與開發進度",progressNote:"本月計畫完成比例。數值由工作室提供，並不等於整體專案完成率或經公開驗證的技術成熟度。",fields:"研究領域",products:"軟體與遊戲作品",about:"關於工作室",month:"月份",rate:"本月計畫完成度",error:"進度資料暫時無法載入。",lab:"Sun Tung × CELL Research Lab 是跨領域研究與軟體開發的獨立工作室品牌。本站只展示研究方向、目標、經核准的進度數字及公開產品，不公開私人資料庫、研究架構、演算法、原始碼或內部紀錄。",topics:[["人工智慧與知識探索","探索理解、學習、知識保存與人機協作的可能性。"],["軟體工程","研究實用開發工具、行動應用與數位創作技術。"],["科學與人文","關注數學、物理、生命科學與文學的跨領域探索。"]],statuses:{"研究中":"研究中","開發中":"開發中","測試中":"測試中","已發布":"已發布"} },
