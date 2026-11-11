@@ -2,6 +2,12 @@
 
 This is the public-only studio website. The canonical internal research projects remain separate.
 
+## Logo-sampled background revision (2026-11-11)
+
+- Original 1536×864 logo A examined for its actual color clusters: warm paper `#FAFAF7`, inner navy `#112C53`, medium blue `#20446C`, lilac `#987DAF`, orange `#EA8C53`, golden yellow `#E5CF5B`, and burgundy `#C03E49`.
+- Website canvas and navigation use logo-paper off-white. Information cards retain legible dark navy; accents reflect the logo’s hand-drawn rainbow, not a generic neon palette.
+- Preserves content, bilingual controls, 37 project entries, 5/37 review counter, original image assets, and private/public boundary.
+
 ## Visual palette update (2026-11-11)
 
 - Palette inspired by the user-provided **Space V1 icon A**: navy core plus restrained pastel rainbow accents (lilac, coral, gold, mint, sky).
