@@ -1,0 +1,344 @@
+{
+  "schema": "public_stage_estimates_v1",
+  "as_of": "2026-11-11",
+  "method": "manual_evidence_informed_stage_readiness_ranges_not_measured_completion",
+  "scope_note_zh": "此區間僅為對目前工程、原型、研究文稿或資料建置階段的主觀推估，並非精確完成率，也不代表科學假說、未解數學問題或產品已通過驗收。不同專案間不可直接比較或平均。",
+  "scope_note_en": "Ranges are subjective evidence-informed estimates of engineering, prototype, dataset, or manuscript readiness. They are not measured completion rates, scientific proof progress, or product acceptance. Do not compare or average across projects.",
+  "reviewed_count": 18,
+  "total_count": 37,
+  "items": [
+    {
+      "id": "CELL-CORE",
+      "low": 25,
+      "high": 45,
+      "confidence": "medium",
+      "scope": "platform",
+      "note_zh": "具局部核心驗收，完整原生整合未閉合",
+      "note_en": "Scoped core checks exist; full native integration remains open"
+    },
+    {
+      "id": "CELL-LANGUAGE",
+      "low": 10,
+      "high": 25,
+      "confidence": "medium",
+      "scope": "capability",
+      "note_zh": "十階段已有工程框架；自然語言外部評測尚弱",
+      "note_en": "Ten-stage framework exists; external language validation remains limited"
+    },
+    {
+      "id": "CELL-EN",
+      "low": 45,
+      "high": 65,
+      "confidence": "medium",
+      "scope": "model",
+      "note_zh": "已有增量模型成果，新一輪訓練與品質關卡受阻",
+      "note_en": "Incremental model milestones exist; training and quality gates remain"
+    },
+    {
+      "id": "CELL-NERVE",
+      "low": 15,
+      "high": 35,
+      "confidence": "medium",
+      "scope": "research",
+      "note_zh": "已進行實驗；部分關鍵假說未獲支持",
+      "note_en": "Experiments completed; key hypotheses remain unsupported"
+    },
+    {
+      "id": "CELL-M",
+      "low": 55,
+      "high": 75,
+      "confidence": "medium",
+      "scope": "module",
+      "note_zh": "固定範圍多數驗收通過，三端整合未完成",
+      "note_en": "Most scoped gates passed; cross-runtime integration remains"
+    },
+    {
+      "id": "RRG",
+      "low": 40,
+      "high": 60,
+      "confidence": "medium",
+      "scope": "framework",
+      "note_zh": "結構規格與局部演算法已具成果；整體執行未閉合",
+      "note_en": "Structural design and scoped algorithms exist; full runtime open"
+    },
+    {
+      "id": "CELO",
+      "low": 40,
+      "high": 60,
+      "confidence": "medium",
+      "scope": "platform",
+      "note_zh": "工作台與編譯鏈已有局部端到端測試；平台驗收未完成",
+      "note_en": "Workbench and compiler have scoped end-to-end checks; platform incomplete"
+    },
+    {
+      "id": "RL",
+      "low": 35,
+      "high": 55,
+      "confidence": "medium",
+      "scope": "compiler",
+      "note_zh": "編譯工具鏈已有可執行成果；完整語言契約待驗",
+      "note_en": "Executable tooling exists; full language contract remains"
+    },
+    {
+      "id": "RL-GAME-STUDIO-V1",
+      "low": 85,
+      "high": 95,
+      "confidence": "high",
+      "scope": "frozen_release",
+      "note_zh": "Windows V1 發行基線已驗證並封存",
+      "note_en": "Windows V1 release baseline verified and frozen"
+    },
+    {
+      "id": "RL-GAME-STUDIO",
+      "low": 60,
+      "high": 80,
+      "confidence": "medium",
+      "scope": "editor",
+      "note_zh": "Windows 建置及封裝通過，互動式 GUI 驗收待完成",
+      "note_en": "Windows build and packaging passed; interactive GUI acceptance pending"
+    },
+    {
+      "id": "ENDLESS",
+      "low": 25,
+      "high": 45,
+      "confidence": "medium",
+      "scope": "game",
+      "note_zh": "場景戰鬥經濟模組已有實作，完整可玩流程尚缺",
+      "note_en": "World, battle and economy modules exist; playable full loop open"
+    },
+    {
+      "id": "CELL-DEFENDER",
+      "low": 45,
+      "high": 65,
+      "confidence": "medium",
+      "scope": "game",
+      "note_zh": "Android 測試包建置通過，實機可玩性待驗",
+      "note_en": "Android test package built; device gameplay acceptance pending"
+    },
+    {
+      "id": "TAIWAN-KEYIN",
+      "low": 60,
+      "high": 80,
+      "confidence": "medium",
+      "scope": "app",
+      "note_zh": "正式版已有測試與簽章；四模式與實機操作待驗",
+      "note_en": "Signed release exists; four-mode and device acceptance pending"
+    },
+    {
+      "id": "POCKET-RECORDER",
+      "low": 35,
+      "high": 55,
+      "confidence": "medium",
+      "scope": "app",
+      "note_zh": "錄音程式功能已建，最新版編譯與發行仍受阻",
+      "note_en": "Recorder features coded; latest build and release blocked"
+    },
+    {
+      "id": "SPECIAL-DICTIONARY",
+      "low": 60,
+      "high": 80,
+      "confidence": "medium",
+      "scope": "data_tool",
+      "note_zh": "字典查詢與工具整合已測，學習載入尚缺",
+      "note_en": "Dictionary lookup integrated; model training use not accepted"
+    },
+    {
+      "id": "OPS-CORPUS",
+      "low": 10,
+      "high": 25,
+      "confidence": "medium",
+      "scope": "corpus",
+      "note_zh": "英文候選已累積，正式跨庫清理與目標仍未達成",
+      "note_en": "English candidates collected; verified corpus target not met"
+    },
+    {
+      "id": "DR-CELL",
+      "low": 30,
+      "high": 50,
+      "confidence": "medium",
+      "scope": "medical",
+      "note_zh": "生醫來源導入與結構驗證成功，原生醫學推理未整合",
+      "note_en": "Biomedical import validated; native medical reasoning not integrated"
+    },
+    {
+      "id": "SOP-SEARCH",
+      "low": 40,
+      "high": 60,
+      "confidence": "medium",
+      "scope": "research",
+      "note_zh": "相關搜尋演算法有實測，獨立名稱與通用驗證未確立",
+      "note_en": "Related search algorithms tested; standalone scope remains open"
+    },
+    {
+      "id": "SRV-QUANTUM",
+      "low": 20,
+      "high": 50,
+      "confidence": "low",
+      "scope": "research",
+      "note_zh": "量子模擬相關成果已編目，正式 SRV 基線待定位",
+      "note_en": "Related quantum work indexed; canonical SRV baseline unconfirmed"
+    },
+    {
+      "id": "DECISION-SEARCH",
+      "low": 30,
+      "high": 55,
+      "confidence": "low",
+      "scope": "research",
+      "note_zh": "已存在搜尋實作與評測資料；最新結果待核",
+      "note_en": "Search implementations and benchmarks exist; newest results unreviewed"
+    },
+    {
+      "id": "RGOS",
+      "low": 25,
+      "high": 50,
+      "confidence": "low",
+      "scope": "platform",
+      "note_zh": "部分原生及硬體關卡已記錄，整體系統驗收未完成",
+      "note_en": "Some native and hardware gates recorded; system acceptance open"
+    },
+    {
+      "id": "CLAW",
+      "low": 10,
+      "high": 30,
+      "confidence": "low",
+      "scope": "agent",
+      "note_zh": "代理架構有模型成果，但語言生成能力仍不足",
+      "note_en": "Agent prototypes exist, but language generation remains limited"
+    },
+    {
+      "id": "SPACE-SIM",
+      "low": 20,
+      "high": 45,
+      "confidence": "low",
+      "scope": "research",
+      "note_zh": "多套模擬研究已編目，實際整合與驗證未齊",
+      "note_en": "Simulation families indexed; integration and validation incomplete"
+    },
+    {
+      "id": "NAVIER-STOKES",
+      "low": 25,
+      "high": 50,
+      "confidence": "low",
+      "scope": "paper",
+      "note_zh": "已有論文與條件性結果；不代表全域正則性證明",
+      "note_en": "Manuscripts and conditional results exist; no global proof claim"
+    },
+    {
+      "id": "PERFECT-CUBOID",
+      "low": 30,
+      "high": 55,
+      "confidence": "low",
+      "scope": "paper",
+      "note_zh": "已有有限精確搜尋成果；全域數學問題未解",
+      "note_en": "Finite exact-search results exist; global problem unresolved"
+    },
+    {
+      "id": "KRENN",
+      "low": 35,
+      "high": 60,
+      "confidence": "low",
+      "scope": "paper",
+      "note_zh": "限制條件下的結果已有紀錄，通用證明仍待核",
+      "note_en": "Restricted-case findings documented; unrestricted proof unverified"
+    },
+    {
+      "id": "JSP-000244",
+      "low": 25,
+      "high": 50,
+      "confidence": "low",
+      "scope": "paper",
+      "note_zh": "已有有限範圍數論搜尋，完整證明仍開放",
+      "note_en": "Finite number-theory search exists; full proof open"
+    },
+    {
+      "id": "NERVE-PAPER",
+      "low": 25,
+      "high": 45,
+      "confidence": "low",
+      "scope": "paper",
+      "note_zh": "已有研究文稿，需納入實驗負面結果",
+      "note_en": "Research draft exists; negative findings need integration"
+    },
+    {
+      "id": "CELL-RRG-PAPERS",
+      "low": 30,
+      "high": 55,
+      "confidence": "low",
+      "scope": "paper",
+      "note_zh": "相關技術論文已保存，論證與引用驗收尚缺",
+      "note_en": "Technical drafts archived; evidence review remains"
+    },
+    {
+      "id": "DECISION-PAPERS",
+      "low": 25,
+      "high": 50,
+      "confidence": "low",
+      "scope": "paper",
+      "note_zh": "論文草稿存在，完整驗證及發表準備待查",
+      "note_en": "Drafts exist; validation and publication readiness unassessed"
+    },
+    {
+      "id": "RL-MATH-PAPERS",
+      "low": 25,
+      "high": 50,
+      "confidence": "low",
+      "scope": "paper",
+      "note_zh": "已有數學與證明材料，形式驗證仍待核",
+      "note_en": "Mathematics and proof materials exist; formal validation pending"
+    },
+    {
+      "id": "RI-STORY",
+      "low": 35,
+      "high": 60,
+      "confidence": "low",
+      "scope": "app",
+      "note_zh": "已有故事創作產品版本，最新可運行品質待核",
+      "note_en": "Story creation versions exist; latest runtime quality unverified"
+    },
+    {
+      "id": "CELL-EARTH",
+      "low": 25,
+      "high": 50,
+      "confidence": "low",
+      "scope": "game",
+      "note_zh": "已有世界模擬與展示資料，完整互動流程待核",
+      "note_en": "World simulation artifacts exist; full interaction unverified"
+    },
+    {
+      "id": "GAME-SMALL",
+      "low": 15,
+      "high": 40,
+      "confidence": "low",
+      "scope": "game",
+      "note_zh": "小遊戲規劃與部分成果已記錄，正式版本待核",
+      "note_en": "Mini-game plans and partial work exist; release baseline uncertain"
+    },
+    {
+      "id": "RGOS-TOOLS",
+      "low": 25,
+      "high": 50,
+      "confidence": "low",
+      "scope": "tools",
+      "note_zh": "網頁介面相關原始碼具成果，原生整合待驗",
+      "note_en": "Web interface source exists; native integration unverified"
+    },
+    {
+      "id": "LITERATURE",
+      "low": 40,
+      "high": 70,
+      "confidence": "low",
+      "scope": "creative",
+      "note_zh": "原創作品已累積，作品整理與投稿狀態待核",
+      "note_en": "Original works accumulated; catalog and submission status unverified"
+    },
+    {
+      "id": "PATENTS",
+      "low": 10,
+      "high": 30,
+      "confidence": "low",
+      "scope": "business",
+      "note_zh": "技術商業化有規劃，正式申請與產品化證據不足",
+      "note_en": "Commercialization planned; filing and launch evidence incomplete"
+    }
+  ]
+}
