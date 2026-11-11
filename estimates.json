@@ -4,7 +4,7 @@
   "method": "manual_evidence_informed_stage_readiness_ranges_not_measured_completion",
   "scope_note_zh": "此區間僅為對目前工程、原型、研究文稿或資料建置階段的主觀推估，並非精確完成率，也不代表科學假說、未解數學問題或產品已通過驗收。不同專案間不可直接比較或平均。",
   "scope_note_en": "Ranges are subjective evidence-informed estimates of engineering, prototype, dataset, or manuscript readiness. They are not measured completion rates, scientific proof progress, or product acceptance. Do not compare or average across projects.",
-  "reviewed_count": 24,
+  "reviewed_count": 25,
   "total_count": 37,
   "items": [
     {
@@ -227,10 +227,10 @@
       "id": "PERFECT-CUBOID",
       "low": 30,
       "high": 55,
-      "confidence": "low",
+      "confidence": "medium",
       "scope": "paper",
-      "note_zh": "工作日誌核對有限精確搜尋 42.9 億配對與 2.68 億狀態；未找到完整閉合",
-      "note_en": "Drive log documents 4.29B finite pair checks and 268M states; no full closure found"
+      "note_zh": "已核對 5M 環搜尋、q≤700 與 50k 分母有限精確成果；固定(399,26)族橢圓曲線 torsion 證書 CI 通過，rank／全有理點提升仍未解",
+      "note_en": "Certified finite 5M/q700/50k search records and exact (399,26) elliptic torsion CI; rank and full rational lifting remain open"
     },
     {
       "id": "KRENN",
