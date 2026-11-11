@@ -2,6 +2,12 @@
 
 This is the public-only studio website. The canonical internal research projects remain separate.
 
+## Audit tracker update (2026-11-11)
+
+- An independent first-pass review counter now shows **5 of 37 audited**, next **006 RRG**. This is NOT project completion or a monthly progress percentage.
+- The audit tracker contains only public-safe counts and the already-public project name. No private report link, internal experiment result, source location or research architecture is exposed.
+- The monthly progress figures in `progress.json` and the 37 portfolio entries are unchanged.
+
 ## Public data boundary
 
 - Publish only studio-approved broad research goals, monthly completion figures, product descriptions, and explicit public product links.
