@@ -61,3 +61,13 @@ This branch is intentionally isolated from `main` until reviewed.
 - Bilingual rendering, project search/category filtering, existing monthly progress bars, logo imagery and gray background are preserved.
 - Approved public copy is manually curated. Internal/private audit ledgers, paths, training data, architecture, model weights and detailed test reports are not embedded or requested from the browser.
 - Latest website update uses the existing GitHub Pages CI validation and deployment workflow.
+
+## Evidence-informed estimated readiness ranges (2026-11-11)
+
+- Added `estimates.json` for all 37 public portfolio entries. Each shows a **coarse range** of readiness, a confidence label, and a brief public-safe reason, based on the available engineering/research phase evidence.
+- **These are subjective estimates, not experimentally measured percentages, not scientific proof progress, and not release-acceptance percentages.** Research manuscripts, datasets, games, and compilers have different acceptance obligations; ranges cannot be averaged or compared as interchangeable quantities.
+- First 18 entries draw on in-depth audits; remaining 19 use high-level source/registry discovery and explicitly have **low confidence**. No new in-depth audit was claimed.
+- Original **seven studio-provided monthly-plan percentages** in `portfolio.json` and `progress.json` remain unchanged and separately displayed.
+- Page shows a horizontal **uncertainty band** from estimate low to high, not a fabricated exact-point completion or a progress bar with a single authoritative value.
+- JSON fields are strictly allowlisted by `scripts/validate_site.py`; GitHub Pages workflow validates and includes `estimates.json` in deployment.
+- Review counter remains **18/37**; estimating the other 19 does not count as their deep audits.
