@@ -4,7 +4,7 @@
   "method": "manual_evidence_informed_stage_readiness_ranges_not_measured_completion",
   "scope_note_zh": "此區間僅為對目前工程、原型、研究文稿或資料建置階段的主觀推估，並非精確完成率，也不代表科學假說、未解數學問題或產品已通過驗收。不同專案間不可直接比較或平均。",
   "scope_note_en": "Ranges are subjective evidence-informed estimates of engineering, prototype, dataset, or manuscript readiness. They are not measured completion rates, scientific proof progress, or product acceptance. Do not compare or average across projects.",
-  "reviewed_count": 22,
+  "reviewed_count": 23,
   "total_count": 37,
   "items": [
     {
@@ -209,10 +209,10 @@
       "id": "SPACE-SIM",
       "low": 20,
       "high": 45,
-      "confidence": "low",
+      "confidence": "medium",
       "scope": "research",
-      "note_zh": "Drive 有 4Rπ／第一空間及模擬公式論文；多物理執行基準未驗",
-      "note_en": "Drive has 4Rπ, First Space and simulation papers; multiphysics runtime unverified"
+      "note_zh": "13/13 類 RRG-1 首版結構已建立，05–13 類數值參考及穩定性邊界 CI PASS；B Space 限定原生有紀錄，完整跨場物理引擎待驗",
+      "note_en": "All 13 RRG-1 structural baselines exist; 05–13 numerical reference and guard CI passed; bounded B Space native reported, full coupled engine open"
     },
     {
       "id": "NAVIER-STOKES",
