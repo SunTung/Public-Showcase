@@ -13,8 +13,8 @@
       "high": 45,
       "confidence": "medium",
       "scope": "platform",
-      "note_zh": "具局部核心驗收，完整原生整合未閉合",
-      "note_en": "Scoped core checks exist; full native integration remains open"
+      "note_zh": "核心原生測試與十階段材料已留存；完整平台接口仍未閉合",
+      "note_en": "Native core tests and ten-stage documents exist; full platform integration open"
     },
     {
       "id": "CELL-LANGUAGE",
@@ -67,8 +67,8 @@
       "high": 60,
       "confidence": "medium",
       "scope": "platform",
-      "note_zh": "工作台與編譯鏈已有局部端到端測試；平台驗收未完成",
-      "note_en": "Workbench and compiler have scoped end-to-end checks; platform incomplete"
+      "note_zh": "跨平台底座需求已盤點 55 項；工作台可執行但全平台整合未驗",
+      "note_en": "55 cross-platform foundation requirements mapped; full platform integration open"
     },
     {
       "id": "RL",
@@ -76,8 +76,8 @@
       "high": 55,
       "confidence": "medium",
       "scope": "compiler",
-      "note_zh": "編譯工具鏈已有可執行成果；完整語言契約待驗",
-      "note_en": "Executable tooling exists; full language contract remains"
+      "note_zh": "Rl 編譯器與 ABI 具局部原生測試；正式全鏈及自舉未閉合",
+      "note_en": "Rl compiler and ABI have scoped native tests; full bootstrap chain remains open"
     },
     {
       "id": "RL-GAME-STUDIO-V1",
@@ -103,8 +103,8 @@
       "high": 45,
       "confidence": "medium",
       "scope": "game",
-      "note_zh": "場景戰鬥經濟模組已有實作，完整可玩流程尚缺",
-      "note_en": "World, battle and economy modules exist; playable full loop open"
+      "note_zh": "遊戲企劃與八張施工單明確；Linux 核心已測，Windows 可玩鏈待驗",
+      "note_en": "Design and eight work orders documented; Linux core tested, Windows playable loop open"
     },
     {
       "id": "CELL-DEFENDER",
@@ -121,8 +121,8 @@
       "high": 80,
       "confidence": "medium",
       "scope": "app",
-      "note_zh": "正式版已有測試與簽章；四模式與實機操作待驗",
-      "note_en": "Signed release exists; four-mode and device acceptance pending"
+      "note_zh": "Android 已有簽章版本；Drive另有 RGOS 注音主機端 158,905 詞庫，裸機輸入未接通",
+      "note_en": "Signed Android build exists; separate RGOS host IME has 158,905 entries, bare-metal link open"
     },
     {
       "id": "POCKET-RECORDER",
@@ -148,8 +148,8 @@
       "high": 25,
       "confidence": "medium",
       "scope": "corpus",
-      "note_zh": "英文候選已累積，正式跨庫清理與目標仍未達成",
-      "note_en": "English candidates collected; verified corpus target not met"
+      "note_zh": "GitHub 英文候選 34.50 MB，Drive 有收集規格與增量紀錄；跨庫清理未閉合",
+      "note_en": "GitHub has 34.50 MB candidates and Drive collection ledgers; global dedup pending"
     },
     {
       "id": "DR-CELL",
@@ -175,8 +175,8 @@
       "high": 50,
       "confidence": "low",
       "scope": "research",
-      "note_zh": "SSQC／RRG 結構量子模擬有封閉態族實驗；尚不能等同獨立 SRV 完成",
-      "note_en": "SSQC/RRG structured quantum tests exist for restricted states; standalone SRV unverified"
+      "note_zh": "Drive 有 SSQC 論文與 VSR 小型閉環：2q Bell 態、3001 次路由測試；獨立 SRV 全系統待核",
+      "note_en": "Drive has SSQC papers and small VSR loop (2q Bell, 3001 routing checks); full SRV unverified"
     },
     {
       "id": "DECISION-SEARCH",
@@ -193,8 +193,8 @@
       "high": 50,
       "confidence": "low",
       "scope": "platform",
-      "note_zh": "部分原生及硬體關卡已記錄，整體系統驗收未完成",
-      "note_en": "Some native and hardware gates recorded; system acceptance open"
+      "note_zh": "Drive 已有 28 項／100 STEP 工程索引及部分原生關卡；全系統尚未驗收",
+      "note_en": "Drive tracks 28 work packages / 100 steps and scoped native gates; whole OS open"
     },
     {
       "id": "CLAW",
@@ -202,8 +202,8 @@
       "high": 30,
       "confidence": "low",
       "scope": "agent",
-      "note_zh": "代理架構有模型成果，但語言生成能力仍不足",
-      "note_en": "Agent prototypes exist, but language generation remains limited"
+      "note_zh": "已保留中文 donor 模型與代理規劃；本輪 Drive 未找到明確 CLAW 主論文",
+      "note_en": "Chinese donor checkpoint and agent plans exist; no canonical CLAW paper located in Drive search"
     },
     {
       "id": "SPACE-SIM",
@@ -211,8 +211,8 @@
       "high": 45,
       "confidence": "low",
       "scope": "research",
-      "note_zh": "多套模擬研究已編目，實際整合與驗證未齊",
-      "note_en": "Simulation families indexed; integration and validation incomplete"
+      "note_zh": "Drive 有 4Rπ／第一空間及模擬公式論文；多物理執行基準未驗",
+      "note_en": "Drive has 4Rπ, First Space and simulation papers; multiphysics runtime unverified"
     },
     {
       "id": "NAVIER-STOKES",
@@ -229,8 +229,8 @@
       "high": 55,
       "confidence": "low",
       "scope": "paper",
-      "note_zh": "有限精確搜尋達 4.29B 次配對及 268M 有理狀態；全域存在命題未解",
-      "note_en": "Finite exact search reports 4.29B pair checks and 268M rational states; global question open"
+      "note_zh": "工作日誌核對有限精確搜尋 42.9 億配對與 2.68 億狀態；未找到完整閉合",
+      "note_en": "Drive log documents 4.29B finite pair checks and 268M states; no full closure found"
     },
     {
       "id": "KRENN",
@@ -238,8 +238,8 @@
       "high": 60,
       "confidence": "low",
       "scope": "paper",
-      "note_zh": "K6,D3 限定研究有 31/31 教師引導驗證；不代表一般證明完成",
-      "note_en": "K6,D3 restricted proof steps verified under teacher forcing; unrestricted proof open"
+      "note_zh": "GitHub 限制型結果已保留；本輪 Drive 未找到 Krenn 同名完整權威稿",
+      "note_en": "GitHub retains restricted result; no authoritative Krenn-named Drive manuscript found"
     },
     {
       "id": "JSP-000244",
@@ -247,8 +247,8 @@
       "high": 50,
       "confidence": "low",
       "scope": "paper",
-      "note_zh": "已有有限範圍數論搜尋，完整證明仍開放",
-      "note_en": "Finite number-theory search exists; full proof open"
+      "note_zh": "GitHub 記載有限範圍研究；本輪 Drive 關鍵字未找到同名權威論文",
+      "note_en": "GitHub documents bounded research; no same-name authoritative Drive paper located"
     },
     {
       "id": "NERVE-PAPER",
@@ -274,8 +274,8 @@
       "high": 50,
       "confidence": "low",
       "scope": "paper",
-      "note_zh": "決策意向論文含可執行控制器與 16/16 結構檢查；非通用解題證明",
-      "note_en": "Decision-intent paper has executable controller and 16/16 structural checks; not general reasoning proof"
+      "note_zh": "Drive 決策意向控制器 V2 論文記載 16/16 結構檢查，完整數學能力仍待驗",
+      "note_en": "Drive decision-intent V2 paper reports 16/16 structural checks; general math ability open"
     },
     {
       "id": "RL-MATH-PAPERS",
@@ -283,8 +283,8 @@
       "high": 50,
       "confidence": "low",
       "scope": "paper",
-      "note_zh": "MathMother 七環、31/31 與 35/35 教師引導驗證已有紀錄；IMO 實測未執行",
-      "note_en": "MathMother seven-ring design, teacher-forced checks recorded; IMO test not executed"
+      "note_zh": "MathMother 七環設計有 31/31、35/35 教師引導驗證；未完成真實 IMO 挑戰",
+      "note_en": "MathMother seven-ring design and teacher-forced checks recorded; no actual IMO attempt"
     },
     {
       "id": "RI-STORY",
@@ -337,8 +337,8 @@
       "high": 30,
       "confidence": "low",
       "scope": "business",
-      "note_zh": "技術商業化有規劃，正式申請與產品化證據不足",
-      "note_en": "Commercialization planned; filing and launch evidence incomplete"
+      "note_zh": "已有技術論文與商業化構想；本輪 Drive 未核實正式申請或核准憑證",
+      "note_en": "Technical papers and commercialization plans exist; filing/grant not confirmed in Drive"
     }
   ]
 }
