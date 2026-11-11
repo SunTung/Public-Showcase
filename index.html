@@ -259,7 +259,19 @@ html[data-theme="dark"] .portfolio-filters input:focus{border-color:#b9d6ee}
 html[data-theme="dark"] #error{color:#ffb6a4}
 html[data-theme="dark"] .hero-orbit{border-color:#5c7390}
 @media(max-width:720px){#themeToggle{flex-shrink:0;padding:8px 11px}nav .links{align-items:center}}
-</style></head><body><nav><a class="logo" href="#top"><img src="./assets/space-v1-logo-a.webp" alt="" width="86" height="48" class="brand-mark">SUN TUNG × CELL</a><div class="links"><button id="themeToggle" type="button" aria-label="切換夜間模式" aria-pressed="false" title="切換日間與夜間模式"><span class="theme-symbol" aria-hidden="true">☾</span><span id="themeLabel">夜間</span></button><button id="langToggle" type="button" aria-label="Switch language">EN</button><a href="#progress">研發進度</a><a href="#portfolio">總覽</a><a href="#research">研究領域</a><a href="#software">產品</a><a href="#about">關於</a></div></nav><main><div id="top" class="hero">
+
+/* V2.1.1: keep the theme switch visible even when mobile navigation scrolls. */
+.theme-dock{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:max(20px,env(safe-area-inset-bottom));z-index:9999;display:flex;align-items:center;gap:10px;padding:9px 9px 9px 15px;border:1px solid #9caab9;border-radius:999px;background:#fff;color:#152b44;box-shadow:0 8px 30px #132c4840;max-width:calc(100vw - 24px)}
+.theme-dock-title{color:#2b425c;font-size:11px;line-height:1.1;font-weight:850;letter-spacing:.06em}
+.theme-dock #themeToggle{min-width:96px;min-height:44px;justify-content:center;background:#153753;color:#fff;border-color:#153753;box-shadow:none}
+.theme-dock #themeToggle:hover,.theme-dock #themeToggle:focus-visible{background:#27547b;border-color:#27547b;color:#fff}
+html[data-theme="dark"] .theme-dock{background:#1a3149;border-color:#8ca9c5;color:#fff;box-shadow:0 8px 36px #0009}
+html[data-theme="dark"] .theme-dock-title{color:#edf3ff}
+html[data-theme="dark"] .theme-dock #themeToggle{background:#f7da8b;color:#182a40;border-color:#f7da8b}
+html[data-theme="dark"] .theme-dock #themeToggle:hover,html[data-theme="dark"] .theme-dock #themeToggle:focus-visible{background:#fff0b3;color:#12253d;border-color:#fff0b3}
+main{padding-bottom:80px}
+@media(max-width:720px){.theme-dock{bottom:max(12px,env(safe-area-inset-bottom));right:max(12px,env(safe-area-inset-right));padding:6px 6px 6px 12px;gap:7px}.theme-dock #themeToggle{min-width:87px;min-height:43px}.theme-dock-title{font-size:10px}}
+</style></head><body><nav><a class="logo" href="#top"><img src="./assets/space-v1-logo-a.webp" alt="" width="86" height="48" class="brand-mark">SUN TUNG × CELL</a><div class="links"><button id="langToggle" type="button" aria-label="Switch language">EN</button><a href="#progress">研發進度</a><a href="#portfolio">總覽</a><a href="#research">研究領域</a><a href="#software">產品</a><a href="#about">關於</a></div></nav><div class="theme-dock" role="group" aria-label="顯示模式 / Display theme"><span class="theme-dock-title" data-lang-zh="顯示模式" data-lang-en="DISPLAY">顯示模式</span><button id="themeToggle" type="button" aria-label="切換夜間模式" aria-pressed="false" title="切換日間與夜間模式"><span class="theme-symbol" aria-hidden="true">☾</span><span id="themeLabel">夜間</span></button></div><main><div id="top" class="hero">
   <div class="hero-content">
     <div class="eyebrow">Independent research &amp; software development</div>
     <h1>探索知識。<br><em>創造可能。</em></h1>
