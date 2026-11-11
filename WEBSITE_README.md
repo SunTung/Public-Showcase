@@ -1,4 +1,4 @@
-# Sun Tung × CELL Research Lab — Website V1.1
+# Sun Tung × CELL Research Lab — Website V1.2
 
 This is the public-only studio website. The canonical internal research projects remain separate.
 
@@ -10,13 +10,22 @@ This is the public-only studio website. The canonical internal research projects
 - Do not treat monthly progress percentages as project-wide completion or technical maturity.
 - Product downloads are enabled only after a separate explicit public release has been approved.
 
+## Approved public portfolio (V1.2)
+
+- `portfolio.json`: 37 **manually curated** public project entries with stable number, name, broad research/engineering goal, category, and month-plan progress.
+- No private GitHub/Drive path, model architecture, experiment data, implementation details or underlying evidence are copied into `portfolio.json`.
+- The seven supplied progress percentages are **monthly plans**, not overall maturity. Remaining 30 entries show **待評估 / Not assessed** (not zero).
+- The private source-of-truth registry remains in the separate private GitHub library. Changes do **not** auto-publish to the public site; public fields must be reviewed before modifying the static file.
+- Page supports search and category filtering and both Traditional Chinese / English language switching.
+
 ## Update guide
 
 1. Edit `history/YYYY-MM.json` using the strict public fields `name`, `progress`, `status`; do not add internal details.
 2. Update `history/index.json` with the valid month.
 3. Set `progress.json` to the same content as the latest public month.
 4. Edit `products.json` only for explicitly approved public items; avoid linking private or unverified download files.
-5. Run `python scripts/validate_site.py` locally, or let Actions validate on push.
+5. Curate `portfolio.json` without copying internal descriptions or paths; for new entries maintain stable IDs and 3-digit numbers. Do not assign unverified percentages.
+6. Run `python scripts/validate_site.py` locally, or let Actions validate on push.
 
 ## Deployment
 
