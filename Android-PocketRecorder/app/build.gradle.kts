@@ -17,12 +17,12 @@ android {
     buildTypes {
         getByName("debug") {
             manifestPlaceholders["admobAppId"] = testAppId
-            buildConfigField("String", "BANNER_AD_UNIT_ID", "\\"" + testBannerId + "\\"")
+            buildConfigField("String", "BANNER_AD_UNIT_ID", "\"" + testBannerId + "\"")
             buildConfigField("boolean", "USES_LIVE_ADS", "false")
         }
         getByName("release") {
             manifestPlaceholders["admobAppId"] = productionAppId
-            buildConfigField("String", "BANNER_AD_UNIT_ID", "\\"" + productionBannerId + "\\"")
+            buildConfigField("String", "BANNER_AD_UNIT_ID", "\"" + productionBannerId + "\"")
             buildConfigField("boolean", "USES_LIVE_ADS", "true")
         }
     }
