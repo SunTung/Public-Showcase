@@ -410,5 +410,14 @@
       "monthly_progress_pct": null,
       "progress_basis": "not_assessed"
     }
-  ]
+  ],
+  "audit_tracking": {
+    "as_of": "2026-11-11",
+    "total_items": 37,
+    "audited_items": 5,
+    "next_number": "006",
+    "next_name": "RRG 管理模式",
+    "next_name_en": "RRG Management Model",
+    "meaning": "first-pass review count, not project completion percentage"
+  }
 }
