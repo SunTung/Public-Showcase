@@ -18,6 +18,12 @@
       "project_id": "ALL",
       "kind": "REGISTRY_SYNC",
       "summary": "R5 私人主登記簿、WBS 與公開表 38 項 ID／優先級／來源查證狀態對照一致，差異 0 項；資料來源快照為 11 月 12 日。"
+    },
+    {
+      "date": "2026-11-13",
+      "project_id": "ALL",
+      "kind": "REGISTRY_SYNC",
+      "summary": "R6 建立正式的有界驗收明細與日期規則，現有 2 組已記錄關卡，整體工程完成率仍未核定。"
     }
   ]
 }
