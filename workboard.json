@@ -26,7 +26,10 @@
       "work_status": "下一關卡待執行",
       "overall_completion_pct": null,
       "monthly_plan_pct": 14,
-      "next_gate": "完成平台原生關卡及完整執行鏈"
+      "next_gate": "完成原生 Graph／TRACE／Checkpoint 整合驗收。",
+      "verified_milestone": "已完成部分原生平台與介面測試，完整執行鏈仍未閉合。",
+      "evidence_date": "2026-11-12",
+      "status_kind": "NEXT_GATE_OPEN"
     },
     {
       "number": "002",
@@ -39,7 +42,10 @@
       "work_status": "下一關卡待執行",
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
-      "next_gate": "完成下一項功能或研究里程碑的獨立驗收"
+      "next_gate": "完成非模板理解、獨立評測與回答鏈。",
+      "verified_milestone": "已建立局部語言功能；獨立泛化評測尚未通過。",
+      "evidence_date": "2026-11-12",
+      "status_kind": "NEXT_GATE_OPEN"
     },
     {
       "number": "003",
@@ -52,7 +58,10 @@
       "work_status": "下一關卡待執行",
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
-      "next_gate": "完成 67M 增量訓練與獨立語言評測"
+      "next_gate": "從 66M 真正增量訓練至 67M，完成保留集語言測試。",
+      "verified_milestone": "66M 原生訓練檢查點已發布；67M 未完成。",
+      "evidence_date": "2026-11-12",
+      "status_kind": "NEXT_GATE_OPEN"
     },
     {
       "number": "004",
@@ -65,7 +74,10 @@
       "work_status": "下一關卡待執行",
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
-      "next_gate": "完成下一項功能或研究里程碑的獨立驗收"
+      "next_gate": "完成等預算對照實驗，保留正反結果。",
+      "verified_milestone": "記憶結構有局部成果，部分學習假說實驗失敗。",
+      "evidence_date": "2026-11-12",
+      "status_kind": "NEXT_GATE_OPEN"
     },
     {
       "number": "005",
@@ -78,7 +90,10 @@
       "work_status": "下一關卡待執行",
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
-      "next_gate": "完成下一項功能或研究里程碑的獨立驗收"
+      "next_gate": "完成 C/C++、Python、ARM64 原生整合。",
+      "verified_milestone": "第一階段 28 項中 21 項驗收，7 項阻塞。",
+      "evidence_date": "2026-11-12",
+      "status_kind": "NEXT_GATE_OPEN"
     },
     {
       "number": "006",
@@ -91,7 +106,10 @@
       "work_status": "下一關卡待執行",
       "overall_completion_pct": null,
       "monthly_plan_pct": 13,
-      "next_gate": "完成下一項功能或研究里程碑的獨立驗收"
+      "next_gate": "完成多結構 Runtime 與殘差重分區驗證。",
+      "verified_milestone": "模型結構已有部分驗證；完整執行器仍待確認。",
+      "evidence_date": "2026-11-12",
+      "status_kind": "NEXT_GATE_OPEN"
     },
     {
       "number": "007",
@@ -104,7 +122,10 @@
       "work_status": "下一關卡待執行",
       "overall_completion_pct": null,
       "monthly_plan_pct": 42,
-      "next_gate": "完成下一項功能或研究里程碑的獨立驗收"
+      "next_gate": "完成原生執行、圖結構與工作鏈整合。",
+      "verified_milestone": "Host 端工作鏈有界通過，完整平台原生關卡未閉合。",
+      "evidence_date": "2026-11-12",
+      "status_kind": "NEXT_GATE_OPEN"
     },
     {
       "number": "008",
@@ -117,7 +138,10 @@
       "work_status": "下一關卡待執行",
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
-      "next_gate": "完成下一項功能或研究里程碑的獨立驗收"
+      "next_gate": "完成語義、ABI、所有權與最終 Linker。",
+      "verified_milestone": "原生編譯工具部分可用，自舉與最終連結器待完成。",
+      "evidence_date": "2026-11-12",
+      "status_kind": "NEXT_GATE_OPEN"
     },
     {
       "number": "009",
@@ -130,7 +154,10 @@
       "work_status": "下一關卡待執行",
       "overall_completion_pct": null,
       "monthly_plan_pct": 19,
-      "next_gate": "完成下一項功能或研究里程碑的獨立驗收"
+      "next_gate": "保留有效基線，僅處理影響現有產品的缺陷。",
+      "verified_milestone": "第一代 Windows 功能驗收已封存。",
+      "evidence_date": "2026-11-12",
+      "status_kind": "NEXT_GATE_OPEN"
     },
     {
       "number": "010",
@@ -143,7 +170,10 @@
       "work_status": "下一關卡待執行",
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
-      "next_gate": "完成下一項功能或研究里程碑的獨立驗收"
+      "next_gate": "完成 Windows GUI、存檔及重開驗收。",
+      "verified_milestone": "Linux 編譯與局部自測通過；Windows 完整操作待驗。",
+      "evidence_date": "2026-11-12",
+      "status_kind": "NEXT_GATE_OPEN"
     },
     {
       "number": "011",
@@ -156,7 +186,10 @@
       "work_status": "下一關卡待執行",
       "overall_completion_pct": null,
       "monthly_plan_pct": 15,
-      "next_gate": "完成下一項功能或研究里程碑的獨立驗收"
+      "next_gate": "整合 Windows 正式遊戲、地圖及實際操作。",
+      "verified_milestone": "R28 圖形與外部素材載入已完成部分原生驗證。",
+      "evidence_date": "2026-11-12",
+      "status_kind": "NEXT_GATE_OPEN"
     },
     {
       "number": "012",
@@ -169,7 +202,10 @@
       "work_status": "下一關卡待執行",
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
-      "next_gate": "完成下一項功能或研究里程碑的獨立驗收"
+      "next_gate": "驗收六關、分身、防護、技能與手機實機操作。",
+      "verified_milestone": "Android 測試版本存在，完整遊玩功能待核實。",
+      "evidence_date": "2026-11-12",
+      "status_kind": "NEXT_GATE_OPEN"
     },
     {
       "number": "013",
@@ -182,7 +218,10 @@
       "work_status": "下一關卡待執行",
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
-      "next_gate": "完成下一項功能或研究里程碑的獨立驗收"
+      "next_gate": "完成繁注／簡注／繁拼／簡拼手機測試。",
+      "verified_milestone": "既有簽章 APK 基線存在；四模式待驗收。",
+      "evidence_date": "2026-11-12",
+      "status_kind": "NEXT_GATE_OPEN"
     },
     {
       "number": "014",
@@ -195,7 +234,10 @@
       "work_status": "下一關卡待執行",
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
-      "next_gate": "完成下一項功能或研究里程碑的獨立驗收"
+      "next_gate": "完成 AAB、錄音實機與商店驗收。",
+      "verified_milestone": "錄音器原始碼存在；上架封裝待完成。",
+      "evidence_date": "2026-11-12",
+      "status_kind": "NEXT_GATE_OPEN"
     },
     {
       "number": "015",
@@ -208,7 +250,10 @@
       "work_status": "下一關卡待執行",
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
-      "next_gate": "完成下一項功能或研究里程碑的獨立驗收"
+      "next_gate": "完成多程序協調及 CELL 實際載入。",
+      "verified_milestone": "已有 1,028 詞條主檔及局部工具驗證。",
+      "evidence_date": "2026-11-12",
+      "status_kind": "NEXT_GATE_OPEN"
     },
     {
       "number": "016",
@@ -221,7 +266,10 @@
       "work_status": "下一關卡待執行",
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
-      "next_gate": "完成下一項功能或研究里程碑的獨立驗收"
+      "next_gate": "完成正文品質、去重計數與訓練導入。",
+      "verified_milestone": "英文來源資料已有候選檔案；合格去重正文未達驗收。",
+      "evidence_date": "2026-11-12",
+      "status_kind": "NEXT_GATE_OPEN"
     },
     {
       "number": "017",
@@ -234,7 +282,10 @@
       "work_status": "下一關卡待執行",
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
-      "next_gate": "完成下一項功能或研究里程碑的獨立驗收"
+      "next_gate": "完成知識關係整合及醫學評測。",
+      "verified_milestone": "醫學文獻與資料結構已建立初步驗證。",
+      "evidence_date": "2026-11-12",
+      "status_kind": "NEXT_GATE_OPEN"
     },
     {
       "number": "018",
@@ -247,7 +298,10 @@
       "work_status": "下一關卡待執行",
       "overall_completion_pct": null,
       "monthly_plan_pct": 65,
-      "next_gate": "完成下一項功能或研究里程碑的獨立驗收"
+      "next_gate": "釐清演算法主版本並完成外部公平基準。",
+      "verified_milestone": "相關演算法研究有成果；獨立標準基準待建立。",
+      "evidence_date": "2026-11-12",
+      "status_kind": "NEXT_GATE_OPEN"
     },
     {
       "number": "019",
@@ -260,7 +314,10 @@
       "work_status": "下一關卡待執行",
       "overall_completion_pct": null,
       "monthly_plan_pct": 75,
-      "next_gate": "完成下一項功能或研究里程碑的獨立驗收"
+      "next_gate": "分離量子與經典基準並確認模型身份。",
+      "verified_milestone": "已有局部結構與模擬實驗，研究身份仍待釐清。",
+      "evidence_date": "2026-11-12",
+      "status_kind": "NEXT_GATE_OPEN"
     },
     {
       "number": "020",
@@ -273,7 +330,10 @@
       "work_status": "下一關卡待執行",
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
-      "next_gate": "完成下一項功能或研究里程碑的獨立驗收"
+      "next_gate": "完成原生整合及外部標準迷宮比較。",
+      "verified_milestone": "搜尋基準與局部 CI 已通過。",
+      "evidence_date": "2026-11-12",
+      "status_kind": "NEXT_GATE_OPEN"
     },
     {
       "number": "021",
@@ -286,7 +346,10 @@
       "work_status": "下一關卡待執行",
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
-      "next_gate": "完成下一項功能或研究里程碑的獨立驗收"
+      "next_gate": "完成 USB 開機、輸入、顯示及檔案系統驗收。",
+      "verified_milestone": "主機側驗證有成果；真實 USB 硬體驗收未完成。",
+      "evidence_date": "2026-11-12",
+      "status_kind": "NEXT_GATE_OPEN"
     },
     {
       "number": "022",
@@ -299,7 +362,10 @@
       "work_status": "下一關卡待執行",
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
-      "next_gate": "完成下一項功能或研究里程碑的獨立驗收"
+      "next_gate": "完成真正語言生成與自主工具工作鏈。",
+      "verified_milestone": "代理模型的既有來源版本已核對；獨立代理操作待完成。",
+      "evidence_date": "2026-11-12",
+      "status_kind": "NEXT_GATE_OPEN"
     },
     {
       "number": "023",
@@ -312,7 +378,10 @@
       "work_status": "下一關卡待執行",
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
-      "next_gate": "完成下一項功能或研究里程碑的獨立驗收"
+      "next_gate": "完成原生解算、守恆與多物理耦合。",
+      "verified_milestone": "多類模擬結構已有初步數值基線。",
+      "evidence_date": "2026-11-12",
+      "status_kind": "NEXT_GATE_OPEN"
     },
     {
       "number": "024",
@@ -325,7 +394,10 @@
       "work_status": "下一關卡待執行",
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
-      "next_gate": "完成下一項功能或研究里程碑的獨立驗收"
+      "next_gate": "檢查全域延拓條件並進行獨立證明驗證。",
+      "verified_milestone": "有限尺度表示研究有成果；全域正則性未證成。",
+      "evidence_date": "2026-11-12",
+      "status_kind": "NEXT_GATE_OPEN"
     },
     {
       "number": "025",
@@ -338,7 +410,10 @@
       "work_status": "下一關卡待執行",
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
-      "next_gate": "完成下一項功能或研究里程碑的獨立驗收"
+      "next_gate": "推進秩、提升與全域論證。",
+      "verified_milestone": "已完成部分精確搜尋和有限代數證書。",
+      "evidence_date": "2026-11-12",
+      "status_kind": "NEXT_GATE_OPEN"
     },
     {
       "number": "026",
@@ -351,7 +426,10 @@
       "work_status": "下一關卡待執行",
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
-      "next_gate": "完成下一項功能或研究里程碑的獨立驗收"
+      "next_gate": "完成獨立形式化重現與一般模型驗證。",
+      "verified_milestone": "受限組合模型有精確驗證；一般模型待區分。",
+      "evidence_date": "2026-11-12",
+      "status_kind": "NEXT_GATE_OPEN"
     },
     {
       "number": "027",
@@ -364,7 +442,10 @@
       "work_status": "下一關卡待執行",
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
-      "next_gate": "完成下一項功能或研究里程碑的獨立驗收"
+      "next_gate": "從局部搜索推進到可審核的全域證明。",
+      "verified_milestone": "已進行局部數論搜尋，尚未取得全域證明。",
+      "evidence_date": "2026-11-12",
+      "status_kind": "NEXT_GATE_OPEN"
     },
     {
       "number": "028",
@@ -377,7 +458,10 @@
       "work_status": "下一關卡待執行",
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
-      "next_gate": "完成下一項功能或研究里程碑的獨立驗收"
+      "next_gate": "納入失敗對照與後續驗證。",
+      "verified_milestone": "記憶與學習論文草稿、實驗記錄存在。",
+      "evidence_date": "2026-11-12",
+      "status_kind": "NEXT_GATE_OPEN"
     },
     {
       "number": "029",
@@ -390,7 +474,10 @@
       "work_status": "下一關卡待執行",
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
-      "next_gate": "完成下一項功能或研究里程碑的獨立驗收"
+      "next_gate": "對齊最新證據、研究主張及版本。",
+      "verified_milestone": "模型結構研究與論文草稿已有記錄。",
+      "evidence_date": "2026-11-12",
+      "status_kind": "NEXT_GATE_OPEN"
     },
     {
       "number": "030",
@@ -403,7 +490,10 @@
       "work_status": "下一關卡待執行",
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
-      "next_gate": "完成下一項功能或研究里程碑的獨立驗收"
+      "next_gate": "完成可重現實驗及數學論證。",
+      "verified_milestone": "決策與推理論文研究已有草稿。",
+      "evidence_date": "2026-11-12",
+      "status_kind": "NEXT_GATE_OPEN"
     },
     {
       "number": "031",
@@ -416,7 +506,10 @@
       "work_status": "下一關卡待執行",
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
-      "next_gate": "完成下一項功能或研究里程碑的獨立驗收"
+      "next_gate": "完成原生證明器及定理驗收。",
+      "verified_milestone": "原生數學證明系統有設計和工具研究。",
+      "evidence_date": "2026-11-12",
+      "status_kind": "NEXT_GATE_OPEN"
     },
     {
       "number": "032",
@@ -429,7 +522,10 @@
       "work_status": "下一關卡待執行",
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
-      "next_gate": "完成下一項功能或研究里程碑的獨立驗收"
+      "next_gate": "保留較佳基線，重做連續故事生成評測。",
+      "verified_milestone": "故事模型已有版本；最新品質測試存在退步。",
+      "evidence_date": "2026-11-12",
+      "status_kind": "NEXT_GATE_OPEN"
     },
     {
       "number": "033",
@@ -442,7 +538,10 @@
       "work_status": "下一關卡待執行",
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
-      "next_gate": "完成下一項功能或研究里程碑的獨立驗收"
+      "next_gate": "完成最新執行版本與互動操作驗收。",
+      "verified_milestone": "環境互動原型已有局部功能驗證。",
+      "evidence_date": "2026-11-12",
+      "status_kind": "NEXT_GATE_OPEN"
     },
     {
       "number": "034",
@@ -455,7 +554,10 @@
       "work_status": "待補來源證據",
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
-      "next_gate": "完成下一項功能或研究里程碑的獨立驗收"
+      "next_gate": "整合遊戲入口、獎勵、存檔及 Android 操作。",
+      "verified_milestone": "多款小遊戲原型與 COIN 規則已建立。",
+      "evidence_date": "2026-11-12",
+      "status_kind": "EVIDENCE_PENDING"
     },
     {
       "number": "035",
@@ -468,7 +570,10 @@
       "work_status": "下一關卡待執行",
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
-      "next_gate": "完成下一項功能或研究里程碑的獨立驗收"
+      "next_gate": "完成原生編譯、硬體事件及跨模組整合。",
+      "verified_milestone": "Web、HID 與系統工具已有候選模組。",
+      "evidence_date": "2026-11-12",
+      "status_kind": "NEXT_GATE_OPEN"
     },
     {
       "number": "036",
@@ -481,7 +586,10 @@
       "work_status": "待補來源證據",
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
-      "next_gate": "完成下一項功能或研究里程碑的獨立驗收"
+      "next_gate": "區分草稿、投稿、入選與正式出版。",
+      "verified_milestone": "小說、詩作及投稿資料存在，完整狀態待核。",
+      "evidence_date": "2026-11-12",
+      "status_kind": "EVIDENCE_PENDING"
     },
     {
       "number": "037",
@@ -494,7 +602,10 @@
       "work_status": "待補來源證據",
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
-      "next_gate": "完成下一項功能或研究里程碑的獨立驗收"
+      "next_gate": "確認正式申請、產品授權與商業里程碑。",
+      "verified_milestone": "技術保護和商業化規劃已建立，正式證據待核。",
+      "evidence_date": "2026-11-12",
+      "status_kind": "EVIDENCE_PENDING"
     },
     {
       "number": "038",
@@ -507,7 +618,11 @@
       "work_status": "下一關卡待執行",
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
-      "next_gate": "完成下一項功能或研究里程碑的獨立驗收"
+      "next_gate": "完成正式線上對局及手機實機驗收。",
+      "verified_milestone": "Android 圍棋工程與線上對局方向已登記。",
+      "evidence_date": "2026-11-12",
+      "status_kind": "NEXT_GATE_OPEN"
     }
-  ]
+  ],
+  "release": "R3-public-milestones"
 }
