@@ -143,3 +143,12 @@ This branch is intentionally isolated from `main` until reviewed.
 - Do not use the GitHub Pages browser to fetch the private library registry, and do not place private source paths, research logs, credentials or unpublished technical details in public workboard files.
 - The monthly-plan percentages and the earlier 37-item portfolio/subjective estimate history remain unchanged. The tracker has 38 rows because letGo is now an independently registered engineering project.
 - **Pending automation integration:** The private master registry and WBS cannot be read directly using a public repository's default GitHub Actions token. A separately authorized publication bridge and public-field approval flow are needed before automatic private-to-public synchronization. No such bridge is claimed to exist.
+
+## R4 scoped acceptance progress (2026-11-12)
+
+- Added optional `gate_metric` to every curated `workboard.json` entry; null means no defensible bounded denominator is defined.
+- CELL-CORE: **S1 native exits 0/21**; CELL-M: **Phase 1 fixed-scope gates 21/28**, with 7 blocked. These are scoped acceptance figures, never whole-project completion percentages.
+- `workboard.html` has distinct columns for bounded gate counts and undetermined overall engineering completion. Existing R3 milestones, filtering, themes, portfolio and events remain intact.
+- `scripts/update_workboard.py` supports a gated quartet `--gate-scope`, `--gate-accepted`, `--gate-total`, `--gate-note` when an underlying acceptance review has genuinely verified new results. The script is a publisher of curated data, not a proof of acceptance.
+- GitHub Pages CI validates the bounded numerator/denominator and syntax-checks all inline JavaScript in both `index.html` and `workboard.html`.
+- Separate event history recorded. Keep publicly posted claims minimal and continue to maintain private ledger evidence in `SunTung/library`.
