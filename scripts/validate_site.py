@@ -123,7 +123,7 @@ def main():
         assert isinstance(r["source_reviewed"], bool)
         assert r["overall_completion_pct"] is None, "No fabricated completion percentage"
         assert r["status_kind"] in {"NEXT_GATE_OPEN", "EVIDENCE_PENDING"}
-        assert re.fullmatch(r"\\d{4}-\\d{2}-\\d{2}", r["evidence_date"])
+        assert re.fullmatch(r"\d{4}-\d{2}-\d{2}", r["evidence_date"])
         assert 8 <= len(r["verified_milestone"]) <= 180
         assert 8 <= len(r["next_gate"]) <= 180
         assert r["monthly_plan_pct"] is None or isinstance(r["monthly_plan_pct"], (int, float))
