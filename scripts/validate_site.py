@@ -129,6 +129,19 @@ def main():
         assert r["monthly_plan_pct"] is None or isinstance(r["monthly_plan_pct"], (int, float))
         assert not re.search(r"(?:github\\.com|drive\\.google\\.com|/mnt/|token|password|secret|source_path|owner_repository|SHA256)", json.dumps(r, ensure_ascii=False), re.I)
     assert sum(r["source_reviewed"] for r in board["items"]) == 35
+    events = read_json("workboard-events.json")
+    assert set(events) == {"schema", "events"}
+    assert events["schema"] == "studio_public_workboard_events_v1"
+    assert isinstance(events["events"], list) and events["events"]
+    valid_event_kinds = {"REGISTRY_SYNC", "CURATED_MILESTONE_UPDATE"}
+    for event in events["events"]:
+        assert set(event) == {"date", "project_id", "kind", "summary"}
+        assert re.fullmatch(r"\d{4}-\d{2}-\d{2}", event["date"])
+        assert event["project_id"] == "ALL" or event["project_id"] in {r["id"] for r in board["items"]}
+        assert event["kind"] in valid_event_kinds
+        assert 8 <= len(event["summary"]) <= 360
+        assert not re.search(r"(?:github\.com|drive\.google\.com|/mnt/|token|password|secret|source_path|sha256)", event["summary"], re.I)
+    assert "workboard-events.json" in (ROOT / "workboard.html").read_text(encoding="utf-8")
     assert "workboard.html" in page
     assert 'workboard.json' in (ROOT / "workboard.html").read_text(encoding="utf-8")
     print(f"PASS: HTML, {len(months)} month(s), {len(current['projects'])} monthly progress entries, {len(portfolio['items'])} public portfolio items, {len(products['products'])} products")
