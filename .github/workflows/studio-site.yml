@@ -37,6 +37,9 @@ jobs:
           python-version: '3.11'
       - name: Public data allowlist and consistency
         run: python scripts/validate_site.py
+      - name: Progress updater Python syntax check
+        run: python -m py_compile scripts/update_workboard.py
+
       - name: JavaScript syntax check
         shell: bash
         run: |
