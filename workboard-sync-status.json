@@ -1,0 +1,14 @@
+{
+  "schema": "studio_public_reconciliation_status_v1",
+  "checked_on": "2026-11-13",
+  "private_registry_snapshot_date": "2026-11-12",
+  "scope": "Project ID, workboard priority and source-review status only",
+  "private_registry_count": 38,
+  "private_wbs_count": 38,
+  "public_tracker_count": 38,
+  "mismatch_count": 0,
+  "all_functional_gates_verified": false,
+  "automatic_private_sync_enabled": false,
+  "publication_method": "Explicit curated GitHub commit after review",
+  "summary_zh": "本次 38 項工程 ID、優先級及來源查證狀態對照一致；私人資料尚未自動同步，工程實際進度須經驗收後逐項發布。"
+}
