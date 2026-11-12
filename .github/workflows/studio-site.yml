@@ -12,6 +12,7 @@ on:
       - workboard.json
       - workboard-events.json
       - workboard-sync-status.json
+      - workboard-gates.json
       - workboard.html
       - history/**
       - scripts/validate_site.py
