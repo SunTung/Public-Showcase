@@ -152,3 +152,12 @@ This branch is intentionally isolated from `main` until reviewed.
 - `scripts/update_workboard.py` supports a gated quartet `--gate-scope`, `--gate-accepted`, `--gate-total`, `--gate-note` when an underlying acceptance review has genuinely verified new results. The script is a publisher of curated data, not a proof of acceptance.
 - GitHub Pages CI validates the bounded numerator/denominator and syntax-checks all inline JavaScript in both `index.html` and `workboard.html`.
 - Separate event history recorded. Keep publicly posted claims minimal and continue to maintain private ledger evidence in `SunTung/library`.
+
+## R5 private-to-public reconciliation (2026-11-13)
+
+- The latest accessible private registry snapshot is 2026-11-12 with 38 projects and 38 next-gate WBS entries. A manual field-level comparison against `workboard.json` found **zero discrepancies in IDs, priorities and source-reviewed flags**. This is not a fresh functional completion audit.
+- `scripts/reconcile_workboard.py` accepts locally available private registry and WBS JSON plus the public tracker, then generates a **private review-only queue outside the public repository**. It neither copies private technical descriptions nor updates public content automatically.
+- `scripts/test_reconcile_workboard.py` runs synthetic fixtures in GitHub Actions. No private JSON is uploaded, requested or fetched by the Pages build workflow.
+- `workboard-sync-status.json` declares checked date, source snapshot date, inspected scope and whether automatic private-to-public synchronization is enabled. The website shows this status to avoid falsely implying fresh or automatic syncing.
+- Changes to verified milestones and bounded gates are still made only after evidence review, using `scripts/update_workboard.py` and the existing public CI. The event ledger records publication updates.
+- Future enhancement: a separately authorized, auditable private-side job can produce a sanitized approval queue; the public website must never be granted routine read access to private R&D repositories.
