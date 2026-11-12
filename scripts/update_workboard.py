@@ -36,9 +36,16 @@ def main():
     parser.add_argument("--date", required=True, help="Evidence review date YYYY-MM-DD")
     parser.add_argument("--milestone", help="Public-safe independently verified milestone")
     parser.add_argument("--next-gate", help="Next concrete acceptance milestone")
+    parser.add_argument("--gate-scope", help="Scope of an independently reviewed bounded gate")
+    parser.add_argument("--gate-accepted", type=int, help="Verified accepted gates in scope")
+    parser.add_argument("--gate-total", type=int, help="Frozen gate denominator in scope")
+    parser.add_argument("--gate-note", help="Public-safe acceptance limitation")
     args = parser.parse_args()
-    if not (args.milestone or args.next_gate):
-        parser.error("Provide --milestone or --next-gate")
+    gate_supplied = any(v is not None for v in (args.gate_scope, args.gate_accepted, args.gate_total, args.gate_note))
+    if not (args.milestone or args.next_gate or gate_supplied):
+        parser.error("Provide --milestone, --next-gate or a complete bounded gate")
+    if gate_supplied and not all(v is not None for v in (args.gate_scope, args.gate_accepted, args.gate_total, args.gate_note)):
+        parser.error("Bounded gate requires --gate-scope, --gate-accepted, --gate-total and --gate-note")
     date = dt.date.fromisoformat(args.date).isoformat()
     if dt.date.fromisoformat(date) > dt.date.today():
         raise ValueError("Evidence review date cannot be in the future.")
@@ -59,6 +66,18 @@ def main():
             if entry[key] != value:
                 entry[key] = value
                 changed.append(key)
+    if gate_supplied:
+        if args.gate_total <= 0 or not 0 <= args.gate_accepted <= args.gate_total:
+            raise ValueError("Invalid bounded gate numerator / denominator")
+        metric = {
+            "scope": check_public_text(args.gate_scope),
+            "accepted": args.gate_accepted,
+            "total": args.gate_total,
+            "note": check_public_text(args.gate_note),
+        }
+        if entry["gate_metric"] != metric:
+            entry["gate_metric"] = metric
+            changed.append("gate_metric")
     if not changed:
         print("NO CHANGE: public tracker already contains these values.")
         return
@@ -66,11 +85,16 @@ def main():
         raise ValueError("Do not backdate below the latest published review.")
     entry["evidence_date"] = date
     doc["as_of"] = max(doc["as_of"], date)
-    summary = "；".join(
-        ("已知成果：" + entry["verified_milestone"]) if k == "verified_milestone"
-        else ("下一關卡：" + entry["next_gate"])
-        for k in changed
-    )
+    summary_parts = []
+    for key in changed:
+        if key == "verified_milestone":
+            summary_parts.append("已知成果：" + entry["verified_milestone"])
+        elif key == "next_gate":
+            summary_parts.append("下一關卡：" + entry["next_gate"])
+        elif key == "gate_metric":
+            g = entry["gate_metric"]
+            summary_parts.append("關卡：" + g["scope"] + " " + str(g["accepted"]) + "/" + str(g["total"]))
+    summary = "；".join(summary_parts)
     if len(summary) > 360:
         raise ValueError("Combined public event description exceeds 360 characters.")
     if FORBIDDEN.search(summary):
