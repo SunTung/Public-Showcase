@@ -6,6 +6,12 @@
       "project_id": "ALL",
       "kind": "REGISTRY_SYNC",
       "summary": "已依第二輪來源稽核建立 38 項工程公開追蹤表；35 項來源查證、3 項待補證據。"
+    },
+    {
+      "date": "2026-11-12",
+      "project_id": "ALL",
+      "kind": "REGISTRY_SYNC",
+      "summary": "R4 新增有界驗收關卡統計：CELL 核心 S1 0/21、CELL-M 第一階段 21/28；不視為整體工程完成率。"
     }
   ]
 }
