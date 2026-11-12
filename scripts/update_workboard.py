@@ -66,10 +66,15 @@ def main():
         raise ValueError("Do not backdate below the latest published review.")
     entry["evidence_date"] = date
     doc["as_of"] = max(doc["as_of"], date)
-    summary = check_public_text(
-        "；".join((("已知成果：" + entry["verified_milestone"]) if k == "verified_milestone"
-                  else ("下一關卡：" + entry["next_gate"])) for k in changed)
+    summary = "；".join(
+        ("已知成果：" + entry["verified_milestone"]) if k == "verified_milestone"
+        else ("下一關卡：" + entry["next_gate"])
+        for k in changed
     )
+    if len(summary) > 360:
+        raise ValueError("Combined public event description exceeds 360 characters.")
+    if FORBIDDEN.search(summary):
+        raise ValueError("Public event contains a restricted location or keyword.")
     log["events"].append({
         "date": date, "project_id": args.id, "kind": "CURATED_MILESTONE_UPDATE",
         "summary": summary,
