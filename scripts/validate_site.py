@@ -118,10 +118,18 @@ def main():
     assert sum(board["priority_counts"].values()) == 38
     assert len({r["id"] for r in board["items"]}) == 38
     for r in board["items"]:
-        assert set(r) == {"number", "id", "name", "category", "goal", "priority", "source_reviewed", "work_status", "overall_completion_pct", "monthly_plan_pct", "next_gate", "verified_milestone", "evidence_date", "status_kind"}
+        assert set(r) == {"number", "id", "name", "category", "goal", "priority", "source_reviewed", "work_status", "overall_completion_pct", "monthly_plan_pct", "next_gate", "verified_milestone", "evidence_date", "status_kind", "gate_metric"}
         assert r["priority"] in {"P0", "P1", "P2", "P_RESEARCH", "P_BLOCKED"}
         assert isinstance(r["source_reviewed"], bool)
         assert r["overall_completion_pct"] is None, "No fabricated completion percentage"
+        metric = r["gate_metric"]
+        if metric is not None:
+            assert set(metric) == {"scope", "accepted", "total", "note"}
+            assert type(metric["accepted"]) is int and type(metric["total"]) is int
+            assert 0 <= metric["accepted"] <= metric["total"] and metric["total"] > 0
+            assert len(metric["scope"]) >= 5 and len(metric["note"]) >= 10
+            assert not re.search(r"(?:github\\.com|drive\\.google\\.com|/mnt/|token|password|secret|source_path|sha256)", json.dumps(metric, ensure_ascii=False), re.I)
+
         assert r["status_kind"] in {"NEXT_GATE_OPEN", "EVIDENCE_PENDING"}
         assert re.fullmatch(r"\d{4}-\d{2}-\d{2}", r["evidence_date"])
         assert 8 <= len(r["verified_milestone"]) <= 180
