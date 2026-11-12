@@ -15,6 +15,8 @@ on:
       - history/**
       - scripts/validate_site.py
       - scripts/update_workboard.py
+      - scripts/reconcile_workboard.py
+      - scripts/test_reconcile_workboard.py
       - .github/workflows/studio-site.yml
   workflow_dispatch:
 
@@ -39,6 +41,11 @@ jobs:
         run: python scripts/validate_site.py
       - name: Progress updater Python syntax check
         run: python -m py_compile scripts/update_workboard.py
+
+      - name: Reconciliation unit tests (synthetic only)
+        run: python -m unittest discover -s scripts -p 'test_reconcile_workboard.py' -v
+      - name: Reconciliation Python syntax check
+        run: python -m py_compile scripts/reconcile_workboard.py
 
       - name: JavaScript syntax check
         shell: bash
