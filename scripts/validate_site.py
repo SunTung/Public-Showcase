@@ -150,6 +150,17 @@ def main():
         assert 8 <= len(event["summary"]) <= 360
         assert not re.search(r"(?:github\.com|drive\.google\.com|/mnt/|token|password|secret|source_path|sha256)", event["summary"], re.I)
     assert "workboard-events.json" in (ROOT / "workboard.html").read_text(encoding="utf-8")
+    sync = read_json("workboard-sync-status.json")
+    assert set(sync) == {"schema", "checked_on", "private_registry_snapshot_date",
+                         "scope", "private_registry_count", "private_wbs_count",
+                         "public_tracker_count", "mismatch_count", "all_functional_gates_verified",
+                         "automatic_private_sync_enabled", "publication_method", "summary_zh"}
+    assert sync["schema"] == "studio_public_reconciliation_status_v1"
+    assert sync["private_registry_count"] == sync["private_wbs_count"] == sync["public_tracker_count"] == 38
+    assert type(sync["mismatch_count"]) is int and 0 <= sync["mismatch_count"] <= 38
+    assert sync["automatic_private_sync_enabled"] is False
+    assert sync["all_functional_gates_verified"] is False
+    assert "workboard-sync-status.json" in (ROOT / "workboard.html").read_text(encoding="utf-8")
     assert "workboard.html" in page
     assert 'workboard.json' in (ROOT / "workboard.html").read_text(encoding="utf-8")
     print(f"PASS: HTML, {len(months)} month(s), {len(current['projects'])} monthly progress entries, {len(portfolio['items'])} public portfolio items, {len(products['products'])} products")
