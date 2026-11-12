@@ -12,6 +12,12 @@
       "project_id": "ALL",
       "kind": "REGISTRY_SYNC",
       "summary": "R4 新增有界驗收關卡統計：CELL 核心 S1 0/21、CELL-M 第一階段 21/28；不視為整體工程完成率。"
+    },
+    {
+      "date": "2026-11-13",
+      "project_id": "ALL",
+      "kind": "REGISTRY_SYNC",
+      "summary": "R5 私人主登記簿、WBS 與公開表 38 項 ID／優先級／來源查證狀態對照一致，差異 0 項；資料來源快照為 11 月 12 日。"
     }
   ]
 }
