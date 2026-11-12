@@ -18,6 +18,7 @@ import re
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 DATA = ROOT / "workboard.json"
 EVENTS = ROOT / "workboard-events.json"
+GATES = ROOT / "workboard-gates.json"
 FORBIDDEN = re.compile(
     r"(github\.com|drive\.google\.com|/mnt/|[A-Za-z]:\\|token|password|secret|"
     r"private_repo|source_path|owner_repository|sha256|commit_sha)", re.I
@@ -40,6 +41,7 @@ def main():
     parser.add_argument("--gate-accepted", type=int, help="Verified accepted gates in scope")
     parser.add_argument("--gate-total", type=int, help="Frozen gate denominator in scope")
     parser.add_argument("--gate-note", help="Public-safe acceptance limitation")
+    parser.add_argument("--gate-id", help="Stable uppercase gate ID for a newly registered scoped gate")
     args = parser.parse_args()
     gate_supplied = any(v is not None for v in (args.gate_scope, args.gate_accepted, args.gate_total, args.gate_note))
     if not (args.milestone or args.next_gate or gate_supplied):
@@ -51,10 +53,13 @@ def main():
         raise ValueError("Evidence review date cannot be in the future.")
     doc = json.loads(DATA.read_text(encoding="utf-8"))
     log = json.loads(EVENTS.read_text(encoding="utf-8"))
+    ledger = json.loads(GATES.read_text(encoding="utf-8"))
     if doc.get("schema") != "studio_public_workboard_v1":
         raise ValueError("Unexpected workboard schema")
     if log.get("schema") != "studio_public_workboard_events_v1":
         raise ValueError("Unexpected events schema")
+    if ledger.get("schema") != "studio_public_gate_ledger_v1":
+        raise ValueError("Unexpected gate ledger schema")
     matches = [r for r in doc["items"] if r["id"] == args.id]
     if len(matches) != 1:
         raise ValueError("Unknown or duplicate project ID")
@@ -75,6 +80,37 @@ def main():
             "total": args.gate_total,
             "note": check_public_text(args.gate_note),
         }
+        existing = [g for g in ledger["records"] if g["project_id"] == args.id]
+        if len(existing) > 1:
+            raise ValueError("Multiple public gate records in one project")
+        if existing:
+            gate = existing[0]
+            if args.gate_id and args.gate_id != gate["gate_id"]:
+                raise ValueError("Existing gate ID cannot change")
+            if metric["scope"] != gate["gate_title"] or metric["total"] != gate["total"]:
+                raise ValueError("Existing acceptance scope and denominator are frozen")
+            if metric["accepted"] < gate["accepted"]:
+                raise ValueError("Cannot decrease accepted count without a separately reviewed correction")
+            if date < gate["evidence_date"]:
+                raise ValueError("Cannot backdate gate evidence")
+            gate["accepted"] = metric["accepted"]
+            gate["evidence_date"] = date
+            gate["evidence_scope"] = metric["note"]
+        else:
+            if entry.get("gate_metric") is not None:
+                raise ValueError("Existing gate metric has no ledger record; review consistency first")
+            if not args.gate_id or not re.fullmatch(r"[A-Z0-9-]{5,80}", args.gate_id):
+                raise ValueError("New gate requires stable --gate-id")
+            if any(g["gate_id"] == args.gate_id for g in ledger["records"]):
+                raise ValueError("Gate ID already exists")
+            ledger["records"].append({
+                "gate_id": args.gate_id, "project_id": args.id,
+                "gate_title": metric["scope"], "accepted": metric["accepted"],
+                "total": metric["total"], "blocked": None,
+                "evidence_date": date, "evidence_scope": metric["note"],
+                "verification": "DOCUMENTED_SCOPE_ONLY", "overall_project_percent": False
+            })
+        ledger["as_of"] = max(ledger["as_of"], date)
         if entry["gate_metric"] != metric:
             entry["gate_metric"] = metric
             changed.append("gate_metric")
@@ -105,8 +141,11 @@ def main():
     })
     serialized_doc = json.dumps(doc, ensure_ascii=False, indent=2) + "\n"
     serialized_log = json.dumps(log, ensure_ascii=False, indent=2) + "\n"
+    serialized_gates = json.dumps(ledger, ensure_ascii=False, indent=2) + "\n"
     DATA.write_text(serialized_doc, encoding="utf-8")
     EVENTS.write_text(serialized_log, encoding="utf-8")
+    if gate_supplied:
+        GATES.write_text(serialized_gates, encoding="utf-8")
     print(f"UPDATED: {args.id} ({', '.join(changed)}) on {date}. Validate before committing.")
 
 if __name__ == "__main__":
