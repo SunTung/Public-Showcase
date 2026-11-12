@@ -118,10 +118,14 @@ def main():
     assert sum(board["priority_counts"].values()) == 38
     assert len({r["id"] for r in board["items"]}) == 38
     for r in board["items"]:
-        assert set(r) == {"number", "id", "name", "category", "goal", "priority", "source_reviewed", "work_status", "overall_completion_pct", "monthly_plan_pct", "next_gate"}
+        assert set(r) == {"number", "id", "name", "category", "goal", "priority", "source_reviewed", "work_status", "overall_completion_pct", "monthly_plan_pct", "next_gate", "verified_milestone", "evidence_date", "status_kind"}
         assert r["priority"] in {"P0", "P1", "P2", "P_RESEARCH", "P_BLOCKED"}
         assert isinstance(r["source_reviewed"], bool)
         assert r["overall_completion_pct"] is None, "No fabricated completion percentage"
+        assert r["status_kind"] in {"NEXT_GATE_OPEN", "EVIDENCE_PENDING"}
+        assert re.fullmatch(r"\\d{4}-\\d{2}-\\d{2}", r["evidence_date"])
+        assert 8 <= len(r["verified_milestone"]) <= 180
+        assert 8 <= len(r["next_gate"]) <= 180
         assert r["monthly_plan_pct"] is None or isinstance(r["monthly_plan_pct"], (int, float))
         assert not re.search(r"(?:github\\.com|drive\\.google\\.com|/mnt/|token|password|secret|source_path|owner_repository|SHA256)", json.dumps(r, ensure_ascii=False), re.I)
     assert sum(r["source_reviewed"] for r in board["items"]) == 35
