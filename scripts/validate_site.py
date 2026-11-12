@@ -137,6 +137,37 @@ def main():
         assert r["monthly_plan_pct"] is None or isinstance(r["monthly_plan_pct"], (int, float))
         assert not re.search(r"(?:github\\.com|drive\\.google\\.com|/mnt/|token|password|secret|source_path|owner_repository|SHA256)", json.dumps(r, ensure_ascii=False), re.I)
     assert sum(r["source_reviewed"] for r in board["items"]) == 35
+    gates = read_json("workboard-gates.json")
+    assert set(gates) == {"schema", "as_of", "scope", "records"}
+    assert gates["schema"] == "studio_public_gate_ledger_v1"
+    assert isinstance(gates["records"], list)
+    gate_ids = set()
+    gate_project_ids = set()
+    for gate in gates["records"]:
+        assert set(gate) == {"gate_id", "project_id", "gate_title", "accepted", "total",
+                            "blocked", "evidence_date", "evidence_scope", "verification",
+                            "overall_project_percent"}
+        assert gate["gate_id"] not in gate_ids
+        gate_ids.add(gate["gate_id"])
+        assert gate["project_id"] in {r["id"] for r in board["items"]}
+        assert gate["project_id"] not in gate_project_ids, "Only one public scoped metric per project in R6"
+        gate_project_ids.add(gate["project_id"])
+        assert type(gate["accepted"]) is int and type(gate["total"]) is int
+        assert 0 <= gate["accepted"] <= gate["total"] and gate["total"] > 0
+        assert gate["blocked"] is None or (type(gate["blocked"]) is int and 0 <= gate["blocked"] <= gate["total"] - gate["accepted"])
+        assert gate["overall_project_percent"] is False
+        assert gate["verification"] == "DOCUMENTED_SCOPE_ONLY"
+        assert re.fullmatch(r"\\d{4}-\\d{2}-\\d{2}", gate["evidence_date"])
+        for k in ("gate_title", "evidence_scope"):
+            assert isinstance(gate[k], str) and 5 <= len(gate[k]) <= 180
+        assert not re.search(r"(?:github\\.com|drive\\.google\\.com|/mnt/|token|password|secret|source_path|sha256)",
+                             json.dumps(gate, ensure_ascii=False), re.I)
+        match = next(r for r in board["items"] if r["id"] == gate["project_id"])
+        assert match["gate_metric"] is not None
+        assert match["gate_metric"]["accepted"] == gate["accepted"]
+        assert match["gate_metric"]["total"] == gate["total"]
+        assert match["gate_metric"]["scope"] == gate["gate_title"]
+    assert sum(r["gate_metric"] is not None for r in board["items"]) == len(gates["records"])
     events = read_json("workboard-events.json")
     assert set(events) == {"schema", "events"}
     assert events["schema"] == "studio_public_workboard_events_v1"
