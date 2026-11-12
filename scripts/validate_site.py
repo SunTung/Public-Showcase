@@ -157,7 +157,7 @@ def main():
         assert gate["blocked"] is None or (type(gate["blocked"]) is int and 0 <= gate["blocked"] <= gate["total"] - gate["accepted"])
         assert gate["overall_project_percent"] is False
         assert gate["verification"] == "DOCUMENTED_SCOPE_ONLY"
-        assert re.fullmatch(r"\\d{4}-\\d{2}-\\d{2}", gate["evidence_date"])
+        assert re.fullmatch(r"\d{4}-\d{2}-\d{2}", gate["evidence_date"])
         for k in ("gate_title", "evidence_scope"):
             assert isinstance(gate[k], str) and 5 <= len(gate[k]) <= 180
         assert not re.search(r"(?:github\\.com|drive\\.google\\.com|/mnt/|token|password|secret|source_path|sha256)",
