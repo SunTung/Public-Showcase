@@ -18,12 +18,12 @@ for book in BOOKS:
         with urllib.request.urlopen(req,timeout=25) as resp:
             if resp.status!=200:raise ValueError("HTTP_NOT_200")
             raw=resp.read(5_000_001)
-        if len(raw)>5_000_000 or len(raw)<2000 or b"\\x00" in raw:raise ValueError("SIZE_OR_BINARY")
+        if len(raw)>5_000_000 or len(raw)<2000 or b"\x00" in raw:raise ValueError("SIZE_OR_BINARY")
         body=raw.decode("utf-8-sig")
-        a=re.search(r"\\*\\*\\* START OF (?:THE|THIS) PROJECT GUTENBERG EBOOK[^\\n]*\\*\\*\\*",body,re.I)
-        b=re.search(r"\\*\\*\\* END OF (?:THE|THIS) PROJECT GUTENBERG EBOOK[^\\n]*\\*\\*\\*",body,re.I)
+        a=re.search(r"\*\*\* START OF (?:THE|THIS) PROJECT GUTENBERG EBOOK[^\n]*\*\*\*",body,re.I)
+        b=re.search(r"\*\*\* END OF (?:THE|THIS) PROJECT GUTENBERG EBOOK[^\n]*\*\*\*",body,re.I)
         if not a or not b or b.start()<=a.end():raise ValueError("NO_GUTENBERG_BODY_MARKERS")
-        body=body[a.end():b.start()].strip()+"\\n"
+        body=body[a.end():b.start()].strip()+"\n"
         data=body.encode("utf-8")
         words=re.findall(r"[A-Za-z]{3,}",body)
         if len(words)<400:raise ValueError("INSUFFICIENT_ENGLISH")
@@ -41,5 +41,5 @@ for book in BOOKS:
         result={"at":result["at"],"status":"SOURCE_ERROR","source_id":book,"error":str(exc)[:150]}
         continue
 state["runs"]=(state["runs"]+[result])[-200:]
-LEDGER.write_text(json.dumps(state,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
+LEDGER.write_text(json.dumps(state,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 print(json.dumps({"result":result,"total_public_candidate_bytes":state["candidate_bytes"],"global_verified_bytes":None}))
