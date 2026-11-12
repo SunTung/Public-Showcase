@@ -19,7 +19,7 @@
 ## 更新程序
 1. 先在私人工作區核對新增功能證據。未變更的已驗證項目只檢查存在性，不重跑。
 2. 如有新的有界關卡，定義固定範圍、`gate_id`、工程 `project_id`、已驗收數、總數、阻塞數、核對日期與公開限制文字。
-3. 同步修改 `workboard-gates.json` 與 `workboard.json` 的同一個工程關卡摘要；公開端禁止自動抓取私人庫。
+3. 已驗證且批准發布後，使用 `scripts/update_workboard.py` 同步修改 `workboard-gates.json`、`workboard.json` 和 `workboard-events.json`；公開端禁止自動抓取私人庫。新關卡須指定 `--gate-id`；既有關卡不允許暗中更改範圍或總分母。
 4. 更新 `workboard-events.json`，保留原有事件，不修改歷史驗收紀錄。
 5. 執行 `python scripts/validate_site.py`；CI 同時檢查網頁 JavaScript 與有界關卡一致性，通過後才發布 Pages。
 6. 遇到證據不足或 runner 未啟動，保留原狀及阻塞記錄，其他工程照常推進。
