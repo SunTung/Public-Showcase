@@ -10,9 +10,11 @@ on:
       - portfolio.json
       - estimates.json
       - workboard.json
+      - workboard-events.json
       - workboard.html
       - history/**
       - scripts/validate_site.py
+      - scripts/update_workboard.py
       - .github/workflows/studio-site.yml
   workflow_dispatch:
 
@@ -58,7 +60,7 @@ jobs:
       - name: Assemble public-only artifact
         run: |
           mkdir -p _site
-          cp index.html workboard.html workboard.json progress.json products.json portfolio.json estimates.json _site/
+          cp index.html workboard.html workboard.json workboard-events.json progress.json products.json portfolio.json estimates.json _site/
           cp -R history _site/history
           cp -R assets _site/assets
       - uses: actions/upload-pages-artifact@v3
