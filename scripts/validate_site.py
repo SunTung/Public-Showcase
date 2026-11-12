@@ -111,6 +111,22 @@ def main():
     assert 'const estimate=project&&estimates[project.id]' in page, "Dashboard does not use shared estimates"
     assert 'text(monthly,(language==="zh"?"原本本月計畫："' in page, "Monthly plan must stay distinct from estimate"
 
+    board = read_json("workboard.json")
+    assert board["schema"] == "studio_public_workboard_v1"
+    assert board["registered_projects"] == board["work_packages"] == len(board["items"]) == 38
+    assert board["source_reviewed"] == 35 and board["source_pending"] == 3
+    assert sum(board["priority_counts"].values()) == 38
+    assert len({r["id"] for r in board["items"]}) == 38
+    for r in board["items"]:
+        assert set(r) == {"number", "id", "name", "category", "goal", "priority", "source_reviewed", "work_status", "overall_completion_pct", "monthly_plan_pct", "next_gate"}
+        assert r["priority"] in {"P0", "P1", "P2", "P_RESEARCH", "P_BLOCKED"}
+        assert isinstance(r["source_reviewed"], bool)
+        assert r["overall_completion_pct"] is None, "No fabricated completion percentage"
+        assert r["monthly_plan_pct"] is None or isinstance(r["monthly_plan_pct"], (int, float))
+        assert not re.search(r"(?:github\\.com|drive\\.google\\.com|/mnt/|token|password|secret|source_path|owner_repository|SHA256)", json.dumps(r, ensure_ascii=False), re.I)
+    assert sum(r["source_reviewed"] for r in board["items"]) == 35
+    assert "workboard.html" in page
+    assert 'workboard.json' in (ROOT / "workboard.html").read_text(encoding="utf-8")
     print(f"PASS: HTML, {len(months)} month(s), {len(current['projects'])} monthly progress entries, {len(portfolio['items'])} public portfolio items, {len(products['products'])} products")
 
 if __name__ == "__main__":
