@@ -131,3 +131,15 @@ This branch is intentionally isolated from `main` until reviewed.
 - The direct verifier checks 1,217,855 distinct semantic assignments; 23/23 symmetry-reduced support orbits UNSAT. A different symbolic verifier certifies 23/23 exact equality UNSAT cores of size at most three. New GitHub Actions [43041263800](https://github.com/SunTung/Finished-Products-Showcase/actions/runs/43041263800) reran **both Python programs** successfully and matched their frozen receipts.
 - Earlier attempted local Lean re-verification runs 35558519393 and 35558559543 failed. Do **not** conflate them with the Python PASS or upstream stronger Lean artifact. Manuscript submission is prepared; a portal receipt is not verified.
 - Public readiness band remains 35–60% as a subjective research-packaging estimate, **not a theorem completion percentage**. Audit coverage 26/37; next 027 JSP-000244.
+
+## 38-project engineering tracker R3 (2026-11-12)
+
+- The existing `main` website now links to `workboard.html` and loads `workboard.json` (38 public curated entries).
+- Source review coverage **35/38 = 92.1%**; remaining source evidence is pending for GAME-SMALL, LITERATURE and PATENTS. This metric is **not** engineering completion.
+- Each entry has a public-safe verified-scope milestone, its next acceptance gate and an evidence review date. Whole-project completion percentages intentionally remain **null** until a defensible functional acceptance denominator exists.
+- `workboard-events.json` is the append-only public update ledger; page shows 100 latest events in reverse chronological order. Do not replace older events when updating a milestone.
+- After a privately validated engineering gate, curate only the approved public description into the site. Example: `python scripts/update_workboard.py --id CELL-EN --date 2026-11-13 --milestone "已完成新的原生增量訓練與保留集評測。"`. This command updates one project and appends a history event. It does **not** independently verify any test outcome.
+- Run `python scripts/validate_site.py` and push to `main`. `.github/workflows/studio-site.yml` validates and deploys the new page/data/events.
+- Do not use the GitHub Pages browser to fetch the private library registry, and do not place private source paths, research logs, credentials or unpublished technical details in public workboard files.
+- The monthly-plan percentages and the earlier 37-item portfolio/subjective estimate history remain unchanged. The tracker has 38 rows because letGo is now an independently registered engineering project.
+- **Pending automation integration:** The private master registry and WBS cannot be read directly using a public repository's default GitHub Actions token. A separately authorized publication bridge and public-field approval flow are needed before automatic private-to-public synchronization. No such bridge is claimed to exist.
