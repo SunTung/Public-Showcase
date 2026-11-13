@@ -182,7 +182,7 @@ def main():
                              "evidence_date", "counts_toward_overall_completion", "acceptance_criterion", "dependency", "execution_class", "acceptance_receipt_state"}
         assert task["status"] in allowed_status
         assert task["counts_toward_overall_completion"] is False
-        assert task["execution_class"] in {"ARCHIVED_CHECK", "NATIVE_RUNNER", "EVALUATION_RUNNER", "DESIGN_REVIEW", "ENVIRONMENT_CHECK", "WINDOWS_GUI"}
+        assert task["execution_class"] == "PRIVATE_REVIEW", "Never expose private execution environment"
         assert task["acceptance_receipt_state"] == ("BASELINE_RECORDED" if task["status"] == "VERIFIED_BOUNDED" else "NOT_ACCEPTED")
         assert 10 <= len(task["acceptance_criterion"]) <= 180
         assert 6 <= len(task["dependency"]) <= 180
