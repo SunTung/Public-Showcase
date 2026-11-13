@@ -1,7 +1,7 @@
 {
   "schema": "studio_public_workboard_v1",
-  "as_of": "2026-11-12",
-  "basis": "Private R2 registry and WBS; publicly curated status only",
+  "as_of": "2026-11-14",
+  "basis": "2026-11-12 private R2 registry plus 2026-11-14 R9 source-report evidence review; approved public summaries only",
   "registered_projects": 38,
   "source_reviewed": 35,
   "source_pending": 3,
@@ -26,9 +26,9 @@
       "work_status": "下一關卡待執行",
       "overall_completion_pct": null,
       "monthly_plan_pct": 14,
-      "next_gate": "完成原生 Graph／TRACE／Checkpoint 整合驗收。",
-      "verified_milestone": "已完成部分原生平台與介面測試，完整執行鏈仍未閉合。",
-      "evidence_date": "2026-11-12",
+      "next_gate": "完成 24/72/6 Graph 全量比對、故障注入與一致性證據，再核定 S1 出口。",
+      "verified_milestone": "R05 C17 Checkpoint 分段還原已記錄 7/7、19/19、3/3 局部 Linux 測試；完整 Graph 比對仍未通過驗收。",
+      "evidence_date": "2026-11-14",
       "status_kind": "NEXT_GATE_OPEN",
       "gate_metric": {
         "scope": "S1 原生出口驗收",
@@ -189,9 +189,9 @@
       "work_status": "下一關卡待執行",
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
-      "next_gate": "完成 Windows GUI、存檔及重開驗收。",
-      "verified_milestone": "Linux 編譯與局部自測通過；Windows 完整操作待驗。",
-      "evidence_date": "2026-11-12",
+      "next_gate": "延伸 B4B 多場景及事件／資產綁定，完成 Windows GUI 存檔重開實測。",
+      "verified_milestone": "B4B 已記錄 Linux/X11 原生 V2 地圖與實體視窗測試 1/1；Windows 實體操作仍未驗收。",
+      "evidence_date": "2026-11-14",
       "status_kind": "NEXT_GATE_OPEN",
       "gate_metric": null
     },
@@ -206,9 +206,9 @@
       "work_status": "下一關卡待執行",
       "overall_completion_pct": null,
       "monthly_plan_pct": 15,
-      "next_gate": "整合 Windows 正式遊戲、地圖及實際操作。",
-      "verified_milestone": "R28 圖形與外部素材載入已完成部分原生驗證。",
-      "evidence_date": "2026-11-12",
+      "next_gate": "整合 G02 場景、路線和實際戰鬥／存檔，交付可玩 Windows 程式驗收。",
+      "verified_milestone": "G02 固定新手出生地規格核定，場景結構靜態檢查 11/11、路線樣例 7/7 已記錄；尚非正式遊戲。",
+      "evidence_date": "2026-11-14",
       "status_kind": "NEXT_GATE_OPEN",
       "gate_metric": null
     },
@@ -291,9 +291,9 @@
       "work_status": "下一關卡待執行",
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
-      "next_gate": "完成正文品質、去重計數與訓練導入。",
-      "verified_milestone": "英文來源資料已有候選檔案；合格去重正文未達驗收。",
-      "evidence_date": "2026-11-12",
+      "next_gate": "完成候選正文去重品質驗證、有效 UTF-8 位元組統計及本地長時間運作測試。",
+      "verified_milestone": "R7 本地監督器測試記錄 18/18；候選文字約 60.54 MB，跨來源去重合格量未確認。",
+      "evidence_date": "2026-11-14",
       "status_kind": "NEXT_GATE_OPEN",
       "gate_metric": null
     },
@@ -672,5 +672,5 @@
       "gate_metric": null
     }
   ],
-  "release": "R4-bounded-gates"
+  "release": "R9-latest-source-audit"
 }
