@@ -224,7 +224,7 @@ def main():
     assert set(events) == {"schema", "events"}
     assert events["schema"] == "studio_public_workboard_events_v1"
     assert isinstance(events["events"], list) and events["events"]
-    valid_event_kinds = {"REGISTRY_SYNC", "CURATED_MILESTONE_UPDATE"}
+    valid_event_kinds = {"REGISTRY_SYNC", "CURATED_MILESTONE_UPDATE", "PORTFOLIO_TAXONOMY_R10", "OPS_R8_SOURCE_INGEST", "REPO_ACTIVITY_R10", "RESEARCH_INVENTORY_R10"}
     for event in events["events"]:
         assert set(event) == {"date", "project_id", "kind", "summary"}
         assert re.fullmatch(r"\d{4}-\d{2}-\d{2}", event["date"])
