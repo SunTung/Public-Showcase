@@ -170,3 +170,14 @@ This branch is intentionally isolated from `main` until reviewed.
 - Its underlying private source snapshot remains 2026-11-12. More recent engineering activity is not assumed accepted without separate evidence.
 - The validator checks stable task IDs, project membership, status vocabularies, public-data limits and no whole-project percent; the site deploy workflow packages the JSON.
 - Next engineering step: expand reviewable functional gate inventories one project at a time after obtaining reliable source-level evidence, distinguishing physical GUI tests from hosted CI. No retrospective re-test of accepted immutable baselines.
+
+## R9 all-project latest audit (2026-11-14)
+
+- New private evidence audit: `SunTung/library/research_tracking/20261114/R9_INCREMENTAL_SOURCE_AUDIT_20261114.json`. The previous 38-item R2 registry remains authoritative and unchanged; no previously accepted baseline is invalidated just by changed reports.
+- Public `workboard-latest.json` offers a 38-item evidence-graded latest status table: 4 projects with **new bounded source reports**, 4 with **source activity only** (no accepted functional gate), 27 without a newly confirmed gate in registered-path checks, and 3 pending formal source/primary evidence. These do not add up to a completion percentage.
+- This audit checked registered source paths and selected broader repository commits since November 12. It did not re-run all source builds or re-audit 14,996 files. Some repositories use different paths, so no-new-commit is not proof of inactivity.
+- The source-report-only results include new CELL R05 C17 staged Checkpoint tests, RL Game Studio B4B Linux/X11 window bridge, Endless Expedition G02 static scenarios, and OPS-F01 R7 local supervisor tests. Some related GitHub Actions reported failures; a local source report is not a successful remote CI result.
+- CELN Coder M v1.0 M-03 has a separate Linux 53/53 reported acceptance receipt. It is a candidate for formal registration with its own ID and WBS, **not silently counted as the 39th registered project**.
+- Four `workboard.json` entries received updated, qualified public milestone descriptions and next gates; other 34 rows preserve prior verification state.
+- The website now offers a separate filtered latest-evidence table and preserves R8 20-task P0 matrix, R6 two gate denominators, R5 sync limitations and the public history.
+- `scripts/validate_site.py` enforces 38 IDs, unique rows, exact categories and summary counts, no private paths or whole-project completion estimates. Public Pages CI packages `workboard-latest.json`.
