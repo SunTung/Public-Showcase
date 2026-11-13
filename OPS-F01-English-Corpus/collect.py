@@ -12,15 +12,23 @@ BOOKS=[11,84,1342,1661,2701,345,98,158,1400,1260,768,12,1727,6130,1513,1524,74,7
 done={v["source_id"] for v in state["files"].values()}
 state.setdefault('catalog_page',1)
 state.setdefault('blocked_sources',{})
-queue=[(book,f'https://www.gutenberg.org/ebooks/{book}.txt.utf-8') for book in BOOKS if book not in done]
+# Rotate subject searches so literature does not monopolize the corpus.
+TOPICS=["science","mathematics","medicine","biology","history","law","technology","philosophy","education","literature"]
+state.setdefault("topic_cursor",0)
+state.setdefault("topic_pages",{})
+topic=TOPICS[state["topic_cursor"]%len(TOPICS)]
+state["topic_cursor"]+=1
+page=state["topic_pages"].get(topic,1)
+queue=[]
+try:
+    found,has_next=discover_page(page,topic=topic)
+    queue=[(int(name.split("-")[-1]),url) for name,url,kind in found if int(name.split("-")[-1]) not in done]
+    state["topic_pages"][topic]=page+1 if has_next else 1
+except Exception as exc:
+    state["catalog_error"]={"topic":topic,"message":str(exc)[:200]}
+# Seed texts are fallback only, not the primary search direction.
 if not queue:
-    try:
-        found,has_next=discover_page(state['catalog_page'])
-        queue=[(int(name.split('-')[-1]),url) for name,url,kind in found if int(name.split('-')[-1]) not in done]
-        state['catalog_page']=state['catalog_page']+1 if has_next else 1
-    except Exception as exc:
-        queue=[]
-        state['catalog_error']=str(exc)[:200]
+    queue=[(book,f"https://www.gutenberg.org/ebooks/{book}.txt.utf-8") for book in BOOKS if book not in done]
 result={"at":datetime.datetime.now(datetime.timezone.utc).isoformat(),"status":"NO_NEW_SOURCE"}
 for book,url in queue:
     if book in done:continue
@@ -45,7 +53,7 @@ for book,url in queue:
             continue
         name=f"gutenberg-{book}"
         (OUT/(name+".txt")).write_bytes(data)
-        state["files"][name]={"source_id":book,"source_url":url,"sha256":sha,"candidate_bytes":len(data),"language_candidate":"en","global_verified":False}
+        state["files"][name]={"source_id":book,"source_url":url,"sha256":sha,"candidate_bytes":len(data),"language_candidate":"en","global_verified":False,"search_topic":topic}
         state["candidate_bytes"]=sum(v["candidate_bytes"] for v in state["files"].values())
         result={"at":result["at"],"status":"LOCAL_CANDIDATE_ADDED","source_id":book,"candidate_bytes":len(data)}
         break
