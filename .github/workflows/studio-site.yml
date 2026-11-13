@@ -21,6 +21,8 @@ on:
       - workboard.html
       - history/**
       - scripts/validate_site.py
+      - scripts/check_public_privacy.py
+      - scripts/test_public_privacy.py
       - scripts/update_workboard.py
       - scripts/reconcile_workboard.py
       - scripts/test_reconcile_workboard.py
@@ -46,6 +48,10 @@ jobs:
           python-version: '3.11'
       - name: Public data allowlist and consistency
         run: python scripts/validate_site.py
+      - name: Public confidentiality gate
+        run: python scripts/check_public_privacy.py
+      - name: Public privacy regression tests
+        run: python -m unittest discover -s scripts -p 'test_public_privacy.py' -v
       - name: Progress updater Python syntax check
         run: python -m py_compile scripts/update_workboard.py
 
