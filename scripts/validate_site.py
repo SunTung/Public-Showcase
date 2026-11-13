@@ -168,6 +168,25 @@ def main():
         assert match["gate_metric"]["total"] == gate["total"]
         assert match["gate_metric"]["scope"] == gate["gate_title"]
     assert sum(r["gate_metric"] is not None for r in board["items"]) == len(gates["records"])
+    p0 = read_json("workboard-p0-tasks.json")
+    assert set(p0) == {"schema", "as_of", "source_snapshot", "scope", "project_count", "task_count", "overall_completion_pct", "records"}
+    assert p0["schema"] == "studio_public_p0_task_audit_v1"
+    assert p0["project_count"] == 4 and p0["task_count"] == len(p0["records"]) == 20
+    assert p0["overall_completion_pct"] is None
+    p0_ids = {"CELL-CORE", "CELL-EN", "RL-GAME-STUDIO", "ENDLESS"}
+    assert {x["project_id"] for x in p0["records"]} == p0_ids
+    assert len({x["task_id"] for x in p0["records"]}) == len(p0["records"])
+    allowed_status = {"VERIFIED_BOUNDED", "OPEN", "PLANNED", "BLOCKED_EXTERNAL"}
+    for task in p0["records"]:
+        assert set(task) == {"task_id", "project_id", "title", "status", "evidence_summary",
+                             "evidence_date", "counts_toward_overall_completion"}
+        assert task["status"] in allowed_status
+        assert task["counts_toward_overall_completion"] is False
+        assert re.fullmatch(r"\d{4}-\d{2}-\d{2}", task["evidence_date"])
+        assert 5 <= len(task["title"]) <= 180 and 12 <= len(task["evidence_summary"]) <= 180
+        assert not re.search(r"(?:github\.com|drive\.google\.com|/mnt/|token|password|secret|source_path|sha256)",
+                             json.dumps(task, ensure_ascii=False), re.I)
+    assert "workboard-p0-tasks.json" in (ROOT / "workboard.html").read_text(encoding="utf-8")
     events = read_json("workboard-events.json")
     assert set(events) == {"schema", "events"}
     assert events["schema"] == "studio_public_workboard_events_v1"
