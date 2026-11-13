@@ -2,7 +2,7 @@
   "schema": "studio_github_cross_repo_inventory_v1",
   "as_of": "2026-11-14",
   "scope": "All 27 GitHub repos visible to the connected SunTung account, default main branch recursive trees",
-  "method": "Per-file extension and path keyword classification on complete git trees; overlapping category hits",
+  "method": "Per-file extension and path keyword classification on complete git trees; overlapping category hits; last commit and latest Actions run checked in separate activity snapshot",
   "repo_count": 27,
   "registered_project_count": 38,
   "aggregate": {
@@ -71,7 +71,16 @@
         "yml": 3,
         "json": 3
       },
-      "tree_complete": true
+      "tree_complete": true,
+      "latest_commit_at": "2026-11-05T11:01:27Z",
+      "latest_commit_short_sha": "6599f0972e90",
+      "last_action": {
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-02T11:57:20Z",
+        "run_id": 37003875132
+      },
+      "latest_action_is_fresh": false
     },
     {
       "repository": "RGOS-Input-HID-Device-Lab",
@@ -100,7 +109,11 @@
         "md": 16,
         "rl": 6
       },
-      "tree_complete": true
+      "tree_complete": true,
+      "latest_commit_at": "2026-11-05T11:01:31Z",
+      "latest_commit_short_sha": "c9148a11427d",
+      "last_action": null,
+      "latest_action_is_fresh": false
     },
     {
       "repository": "RGOS-UI-Web-Security-Lab",
@@ -135,7 +148,16 @@
         "toml": 1,
         "webp": 1
       },
-      "tree_complete": true
+      "tree_complete": true,
+      "latest_commit_at": "2026-11-05T11:01:33Z",
+      "latest_commit_short_sha": "b1587ab6bf2d",
+      "last_action": {
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-08-22T07:50:53Z",
+        "run_id": 32560698943
+      },
+      "latest_action_is_fresh": false
     },
     {
       "repository": "RG-Decision-Search-Lab",
@@ -169,7 +191,16 @@
         "rl": 1,
         "txt": 1
       },
-      "tree_complete": true
+      "tree_complete": true,
+      "latest_commit_at": "2026-11-11T11:57:05Z",
+      "latest_commit_short_sha": "9801b0f86f35",
+      "last_action": {
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-11-11T11:57:08Z",
+        "run_id": 43016168335
+      },
+      "latest_action_is_fresh": false
     },
     {
       "repository": "HF_TOKEN",
@@ -204,7 +235,16 @@
         "py": 1,
         "txt": 1
       },
-      "tree_complete": true
+      "tree_complete": true,
+      "latest_commit_at": "2026-11-05T11:01:39Z",
+      "latest_commit_short_sha": "7b92114b5722",
+      "last_action": {
+        "status": "completed",
+        "conclusion": "failure",
+        "created_at": "2026-08-27T01:27:45Z",
+        "run_id": 33030165082
+      },
+      "latest_action_is_fresh": false
     },
     {
       "repository": "R-language",
@@ -239,7 +279,16 @@
         "yml": 62,
         "ps1": 21
       },
-      "tree_complete": true
+      "tree_complete": true,
+      "latest_commit_at": "2026-11-08T09:43:14Z",
+      "latest_commit_short_sha": "5a70511d207c",
+      "last_action": {
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-11-08T09:43:18Z",
+        "run_id": 42468372865
+      },
+      "latest_action_is_fresh": false
     },
     {
       "repository": "RRG",
@@ -274,7 +323,16 @@
         "pyc": 19,
         "docx": 14
       },
-      "tree_complete": true
+      "tree_complete": true,
+      "latest_commit_at": "2026-11-11T14:32:04Z",
+      "latest_commit_short_sha": "6c84915f0de6",
+      "last_action": {
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-11-11T14:32:06Z",
+        "run_id": 43039388737
+      },
+      "latest_action_is_fresh": false
     },
     {
       "repository": "Work-Bulletin-Board-and-Log-Area",
@@ -307,7 +365,11 @@
         "json": 3,
         "sha256": 2
       },
-      "tree_complete": true
+      "tree_complete": true,
+      "latest_commit_at": "2026-11-05T11:04:36Z",
+      "latest_commit_short_sha": "d8e236c0115f",
+      "last_action": null,
+      "latest_action_is_fresh": false
     },
     {
       "repository": "RGOS-RGSS",
@@ -342,7 +404,16 @@
         "yml": 10,
         "c": 7
       },
-      "tree_complete": true
+      "tree_complete": true,
+      "latest_commit_at": "2026-11-13T21:13:06Z",
+      "latest_commit_short_sha": "cbe2ed872aa7",
+      "last_action": {
+        "status": "completed",
+        "conclusion": "failure",
+        "created_at": "2026-11-13T21:13:08Z",
+        "run_id": 43508700010
+      },
+      "latest_action_is_fresh": true
     },
     {
       "repository": "library",
@@ -377,7 +448,16 @@
         "tsv": 112,
         "hpp": 94
       },
-      "tree_complete": true
+      "tree_complete": true,
+      "latest_commit_at": "2026-11-13T21:25:15Z",
+      "latest_commit_short_sha": "266e32f3971e",
+      "last_action": {
+        "status": "completed",
+        "conclusion": "failure",
+        "created_at": "2026-11-12T23:14:19Z",
+        "run_id": 43327129205
+      },
+      "latest_action_is_fresh": true
     },
     {
       "repository": "test",
@@ -412,7 +492,16 @@
         "cpp": 68,
         "c": 47
       },
-      "tree_complete": true
+      "tree_complete": true,
+      "latest_commit_at": "2026-11-13T21:08:36Z",
+      "latest_commit_short_sha": "a8373609109c",
+      "last_action": {
+        "status": "completed",
+        "conclusion": "failure",
+        "created_at": "2026-11-13T21:07:39Z",
+        "run_id": 43507854347
+      },
+      "latest_action_is_fresh": true
     },
     {
       "repository": "Simulation-Field-Animation-Mathematical-Structure-Algorithms",
@@ -447,7 +536,16 @@
         "yml": 1,
         "ps1": 1
       },
-      "tree_complete": true
+      "tree_complete": true,
+      "latest_commit_at": "2026-11-11T14:04:47Z",
+      "latest_commit_short_sha": "ad08e172dec3",
+      "last_action": {
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-11-11T14:04:49Z",
+        "run_id": 43035015201
+      },
+      "latest_action_is_fresh": false
     },
     {
       "repository": "Finished-Products-Showcase",
@@ -482,7 +580,16 @@
         "rrg": 4,
         "other": 2
       },
-      "tree_complete": true
+      "tree_complete": true,
+      "latest_commit_at": "2026-11-11T14:43:38Z",
+      "latest_commit_short_sha": "963d2ebbc4d1",
+      "last_action": {
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-11-11T14:43:40Z",
+        "run_id": 43041263800
+      },
+      "latest_action_is_fresh": false
     },
     {
       "repository": "CLAW-Agent-System",
@@ -514,7 +621,16 @@
         "txt": 2,
         "yml": 1
       },
-      "tree_complete": true
+      "tree_complete": true,
+      "latest_commit_at": "2026-11-11T12:33:42Z",
+      "latest_commit_short_sha": "64b6a7530b84",
+      "last_action": {
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-11-11T12:33:45Z",
+        "run_id": 43021406294
+      },
+      "latest_action_is_fresh": false
     },
     {
       "repository": "2026-number-game",
@@ -545,7 +661,11 @@
         "cpp": 4,
         "tex": 1
       },
-      "tree_complete": true
+      "tree_complete": true,
+      "latest_commit_at": "2026-11-05T11:03:28Z",
+      "latest_commit_short_sha": "0b34016aac3d",
+      "last_action": null,
+      "latest_action_is_fresh": false
     },
     {
       "repository": "Public-Showcase",
@@ -579,7 +699,16 @@
         "html": 2,
         "webp": 1
       },
-      "tree_complete": true
+      "tree_complete": true,
+      "latest_commit_at": "2026-11-13T21:23:25Z",
+      "latest_commit_short_sha": "93c839daa96a",
+      "last_action": {
+        "status": "completed",
+        "conclusion": "failure",
+        "created_at": "2026-11-13T21:22:50Z",
+        "run_id": 43510168343
+      },
+      "latest_action_is_fresh": true
     },
     {
       "repository": "letGo",
@@ -614,7 +743,16 @@
         "java": 2,
         "xml": 1
       },
-      "tree_complete": true
+      "tree_complete": true,
+      "latest_commit_at": "2026-11-05T11:03:34Z",
+      "latest_commit_short_sha": "b95077670f45",
+      "last_action": {
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-10-26T12:52:23Z",
+        "run_id": 40325884341
+      },
+      "latest_action_is_fresh": false
     },
     {
       "repository": "CELL-DEFENDER",
@@ -642,7 +780,16 @@
       "top_extensions": {
         "md": 2
       },
-      "tree_complete": true
+      "tree_complete": true,
+      "latest_commit_at": "2026-11-11T04:37:47Z",
+      "latest_commit_short_sha": "f72b3842057e",
+      "last_action": {
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-11-05T12:18:09Z",
+        "run_id": 42025974507
+      },
+      "latest_action_is_fresh": false
     },
     {
       "repository": "System-Attachment-Module",
@@ -671,7 +818,16 @@
         "md": 16,
         "rl": 9
       },
-      "tree_complete": true
+      "tree_complete": true,
+      "latest_commit_at": "2026-11-05T11:02:16Z",
+      "latest_commit_short_sha": "765d9b662f87",
+      "last_action": {
+        "status": "completed",
+        "conclusion": "failure",
+        "created_at": "2026-08-29T00:04:19Z",
+        "run_id": 33222418364
+      },
+      "latest_action_is_fresh": false
     },
     {
       "repository": "Dispatch-and-transfer",
@@ -706,7 +862,11 @@
         "yml": 2,
         "other": 1
       },
-      "tree_complete": true
+      "tree_complete": true,
+      "latest_commit_at": "2026-11-11T23:43:44Z",
+      "latest_commit_short_sha": "4a12bc196c1d",
+      "last_action": null,
+      "latest_action_is_fresh": false
     },
     {
       "repository": "RROS-work-house",
@@ -741,7 +901,16 @@
         "c": 6,
         "cmd": 3
       },
-      "tree_complete": true
+      "tree_complete": true,
+      "latest_commit_at": "2026-11-05T11:02:23Z",
+      "latest_commit_short_sha": "150f70a261b9",
+      "last_action": {
+        "status": "completed",
+        "conclusion": "failure",
+        "created_at": "2026-09-14T13:15:23Z",
+        "run_id": 34848114956
+      },
+      "latest_action_is_fresh": false
     },
     {
       "repository": "Semantic-structure",
@@ -772,7 +941,16 @@
         "py": 9,
         "yml": 1
       },
-      "tree_complete": true
+      "tree_complete": true,
+      "latest_commit_at": "2026-11-05T11:02:26Z",
+      "latest_commit_short_sha": "04eec48f3a86",
+      "last_action": {
+        "status": "completed",
+        "conclusion": "failure",
+        "created_at": "2026-08-30T04:15:39Z",
+        "run_id": 33292097443
+      },
+      "latest_action_is_fresh": false
     },
     {
       "repository": "desktop-tutorial",
@@ -800,7 +978,11 @@
       "top_extensions": {
         "md": 7
       },
-      "tree_complete": true
+      "tree_complete": true,
+      "latest_commit_at": "2026-11-05T11:02:56Z",
+      "latest_commit_short_sha": "f6b054e74df4",
+      "last_action": null,
+      "latest_action_is_fresh": false
     },
     {
       "repository": "Rl-Toolchain",
@@ -832,7 +1014,16 @@
         "yml": 2,
         "json": 2
       },
-      "tree_complete": true
+      "tree_complete": true,
+      "latest_commit_at": "2026-11-05T11:03:16Z",
+      "latest_commit_short_sha": "d05fa198daf7",
+      "last_action": {
+        "status": "completed",
+        "conclusion": "failure",
+        "created_at": "2026-09-07T00:47:48Z",
+        "run_id": 34070938906
+      },
+      "latest_action_is_fresh": false
     },
     {
       "repository": "Early-stage-database-pre-2026-",
@@ -861,7 +1052,11 @@
         "md": 18,
         "json": 3
       },
-      "tree_complete": true
+      "tree_complete": true,
+      "latest_commit_at": "2026-11-05T11:03:19Z",
+      "latest_commit_short_sha": "1f053df866d9",
+      "last_action": null,
+      "latest_action_is_fresh": false
     },
     {
       "repository": "Dr_Cell",
@@ -892,7 +1087,16 @@
         "py": 16,
         "yml": 3
       },
-      "tree_complete": true
+      "tree_complete": true,
+      "latest_commit_at": "2026-11-11T09:19:50Z",
+      "latest_commit_short_sha": "a772b8a8bf8c",
+      "last_action": {
+        "status": "completed",
+        "conclusion": "success",
+        "created_at": "2026-11-11T09:19:52Z",
+        "run_id": 42994264837
+      },
+      "latest_action_is_fresh": false
     },
     {
       "repository": "CELL-NERVE-Interleaved-Memory",
@@ -927,7 +1131,11 @@
         "csv": 1,
         "docx": 1
       },
-      "tree_complete": true
+      "tree_complete": true,
+      "latest_commit_at": "2026-11-06T09:26:44Z",
+      "latest_commit_short_sha": "0b877d92db1c",
+      "last_action": null,
+      "latest_action_is_fresh": false
     }
   ],
   "limitations": [
@@ -936,5 +1144,6 @@
     "Main branch tree covers committed files only. Private Drive, historic non-main branches, datasets outside GitHub and in-progress local computer tasks are not indexed.",
     "Some repos changed while the three batches were inventoried; refresh via a future SHA-based incremental comparison.",
     "Private individual file names and source contents are deliberately not exposed on the public website."
-  ]
+  ],
+  "activity_as_of": "2026-11-14"
 }
