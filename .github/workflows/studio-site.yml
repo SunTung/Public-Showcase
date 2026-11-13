@@ -15,6 +15,9 @@ on:
       - workboard-gates.json
       - workboard-p0-tasks.json
       - workboard-latest.json
+      - workboard-repositories.json
+      - workboard-research-topics.json
+      - research-index.html
       - workboard.html
       - history/**
       - scripts/validate_site.py
@@ -57,7 +60,7 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           import re
-          for filename in ("index.html", "workboard.html"):
+          for filename in ("index.html", "workboard.html", "research-index.html"):
               html = Path(filename).read_text(encoding="utf-8")
               scripts = re.findall(r"<script(?:\\s[^>]*)?>(.*?)</script>", html, flags=re.S|re.I)
               assert scripts, "No inline scripts in " + filename
@@ -78,7 +81,7 @@ jobs:
       - name: Assemble public-only artifact
         run: |
           mkdir -p _site
-          cp index.html workboard.html workboard.json workboard-events.json workboard-sync-status.json workboard-gates.json workboard-p0-tasks.json workboard-latest.json progress.json products.json portfolio.json estimates.json _site/
+          cp index.html workboard.html workboard.json workboard-events.json workboard-sync-status.json workboard-gates.json workboard-p0-tasks.json workboard-latest.json workboard-repositories.json workboard-research-topics.json research-index.html progress.json products.json portfolio.json estimates.json _site/
           cp -R history _site/history
           cp -R assets _site/assets
       - uses: actions/upload-pages-artifact@v3
