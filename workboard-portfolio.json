@@ -1,621 +1,80 @@
 {
   "schema": "studio_public_portfolio_taxonomy_v1",
   "as_of": "2026-11-14",
-  "source": "Curated GitHub repository metadata + 2026-11-12 R2 project registry + 2026-11-11 bounded paper-file inventory",
+  "source": "Public approved classification labels only",
   "repository_scope": {
-    "accessible": 27,
     "public": 2,
-    "private": 25,
-    "last_full_main_inventory": {
-      "date": "2026-11-12",
-      "files": 14996,
-      "status": "HISTORICAL_SNAPSHOT_NOT_REFRESHED"
-    },
-    "current_full_recursive_reaudit": "PENDING"
+    "private": null,
+    "accessible": null
   },
   "project_scope": {
-    "registered": 38,
-    "source_reviewed": 35,
-    "source_pending": 3,
+    "registered": null,
+    "source_reviewed": null,
+    "source_pending": null,
     "whole_project_completion_pct": null
   },
   "paper_scope": {
-    "tracked_research_programs": 8,
-    "related_file_groups": 10,
-    "related_files": 431,
     "independent_papers_verified": null,
-    "published_papers_verified": null,
-    "target_papers": "數萬篇方向為研究規劃，尚無完成與去重驗證數字",
-    "counting_rule": "431 is source document / report / manuscript file inventory, NOT unique papers"
+    "published_papers_verified": null
   },
   "categories": [
     {
       "key": "ai",
       "label": "AI／CELL／模型與認知",
-      "project_count": 7,
-      "projects": [
-        {
-          "id": "CELL-CORE",
-          "name": "CELL 人工細胞智能",
-          "priority": "P0",
-          "source_reviewed": true,
-          "evidence_date": "2026-11-14",
-          "next_gate": "完成 24/72/6 Graph 全量比對、故障注入與一致性證據，再核定 S1 出口。",
-          "latest_evidence": "R05 C17 Checkpoint 分段還原已記錄 7/7、19/19、3/3 局部 Linux 測試；完整 Graph 比對仍未通過驗收。",
-          "completion_pct": null
-        },
-        {
-          "id": "CELL-LANGUAGE",
-          "name": "CELL 十階段語言能力",
-          "priority": "P1",
-          "source_reviewed": true,
-          "evidence_date": "2026-11-12",
-          "next_gate": "完成非模板理解、獨立評測與回答鏈。",
-          "latest_evidence": "已建立局部語言功能；獨立泛化評測尚未通過。",
-          "completion_pct": null
-        },
-        {
-          "id": "CELL-EN",
-          "name": "CELL 英文增量模型",
-          "priority": "P0",
-          "source_reviewed": true,
-          "evidence_date": "2026-11-12",
-          "next_gate": "從 66M 真正增量訓練至 67M，完成保留集語言測試。",
-          "latest_evidence": "66M 原生訓練檢查點已發布；67M 未完成。",
-          "completion_pct": null
-        },
-        {
-          "id": "CELL-NERVE",
-          "name": "CELL NERVE／觸手記憶",
-          "priority": "P2",
-          "source_reviewed": true,
-          "evidence_date": "2026-11-12",
-          "next_gate": "完成等預算對照實驗，保留正反結果。",
-          "latest_evidence": "記憶結構有局部成果，部分學習假說實驗失敗。",
-          "completion_pct": null
-        },
-        {
-          "id": "CELL-M",
-          "name": "CELL 向位與機制研究",
-          "priority": "P1",
-          "source_reviewed": true,
-          "evidence_date": "2026-11-12",
-          "next_gate": "完成 C/C++、Python、ARM64 原生整合。",
-          "latest_evidence": "第一階段 28 項中 21 項驗收，7 項阻塞。",
-          "completion_pct": null
-        },
-        {
-          "id": "RRG",
-          "name": "RRG 管理模式",
-          "priority": "P1",
-          "source_reviewed": true,
-          "evidence_date": "2026-11-12",
-          "next_gate": "完成多結構 Runtime 與殘差重分區驗證。",
-          "latest_evidence": "模型結構已有部分驗證；完整執行器仍待確認。",
-          "completion_pct": null
-        },
-        {
-          "id": "CLAW",
-          "name": "CLAW 科研／電腦代理",
-          "priority": "P2",
-          "source_reviewed": true,
-          "evidence_date": "2026-11-12",
-          "next_gate": "完成真正語言生成與自主工具工作鏈。",
-          "latest_evidence": "代理模型的既有來源版本已核對；獨立代理操作待完成。",
-          "completion_pct": null
-        }
-      ]
+      "project_count": null,
+      "projects": []
     },
     {
       "key": "software",
       "label": "系統／語言／編譯器／開發工具",
-      "project_count": 10,
-      "projects": [
-        {
-          "id": "CELO",
-          "name": "CELO 編譯工作平台",
-          "priority": "P1",
-          "source_reviewed": true,
-          "evidence_date": "2026-11-12",
-          "next_gate": "完成原生執行、圖結構與工作鏈整合。",
-          "latest_evidence": "Host 端工作鏈有界通過，完整平台原生關卡未閉合。",
-          "completion_pct": null
-        },
-        {
-          "id": "RL",
-          "name": "Rl 語言及編譯器",
-          "priority": "P1",
-          "source_reviewed": true,
-          "evidence_date": "2026-11-12",
-          "next_gate": "完成語義、ABI、所有權與最終 Linker。",
-          "latest_evidence": "原生編譯工具部分可用，自舉與最終連結器待完成。",
-          "completion_pct": null
-        },
-        {
-          "id": "RL-GAME-STUDIO-V1",
-          "name": "RL Game Studio V1.0",
-          "priority": "P2",
-          "source_reviewed": true,
-          "evidence_date": "2026-11-12",
-          "next_gate": "保留有效基線，僅處理影響現有產品的缺陷。",
-          "latest_evidence": "第一代 Windows 功能驗收已封存。",
-          "completion_pct": null
-        },
-        {
-          "id": "RL-GAME-STUDIO",
-          "name": "RL Game Studio V2.0",
-          "priority": "P0",
-          "source_reviewed": true,
-          "evidence_date": "2026-11-14",
-          "next_gate": "延伸 B4B 多場景及事件／資產綁定，完成 Windows GUI 存檔重開實測。",
-          "latest_evidence": "B4B 已記錄 Linux/X11 原生 V2 地圖與實體視窗測試 1/1；Windows 實體操作仍未驗收。",
-          "completion_pct": null
-        },
-        {
-          "id": "TAIWAN-KEYIN",
-          "name": "CELL 臺灣注音輸入法",
-          "priority": "P1",
-          "source_reviewed": true,
-          "evidence_date": "2026-11-12",
-          "next_gate": "完成繁注／簡注／繁拼／簡拼手機測試。",
-          "latest_evidence": "既有簽章 APK 基線存在；四模式待驗收。",
-          "completion_pct": null
-        },
-        {
-          "id": "POCKET-RECORDER",
-          "name": "PocketRecorder 手機錄音",
-          "priority": "P1",
-          "source_reviewed": true,
-          "evidence_date": "2026-11-12",
-          "next_gate": "完成 AAB、錄音實機與商店驗收。",
-          "latest_evidence": "錄音器原始碼存在；上架封裝待完成。",
-          "completion_pct": null
-        },
-        {
-          "id": "RGOS",
-          "name": "RGOS／RGSS 作業系統與應用",
-          "priority": "P2",
-          "source_reviewed": true,
-          "evidence_date": "2026-11-12",
-          "next_gate": "完成 USB 開機、輸入、顯示及檔案系統驗收。",
-          "latest_evidence": "主機側驗證有成果；真實 USB 硬體驗收未完成。",
-          "completion_pct": null
-        },
-        {
-          "id": "RI-STORY",
-          "name": "RI 模型／老奶奶說故事",
-          "priority": "P2",
-          "source_reviewed": true,
-          "evidence_date": "2026-11-12",
-          "next_gate": "保留較佳基線，重做連續故事生成評測。",
-          "latest_evidence": "故事模型已有版本；最新品質測試存在退步。",
-          "completion_pct": null
-        },
-        {
-          "id": "RGOS-TOOLS",
-          "name": "RGOS Web/HID/系統附加工具",
-          "priority": "P2",
-          "source_reviewed": true,
-          "evidence_date": "2026-11-12",
-          "next_gate": "完成原生編譯、硬體事件及跨模組整合。",
-          "latest_evidence": "Web、HID 與系統工具已有候選模組。",
-          "completion_pct": null
-        },
-        {
-          "id": "LETGO-ANDROID",
-          "name": "letGo Android 圍棋／OGS 實際對局",
-          "priority": "P1",
-          "source_reviewed": true,
-          "evidence_date": "2026-11-12",
-          "next_gate": "完成正式線上對局及手機實機驗收。",
-          "latest_evidence": "Android 圍棋工程與線上對局方向已登記。",
-          "completion_pct": null
-        }
-      ]
+      "project_count": null,
+      "projects": []
     },
     {
       "key": "game",
       "label": "遊戲／互動世界",
-      "project_count": 4,
-      "projects": [
-        {
-          "id": "ENDLESS",
-          "name": "無盡遠征｜大型復古遊戲",
-          "priority": "P0",
-          "source_reviewed": true,
-          "evidence_date": "2026-11-14",
-          "next_gate": "整合 G02 場景、路線和實際戰鬥／存檔，交付可玩 Windows 程式驗收。",
-          "latest_evidence": "G02 固定新手出生地規格核定，場景結構靜態檢查 11/11、路線樣例 7/7 已記錄；尚非正式遊戲。",
-          "completion_pct": null
-        },
-        {
-          "id": "CELL-DEFENDER",
-          "name": "CELL DEFENDER 手機遊戲",
-          "priority": "P1",
-          "source_reviewed": true,
-          "evidence_date": "2026-11-12",
-          "next_gate": "驗收六關、分身、防護、技能與手機實機操作。",
-          "latest_evidence": "Android 測試版本存在，完整遊玩功能待核實。",
-          "completion_pct": null
-        },
-        {
-          "id": "CELL-EARTH",
-          "name": "CELL Earth World",
-          "priority": "P2",
-          "source_reviewed": true,
-          "evidence_date": "2026-11-12",
-          "next_gate": "完成最新執行版本與互動操作驗收。",
-          "latest_evidence": "環境互動原型已有局部功能驗證。",
-          "completion_pct": null
-        },
-        {
-          "id": "GAME-SMALL",
-          "name": "掌上小遊戲與數字遊戲",
-          "priority": "P_BLOCKED",
-          "source_reviewed": false,
-          "evidence_date": "2026-11-12",
-          "next_gate": "整合遊戲入口、獎勵、存檔及 Android 操作。",
-          "latest_evidence": "多款小遊戲原型與 COIN 規則已建立。",
-          "completion_pct": null
-        }
-      ]
+      "project_count": null,
+      "projects": []
     },
     {
       "key": "data",
       "label": "資料庫／語料／字典",
-      "project_count": 2,
-      "projects": [
-        {
-          "id": "SPECIAL-DICTIONARY",
-          "name": "特殊名詞多語字典",
-          "priority": "P1",
-          "source_reviewed": true,
-          "evidence_date": "2026-11-12",
-          "next_gate": "完成多程序協調及 CELL 實際載入。",
-          "latest_evidence": "已有 1,028 詞條主檔及局部工具驗證。",
-          "completion_pct": null
-        },
-        {
-          "id": "OPS-CORPUS",
-          "name": "OPS 英文語料收集",
-          "priority": "P1",
-          "source_reviewed": true,
-          "evidence_date": "2026-11-14",
-          "next_gate": "完成候選正文去重品質驗證、有效 UTF-8 位元組統計及本地長時間運作測試。",
-          "latest_evidence": "R7 本地監督器測試記錄 18/18；候選文字約 60.54 MB，跨來源去重合格量未確認。",
-          "completion_pct": null
-        }
-      ]
+      "project_count": null,
+      "projects": []
     },
     {
       "key": "medical",
       "label": "醫學／生命科學",
-      "project_count": 1,
-      "projects": [
-        {
-          "id": "DR-CELL",
-          "name": "DR_CELL 醫學研究模型",
-          "priority": "P1",
-          "source_reviewed": true,
-          "evidence_date": "2026-11-12",
-          "next_gate": "完成知識關係整合及醫學評測。",
-          "latest_evidence": "醫學文獻與資料結構已建立初步驗證。",
-          "completion_pct": null
-        }
-      ]
+      "project_count": null,
+      "projects": []
     },
     {
       "key": "research",
       "label": "演算法／物理／通用研究",
-      "project_count": 4,
-      "projects": [
-        {
-          "id": "SOP-SEARCH",
-          "name": "SOP 通用搜尋結構理論",
-          "priority": "P2",
-          "source_reviewed": true,
-          "evidence_date": "2026-11-12",
-          "next_gate": "釐清演算法主版本並完成外部公平基準。",
-          "latest_evidence": "相關演算法研究有成果；獨立標準基準待建立。",
-          "completion_pct": null
-        },
-        {
-          "id": "SRV-QUANTUM",
-          "name": "量子模擬 SRV 技術",
-          "priority": "P2",
-          "source_reviewed": true,
-          "evidence_date": "2026-11-12",
-          "next_gate": "分離量子與經典基準並確認模型身份。",
-          "latest_evidence": "已有局部結構與模擬實驗，研究身份仍待釐清。",
-          "completion_pct": null
-        },
-        {
-          "id": "DECISION-SEARCH",
-          "name": "RG 決策搜尋／數學迷宮",
-          "priority": "P2",
-          "source_reviewed": true,
-          "evidence_date": "2026-11-12",
-          "next_gate": "完成原生整合及外部標準迷宮比較。",
-          "latest_evidence": "搜尋基準與局部 CI 已通過。",
-          "completion_pct": null
-        },
-        {
-          "id": "SPACE-SIM",
-          "name": "空間、物理與動畫模擬",
-          "priority": "P2",
-          "source_reviewed": true,
-          "evidence_date": "2026-11-12",
-          "next_gate": "完成原生解算、守恆與多物理耦合。",
-          "latest_evidence": "多類模擬結構已有初步數值基線。",
-          "completion_pct": null
-        }
-      ]
+      "project_count": null,
+      "projects": []
     },
     {
       "key": "paper",
       "label": "數學／科學論文",
-      "project_count": 8,
-      "projects": [
-        {
-          "id": "NAVIER-STOKES",
-          "name": "Navier–Stokes 漩渦數學論文系列",
-          "priority": "P_RESEARCH",
-          "source_reviewed": true,
-          "evidence_date": "2026-11-12",
-          "next_gate": "檢查全域延拓條件並進行獨立證明驗證。",
-          "latest_evidence": "有限尺度表示研究有成果；全域正則性未證成。",
-          "completion_pct": null
-        },
-        {
-          "id": "PERFECT-CUBOID",
-          "name": "Perfect Cuboid／環搜尋論文",
-          "priority": "P_RESEARCH",
-          "source_reviewed": true,
-          "evidence_date": "2026-11-12",
-          "next_gate": "推進秩、提升與全域論證。",
-          "latest_evidence": "已完成部分精確搜尋和有限代數證書。",
-          "completion_pct": null
-        },
-        {
-          "id": "KRENN",
-          "name": "Krenn K6,D3 數學論文／驗證",
-          "priority": "P_RESEARCH",
-          "source_reviewed": true,
-          "evidence_date": "2026-11-12",
-          "next_gate": "完成獨立形式化重現與一般模型驗證。",
-          "latest_evidence": "受限組合模型有精確驗證；一般模型待區分。",
-          "completion_pct": null
-        },
-        {
-          "id": "JSP-000244",
-          "name": "JSP-000244 數學研究論文",
-          "priority": "P_RESEARCH",
-          "source_reviewed": true,
-          "evidence_date": "2026-11-12",
-          "next_gate": "從局部搜索推進到可審核的全域證明。",
-          "latest_evidence": "已進行局部數論搜尋，尚未取得全域證明。",
-          "completion_pct": null
-        },
-        {
-          "id": "NERVE-PAPER",
-          "name": "NERVE CELL 原始學習研究論文",
-          "priority": "P_RESEARCH",
-          "source_reviewed": true,
-          "evidence_date": "2026-11-12",
-          "next_gate": "納入失敗對照與後續驗證。",
-          "latest_evidence": "記憶與學習論文草稿、實驗記錄存在。",
-          "completion_pct": null
-        },
-        {
-          "id": "CELL-RRG-PAPERS",
-          "name": "CELL/RRG 模型數學論文",
-          "priority": "P_RESEARCH",
-          "source_reviewed": true,
-          "evidence_date": "2026-11-12",
-          "next_gate": "對齊最新證據、研究主張及版本。",
-          "latest_evidence": "模型結構研究與論文草稿已有記錄。",
-          "completion_pct": null
-        },
-        {
-          "id": "DECISION-PAPERS",
-          "name": "決策意向與推理論文",
-          "priority": "P_RESEARCH",
-          "source_reviewed": true,
-          "evidence_date": "2026-11-12",
-          "next_gate": "完成可重現實驗及數學論證。",
-          "latest_evidence": "決策與推理論文研究已有草稿。",
-          "completion_pct": null
-        },
-        {
-          "id": "RL-MATH-PAPERS",
-          "name": "Rl 數學／證明系統研究",
-          "priority": "P_RESEARCH",
-          "source_reviewed": true,
-          "evidence_date": "2026-11-12",
-          "next_gate": "完成原生證明器及定理驗收。",
-          "latest_evidence": "原生數學證明系統有設計和工具研究。",
-          "completion_pct": null
-        }
-      ]
+      "project_count": null,
+      "projects": []
     },
     {
       "key": "literature",
       "label": "文學與創作",
-      "project_count": 1,
-      "projects": [
-        {
-          "id": "LITERATURE",
-          "name": "文學、小說與詩作",
-          "priority": "P_BLOCKED",
-          "source_reviewed": false,
-          "evidence_date": "2026-11-12",
-          "next_gate": "區分草稿、投稿、入選與正式出版。",
-          "latest_evidence": "小說、詩作及投稿資料存在，完整狀態待核。",
-          "completion_pct": null
-        }
-      ]
+      "project_count": null,
+      "projects": []
     },
     {
       "key": "business",
       "label": "專利／商業化",
-      "project_count": 1,
-      "projects": [
-        {
-          "id": "PATENTS",
-          "name": "專利與商業化研究",
-          "priority": "P_BLOCKED",
-          "source_reviewed": false,
-          "evidence_date": "2026-11-12",
-          "next_gate": "確認正式申請、產品授權與商業里程碑。",
-          "latest_evidence": "技術保護和商業化規劃已建立，正式證據待核。",
-          "completion_pct": null
-        }
-      ]
+      "project_count": null,
+      "projects": []
     }
   ],
-  "repository_domain_groups": [
-    {
-      "domain": "ai",
-      "count": 4,
-      "visibility": "AGGREGATED_ONLY_NOT_PUBLIC_PRIVATE_REPO_NAMES"
-    },
-    {
-      "domain": "system",
-      "count": 9,
-      "visibility": "AGGREGATED_ONLY_NOT_PUBLIC_PRIVATE_REPO_NAMES"
-    },
-    {
-      "domain": "research",
-      "count": 3,
-      "visibility": "AGGREGATED_ONLY_NOT_PUBLIC_PRIVATE_REPO_NAMES"
-    },
-    {
-      "domain": "game",
-      "count": 2,
-      "visibility": "AGGREGATED_ONLY_NOT_PUBLIC_PRIVATE_REPO_NAMES"
-    },
-    {
-      "domain": "medical",
-      "count": 1,
-      "visibility": "AGGREGATED_ONLY_NOT_PUBLIC_PRIVATE_REPO_NAMES"
-    },
-    {
-      "domain": "agent",
-      "count": 1,
-      "visibility": "AGGREGATED_ONLY_NOT_PUBLIC_PRIVATE_REPO_NAMES"
-    },
-    {
-      "domain": "portfolio",
-      "count": 7,
-      "visibility": "AGGREGATED_ONLY_NOT_PUBLIC_PRIVATE_REPO_NAMES"
-    }
-  ],
-  "research_tracks": [
-    {
-      "project_id": "SPECIAL-DICTIONARY",
-      "title": "特殊名詞多語字典",
-      "category": "data",
-      "latest_gate": "完成多程序協調及 CELL 實際載入。",
-      "evidence_date": "2026-11-12"
-    },
-    {
-      "project_id": "OPS-CORPUS",
-      "title": "OPS 英文語料收集",
-      "category": "data",
-      "latest_gate": "完成候選正文去重品質驗證、有效 UTF-8 位元組統計及本地長時間運作測試。",
-      "evidence_date": "2026-11-14"
-    },
-    {
-      "project_id": "DR-CELL",
-      "title": "DR_CELL 醫學研究模型",
-      "category": "medical",
-      "latest_gate": "完成知識關係整合及醫學評測。",
-      "evidence_date": "2026-11-12"
-    },
-    {
-      "project_id": "SOP-SEARCH",
-      "title": "SOP 通用搜尋結構理論",
-      "category": "research",
-      "latest_gate": "釐清演算法主版本並完成外部公平基準。",
-      "evidence_date": "2026-11-12"
-    },
-    {
-      "project_id": "SRV-QUANTUM",
-      "title": "量子模擬 SRV 技術",
-      "category": "research",
-      "latest_gate": "分離量子與經典基準並確認模型身份。",
-      "evidence_date": "2026-11-12"
-    },
-    {
-      "project_id": "DECISION-SEARCH",
-      "title": "RG 決策搜尋／數學迷宮",
-      "category": "research",
-      "latest_gate": "完成原生整合及外部標準迷宮比較。",
-      "evidence_date": "2026-11-12"
-    },
-    {
-      "project_id": "SPACE-SIM",
-      "title": "空間、物理與動畫模擬",
-      "category": "research",
-      "latest_gate": "完成原生解算、守恆與多物理耦合。",
-      "evidence_date": "2026-11-12"
-    },
-    {
-      "project_id": "NAVIER-STOKES",
-      "title": "Navier–Stokes 漩渦數學論文系列",
-      "category": "paper",
-      "latest_gate": "檢查全域延拓條件並進行獨立證明驗證。",
-      "evidence_date": "2026-11-12"
-    },
-    {
-      "project_id": "PERFECT-CUBOID",
-      "title": "Perfect Cuboid／環搜尋論文",
-      "category": "paper",
-      "latest_gate": "推進秩、提升與全域論證。",
-      "evidence_date": "2026-11-12"
-    },
-    {
-      "project_id": "KRENN",
-      "title": "Krenn K6,D3 數學論文／驗證",
-      "category": "paper",
-      "latest_gate": "完成獨立形式化重現與一般模型驗證。",
-      "evidence_date": "2026-11-12"
-    },
-    {
-      "project_id": "JSP-000244",
-      "title": "JSP-000244 數學研究論文",
-      "category": "paper",
-      "latest_gate": "從局部搜索推進到可審核的全域證明。",
-      "evidence_date": "2026-11-12"
-    },
-    {
-      "project_id": "NERVE-PAPER",
-      "title": "NERVE CELL 原始學習研究論文",
-      "category": "paper",
-      "latest_gate": "納入失敗對照與後續驗證。",
-      "evidence_date": "2026-11-12"
-    },
-    {
-      "project_id": "CELL-RRG-PAPERS",
-      "title": "CELL/RRG 模型數學論文",
-      "category": "paper",
-      "latest_gate": "對齊最新證據、研究主張及版本。",
-      "evidence_date": "2026-11-12"
-    },
-    {
-      "project_id": "DECISION-PAPERS",
-      "title": "決策意向與推理論文",
-      "category": "paper",
-      "latest_gate": "完成可重現實驗及數學論證。",
-      "evidence_date": "2026-11-12"
-    },
-    {
-      "project_id": "RL-MATH-PAPERS",
-      "title": "Rl 數學／證明系統研究",
-      "category": "paper",
-      "latest_gate": "完成原生證明器及定理驗收。",
-      "evidence_date": "2026-11-12"
-    }
-  ],
-  "method": "Public research directions and aggregate portfolio counts only; private repo names, paths, unapproved source evidence and internal SHA excluded. No claim all current main files or all experiments have been recursively inspected."
+  "repository_domain_groups": [],
+  "research_tracks": [],
+  "method": "Confidential research and project associations remain in private library; no public export of private portfolio evidence.",
+  "privacy_policy": "DEFAULT_DENY_PRIVATE"
 }
