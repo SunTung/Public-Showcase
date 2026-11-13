@@ -1,0 +1,321 @@
+{
+  "schema": "studio_public_all_project_latest_v1",
+  "checked_on": "2026-11-14",
+  "private_base_snapshot": "2026-11-12",
+  "scope": "38 projects; registered source paths and selected cross-directory GitHub commits; no full repository retest",
+  "registered_count": 38,
+  "category_counts": {
+    "NEW_BOUNDED_SOURCE_REPORT": 4,
+    "SOURCE_ACTIVITY_ONLY": 4,
+    "NO_NEW_GATE_CONFIRMED": 27,
+    "SOURCE_EVIDENCE_PENDING": 3
+  },
+  "unregistered_candidate_count": 1,
+  "unregistered_candidate_public_note": "CELN Coder M v1.0 有獨立 M-03 Linux 工作鏈驗收紀錄，正式工程 ID 與 WBS 尚待另行登記。",
+  "records": [
+    {
+      "project_id": "CELL-CORE",
+      "project_name": "CELL 人工細胞智能",
+      "review_class": "NEW_BOUNDED_SOURCE_REPORT",
+      "latest_summary": "R05 C17 Checkpoint 局部 Linux 測試有新紀錄；完整 Graph 差異測試逾時，S1 仍未關閉。",
+      "evidence_boundary": "來源報告，相關 GitHub CI 未通過",
+      "whole_project_completion_pct": null
+    },
+    {
+      "project_id": "CELL-LANGUAGE",
+      "project_name": "CELL 十階段語言能力",
+      "review_class": "SOURCE_ACTIVITY_ONLY",
+      "latest_summary": "十階段能力每日差異審查有新紀錄，尚未取得完整功能關卡的新驗收。",
+      "evidence_boundary": "審查活動，不是能力已達標",
+      "whole_project_completion_pct": null
+    },
+    {
+      "project_id": "CELL-EN",
+      "project_name": "CELL 英文增量模型",
+      "review_class": "SOURCE_ACTIVITY_ONLY",
+      "latest_summary": "已找到 R7 原生情境生成工具修改，67M 正式檢查點與未見題測試尚未確認。",
+      "evidence_boundary": "程式活動，不是新增模型驗收",
+      "whole_project_completion_pct": null
+    },
+    {
+      "project_id": "CELL-NERVE",
+      "project_name": "CELL NERVE／觸手記憶",
+      "review_class": "NO_NEW_GATE_CONFIRMED",
+      "latest_summary": "本輪未確認可升級的新增功能關卡；保留既有已稽核成果。",
+      "evidence_boundary": "登記來源與近期提交查核；不代表所有分支或外部作業沒有更新",
+      "whole_project_completion_pct": null
+    },
+    {
+      "project_id": "CELL-M",
+      "project_name": "CELL 向位與機制研究",
+      "review_class": "NO_NEW_GATE_CONFIRMED",
+      "latest_summary": "本輪未確認可升級的新增功能關卡；保留既有已稽核成果。",
+      "evidence_boundary": "登記來源與近期提交查核；不代表所有分支或外部作業沒有更新",
+      "whole_project_completion_pct": null
+    },
+    {
+      "project_id": "RRG",
+      "project_name": "RRG 管理模式",
+      "review_class": "NO_NEW_GATE_CONFIRMED",
+      "latest_summary": "本輪未確認可升級的新增功能關卡；保留既有已稽核成果。",
+      "evidence_boundary": "登記來源與近期提交查核；不代表所有分支或外部作業沒有更新",
+      "whole_project_completion_pct": null
+    },
+    {
+      "project_id": "CELO",
+      "project_name": "CELO 編譯工作平台",
+      "review_class": "SOURCE_ACTIVITY_ONLY",
+      "latest_summary": "R05 平台 Checkpoint 相關整合持續更新，不能直接認定 CELO 原生主線已完成。",
+      "evidence_boundary": "跨主線活動，整體出口未關閉",
+      "whole_project_completion_pct": null
+    },
+    {
+      "project_id": "RL",
+      "project_name": "Rl 語言及編譯器",
+      "review_class": "NO_NEW_GATE_CONFIRMED",
+      "latest_summary": "本輪未確認可升級的新增功能關卡；保留既有已稽核成果。",
+      "evidence_boundary": "登記來源與近期提交查核；不代表所有分支或外部作業沒有更新",
+      "whole_project_completion_pct": null
+    },
+    {
+      "project_id": "RL-GAME-STUDIO-V1",
+      "project_name": "RL Game Studio V1.0",
+      "review_class": "NO_NEW_GATE_CONFIRMED",
+      "latest_summary": "本輪未確認可升級的新增功能關卡；保留既有已稽核成果。",
+      "evidence_boundary": "登記來源與近期提交查核；不代表所有分支或外部作業沒有更新",
+      "whole_project_completion_pct": null
+    },
+    {
+      "project_id": "RL-GAME-STUDIO",
+      "project_name": "RL Game Studio V2.0",
+      "review_class": "NEW_BOUNDED_SOURCE_REPORT",
+      "latest_summary": "B4B Linux/X11 V2 地圖及實體視窗原生測試 1/1 有紀錄，Windows 實體 GUI 仍待驗收。",
+      "evidence_boundary": "來源報告的 Linux 有界驗證",
+      "whole_project_completion_pct": null
+    },
+    {
+      "project_id": "ENDLESS",
+      "project_name": "無盡遠征｜大型復古遊戲",
+      "review_class": "NEW_BOUNDED_SOURCE_REPORT",
+      "latest_summary": "G02 固定出生、場景拓樸及路線樣例有新設計與靜態驗證；完整遊戲仍待整合。",
+      "evidence_boundary": "設計與靜態測試，非可玩程式",
+      "whole_project_completion_pct": null
+    },
+    {
+      "project_id": "CELL-DEFENDER",
+      "project_name": "CELL DEFENDER 手機遊戲",
+      "review_class": "NO_NEW_GATE_CONFIRMED",
+      "latest_summary": "本輪未確認可升級的新增功能關卡；保留既有已稽核成果。",
+      "evidence_boundary": "登記來源與近期提交查核；不代表所有分支或外部作業沒有更新",
+      "whole_project_completion_pct": null
+    },
+    {
+      "project_id": "TAIWAN-KEYIN",
+      "project_name": "CELL 臺灣注音輸入法",
+      "review_class": "NO_NEW_GATE_CONFIRMED",
+      "latest_summary": "本輪未確認可升級的新增功能關卡；保留既有已稽核成果。",
+      "evidence_boundary": "登記來源與近期提交查核；不代表所有分支或外部作業沒有更新",
+      "whole_project_completion_pct": null
+    },
+    {
+      "project_id": "POCKET-RECORDER",
+      "project_name": "PocketRecorder 手機錄音",
+      "review_class": "NO_NEW_GATE_CONFIRMED",
+      "latest_summary": "本輪未確認可升級的新增功能關卡；保留既有已稽核成果。",
+      "evidence_boundary": "登記來源與近期提交查核；不代表所有分支或外部作業沒有更新",
+      "whole_project_completion_pct": null
+    },
+    {
+      "project_id": "SPECIAL-DICTIONARY",
+      "project_name": "特殊名詞多語字典",
+      "review_class": "NO_NEW_GATE_CONFIRMED",
+      "latest_summary": "本輪未確認可升級的新增功能關卡；保留既有已稽核成果。",
+      "evidence_boundary": "登記來源與近期提交查核；不代表所有分支或外部作業沒有更新",
+      "whole_project_completion_pct": null
+    },
+    {
+      "project_id": "OPS-CORPUS",
+      "project_name": "OPS 英文語料收集",
+      "review_class": "NEW_BOUNDED_SOURCE_REPORT",
+      "latest_summary": "R7 本地監督器 18/18 測試有紀錄；約 60.54 MB 為候選文字，去重合格量未確認。",
+      "evidence_boundary": "本地監督器測試，非語料目標達標",
+      "whole_project_completion_pct": null
+    },
+    {
+      "project_id": "DR-CELL",
+      "project_name": "DR_CELL 醫學研究模型",
+      "review_class": "NO_NEW_GATE_CONFIRMED",
+      "latest_summary": "本輪未確認可升級的新增功能關卡；保留既有已稽核成果。",
+      "evidence_boundary": "登記來源與近期提交查核；不代表所有分支或外部作業沒有更新",
+      "whole_project_completion_pct": null
+    },
+    {
+      "project_id": "SOP-SEARCH",
+      "project_name": "SOP 通用搜尋結構理論",
+      "review_class": "NO_NEW_GATE_CONFIRMED",
+      "latest_summary": "本輪未確認可升級的新增功能關卡；保留既有已稽核成果。",
+      "evidence_boundary": "登記來源與近期提交查核；不代表所有分支或外部作業沒有更新",
+      "whole_project_completion_pct": null
+    },
+    {
+      "project_id": "SRV-QUANTUM",
+      "project_name": "量子模擬 SRV 技術",
+      "review_class": "NO_NEW_GATE_CONFIRMED",
+      "latest_summary": "本輪未確認可升級的新增功能關卡；保留既有已稽核成果。",
+      "evidence_boundary": "登記來源與近期提交查核；不代表所有分支或外部作業沒有更新",
+      "whole_project_completion_pct": null
+    },
+    {
+      "project_id": "DECISION-SEARCH",
+      "project_name": "RG 決策搜尋／數學迷宮",
+      "review_class": "NO_NEW_GATE_CONFIRMED",
+      "latest_summary": "本輪未確認可升級的新增功能關卡；保留既有已稽核成果。",
+      "evidence_boundary": "登記來源與近期提交查核；不代表所有分支或外部作業沒有更新",
+      "whole_project_completion_pct": null
+    },
+    {
+      "project_id": "RGOS",
+      "project_name": "RGOS／RGSS 作業系統與應用",
+      "review_class": "SOURCE_ACTIVITY_ONLY",
+      "latest_summary": "HSS 裝置交易與併發回滾參考測試程式新增，最新 CI 執行失敗。",
+      "evidence_boundary": "參考程式已更新；原生／硬體未驗收",
+      "whole_project_completion_pct": null
+    },
+    {
+      "project_id": "CLAW",
+      "project_name": "CLAW 科研／電腦代理",
+      "review_class": "NO_NEW_GATE_CONFIRMED",
+      "latest_summary": "本輪未確認可升級的新增功能關卡；保留既有已稽核成果。",
+      "evidence_boundary": "登記來源與近期提交查核；不代表所有分支或外部作業沒有更新",
+      "whole_project_completion_pct": null
+    },
+    {
+      "project_id": "SPACE-SIM",
+      "project_name": "空間、物理與動畫模擬",
+      "review_class": "NO_NEW_GATE_CONFIRMED",
+      "latest_summary": "本輪未確認可升級的新增功能關卡；保留既有已稽核成果。",
+      "evidence_boundary": "登記來源與近期提交查核；不代表所有分支或外部作業沒有更新",
+      "whole_project_completion_pct": null
+    },
+    {
+      "project_id": "NAVIER-STOKES",
+      "project_name": "Navier–Stokes 漩渦數學論文系列",
+      "review_class": "NO_NEW_GATE_CONFIRMED",
+      "latest_summary": "本輪未確認可升級的新增功能關卡；保留既有已稽核成果。",
+      "evidence_boundary": "登記來源與近期提交查核；不代表所有分支或外部作業沒有更新",
+      "whole_project_completion_pct": null
+    },
+    {
+      "project_id": "PERFECT-CUBOID",
+      "project_name": "Perfect Cuboid／環搜尋論文",
+      "review_class": "NO_NEW_GATE_CONFIRMED",
+      "latest_summary": "本輪未確認可升級的新增功能關卡；保留既有已稽核成果。",
+      "evidence_boundary": "登記來源與近期提交查核；不代表所有分支或外部作業沒有更新",
+      "whole_project_completion_pct": null
+    },
+    {
+      "project_id": "KRENN",
+      "project_name": "Krenn K6,D3 數學論文／驗證",
+      "review_class": "NO_NEW_GATE_CONFIRMED",
+      "latest_summary": "本輪未確認可升級的新增功能關卡；保留既有已稽核成果。",
+      "evidence_boundary": "登記來源與近期提交查核；不代表所有分支或外部作業沒有更新",
+      "whole_project_completion_pct": null
+    },
+    {
+      "project_id": "JSP-000244",
+      "project_name": "JSP-000244 數學研究論文",
+      "review_class": "NO_NEW_GATE_CONFIRMED",
+      "latest_summary": "本輪未確認可升級的新增功能關卡；保留既有已稽核成果。",
+      "evidence_boundary": "登記來源與近期提交查核；不代表所有分支或外部作業沒有更新",
+      "whole_project_completion_pct": null
+    },
+    {
+      "project_id": "NERVE-PAPER",
+      "project_name": "NERVE CELL 原始學習研究論文",
+      "review_class": "NO_NEW_GATE_CONFIRMED",
+      "latest_summary": "本輪未確認可升級的新增功能關卡；保留既有已稽核成果。",
+      "evidence_boundary": "登記來源與近期提交查核；不代表所有分支或外部作業沒有更新",
+      "whole_project_completion_pct": null
+    },
+    {
+      "project_id": "CELL-RRG-PAPERS",
+      "project_name": "CELL/RRG 模型數學論文",
+      "review_class": "NO_NEW_GATE_CONFIRMED",
+      "latest_summary": "本輪未確認可升級的新增功能關卡；保留既有已稽核成果。",
+      "evidence_boundary": "登記來源與近期提交查核；不代表所有分支或外部作業沒有更新",
+      "whole_project_completion_pct": null
+    },
+    {
+      "project_id": "DECISION-PAPERS",
+      "project_name": "決策意向與推理論文",
+      "review_class": "NO_NEW_GATE_CONFIRMED",
+      "latest_summary": "本輪未確認可升級的新增功能關卡；保留既有已稽核成果。",
+      "evidence_boundary": "登記來源與近期提交查核；不代表所有分支或外部作業沒有更新",
+      "whole_project_completion_pct": null
+    },
+    {
+      "project_id": "RL-MATH-PAPERS",
+      "project_name": "Rl 數學／證明系統研究",
+      "review_class": "NO_NEW_GATE_CONFIRMED",
+      "latest_summary": "本輪未確認可升級的新增功能關卡；保留既有已稽核成果。",
+      "evidence_boundary": "登記來源與近期提交查核；不代表所有分支或外部作業沒有更新",
+      "whole_project_completion_pct": null
+    },
+    {
+      "project_id": "RI-STORY",
+      "project_name": "RI 模型／老奶奶說故事",
+      "review_class": "NO_NEW_GATE_CONFIRMED",
+      "latest_summary": "本輪未確認可升級的新增功能關卡；保留既有已稽核成果。",
+      "evidence_boundary": "登記來源與近期提交查核；不代表所有分支或外部作業沒有更新",
+      "whole_project_completion_pct": null
+    },
+    {
+      "project_id": "CELL-EARTH",
+      "project_name": "CELL Earth World",
+      "review_class": "NO_NEW_GATE_CONFIRMED",
+      "latest_summary": "本輪未確認可升級的新增功能關卡；保留既有已稽核成果。",
+      "evidence_boundary": "登記來源與近期提交查核；不代表所有分支或外部作業沒有更新",
+      "whole_project_completion_pct": null
+    },
+    {
+      "project_id": "GAME-SMALL",
+      "project_name": "掌上小遊戲與數字遊戲",
+      "review_class": "SOURCE_EVIDENCE_PENDING",
+      "latest_summary": "仍待補齊可確認的正式來源或主要驗收證據。",
+      "evidence_boundary": "來源待核定",
+      "whole_project_completion_pct": null
+    },
+    {
+      "project_id": "RGOS-TOOLS",
+      "project_name": "RGOS Web/HID/系統附加工具",
+      "review_class": "NO_NEW_GATE_CONFIRMED",
+      "latest_summary": "本輪未確認可升級的新增功能關卡；保留既有已稽核成果。",
+      "evidence_boundary": "登記來源與近期提交查核；不代表所有分支或外部作業沒有更新",
+      "whole_project_completion_pct": null
+    },
+    {
+      "project_id": "LITERATURE",
+      "project_name": "文學、小說與詩作",
+      "review_class": "SOURCE_EVIDENCE_PENDING",
+      "latest_summary": "仍待補齊可確認的正式來源或主要驗收證據。",
+      "evidence_boundary": "來源待核定",
+      "whole_project_completion_pct": null
+    },
+    {
+      "project_id": "PATENTS",
+      "project_name": "專利與商業化研究",
+      "review_class": "SOURCE_EVIDENCE_PENDING",
+      "latest_summary": "仍待補齊可確認的正式來源或主要驗收證據。",
+      "evidence_boundary": "來源待核定",
+      "whole_project_completion_pct": null
+    },
+    {
+      "project_id": "LETGO-ANDROID",
+      "project_name": "letGo Android 圍棋／OGS 實際對局",
+      "review_class": "NO_NEW_GATE_CONFIRMED",
+      "latest_summary": "本輪未確認可升級的新增功能關卡；保留既有已稽核成果。",
+      "evidence_boundary": "登記來源與近期提交查核；不代表所有分支或外部作業沒有更新",
+      "whole_project_completion_pct": null
+    }
+  ]
+}
