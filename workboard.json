@@ -291,8 +291,8 @@
       "work_status": "下一關卡待執行",
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
-      "next_gate": "完成候選正文去重品質驗證、有效 UTF-8 位元組統計及本地長時間運作測試。",
-      "verified_milestone": "R7 本地監督器測試記錄 18/18；候選文字約 60.54 MB，跨來源去重合格量未確認。",
+      "next_gate": "持續補收英文正文，完成跨倉及 CELL 原生基線去重，驗收 200 MB 合格量與長時間自動收集。",
+      "verified_milestone": "R8 本輪新增 2 份官方英文正文，候選來源累計 93 份／60,574,446 UTF-8 bytes；跨資料庫去重及模型訓練尚未驗收。",
       "evidence_date": "2026-11-14",
       "status_kind": "NEXT_GATE_OPEN",
       "gate_metric": null
