@@ -161,3 +161,12 @@ This branch is intentionally isolated from `main` until reviewed.
 - `workboard-sync-status.json` declares checked date, source snapshot date, inspected scope and whether automatic private-to-public synchronization is enabled. The website shows this status to avoid falsely implying fresh or automatic syncing.
 - Changes to verified milestones and bounded gates are still made only after evidence review, using `scripts/update_workboard.py` and the existing public CI. The event ledger records publication updates.
 - Future enhancement: a separately authorized, auditable private-side job can produce a sanitized approval queue; the public website must never be granted routine read access to private R&D repositories.
+
+## R7 P0 decomposition (2026-11-13)
+
+- `workboard-p0-tasks.json` is a curated public 20-row task register for four existing P0 project IDs: CELL-CORE, CELL-EN, RL-GAME-STUDIO and ENDLESS.
+- The status distribution is 7 `VERIFIED_BOUNDED` (limited-scope verified results), 9 `OPEN`, 1 `PLANNED`, and 3 `BLOCKED_EXTERNAL`. These are status classifications, **not** project completion ratios. This list is not the complete work-breakdown denominator for the four products.
+- The website displays task filters by project and status and preserves the existing 38-row workboard, two bounded gate counters, history, theme, and home page.
+- Its underlying private source snapshot remains 2026-11-12. More recent engineering activity is not assumed accepted without separate evidence.
+- The validator checks stable task IDs, project membership, status vocabularies, public-data limits and no whole-project percent; the site deploy workflow packages the JSON.
+- Next engineering step: expand reviewable functional gate inventories one project at a time after obtaining reliable source-level evidence, distinguishing physical GUI tests from hosted CI. No retrospective re-test of accepted immutable baselines.
