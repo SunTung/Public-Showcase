@@ -42,6 +42,18 @@
       "project_id": "ALL",
       "kind": "REGISTRY_SYNC",
       "summary": "R9 完成 38 項工程最新來源增量盤點：4 項有新增有界測試報告、4 項有來源活動但不升級驗收、27 項未確認新增關卡、3 項主要證據仍待核；CELN Coder M 待補正式工程登記。"
+    },
+    {
+      "date": "2026-11-14",
+      "project_id": "ALL",
+      "kind": "PORTFOLIO_TAXONOMY_R10",
+      "summary": "R10 完成當前可存取 27 倉、正式 38 項工程的分類交叉索引，追加 9 類研究與工程篩選；私人論文索引涵蓋 10 檔案群、431 個相關檔案，不等於獨立論文篇數或數萬篇目標完成。"
+    },
+    {
+      "date": "2026-11-14",
+      "project_id": "OPS-CORPUS",
+      "kind": "OPS_R8_SOURCE_INGEST",
+      "summary": "新增 2 份官方英文正文、30,277 UTF-8 bytes；OPS 候選來源累計 93 份／60,574,446 bytes。跨庫唯一量與 CELL 模型訓練未確認。"
     }
   ]
 }
