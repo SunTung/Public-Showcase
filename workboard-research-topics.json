@@ -1,0 +1,556 @@
+{
+  "schema": "studio_research_topic_directory_v1",
+  "as_of": "2026-11-14",
+  "scope": "12 overlapping subject domains derived from all 27 main-branch file paths and manually curated mappings to 38 registered projects",
+  "topic_count": 12,
+  "project_count": 38,
+  "repo_count": 27,
+  "paper_named_candidate_files": 118,
+  "private_topic_directory_clusters": 497,
+  "verified_unique_papers": null,
+  "verified_independent_research_topics": null,
+  "unregistered_candidate": {
+    "name": "CELN Coder M v1.0",
+    "status": "PENDING_MASTER_REGISTRATION"
+  },
+  "records": [
+    {
+      "id": "ai_language_memory",
+      "title": "人工智慧・語言與記憶",
+      "subtopics": "自然語言理解、CELL 人工細胞、記憶架構、語意結構、代理智能",
+      "related_registered_project_ids": [
+        "CELL-CORE",
+        "CELL-LANGUAGE",
+        "CELL-EN",
+        "CELL-NERVE",
+        "CELL-M",
+        "CELO",
+        "CLAW",
+        "RI-STORY",
+        "NERVE-PAPER"
+      ],
+      "project_count": 9,
+      "path_hit_files": 7707,
+      "matching_repository_count": 20,
+      "leading_repositories": [
+        {
+          "repository": "library",
+          "path_hit_files": 5803
+        },
+        {
+          "repository": "test",
+          "path_hit_files": 1178
+        },
+        {
+          "repository": "R-language",
+          "path_hit_files": 274
+        },
+        {
+          "repository": "Finished-Products-Showcase",
+          "path_hit_files": 131
+        },
+        {
+          "repository": "RRG",
+          "path_hit_files": 118
+        },
+        {
+          "repository": "Work-Bulletin-Board-and-Log-Area",
+          "path_hit_files": 31
+        },
+        {
+          "repository": "CLAW-Agent-System",
+          "path_hit_files": 28
+        }
+      ]
+    },
+    {
+      "id": "math_logic",
+      "title": "數學・定理・決策搜尋",
+      "subtopics": "數學證明、完美長方體、數論、決策搜尋、迷宮與推理",
+      "related_registered_project_ids": [
+        "SOP-SEARCH",
+        "DECISION-SEARCH",
+        "NAVIER-STOKES",
+        "PERFECT-CUBOID",
+        "KRENN",
+        "JSP-000244",
+        "DECISION-PAPERS",
+        "RL-MATH-PAPERS"
+      ],
+      "project_count": 8,
+      "path_hit_files": 1421,
+      "matching_repository_count": 13,
+      "leading_repositories": [
+        {
+          "repository": "library",
+          "path_hit_files": 843
+        },
+        {
+          "repository": "RRG",
+          "path_hit_files": 424
+        },
+        {
+          "repository": "RROS-work-house",
+          "path_hit_files": 68
+        },
+        {
+          "repository": "R-language",
+          "path_hit_files": 44
+        },
+        {
+          "repository": "Simulation-Field-Animation-Mathematical-Structure-Algorithms",
+          "path_hit_files": 17
+        },
+        {
+          "repository": "2026-number-game",
+          "path_hit_files": 7
+        },
+        {
+          "repository": "RG-Decision-Search-Lab",
+          "path_hit_files": 6
+        }
+      ]
+    },
+    {
+      "id": "physics_simulation",
+      "title": "物理・量子與多物理模擬",
+      "subtopics": "量子模擬態、流體、物理場、空間數值模擬",
+      "related_registered_project_ids": [
+        "SRV-QUANTUM",
+        "SPACE-SIM",
+        "NAVIER-STOKES",
+        "RRG"
+      ],
+      "project_count": 4,
+      "path_hit_files": 531,
+      "matching_repository_count": 8,
+      "leading_repositories": [
+        {
+          "repository": "test",
+          "path_hit_files": 405
+        },
+        {
+          "repository": "library",
+          "path_hit_files": 63
+        },
+        {
+          "repository": "Simulation-Field-Animation-Mathematical-Structure-Algorithms",
+          "path_hit_files": 53
+        },
+        {
+          "repository": "RRG",
+          "path_hit_files": 3
+        },
+        {
+          "repository": "Dispatch-and-transfer",
+          "path_hit_files": 3
+        },
+        {
+          "repository": "R-language",
+          "path_hit_files": 2
+        },
+        {
+          "repository": "lineage170c",
+          "path_hit_files": 1
+        }
+      ]
+    },
+    {
+      "id": "medicine_biology",
+      "title": "醫學・生物與生命科學",
+      "subtopics": "基因調控、細胞、藥學、再生與生命科學模型",
+      "related_registered_project_ids": [
+        "DR-CELL"
+      ],
+      "project_count": 1,
+      "path_hit_files": 132,
+      "matching_repository_count": 11,
+      "leading_repositories": [
+        {
+          "repository": "library",
+          "path_hit_files": 27
+        },
+        {
+          "repository": "RG-Decision-Search-Lab",
+          "path_hit_files": 25
+        },
+        {
+          "repository": "Simulation-Field-Animation-Mathematical-Structure-Algorithms",
+          "path_hit_files": 22
+        },
+        {
+          "repository": "RRG",
+          "path_hit_files": 21
+        },
+        {
+          "repository": "R-language",
+          "path_hit_files": 14
+        },
+        {
+          "repository": "test",
+          "path_hit_files": 11
+        },
+        {
+          "repository": "Work-Bulletin-Board-and-Log-Area",
+          "path_hit_files": 7
+        }
+      ]
+    },
+    {
+      "id": "systems_os_hardware",
+      "title": "作業系統・裝置與硬體",
+      "subtopics": "RGOS、輸入裝置、驅動、硬體驗收與系統資源管理",
+      "related_registered_project_ids": [
+        "RGOS",
+        "RGOS-TOOLS",
+        "CELO"
+      ],
+      "project_count": 3,
+      "path_hit_files": 749,
+      "matching_repository_count": 20,
+      "leading_repositories": [
+        {
+          "repository": "R-language",
+          "path_hit_files": 253
+        },
+        {
+          "repository": "RGOS-RGSS",
+          "path_hit_files": 251
+        },
+        {
+          "repository": "library",
+          "path_hit_files": 79
+        },
+        {
+          "repository": "Dispatch-and-transfer",
+          "path_hit_files": 64
+        },
+        {
+          "repository": "test",
+          "path_hit_files": 30
+        },
+        {
+          "repository": "RRG",
+          "path_hit_files": 26
+        },
+        {
+          "repository": "RROS-work-house",
+          "path_hit_files": 12
+        }
+      ]
+    },
+    {
+      "id": "programming_toolchain",
+      "title": "程式語言・編譯與原生框架",
+      "subtopics": "Rl 語言、C++ 工具鏈、原生運行與平台整合",
+      "related_registered_project_ids": [
+        "RL",
+        "CELO",
+        "RL-GAME-STUDIO",
+        "RL-GAME-STUDIO-V1",
+        "CELL-M"
+      ],
+      "project_count": 5,
+      "path_hit_files": 1775,
+      "matching_repository_count": 19,
+      "leading_repositories": [
+        {
+          "repository": "R-language",
+          "path_hit_files": 934
+        },
+        {
+          "repository": "library",
+          "path_hit_files": 401
+        },
+        {
+          "repository": "test",
+          "path_hit_files": 234
+        },
+        {
+          "repository": "RGOS-RGSS",
+          "path_hit_files": 75
+        },
+        {
+          "repository": "HF_TOKEN",
+          "path_hit_files": 30
+        },
+        {
+          "repository": "Simulation-Field-Animation-Mathematical-Structure-Algorithms",
+          "path_hit_files": 21
+        },
+        {
+          "repository": "RRG",
+          "path_hit_files": 15
+        }
+      ]
+    },
+    {
+      "id": "games_game_ai",
+      "title": "遊戲研發・世界模擬與遊戲 AI",
+      "subtopics": "遊戲引擎、世界生成、戰鬥、關卡、掌機與手機遊戲",
+      "related_registered_project_ids": [
+        "RL-GAME-STUDIO",
+        "RL-GAME-STUDIO-V1",
+        "ENDLESS",
+        "CELL-DEFENDER",
+        "GAME-SMALL",
+        "LETGO-ANDROID"
+      ],
+      "project_count": 6,
+      "path_hit_files": 1935,
+      "matching_repository_count": 14,
+      "leading_repositories": [
+        {
+          "repository": "library",
+          "path_hit_files": 1250
+        },
+        {
+          "repository": "test",
+          "path_hit_files": 388
+        },
+        {
+          "repository": "RRG",
+          "path_hit_files": 101
+        },
+        {
+          "repository": "2026-number-game",
+          "path_hit_files": 58
+        },
+        {
+          "repository": "Work-Bulletin-Board-and-Log-Area",
+          "path_hit_files": 41
+        },
+        {
+          "repository": "Finished-Products-Showcase",
+          "path_hit_files": 33
+        },
+        {
+          "repository": "Simulation-Field-Animation-Mathematical-Structure-Algorithms",
+          "path_hit_files": 25
+        }
+      ]
+    },
+    {
+      "id": "data_corpus_dictionary",
+      "title": "資料工程・語料與知識索引",
+      "subtopics": "RRG、英文語料、專有名詞、資料庫與檢索",
+      "related_registered_project_ids": [
+        "RRG",
+        "OPS-CORPUS",
+        "SPECIAL-DICTIONARY",
+        "CELL-RRG-PAPERS"
+      ],
+      "project_count": 4,
+      "path_hit_files": 1787,
+      "matching_repository_count": 26,
+      "leading_repositories": [
+        {
+          "repository": "library",
+          "path_hit_files": 541
+        },
+        {
+          "repository": "test",
+          "path_hit_files": 441
+        },
+        {
+          "repository": "RRG",
+          "path_hit_files": 434
+        },
+        {
+          "repository": "RG-Decision-Search-Lab",
+          "path_hit_files": 119
+        },
+        {
+          "repository": "RROS-work-house",
+          "path_hit_files": 66
+        },
+        {
+          "repository": "lineage170c",
+          "path_hit_files": 38
+        },
+        {
+          "repository": "R-language",
+          "path_hit_files": 27
+        }
+      ]
+    },
+    {
+      "id": "literature_creative",
+      "title": "文學・故事與創意生成",
+      "subtopics": "小說、新詩、故事模型與文學創作",
+      "related_registered_project_ids": [
+        "LITERATURE",
+        "RI-STORY"
+      ],
+      "project_count": 2,
+      "path_hit_files": 4153,
+      "matching_repository_count": 10,
+      "leading_repositories": [
+        {
+          "repository": "library",
+          "path_hit_files": 4050
+        },
+        {
+          "repository": "Finished-Products-Showcase",
+          "path_hit_files": 55
+        },
+        {
+          "repository": "test",
+          "path_hit_files": 26
+        },
+        {
+          "repository": "RRG",
+          "path_hit_files": 6
+        },
+        {
+          "repository": "R-language",
+          "path_hit_files": 5
+        },
+        {
+          "repository": "RG-Decision-Search-Lab",
+          "path_hit_files": 3
+        },
+        {
+          "repository": "lineage170c",
+          "path_hit_files": 2
+        }
+      ]
+    },
+    {
+      "id": "business_ip_products",
+      "title": "產品化・商業與技術保護",
+      "subtopics": "專利、產品發行、Android 應用與商業化",
+      "related_registered_project_ids": [
+        "PATENTS",
+        "CELL-DEFENDER",
+        "TAIWAN-KEYIN",
+        "POCKET-RECORDER",
+        "CELL-EARTH",
+        "LETGO-ANDROID"
+      ],
+      "project_count": 6,
+      "path_hit_files": 377,
+      "matching_repository_count": 13,
+      "leading_repositories": [
+        {
+          "repository": "Finished-Products-Showcase",
+          "path_hit_files": 170
+        },
+        {
+          "repository": "library",
+          "path_hit_files": 158
+        },
+        {
+          "repository": "test",
+          "path_hit_files": 18
+        },
+        {
+          "repository": "R-language",
+          "path_hit_files": 12
+        },
+        {
+          "repository": "RRG",
+          "path_hit_files": 5
+        },
+        {
+          "repository": "Dispatch-and-transfer",
+          "path_hit_files": 5
+        },
+        {
+          "repository": "RGOS-RGSS",
+          "path_hit_files": 3
+        }
+      ]
+    },
+    {
+      "id": "security_governance",
+      "title": "資安・權限與工程治理",
+      "subtopics": "驗收紀錄、資料來源、工作權限、版本治理與追溯",
+      "related_registered_project_ids": [
+        "RGOS",
+        "CELO",
+        "CLAW",
+        "RL"
+      ],
+      "project_count": 4,
+      "path_hit_files": 1020,
+      "matching_repository_count": 23,
+      "leading_repositories": [
+        {
+          "repository": "test",
+          "path_hit_files": 277
+        },
+        {
+          "repository": "library",
+          "path_hit_files": 181
+        },
+        {
+          "repository": "R-language",
+          "path_hit_files": 162
+        },
+        {
+          "repository": "RRG",
+          "path_hit_files": 117
+        },
+        {
+          "repository": "Dispatch-and-transfer",
+          "path_hit_files": 117
+        },
+        {
+          "repository": "RGOS-RGSS",
+          "path_hit_files": 41
+        },
+        {
+          "repository": "Simulation-Field-Animation-Mathematical-Structure-Algorithms",
+          "path_hit_files": 28
+        }
+      ]
+    },
+    {
+      "id": "interface_visual_media",
+      "title": "介面・影像・語音與視覺",
+      "subtopics": "GUI、安卓介面、可視化、圖像、影音與互動設計",
+      "related_registered_project_ids": [
+        "TAIWAN-KEYIN",
+        "POCKET-RECORDER",
+        "CELL-EARTH",
+        "RL-GAME-STUDIO",
+        "CELL-DEFENDER"
+      ],
+      "project_count": 5,
+      "path_hit_files": 837,
+      "matching_repository_count": 19,
+      "leading_repositories": [
+        {
+          "repository": "library",
+          "path_hit_files": 423
+        },
+        {
+          "repository": "test",
+          "path_hit_files": 89
+        },
+        {
+          "repository": "Finished-Products-Showcase",
+          "path_hit_files": 64
+        },
+        {
+          "repository": "Simulation-Field-Animation-Mathematical-Structure-Algorithms",
+          "path_hit_files": 60
+        },
+        {
+          "repository": "R-language",
+          "path_hit_files": 39
+        },
+        {
+          "repository": "HF_TOKEN",
+          "path_hit_files": 31
+        },
+        {
+          "repository": "RGOS-UI-Web-Security-Lab",
+          "path_hit_files": 24
+        }
+      ]
+    }
+  ],
+  "disclaimer": "Topic hits overlap; keyword matching is discovery only. Paper-named files and research clusters are not proof of publication or unique paper directions."
+}
