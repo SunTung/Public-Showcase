@@ -1,0 +1,21 @@
+{
+  "schema": "studio_public_repository_activity_v1",
+  "as_of": "2026-11-14",
+  "checked_repositories": 27,
+  "latest_commit_found": 27,
+  "commit_on_or_after_20261111": 12,
+  "older_latest_commit": 15,
+  "commit_metadata_errors": 0,
+  "verification_scope": "27/27 recent commit metadata inspected; NOT diff-by-diff scan, runtime testing or project acceptance",
+  "privacy": "No private repository identifiers, commit hashes or private titles published",
+  "categories": {
+    "recent_activity": "LATEST_COMMIT_ON_OR_AFTER_2026_11_11",
+    "older_activity": "LATEST_COMMIT_BEFORE_2026_11_11"
+  },
+  "historical_file_inventory": {
+    "as_of": "2026-11-12",
+    "main_files": 14996,
+    "status": "NOT_REFRESHED_THIS_RUN"
+  },
+  "next": "Per-repository blob SHA delta inventory then assign verified deltas to 38 registered projects and subprojects; freeze acceptance gates separately."
+}
