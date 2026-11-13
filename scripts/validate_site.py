@@ -192,6 +192,34 @@ def main():
         assert not re.search(r"(?:github\.com|drive\.google\.com|/mnt/|token|password|secret|source_path|sha256)",
                              json.dumps(task, ensure_ascii=False), re.I)
     assert "workboard-p0-tasks.json" in (ROOT / "workboard.html").read_text(encoding="utf-8")
+    latest = read_json("workboard-latest.json")
+    assert set(latest) == {"schema", "checked_on", "private_base_snapshot", "scope",
+                           "registered_count", "category_counts", "unregistered_candidate_count",
+                           "unregistered_candidate_public_note", "records"}
+    assert latest["schema"] == "studio_public_all_project_latest_v1"
+    assert latest["registered_count"] == len(latest["records"]) == len(board["items"]) == 38
+    expected_classes = {"NEW_BOUNDED_SOURCE_REPORT", "SOURCE_ACTIVITY_ONLY",
+                        "NO_NEW_GATE_CONFIRMED", "SOURCE_EVIDENCE_PENDING"}
+    assert set(latest["category_counts"]) == expected_classes
+    assert sum(latest["category_counts"].values()) == 38
+    assert len({r["project_id"] for r in latest["records"]}) == 38
+    assert {r["project_id"] for r in latest["records"]} == {r["id"] for r in board["items"]}
+    assert latest["unregistered_candidate_count"] == 1
+    assert latest["private_base_snapshot"] <= latest["checked_on"]
+    for item in latest["records"]:
+        assert set(item) == {"project_id", "project_name", "review_class",
+                             "latest_summary", "evidence_boundary", "whole_project_completion_pct"}
+        assert item["review_class"] in expected_classes
+        assert item["whole_project_completion_pct"] is None
+        assert 8 <= len(item["latest_summary"]) <= 180
+        assert 8 <= len(item["evidence_boundary"]) <= 180
+        assert not re.search(r"(?:github\\.com|drive\\.google\\.com|/mnt/|token|password|secret|source_path|sha256)",
+                             json.dumps(item, ensure_ascii=False), re.I)
+        match = next(row for row in board["items"] if row["id"] == item["project_id"])
+        assert item["project_name"] == match["name"]
+    for key in expected_classes:
+        assert latest["category_counts"][key] == sum(r["review_class"] == key for r in latest["records"])
+    assert "workboard-latest.json" in (ROOT / "workboard.html").read_text(encoding="utf-8")
     events = read_json("workboard-events.json")
     assert set(events) == {"schema", "events"}
     assert events["schema"] == "studio_public_workboard_events_v1"
