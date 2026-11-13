@@ -1,31 +1,6 @@
 {
   "schema": "studio_public_gate_ledger_v1",
-  "as_of": "2026-11-13",
-  "scope": "Only bounded acceptance sets explicitly recorded in audited project registry; not overall product completion",
-  "records": [
-    {
-      "gate_id": "CELL-CORE-S1-EXITS",
-      "project_id": "CELL-CORE",
-      "gate_title": "S1 原生出口驗收",
-      "accepted": 0,
-      "total": 21,
-      "blocked": null,
-      "evidence_date": "2026-11-11",
-      "evidence_scope": "R05 平台 S1 原生出口；S0 來源稽核不計入 S1",
-      "verification": "DOCUMENTED_SCOPE_ONLY",
-      "overall_project_percent": false
-    },
-    {
-      "gate_id": "CELL-M-PHASE1",
-      "project_id": "CELL-M",
-      "gate_title": "第一階段固定驗收項",
-      "accepted": 21,
-      "total": 28,
-      "blocked": 7,
-      "evidence_date": "2026-11-12",
-      "evidence_scope": "固定範圍 28 項，21 已驗收、7 阻塞；不延伸為完整 CELL-M 成熟度",
-      "verification": "DOCUMENTED_SCOPE_ONLY",
-      "overall_project_percent": false
-    }
-  ]
+  "as_of": "2026-11-14",
+  "scope": "Internal gate details withheld from public feed; private evidence ledger remains authoritative",
+  "records": []
 }
