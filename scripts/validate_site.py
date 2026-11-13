@@ -294,5 +294,7 @@ if __name__ == "__main__":
     try:
         main()
     except Exception as exc:
-        print(f"FAIL: {exc}", file=sys.stderr)
+        import traceback
+        traceback.print_exc()
+        print(f"FAIL: {type(exc).__name__}: {exc}", file=sys.stderr)
         sys.exit(1)
