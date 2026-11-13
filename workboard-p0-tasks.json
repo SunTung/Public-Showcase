@@ -1,0 +1,191 @@
+{
+  "schema": "studio_public_p0_task_audit_v1",
+  "as_of": "2026-11-13",
+  "source_snapshot": "2026-11-12",
+  "scope": "P0 bounded evidence and remaining next acceptance actions; not fixed full-product WBS denominator",
+  "project_count": 4,
+  "task_count": 20,
+  "overall_completion_pct": null,
+  "records": [
+    {
+      "task_id": "CORE-S0",
+      "project_id": "CELL-CORE",
+      "title": "S0 來源及介面稽核",
+      "status": "VERIFIED_BOUNDED",
+      "evidence_summary": "既有 12/12 來源與介面稽核通過；不是 S1 功能驗收",
+      "evidence_date": "2026-11-11",
+      "counts_toward_overall_completion": false
+    },
+    {
+      "task_id": "CORE-S1",
+      "project_id": "CELL-CORE",
+      "title": "S1 原生出口 21 項",
+      "status": "OPEN",
+      "evidence_summary": "原有 21 項出口尚無完成關閉紀錄",
+      "evidence_date": "2026-11-11",
+      "counts_toward_overall_completion": false
+    },
+    {
+      "task_id": "CORE-GRAPH",
+      "project_id": "CELL-CORE",
+      "title": "原生 Graph 一致性驗證",
+      "status": "OPEN",
+      "evidence_summary": "需實際原生編譯、TRACE 與圖資料一致性證據",
+      "evidence_date": "2026-11-12",
+      "counts_toward_overall_completion": false
+    },
+    {
+      "task_id": "CORE-CKPT",
+      "project_id": "CELL-CORE",
+      "title": "原生 Checkpoint 復原驗證",
+      "status": "OPEN",
+      "evidence_summary": "需保存、重啟、還原及狀態一致性驗收",
+      "evidence_date": "2026-11-12",
+      "counts_toward_overall_completion": false
+    },
+    {
+      "task_id": "CORE-SEC",
+      "project_id": "CELL-CORE",
+      "title": "原生安全插入項",
+      "status": "PLANNED",
+      "evidence_summary": "7 項安全插入處於規劃，未視為實作完成",
+      "evidence_date": "2026-11-11",
+      "counts_toward_overall_completion": false
+    },
+    {
+      "task_id": "EN-66M",
+      "project_id": "CELL-EN",
+      "title": "原生 66M 訓練檢查點",
+      "status": "VERIFIED_BOUNDED",
+      "evidence_summary": "66M GitHub Release 發布紀錄已核對；不等於整體語言模型達標",
+      "evidence_date": "2026-11-12",
+      "counts_toward_overall_completion": false
+    },
+    {
+      "task_id": "EN-67M",
+      "project_id": "CELL-EN",
+      "title": "66M 至 67M 原生增量",
+      "status": "OPEN",
+      "evidence_summary": "67M 新訓練檢查點尚無已核定完成證據",
+      "evidence_date": "2026-11-12",
+      "counts_toward_overall_completion": false
+    },
+    {
+      "task_id": "EN-RELEASE",
+      "project_id": "CELL-EN",
+      "title": "新版本檔案及可重現性",
+      "status": "OPEN",
+      "evidence_summary": "67M 需核對版本清冊與檢查點完整性",
+      "evidence_date": "2026-11-12",
+      "counts_toward_overall_completion": false
+    },
+    {
+      "task_id": "EN-HOLDOUT",
+      "project_id": "CELL-EN",
+      "title": "未見英文生成測試",
+      "status": "OPEN",
+      "evidence_summary": "須獨立保留題測試，並區分詞序預測與語意問答",
+      "evidence_date": "2026-11-12",
+      "counts_toward_overall_completion": false
+    },
+    {
+      "task_id": "EN-RUNNER",
+      "project_id": "CELL-EN",
+      "title": "執行環境排程與前置條件",
+      "status": "OPEN",
+      "evidence_summary": "未啟動訓練應記錄為環境或流程狀態，不能當作模型測試失敗",
+      "evidence_date": "2026-11-12",
+      "counts_toward_overall_completion": false
+    },
+    {
+      "task_id": "STUDIO-HOST",
+      "project_id": "RL-GAME-STUDIO",
+      "title": "Windows 主機原生編譯及 CTest",
+      "status": "VERIFIED_BOUNDED",
+      "evidence_summary": "P11-B3J 託管 Windows 原生編譯與 205/205 CTest 通過",
+      "evidence_date": "2026-11-11",
+      "counts_toward_overall_completion": false
+    },
+    {
+      "task_id": "STUDIO-PACK",
+      "project_id": "RL-GAME-STUDIO",
+      "title": "Windows 套件封裝與還原",
+      "status": "VERIFIED_BOUNDED",
+      "evidence_summary": "P11-B3J 封裝與套件還原流程有通過紀錄",
+      "evidence_date": "2026-11-11",
+      "counts_toward_overall_completion": false
+    },
+    {
+      "task_id": "STUDIO-B3R",
+      "project_id": "RL-GAME-STUDIO",
+      "title": "B3R 新版來源編譯基線",
+      "status": "VERIFIED_BOUNDED",
+      "evidence_summary": "Linux 原生編譯、自測及地圖針對性測試通過；不是 Windows 實體操作",
+      "evidence_date": "2026-11-12",
+      "counts_toward_overall_completion": false
+    },
+    {
+      "task_id": "STUDIO-GUI",
+      "project_id": "RL-GAME-STUDIO",
+      "title": "Windows GUI 實體操作",
+      "status": "BLOCKED_EXTERNAL",
+      "evidence_summary": "需 Windows 端工作區 A 至 B 的 Save All、Cancel 與重開驗收",
+      "evidence_date": "2026-11-12",
+      "counts_toward_overall_completion": false
+    },
+    {
+      "task_id": "STUDIO-STATE",
+      "project_id": "RL-GAME-STUDIO",
+      "title": "地圖與實體持久化一致性",
+      "status": "BLOCKED_EXTERNAL",
+      "evidence_summary": "須確認重開後 tiles、entities 及工作區狀態完全一致",
+      "evidence_date": "2026-11-12",
+      "counts_toward_overall_completion": false
+    },
+    {
+      "task_id": "ENDLESS-BASE",
+      "project_id": "ENDLESS",
+      "title": "前期 Linux 原生測試",
+      "status": "VERIFIED_BOUNDED",
+      "evidence_summary": "已記錄 5/5 前期 Linux CTest 通過；不等於完整 Windows 遊戲",
+      "evidence_date": "2026-11-11",
+      "counts_toward_overall_completion": false
+    },
+    {
+      "task_id": "ENDLESS-RENDER",
+      "project_id": "ENDLESS",
+      "title": "R28 畫面與素材載入",
+      "status": "VERIFIED_BOUNDED",
+      "evidence_summary": "R28 局部原生繪圖與 BMP 載入有界驗證，尚未整合完整遊戲",
+      "evidence_date": "2026-11-12",
+      "counts_toward_overall_completion": false
+    },
+    {
+      "task_id": "ENDLESS-BATTLE",
+      "project_id": "ENDLESS",
+      "title": "真實戰鬥核心整合",
+      "status": "OPEN",
+      "evidence_summary": "鏡像子集測試不代表真實戰鬥核心已整合",
+      "evidence_date": "2026-11-12",
+      "counts_toward_overall_completion": false
+    },
+    {
+      "task_id": "ENDLESS-SAVE",
+      "project_id": "ENDLESS",
+      "title": "正式遊戲存檔重啟",
+      "status": "OPEN",
+      "evidence_summary": "需真實遊戲資料完整保存、重開與繼續遊戲的驗收",
+      "evidence_date": "2026-11-12",
+      "counts_toward_overall_completion": false
+    },
+    {
+      "task_id": "ENDLESS-WIN",
+      "project_id": "ENDLESS",
+      "title": "Windows 可玩垂直切片",
+      "status": "BLOCKED_EXTERNAL",
+      "evidence_summary": "須在單一 Windows 程式完成互動、戰鬥、經濟及重新載入驗收",
+      "evidence_date": "2026-11-12",
+      "counts_toward_overall_completion": false
+    }
+  ]
+}
