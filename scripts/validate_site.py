@@ -248,9 +248,10 @@ def main():
     assert 'workboard.json' in (ROOT / "workboard.html").read_text(encoding="utf-8")
     inv = read_json("workboard-repositories.json")
     assert inv["schema"] == "studio_github_cross_repo_inventory_v1"
-    assert inv["repo_count"] == len(inv["repository_statuses"]) == 27
-    assert len({r["repository"] for r in inv["repository_statuses"]}) == 27
-    assert all(r["tree_complete"] for r in inv["repository_statuses"])
+    assert inv["privacy_policy"] == "PUBLIC_REPOSITORIES_ONLY"
+    PUBLIC_REPOSITORIES = {"Public-Showcase", "CELL-DEFENDER"}
+    assert inv["repo_count"] == len(inv["repository_statuses"]) == len(PUBLIC_REPOSITORIES)
+    assert {r["repository"] for r in inv["repository_statuses"]} == PUBLIC_REPOSITORIES
     assert inv["aggregate"]["files"] == sum(r["file_count"] for r in inv["repository_statuses"])
     assert inv["aggregate"]["markdown_files"] == sum(r["markdown_count"] for r in inv["repository_statuses"])
     assert inv["aggregate"]["paper_named_file_candidates"] == sum(r["paper_named_file_candidates"] for r in inv["repository_statuses"])
@@ -258,36 +259,39 @@ def main():
     assert inv["aggregate"]["pdf_files"] == sum(r["pdf_count"] for r in inv["repository_statuses"])
     assert len(inv["families"]) == 12 and len(set(inv["families"])) == 12
     for row in inv["repository_statuses"]:
-        assert row["file_count"] >= 0 and row["markdown_count"] >= 0
+        assert row["tree_complete"]
+        assert row["file_count"] >= 0
         assert row["last_action"] is None or row["last_action"]["conclusion"] in {"success", "failure", "cancelled", "skipped", "timed_out", "action_required", None}
         assert set(row["domain_path_hits"]) == set(inv["families"])
-        assert not re.search(r"(?:token\\s*=|password\\s*=|secret\\s*=|https://drive\\.google\\.com)", json.dumps(row), re.I)
     for key in inv["families"]:
         assert inv["aggregate"]["domain_path_hits"][key] == sum(r["domain_path_hits"][key] for r in inv["repository_statuses"])
     research = read_json("workboard-research-topics.json")
     assert research["schema"] == "studio_research_topic_directory_v1"
+    assert research["privacy_policy"] == "PUBLIC_ONLY_NO_PRIVATE_DERIVED_METRICS"
     assert research["topic_count"] == len(research["records"]) == 12
     assert research["repo_count"] == inv["repo_count"]
-    assert research["project_count"] == len(board["items"]) == 38
+    assert research["project_count"] == 0
     assert research["paper_named_candidate_files"] == inv["aggregate"]["paper_named_file_candidates"]
     assert research["verified_unique_papers"] is None and research["verified_independent_research_topics"] is None
-    assert research["private_topic_directory_clusters"] >= 0
-    assert 0 <= research["unknown_topic_directory_candidates"] <= research["private_topic_directory_clusters"]
-    assert 0 <= research["unknown_paper_named_candidate_files"] <= research["paper_named_candidate_files"]
-    assert sum(t["topic_directory_candidates"] for t in research["records"]) >= research["private_topic_directory_clusters"] - research["unknown_topic_directory_candidates"]
-    assert sum(t["paper_named_candidate_files"] for t in research["records"]) >= research["paper_named_candidate_files"] - research["unknown_paper_named_candidate_files"]
-
-    covered = set()
+    assert research["private_topic_directory_clusters"] is None
+    assert research["unknown_topic_directory_candidates"] is None
+    assert research["unknown_paper_named_candidate_files"] is None
+    assert research["unregistered_candidate"] is None
     for topic in research["records"]:
         assert topic["id"] in inv["families"]
         assert topic["path_hit_files"] == inv["aggregate"]["domain_path_hits"][topic["id"]]
-        assert type(topic["topic_directory_candidates"]) is int and topic["topic_directory_candidates"] >= 0
-        assert type(topic["paper_named_candidate_files"]) is int and topic["paper_named_candidate_files"] >= 0
-
-        assert topic["project_count"] == len(topic["related_registered_project_ids"])
-        assert set(topic["related_registered_project_ids"]).issubset({r["id"] for r in board["items"]})
-        covered.update(topic["related_registered_project_ids"])
-    assert covered == {r["id"] for r in board["items"]}
+        assert topic["matching_repository_count"] == sum(r["domain_path_hits"][topic["id"]] > 0 for r in inv["repository_statuses"])
+        assert topic["topic_directory_candidates"] == 0
+        assert topic["paper_named_candidate_files"] == 0
+        assert topic["leading_repositories"] == []
+        assert topic["project_count"] == 0
+        assert topic["related_registered_project_ids"] == []
+    # The public research index must never expose private repository identifiers.
+    for forbidden in ("HF_TOKEN", "RGOS-RGSS", "CELL-NERVE-Interleaved-Memory",
+                      "research_tracking/20261114", "private_projects/", "file_trees/"):
+        assert forbidden not in json.dumps(inv, ensure_ascii=False)
+        assert forbidden not in json.dumps(research, ensure_ascii=False)
+        assert forbidden not in (ROOT / "research-index.html").read_text(encoding="utf-8")
     research_html = (ROOT / "research-index.html").read_text(encoding="utf-8")
     for filename in ("workboard-repositories.json", "workboard-research-topics.json", "workboard-latest.json"):
         assert filename in research_html
