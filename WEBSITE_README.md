@@ -181,3 +181,21 @@ This branch is intentionally isolated from `main` until reviewed.
 - Four `workboard.json` entries received updated, qualified public milestone descriptions and next gates; other 34 rows preserve prior verification state.
 - The website now offers a separate filtered latest-evidence table and preserves R8 20-task P0 matrix, R6 two gate denominators, R5 sync limitations and the public history.
 - `scripts/validate_site.py` enforces 38 IDs, unique rows, exact categories and summary counts, no private paths or whole-project completion estimates. Public Pages CI packages `workboard-latest.json`.
+
+## R10 all-GitHub research taxonomy and experiment inventory (2026-11-14)
+
+### Published navigation
+- `research-index.html`: new repository-wide exploration page linked from the existing homepage and engineering workboard.
+- `workboard-repositories.json`: 27 accessible `main` trees, repository file counts, research keywords, paper-name candidate counts, experiment-related path counts, latest Git commit and last GitHub Actions run. The last workflow result may not test the current repo revision or the actual engineering product.
+- `workboard-research-topics.json`: 12 overlapping domain classes and curated associations covering all 38 previously registered engineering projects.
+- `workboard-latest.json`: preserved 38-project evidence-grade audit from R9, not overwritten with unsupported completion percentages.
+- The site continues to publish original `workboard.json`, `workboard-gates.json`, `workboard-p0-tasks.json`, `workboard-events.json` and monthly-plan history.
+
+### Private full-detail authority
+The private repository `SunTung/library/research_tracking/20261114/` now contains `R10_MASTER_INDEX_20261114.json`, 27 `file_trees/*.json` path+blob-SHA manifests, three topic-path partitions, three tree-stat partitions, three activity partitions and `R10_MASTER_TOPIC_DIRECTORY_20261114.json`. They keep the 118 paper-name candidate paths and 497 topic-directory clusters private.
+
+### Metric boundaries
+The public snapshot counted 15,184 blobs across 27 nontruncated main-branch trees; 3,665 Markdown documents, 4 PDF files, 118 path-name paper candidates and 3,516 path-matched experiment/research-related files. These are different units. Topic hits overlap; verified distinct papers, complete published bibliography and unique running experiments have **not** been established. The private SHA manifests were generated later while new commits were occurring, so they may have a slightly different summed file count. Neither is a transactional snapshot across all repos.
+
+### Refresh method and blockers
+For subsequent sweeps, fetch the latest 27 main-branch trees, compare `path + blob SHA` against each private `file_trees/*.json` baseline, inspect changed/new files only, reconcile project and subtopic IDs, then curate approved public fields, append change history and verify Pages CI. A private offline `research_tracking/tools/r10_incremental_diff.py` with synthetic regression tests exists. Its dedicated private GitHub Actions run failed without job steps: do not report private CI PASS. This dashboard is updated by explicit commits; it does **not** perform continuous background synchronization. The source-publishing boundary prevents raw private research paths from leaking to the public dashboard.
