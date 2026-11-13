@@ -40,9 +40,36 @@
       "language_candidate": "en",
       "global_verified": false,
       "search_topic": "science"
+    },
+    "gutenberg-345": {
+      "source_id": 345,
+      "source_url": "https://www.gutenberg.org/ebooks/345.txt.utf-8",
+      "sha256": "4856ef0e712ee3c70a36c1452242541fe5d3ca6de55576659bd68d890f0e3d14",
+      "candidate_bytes": 870540,
+      "language_candidate": "en",
+      "global_verified": false,
+      "search_topic": "mathematics"
+    },
+    "gutenberg-98": {
+      "source_id": 98,
+      "source_url": "https://www.gutenberg.org/ebooks/98.txt.utf-8",
+      "sha256": "ace6e1e002690792ff3ffb0b068bc6695747a290cfc14dc0d93e14a5a8d5e438",
+      "candidate_bytes": 787402,
+      "language_candidate": "en",
+      "global_verified": false,
+      "search_topic": "medicine"
+    },
+    "gutenberg-158": {
+      "source_id": 158,
+      "source_url": "https://www.gutenberg.org/ebooks/158.txt.utf-8",
+      "sha256": "4ae98d6e56b57e5a3e7a3b9dbc344590aa6b7db7c05e08874885eb5131ad853d",
+      "candidate_bytes": 913968,
+      "language_candidate": "en",
+      "global_verified": false,
+      "search_topic": "biology"
     }
   },
-  "candidate_bytes": 3180009,
+  "candidate_bytes": 5751919,
   "runs": [
     {
       "at": "2026-11-12T23:23:47.837035+00:00",
@@ -73,14 +100,32 @@
       "status": "LOCAL_CANDIDATE_ADDED",
       "source_id": 2701,
       "candidate_bytes": 1256486
+    },
+    {
+      "at": "2026-11-13T20:55:51.050948+00:00",
+      "status": "LOCAL_CANDIDATE_ADDED",
+      "source_id": 345,
+      "candidate_bytes": 870540
+    },
+    {
+      "at": "2026-11-13T20:56:09.554831+00:00",
+      "status": "LOCAL_CANDIDATE_ADDED",
+      "source_id": 98,
+      "candidate_bytes": 787402
+    },
+    {
+      "at": "2026-11-13T20:56:28.019374+00:00",
+      "status": "LOCAL_CANDIDATE_ADDED",
+      "source_id": 158,
+      "candidate_bytes": 913968
     }
   ],
   "catalog_page": 1,
   "blocked_sources": {},
-  "topic_cursor": 1,
+  "topic_cursor": 4,
   "topic_pages": {},
   "catalog_error": {
-    "topic": "science",
+    "topic": "biology",
     "message": "The read operation timed out"
   }
 }
