@@ -272,10 +272,18 @@ def main():
     assert research["paper_named_candidate_files"] == inv["aggregate"]["paper_named_file_candidates"]
     assert research["verified_unique_papers"] is None and research["verified_independent_research_topics"] is None
     assert research["private_topic_directory_clusters"] >= 0
+    assert 0 <= research["unknown_topic_directory_candidates"] <= research["private_topic_directory_clusters"]
+    assert 0 <= research["unknown_paper_named_candidate_files"] <= research["paper_named_candidate_files"]
+    assert sum(t["topic_directory_candidates"] for t in research["records"]) >= research["private_topic_directory_clusters"] - research["unknown_topic_directory_candidates"]
+    assert sum(t["paper_named_candidate_files"] for t in research["records"]) >= research["paper_named_candidate_files"] - research["unknown_paper_named_candidate_files"]
+
     covered = set()
     for topic in research["records"]:
         assert topic["id"] in inv["families"]
         assert topic["path_hit_files"] == inv["aggregate"]["domain_path_hits"][topic["id"]]
+        assert type(topic["topic_directory_candidates"]) is int and topic["topic_directory_candidates"] >= 0
+        assert type(topic["paper_named_candidate_files"]) is int and topic["paper_named_candidate_files"] >= 0
+
         assert topic["project_count"] == len(topic["related_registered_project_ids"])
         assert set(topic["related_registered_project_ids"]).issubset({r["id"] for r in board["items"]})
         covered.update(topic["related_registered_project_ids"])
