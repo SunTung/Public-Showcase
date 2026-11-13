@@ -8,6 +8,7 @@ on:
       - '.github/workflows/ops-f01-public.yml'
       - 'OPS-F01-English-Corpus/collect.py'
       - 'OPS-F01-English-Corpus/catalog.py'
+      - 'OPS-F01-English-Corpus/audit.py'
 permissions:
   contents: write
 concurrency:
@@ -25,7 +26,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Check collector syntax
-        run: python -m py_compile OPS-F01-English-Corpus/collect.py OPS-F01-English-Corpus/catalog.py
+        run: python -m py_compile OPS-F01-English-Corpus/collect.py OPS-F01-English-Corpus/catalog.py OPS-F01-English-Corpus/audit.py
       - name: Download up to three bounded public-domain texts
         shell: bash
         run: |
@@ -35,6 +36,8 @@ jobs:
               echo "OPS-F01 attempt $i failed; continuing to next source"
             fi
           done
+      - name: Verify downloaded files against candidate ledger
+        run: python OPS-F01-English-Corpus/audit.py
       - name: Commit candidate and ledger
         shell: bash
         run: |
