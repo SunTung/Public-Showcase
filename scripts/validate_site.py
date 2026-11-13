@@ -169,7 +169,7 @@ def main():
         assert match["gate_metric"]["scope"] == gate["gate_title"]
     assert sum(r["gate_metric"] is not None for r in board["items"]) == len(gates["records"])
     p0 = read_json("workboard-p0-tasks.json")
-    assert set(p0) == {"schema", "as_of", "source_snapshot", "scope", "project_count", "task_count", "overall_completion_pct", "records"}
+    assert set(p0) == {"schema", "as_of", "source_snapshot", "scope", "project_count", "task_count", "overall_completion_pct", "records", "release"}
     assert p0["schema"] == "studio_public_p0_task_audit_v1"
     assert p0["project_count"] == 4 and p0["task_count"] == len(p0["records"]) == 20
     assert p0["overall_completion_pct"] is None
@@ -179,9 +179,14 @@ def main():
     allowed_status = {"VERIFIED_BOUNDED", "OPEN", "PLANNED", "BLOCKED_EXTERNAL"}
     for task in p0["records"]:
         assert set(task) == {"task_id", "project_id", "title", "status", "evidence_summary",
-                             "evidence_date", "counts_toward_overall_completion"}
+                             "evidence_date", "counts_toward_overall_completion", "acceptance_criterion", "dependency", "execution_class", "acceptance_receipt_state"}
         assert task["status"] in allowed_status
         assert task["counts_toward_overall_completion"] is False
+        assert task["execution_class"] in {"ARCHIVED_CHECK", "NATIVE_RUNNER", "EVALUATION_RUNNER", "DESIGN_REVIEW", "ENVIRONMENT_CHECK", "WINDOWS_GUI"}
+        assert task["acceptance_receipt_state"] == ("BASELINE_RECORDED" if task["status"] == "VERIFIED_BOUNDED" else "NOT_ACCEPTED")
+        assert 10 <= len(task["acceptance_criterion"]) <= 180
+        assert 6 <= len(task["dependency"]) <= 180
+
         assert re.fullmatch(r"\d{4}-\d{2}-\d{2}", task["evidence_date"])
         assert 5 <= len(task["title"]) <= 180 and 12 <= len(task["evidence_summary"]) <= 180
         assert not re.search(r"(?:github\.com|drive\.google\.com|/mnt/|token|password|secret|source_path|sha256)",
