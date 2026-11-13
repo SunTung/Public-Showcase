@@ -1,0 +1,93 @@
+#!/usr/bin/env python3
+"""Fail-closed prepublication privacy inspection of the public site.
+
+This deliberately scans text shipped from the public repository, not private
+research data. It never imports, fetches or prints confidential source files.
+"""
+import json
+import re
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+PUBLIC_REPOS = frozenset({"Public-Showcase", "CELL-DEFENDER"})
+REPO_REF = re.compile(r"(?i)(?:\\bSunTung/|github\\.com/SunTung/|raw\\.githubusercontent\\.com/SunTung/)([A-Za-z0-9_.-]+)")
+PROHIBITED = (
+    re.compile(r"(?i)(?:research_tracking/[0-9]{8}|private_projects/|private_imports/|file_trees/|/home/[A-Za-z0-9_.-]+/)"),
+    re.compile(r"(?i)https?://(?:drive\\.google\\.com|docs\\.google\\.com|raw\\.githubusercontent\\.com/SunTung/(?!Public-Showcase/|CELL-DEFENDER/))"),
+    re.compile(r"(?i)\\b(?:gh[pousr]_[A-Za-z0-9]{12,}|sk-proj-[A-Za-z0-9_-]{12,})\\b"),
+)
+DISALLOWED_KEYS = {"private_path", "private_directory", "source_path", "private_repo_path",
+                   "private_source_url", "repository_token", "credential", "access_token",
+                   "secret", "private_file_list", "private_manifest"}
+
+SITE_FILES = (
+    "index.html", "research-index.html", "workboard.html",
+    "workboard.json", "workboard-latest.json", "workboard-p0-tasks.json",
+    "workboard-events.json", "workboard-gates.json", "workboard-repositories.json",
+    "workboard-research-topics.json", "workboard-repository-activity.json",
+    "workboard-portfolio.json", "workboard-sync-status.json",
+    "portfolio.json", "products.json", "progress.json", "estimates.json",
+    "README.md", "TRANSFER_NOTICE.md", "WEBSITE_README.md",
+    "docs/R6_GATE_LEDGER_POLICY_20261113.md",
+)
+
+def scan_text(text, file_label):
+    problems = []
+    for regex in PROHIBITED:
+        if regex.search(text):
+            problems.append(f"{file_label}: prohibited publication pattern")
+    for match in REPO_REF.finditer(text):
+        repo = match.group(1)
+        if repo not in PUBLIC_REPOS:
+            problems.append(f"{file_label}: reference to non-allowlisted GitHub repository")
+    return problems
+
+def scan_object(obj, file_label):
+    errors = []
+    if isinstance(obj, dict):
+        for key, value in obj.items():
+            if key.lower() in DISALLOWED_KEYS:
+                errors.append(f"{file_label}: forbidden JSON key")
+            errors.extend(scan_object(value, file_label))
+    elif isinstance(obj, list):
+        for value in obj:
+            errors.extend(scan_object(value, file_label))
+    return errors
+
+def validate(root=ROOT):
+    errors = []
+    paths = [root / p for p in SITE_FILES]
+    paths.extend(sorted((root / "history").glob("*.json")))
+    for path in paths:
+        if not path.is_file():
+            errors.append(f"Missing public file: {path.name}")
+            continue
+        text = path.read_text(encoding="utf-8")
+        errors.extend(scan_text(text, path.name))
+        if path.suffix == ".json":
+            try:
+                errors.extend(scan_object(json.loads(text), path.name))
+            except ValueError:
+                errors.append(f"{path.name}: invalid JSON")
+    inventory = json.loads((root / "workboard-repositories.json").read_text(encoding="utf-8"))
+    actual = {r["repository"] for r in inventory["repository_statuses"]}
+    if not actual.issubset(PUBLIC_REPOS):
+        errors.append("Public inventory includes a non-allowlisted repository")
+    if inventory.get("privacy_policy") != "PUBLIC_REPOSITORIES_ONLY":
+        errors.append("Public inventory privacy policy not set")
+    taxonomy = json.loads((root / "workboard-research-topics.json").read_text(encoding="utf-8"))
+    if taxonomy.get("privacy_policy") != "PUBLIC_ONLY_NO_PRIVATE_DERIVED_METRICS":
+        errors.append("Public taxonomy privacy policy not set")
+    if any(t.get("related_registered_project_ids") for t in taxonomy["records"]):
+        errors.append("Private research/project crosswalk must not be published")
+    return errors
+
+if __name__ == "__main__":
+    errors = validate()
+    if errors:
+        print(f"PRIVACY GATE FAIL: {len(errors)} publication violation(s)", file=sys.stderr)
+        for err in errors:
+            print(err, file=sys.stderr)
+        raise SystemExit(1)
+    print("PRIVACY GATE PASS: allowlisted public repositories and site data only")
