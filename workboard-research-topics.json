@@ -61,7 +61,9 @@
           "repository": "CLAW-Agent-System",
           "path_hit_files": 28
         }
-      ]
+      ],
+      "topic_directory_candidates": 206,
+      "paper_named_candidate_files": 16
     },
     {
       "id": "math_logic",
@@ -109,7 +111,9 @@
           "repository": "RG-Decision-Search-Lab",
           "path_hit_files": 6
         }
-      ]
+      ],
+      "topic_directory_candidates": 34,
+      "paper_named_candidate_files": 51
     },
     {
       "id": "physics_simulation",
@@ -153,7 +157,9 @@
           "repository": "lineage170c",
           "path_hit_files": 1
         }
-      ]
+      ],
+      "topic_directory_candidates": 89,
+      "paper_named_candidate_files": 4
     },
     {
       "id": "medicine_biology",
@@ -194,7 +200,9 @@
           "repository": "Work-Bulletin-Board-and-Log-Area",
           "path_hit_files": 7
         }
-      ]
+      ],
+      "topic_directory_candidates": 6,
+      "paper_named_candidate_files": 1
     },
     {
       "id": "systems_os_hardware",
@@ -237,7 +245,9 @@
           "repository": "RROS-work-house",
           "path_hit_files": 12
         }
-      ]
+      ],
+      "topic_directory_candidates": 9,
+      "paper_named_candidate_files": 0
     },
     {
       "id": "programming_toolchain",
@@ -282,7 +292,9 @@
           "repository": "RRG",
           "path_hit_files": 15
         }
-      ]
+      ],
+      "topic_directory_candidates": 46,
+      "paper_named_candidate_files": 1
     },
     {
       "id": "games_game_ai",
@@ -328,7 +340,9 @@
           "repository": "Simulation-Field-Animation-Mathematical-Structure-Algorithms",
           "path_hit_files": 25
         }
-      ]
+      ],
+      "topic_directory_candidates": 128,
+      "paper_named_candidate_files": 11
     },
     {
       "id": "data_corpus_dictionary",
@@ -372,7 +386,9 @@
           "repository": "R-language",
           "path_hit_files": 27
         }
-      ]
+      ],
+      "topic_directory_candidates": 116,
+      "paper_named_candidate_files": 57
     },
     {
       "id": "literature_creative",
@@ -414,7 +430,9 @@
           "repository": "lineage170c",
           "path_hit_files": 2
         }
-      ]
+      ],
+      "topic_directory_candidates": 1,
+      "paper_named_candidate_files": 0
     },
     {
       "id": "business_ip_products",
@@ -460,7 +478,9 @@
           "repository": "RGOS-RGSS",
           "path_hit_files": 3
         }
-      ]
+      ],
+      "topic_directory_candidates": 37,
+      "paper_named_candidate_files": 10
     },
     {
       "id": "security_governance",
@@ -504,7 +524,9 @@
           "repository": "Simulation-Field-Animation-Mathematical-Structure-Algorithms",
           "path_hit_files": 28
         }
-      ]
+      ],
+      "topic_directory_candidates": 16,
+      "paper_named_candidate_files": 0
     },
     {
       "id": "interface_visual_media",
@@ -549,8 +571,13 @@
           "repository": "RGOS-UI-Web-Security-Lab",
           "path_hit_files": 24
         }
-      ]
+      ],
+      "topic_directory_candidates": 10,
+      "paper_named_candidate_files": 2
     }
   ],
-  "disclaimer": "Topic hits overlap; keyword matching is discovery only. Paper-named files and research clusters are not proof of publication or unique paper directions."
+  "disclaimer": "Topic hits overlap; keyword matching is discovery only. Paper-named files and research clusters are not proof of publication or unique paper directions.",
+  "method_detail": "Each domain is matched by path keywords to private candidate topic-directory and paper-name filename sets; overlap retained and counts non-exclusive.",
+  "unknown_topic_directory_candidates": 67,
+  "unknown_paper_named_candidate_files": 22
 }
