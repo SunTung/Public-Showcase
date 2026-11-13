@@ -11,11 +11,11 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC_REPOS = frozenset({"Public-Showcase", "CELL-DEFENDER"})
-REPO_REF = re.compile(r"(?i)(?:\\bSunTung/|github\\.com/SunTung/|raw\\.githubusercontent\\.com/SunTung/)([A-Za-z0-9_.-]+)")
+REPO_REF = re.compile(r"(?i)(?:\bSunTung/|github\.com/SunTung/|raw\.githubusercontent\.com/SunTung/)([A-Za-z0-9_.-]+)")
 PROHIBITED = (
     re.compile(r"(?i)(?:research_tracking/[0-9]{8}|private_projects/|private_imports/|file_trees/|/home/[A-Za-z0-9_.-]+/)"),
-    re.compile(r"(?i)https?://(?:drive\\.google\\.com|docs\\.google\\.com|raw\\.githubusercontent\\.com/SunTung/(?!Public-Showcase/|CELL-DEFENDER/))"),
-    re.compile(r"(?i)\\b(?:gh[pousr]_[A-Za-z0-9]{12,}|sk-proj-[A-Za-z0-9_-]{12,})\\b"),
+    re.compile(r"(?i)https?://(?:drive\.google\.com|docs\.google\.com|raw\.githubusercontent\.com/SunTung/(?!Public-Showcase/|CELL-DEFENDER/))"),
+    re.compile(r"(?i)\b(?:gh[pousr]_[A-Za-z0-9]{12,}|sk-proj-[A-Za-z0-9_-]{12,})\b"),
 )
 DISALLOWED_KEYS = {"private_path", "private_directory", "source_path", "private_repo_path",
                    "private_source_url", "repository_token", "credential", "access_token",
