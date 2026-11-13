@@ -2,7 +2,7 @@
   "schema": "studio_public_all_project_latest_v1",
   "checked_on": "2026-11-14",
   "private_base_snapshot": "2026-11-12",
-  "scope": "38 projects; registered source paths and selected cross-directory GitHub commits; no full repository retest",
+  "scope": "38 projects; registered source paths and selected cross-directory GitHub commits; no full repository retest; OPS-F01 R8 93-file candidate ledger verified",
   "registered_count": 38,
   "category_counts": {
     "NEW_BOUNDED_SOURCE_REPORT": 4,
@@ -137,8 +137,8 @@
       "project_id": "OPS-CORPUS",
       "project_name": "OPS 英文語料收集",
       "review_class": "NEW_BOUNDED_SOURCE_REPORT",
-      "latest_summary": "R7 本地監督器 18/18 測試有紀錄；約 60.54 MB 為候選文字，去重合格量未確認。",
-      "evidence_boundary": "本地監督器測試，非語料目標達標",
+      "latest_summary": "R8 已實際加入 2 份官方英文正文，累計 93 份、60,574,446 候選 UTF-8 bytes；僅驗證本地 SHA 唯一及帳本加總。",
+      "evidence_boundary": "真實來源增量與局部帳本驗證；非全域去重或模型訓練",
       "whole_project_completion_pct": null
     },
     {
