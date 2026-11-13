@@ -26,8 +26,15 @@ jobs:
           python-version: '3.11'
       - name: Check collector syntax
         run: python -m py_compile OPS-F01-English-Corpus/collect.py OPS-F01-English-Corpus/catalog.py
-      - name: Download one bounded public-domain text
-        run: python OPS-F01-English-Corpus/collect.py
+      - name: Download up to three bounded public-domain texts
+        shell: bash
+        run: |
+          for i in 1 2 3; do
+            echo "OPS-F01 bounded attempt $i / 3"
+            if ! python OPS-F01-English-Corpus/collect.py; then
+              echo "OPS-F01 attempt $i failed; continuing to next source"
+            fi
+          done
       - name: Commit candidate and ledger
         shell: bash
         run: |
