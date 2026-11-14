@@ -1,0 +1,27 @@
+name: Validate public training corpus
+on:
+  push:
+    paths:
+      - 'public-training-corpus/**'
+      - '.github/workflows/validate-public-corpus.yml'
+  pull_request:
+    paths:
+      - 'public-training-corpus/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Compile and validate published corpus only
+        run: |
+          python -m py_compile public-training-corpus/validate_public_corpus.py
+          python public-training-corpus/validate_public_corpus.py
