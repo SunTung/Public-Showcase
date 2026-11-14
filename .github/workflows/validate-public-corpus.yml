@@ -23,5 +23,5 @@ jobs:
           python-version: '3.11'
       - name: Compile and validate published corpus only
         run: |
-          python -m py_compile public-training-corpus/validate_public_corpus.py
+          python -m py_compile public-training-corpus/validate_public_corpus.py public-training-corpus/fetch_public_corpus.py
           python public-training-corpus/validate_public_corpus.py
