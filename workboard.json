@@ -417,8 +417,8 @@
       "work_status": "內部工程持續追蹤",
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
-      "next_gate": "依私人驗收清冊持續推進下一階段工作，公開頁僅保留概略進度。",
-      "verified_milestone": "工程進度已納入內部追蹤；具體測試、研究證據與技術內容不公開。",
+      "next_gate": "持續研究未完成的全域延拓與其他獨立數學關卡；不重開已閉合的有限區間成果。",
+      "verified_milestone": "有限經典時間區間的表示、導數重建及原方程回復已完成局部閉合驗收；其餘研究題目獨立追蹤。",
       "evidence_date": "2026-11-14",
       "status_kind": "NEXT_GATE_OPEN",
       "gate_metric": null
