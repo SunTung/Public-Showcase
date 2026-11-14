@@ -20,14 +20,29 @@ topic=TOPICS[state["topic_cursor"]%len(TOPICS)]
 state["topic_cursor"]+=1
 page=state["topic_pages"].get(topic,1)
 queue=[]
+state.setdefault("discovery_runs",[])
+discovery={"topic":topic,"page":page,"mode":"topic","found":0,"error":None}
 try:
-    found,has_next=discover_page(page,topic=topic)
+    found,has_next=discover_page(page,timeout=10,topic=topic)
     queue=[(int(name.split("-")[-1]),url) for name,url,kind in found if int(name.split("-")[-1]) not in done]
     state["topic_pages"][topic]=page+1 if has_next else 1
+    discovery["found"]=len(queue)
 except Exception as exc:
-    state["catalog_error"]={"topic":topic,"message":str(exc)[:200]}
+    discovery["error"]=str(exc)[:200]
+    # A second bounded discovery strategy; do not confuse metadata with downloaded text.
+    try:
+        found,has_next=discover_page(page,timeout=10,search=topic)
+        queue=[(int(name.split("-")[-1]),url) for name,url,kind in found if int(name.split("-")[-1]) not in done]
+        state["topic_pages"][topic]=page+1 if has_next else 1
+        discovery["mode"]="search_fallback"
+        discovery["found"]=len(queue)
+    except Exception as second:
+        discovery["mode"]="catalog_unavailable"
+        discovery["error"]+="; fallback: "+str(second)[:150]
+state["discovery_runs"]=(state["discovery_runs"]+[discovery])[-200:]
 # Seed texts are fallback only, not the primary search direction.
 if not queue:
+    discovery["mode"]="seed_fallback"
     queue=[(book,f"https://www.gutenberg.org/ebooks/{book}.txt.utf-8") for book in BOOKS if book not in done]
 result={"at":datetime.datetime.now(datetime.timezone.utc).isoformat(),"status":"NO_NEW_SOURCE"}
 for book,url in queue:
@@ -53,7 +68,7 @@ for book,url in queue:
             continue
         name=f"gutenberg-{book}"
         (OUT/(name+".txt")).write_bytes(data)
-        state["files"][name]={"source_id":book,"source_url":url,"sha256":sha,"candidate_bytes":len(data),"language_candidate":"en","global_verified":False,"search_topic":topic}
+        state["files"][name]={"source_id":book,"source_url":url,"sha256":sha,"candidate_bytes":len(data),"language_candidate":"en","global_verified":False,"search_topic":topic if discovery["mode"] in ("topic","search_fallback") else "literature","discovery_mode":discovery["mode"]}
         state["candidate_bytes"]=sum(v["candidate_bytes"] for v in state["files"].values())
         result={"at":result["at"],"status":"LOCAL_CANDIDATE_ADDED","source_id":book,"candidate_bytes":len(data)}
         break
