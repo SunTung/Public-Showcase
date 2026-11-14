@@ -231,7 +231,7 @@
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
       "next_gate": "依私人驗收清冊持續推進下一階段工作，公開頁僅保留概略進度。",
-      "verified_milestone": "工程進度已納入內部追蹤；具體測試、研究證據與技術內容不公開。",
+      "verified_milestone": "既有正式 Android 版本及離線詞庫測試已通過；四模式測試版與實體輸入驗收獨立追蹤。",
       "evidence_date": "2026-11-14",
       "status_kind": "NEXT_GATE_OPEN",
       "gate_metric": null
@@ -248,7 +248,7 @@
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
       "next_gate": "依私人驗收清冊持續推進下一階段工作，公開頁僅保留概略進度。",
-      "verified_milestone": "工程進度已納入內部追蹤；具體測試、研究證據與技術內容不公開。",
+      "verified_milestone": "新版錄音器原始碼已建立，但 Android 建置存在工具鏈相容阻塞；新版產物及實機驗收尚待完成。",
       "evidence_date": "2026-11-14",
       "status_kind": "NEXT_GATE_OPEN",
       "gate_metric": null
