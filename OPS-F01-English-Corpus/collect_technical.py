@@ -4,6 +4,11 @@ import datetime,hashlib,json,re,urllib.request
 from pathlib import Path
 ROOT=Path(__file__).resolve().parent
 LEDGER=ROOT/"indexes"/"ledger.json"
+# Sources already present in the verified private candidate inventory are not re-fetched.
+# This is a source-level exclusion, not a substitute for cross-library SHA verification.
+PRIVATE_KNOWN_URLS={
+"https://raw.githubusercontent.com/python/devguide/main/documentation/markup.rst",
+}
 SOURCES=[
 ("python-devguide-contributing","https://raw.githubusercontent.com/python/devguide/main/contributing/index.rst","technology"),
 ("python-devguide-documentation","https://raw.githubusercontent.com/python/devguide/main/documentation/markup.rst","technology"),
@@ -17,7 +22,7 @@ def run():
     existing={x.get("sha256") for x in state["files"].values()}
     report={"at":datetime.datetime.now(datetime.timezone.utc).isoformat(),"status":"NO_NEW_TECHNICAL_SOURCE"}
     for key,url,topic in SOURCES:
-        if key in state["files"]:continue
+        if key in state["files"] or url in PRIVATE_KNOWN_URLS:continue
         try:
             request=urllib.request.Request(url,headers={"User-Agent":"OPS-F01-research-collector/0.4"})
             with urllib.request.urlopen(request,timeout=15) as response:
