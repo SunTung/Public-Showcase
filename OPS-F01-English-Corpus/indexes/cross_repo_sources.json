@@ -1,0 +1,472 @@
+{
+  "schema": 1,
+  "description": "Source-key and hash-only cross-repository exclusion index; candidate dedup, not global verified bytes",
+  "private": [
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/158.txt.utf-8",
+      "sha256": "17df39a0375ebac2959aef48ab763bd68f69557a6004aede94d43cc91e04b85a"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/1342.txt.utf-8",
+      "sha256": "ec5006ab5edb21cf0ee304712665ef03a8a96bc5ef2e8bb70877dca86973d79c"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/2701.txt.utf-8",
+      "sha256": "b8d4a465cfb1eb0c7c8a3bd597f0af7666d00caa5d3a40aa52f7af9819e31d7b"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/1661.txt.utf-8",
+      "sha256": "a4866cc751985c68a8dec9753cc5afc4f5c7da0332f1be320e053ae8d19a7c71"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/84.txt.utf-8",
+      "sha256": "bde72e6909fb0caebf375b81f7a63140d2b6ffab49a473c670a498dee96934a8"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/345.txt.utf-8",
+      "sha256": "27ff3ad852dccfe9edc06a56b7f5936520148f66bf358ab2e229a576cd076c1b"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/98.txt.utf-8",
+      "sha256": "d614b101548dd9271afa7f63f0899640cf0b91ccf3daae0ac46e5bf09d62105c"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/1400.txt.utf-8",
+      "sha256": "b8ed36381a778163bb64691e827e629dbccead1f978f66a2d033e1a018a5a3cf"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/1260.txt.utf-8",
+      "sha256": "a535895cbb7c9bd50f8ae3f30e001ac5c0f25ce5925d61e6277e2a597102d6ca"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/768.txt.utf-8",
+      "sha256": "6ed5d10a515e2e025b0941dbccf22f291b2212a22226b3c2e442ce27ba93d71a"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/11.txt.utf-8",
+      "sha256": "b44b499274ef98e0bc12c190ee08d9c63480b7c96946101a540a0cb24b3a944c"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/12.txt.utf-8",
+      "sha256": "b325755088909c009cf8fd0df6c4179d24a0730aceb15f3411616bfb95f05b3d"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/1727.txt.utf-8",
+      "sha256": "77f39f6d3aa78c121d6c6331786ace36ac847020071f32ccfdc1d4c4f5129fa8"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/6130.txt.utf-8",
+      "sha256": "f7672c513b22d4cdf25aa187048fd41c206bb2388c459a70a82a86bd2844fdb3"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/1513.txt.utf-8",
+      "sha256": "8a82a91cc44c4d77ff9e2477a5317e2232306ef4eb388d1787264c6a606e7faf"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/1524.txt.utf-8",
+      "sha256": "445bbb0ab53d60c0fca3689a18f6d5b036e6be0c38f3caf8c8349b55055f0478"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/5.txt.utf-8",
+      "sha256": "886a5d1e47ad7a2f4bea5b2460029343cd846963e74e982c7c8e2ed39646d183"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/1497.txt.utf-8",
+      "sha256": "30e5b674ac9f72c4906cfb5cf5d3f1e0df3b8459a1211d3a36879b6abad6515f"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/1228.txt.utf-8",
+      "sha256": "b8aa5011c387e9bbb73fc43c6e141ced0282fbe2cbe57f3da3bcb060fd1c6c69"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/37683.txt.utf-8",
+      "sha256": "691fe15ccbeb0428c03aaf8186afb470dfe7e9d27ac169b476c53eb692e8ec7b"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/100.txt.utf-8",
+      "sha256": "bfb5a5764506115cbae33bfdf66014697ef69d06339f001db209d3f2a56c83fc"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/43.txt.utf-8",
+      "sha256": "688062a341d34e7ef6718ecb5e352978b136766ea4131966f4245ccff9ac6000"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/145.txt.utf-8",
+      "sha256": "db33091e5dfb388041d13c5037409b0b08833628d3b06c24ab7fd9f522249923"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/49297.txt.utf-8",
+      "sha256": "e872262a953d341b147444a3d8a04aa9a407d445f70849675ac1131c0fff0b3e"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/67979.txt.utf-8",
+      "sha256": "f70bd4a83267497db6ea1a14458c073dc90a00818c49e2e7ebb28b17ae1144da"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/2554.txt.utf-8",
+      "sha256": "ca13494d1b2b07cb5fe47146a1e5cccffd9667e4fd29c8aaecd4fd0ed981e7ff"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/37106.txt.utf-8",
+      "sha256": "771ccc0575b7e7268a66ceaeab4b647c850a3029c2e97dab16f4274a666d1209"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/5200.txt.utf-8",
+      "sha256": "966b9c1c7e0cb17f8d5330fa724bdd5e55dfd76ddf80cfbcaa45b881f31b185f"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/2680.txt.utf-8",
+      "sha256": "95bcfa55d3a6bba03c42af3f32cff2dd5a7e3822962c8f267d3249f769adbfba"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/1184.txt.utf-8",
+      "sha256": "b719c17174271b75d42c59393cfe9361489c283689f89c7c5e0f52e05ff8444f"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/2641.txt.utf-8",
+      "sha256": "0dd5468a05eddc08825596acabb95ddcf75aedd02e91cf2b89d08cac89a6b121"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/174.txt.utf-8",
+      "sha256": "aa8346331b9532dab86d8ab25a4a4ad598dc1c79e7ec2ed66157db9881861236"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/64317.txt.utf-8",
+      "sha256": "b85487b89c4b5f13efc6a59bc97b5c81ec4371768e6c1106b388153fb764f36b"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/65238.txt.utf-8",
+      "sha256": "0b277f6c391d31a590c4067a8fca708ad817c565494e5b034732aa5797a558af"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/2600.txt.utf-8",
+      "sha256": "c7156148ecaa12b6416cf816540d8dede2014982554a835e61076f0dd8bf0c2d"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/1952.txt.utf-8",
+      "sha256": "bfb16b1ebb0bef2051490e1599934607e7aa06fe6805275cfd3e554bf0c186d2"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/1259.txt.utf-8",
+      "sha256": "7157ba0712d5688104280f32a60ad46887d91dce48fcd6721246794113e98805"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/1232.txt.utf-8",
+      "sha256": "33e616c68ed77837dd40d587a30b97988783c76126c8fbb7ae220c53780648d0"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/394.txt.utf-8",
+      "sha256": "b725d315101e34d45dee8b4ec7945fe33eac4abe4c4daae8e7e801d9207597cb"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/2160.txt.utf-8",
+      "sha256": "9763db3d399b21fdc7c703ade85e337d71734c8b99a02b98dec777128d605bc6"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/16389.txt.utf-8",
+      "sha256": "64b741f7798cb866a1f0300209feec5f141bc8e0a1241e80f7879892d5aa7ae4"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/74.txt.utf-8",
+      "sha256": "1dade7b8e9e86fae3dd0173c058501c07881229b824f23947641ec099482d3ef"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/3207.txt.utf-8",
+      "sha256": "561f26bb562903058e8e1807021b4f0428b086a062ff8d3bf7d31188492fd732"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/23.txt.utf-8",
+      "sha256": "5d1c5ee5c447066c474148283ae0654bad1a132390202764c2de10888209d457"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/49008.txt.utf-8",
+      "sha256": "d9aeb56ca40885dd7d11f083f997d099070ccbaac58a6882883c66bc2ef54279"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/59828.txt.utf-8",
+      "sha256": "9b06c2e3bddfadfc56bebf9f8241a4efd3d632abc07542abaa219ae8c10366e6"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/25344.txt.utf-8",
+      "sha256": "8b8c1d2c41cc5d4153dd5d8d375efd038e6cc7cbce0ec446eaacd27b8b9bfe6c"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/6593.txt.utf-8",
+      "sha256": "4cd300efb6604397436205bf972fcff9dd9fcec80a3786a581f8f49033377b22"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/6761.txt.utf-8",
+      "sha256": "216c916e5bd62cb75f4ad1a945ac4492529d816473ed342b4a0040d732e41fdf"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/55.txt.utf-8",
+      "sha256": "94a11d5818c4e3367290d16ab4e9cd909a67ea544afd271be92309e90b31fbbf"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/4085.txt.utf-8",
+      "sha256": "89b0d8b2c84c023dd409e8791a7837eb263a0eb7dfede4cfbc86574123dff539"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/4300.txt.utf-8",
+      "sha256": "bff261b23c123680ecdb4ee5ea5d20184a27ab0aec6615de378155d483f47e90"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/2591.txt.utf-8",
+      "sha256": "7a46bd703893bdc54e79be63e9a69fe63d793781ce534e425103e0447603abc4"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/1080.txt.utf-8",
+      "sha256": "5ecfd997c88a5e7a8f05713cf98330ba8556447366b579a965ad7c76a311703c"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/78033.txt.utf-8",
+      "sha256": "300b65111e7ff9e92a2ff5a5ce1b3ee494b69b03147ee6b42ea4097e243692b6"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/5197.txt.utf-8",
+      "sha256": "2f44db3235a61a6e25a0065d5fb78a44ed0c622ad1776d23e83222af3416730a"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/161.txt.utf-8",
+      "sha256": "b357d9b15410fa3e58ce91405727ce41450532a4f501f35df931a7f85e1fb1bb"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/16328.txt.utf-8",
+      "sha256": "f8b7293d26df5064d476f7fd911261fba30b1704fafc2161cb1ec2d4d59b54fa"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/244.txt.utf-8",
+      "sha256": "2d5d1e7d0803807d688a77e847ac2c07319a0a03f2bbc8077257dd928ffd4bc5"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/76.txt.utf-8",
+      "sha256": "8c3f8b1b64e9d4390411b5df69b26246560a3c42a7d264deb8f1f91929b7fd4c"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/3296.txt.utf-8",
+      "sha256": "7cfe7ca317eb27075ed6a0cec6caec51bea81352c9ad873ca64202c920d9024e"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/78118.txt.utf-8",
+      "sha256": "f9db5b436925ce69f1458d821e1bdd3c034120bc01f1642eeb099079184a6057"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/205.txt.utf-8",
+      "sha256": "67c01b61970d6eecbccb372a6d5c2b644ae76f3c8fdac21eb238fea502306b05"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/8492.txt.utf-8",
+      "sha256": "2f23e11d7375474e165241e572fcdf7570ce3caeac73315839956d052070007f"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/2542.txt.utf-8",
+      "sha256": "055e4f62e703f4cd4ab2e4a1e73f879bee53b82f72b6a3253f27ea854477d1cc"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/7370.txt.utf-8",
+      "sha256": "1d87dd369877bf6f4a6f748d329679dc70c9c7ea0ac19c2985cc1213013e4729"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/files/79958/79958-0.txt",
+      "sha256": "695a997de3a9d7ecd05de2d448572756b3a318082431221ddd65ceeb9aa146ca"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/41.txt.utf-8",
+      "sha256": "14dfbab6784099770a04cfc20b67213929595d47078f14143980e0f87b4e1338"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/844.txt.utf-8",
+      "sha256": "c89baeb2febea37c10858d5097d4316c6abd4d4953dc498da930d0f0a4c6483e"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/120.txt.utf-8",
+      "sha256": "ef67b01f998cbd2c75650bd8aad781ddedb50dccc9d4725eefb93efa68a72f71"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/45.txt.utf-8",
+      "sha256": "bd14660006ea9d0394bb29548740dac66f9987d68876163f509deacfb5d1e9b0"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/2148.txt.utf-8",
+      "sha256": "d7d86f5cb2278b9cb5f1773cd715077747572fd480dfd9544c0411ae3be4d43b"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/28054.txt.utf-8",
+      "sha256": "a8da4f61494ed71b2f3b598a17b511cea3e07dae88d757b7dd4b3ab5b2dcd40d"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/69087.txt.utf-8",
+      "sha256": "1e3cac613b3d42ff3a22b3624162e06c43e49b01e03d480ad9f8a6ef11cbdf54"
+    },
+    {
+      "source_key": "https://raw.githubusercontent.com/MicrosoftDocs/WSL/main/WSL/basic-commands.md",
+      "sha256": "6af0d2fc7bc4ca65e1f3a51f579df29ee362cf377256e4861fed095044c003a0"
+    },
+    {
+      "source_key": "https://raw.githubusercontent.com/MicrosoftDocs/WSL/main/WSL/install.md",
+      "sha256": "60193e3e2e97f6b114594ef01a45d26ac1fcc263bd923d9011c68876ca3a8a23"
+    },
+    {
+      "source_key": "https://raw.githubusercontent.com/python/devguide/main/developer-workflow/c-api.rst",
+      "sha256": "12457241453794b8257ca965536a5375068e93f0c6674696c8911f327f35b6b2"
+    },
+    {
+      "source_key": "https://raw.githubusercontent.com/MicrosoftDocs/WSL/main/WSL/build-custom-distro.md",
+      "sha256": "e95bba715013aa2d4c21b2772fdd38a0a9a1a438aa1df27e2310d3debb9e8ea1"
+    },
+    {
+      "source_key": "https://raw.githubusercontent.com/MicrosoftDocs/WSL/main/WSL/filesystems.md",
+      "sha256": "412b592d0079c5d3e0c9dd9076e2c719d7220cd0572a5bc77d285b831391a3d2"
+    },
+    {
+      "source_key": "https://raw.githubusercontent.com/MicrosoftDocs/WSL/main/WSL/networking.md",
+      "sha256": "9424768507d37fa40965f27bf0b685ede58448331b77bddc65066f0ccc302ee8"
+    },
+    {
+      "source_key": "https://raw.githubusercontent.com/MicrosoftDocs/WSL/main/WSL/wsl-config.md",
+      "sha256": "ac0d5d4b00adcd6ef165c4cdea6857cc81d1d7d6e0e5fca8ed0c8af812b34c93"
+    },
+    {
+      "source_key": "https://raw.githubusercontent.com/MicrosoftDocs/WSL/main/WSL/troubleshooting.md",
+      "sha256": "828c86500278bc0cebb74b51dadf3d44978bfb55ca1278bc31bbc91d08c9651d"
+    },
+    {
+      "source_key": "https://raw.githubusercontent.com/python/devguide/main/developer-workflow/development-cycle.rst",
+      "sha256": "3497189ff09ce82d6d3188ee3b9ad16a2621836ff35d96d751ef5357b692a71a"
+    },
+    {
+      "source_key": "https://raw.githubusercontent.com/python/devguide/main/developer-workflow/extension-modules.rst",
+      "sha256": "740856561f85ca55ee46c15ee9e03ad410ded3cb5b3a553517f074fe2b44272e"
+    },
+    {
+      "source_key": "https://raw.githubusercontent.com/python/devguide/main/getting-started/setup-building.rst",
+      "sha256": "4920fafc0ac66f797242ed89149f8653c75ed292f608cd741676e4f173c2b3a1"
+    },
+    {
+      "source_key": "https://raw.githubusercontent.com/python/devguide/main/testing/run-write-tests.rst",
+      "sha256": "c11665682bde85fbe1a34206ea696aae970e11763d661890877cb57766e5dc53"
+    },
+    {
+      "source_key": "https://raw.githubusercontent.com/MicrosoftDocs/WSL/main/WSL/tutorials/wsl-database.md",
+      "sha256": "9bef32e42b08e15686a486a6f7bab6c3374ae6df63fd963e429b83c9a7904f8f"
+    },
+    {
+      "source_key": "https://raw.githubusercontent.com/MicrosoftDocs/WSL/main/WSL/case-sensitivity.md",
+      "sha256": "1bc9c27671c5d2f60f95c31a18c8fb38255975c8614bfa79091200e9d169bdef"
+    },
+    {
+      "source_key": "https://raw.githubusercontent.com/python/devguide/main/development-tools/clinic/howto.rst",
+      "sha256": "85581deaf2921f740d6d1fda170e426739c04b0b119a294e9e763d9896041844"
+    },
+    {
+      "source_key": "https://raw.githubusercontent.com/python/devguide/main/testing/new-buildbot-worker.rst",
+      "sha256": "f837979e89fe97a96f5abd6aa664ec8e6b6e0665a7a755da973f38c00708d3ce"
+    },
+    {
+      "source_key": "https://raw.githubusercontent.com/python/devguide/main/documentation/markup.rst",
+      "sha256": "3499ab2b52d7114cba67a1af019e4283909c7a29d556ec8fd704a5652da677bb"
+    },
+    {
+      "source_key": "https://raw.githubusercontent.com/python/devguide/main/documentation/style-guide.rst",
+      "sha256": "1d78192d0b6181c1dfa82a1440c22a67f175abe4505d346527eb13d056252c2e"
+    },
+    {
+      "source_key": "https://raw.githubusercontent.com/python/devguide/main/developer-workflow/communication-channels.rst",
+      "sha256": "868fa10894506aab4854501a7d392ad1a8c1f34f898985331c067b966e45d125"
+    }
+  ],
+  "public": [
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/11.txt.utf-8",
+      "sha256": "97c0cffb5a8f279b43b8d452401e6305edd3aee4d8ae55a41322ea88f8616531"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/84.txt.utf-8",
+      "sha256": "264a6b48d410c46aa899692c9384d89f401e4bd234b9aeea41d8900a756c8e4a"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/1342.txt.utf-8",
+      "sha256": "3709883de831a8cd1b6f2ead5640644c4e26abe972ca382b774b221c90c26bd5"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/1661.txt.utf-8",
+      "sha256": "25c8fe8c878adf4c10c85557f6f4637b7a6bda277837e4235ea5b4c1a2f4a488"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/2701.txt.utf-8",
+      "sha256": "9c05ad4f019bc4f8d1462bef1e2b3c0a84ff3d13482bbe877b92659c0c8e00a8"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/345.txt.utf-8",
+      "sha256": "4856ef0e712ee3c70a36c1452242541fe5d3ca6de55576659bd68d890f0e3d14"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/98.txt.utf-8",
+      "sha256": "ace6e1e002690792ff3ffb0b068bc6695747a290cfc14dc0d93e14a5a8d5e438"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/158.txt.utf-8",
+      "sha256": "4ae98d6e56b57e5a3e7a3b9dbc344590aa6b7db7c05e08874885eb5131ad853d"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/1400.txt.utf-8",
+      "sha256": "529d87796c9fd59ba8b743cacb6618fe7d4cab327c6769844a942aaf495d6f30"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/1260.txt.utf-8",
+      "sha256": "68cae87bf3bf3907fde0e61ac61a0f6eceb40a7fe9d00a3714c56852aaa0d503"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/768.txt.utf-8",
+      "sha256": "deb0c9b35b247c97d5a1ed71043294b95cd90bcd3a668442a3e126d79ee8cb89"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/12.txt.utf-8",
+      "sha256": "60e577701490f54e7f67cadb5a8e94200aa5a393c86c7efdd40456a22657335b"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/1727.txt.utf-8",
+      "sha256": "642aedfbb46df030388a4620dde21496c28ee2d81575d56f44ee392fa784da42"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/6130.txt.utf-8",
+      "sha256": "97156b93e2d799296d7a00c6f2a3447962e859c1c39bf35f13bd933129a77095"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/1513.txt.utf-8",
+      "sha256": "967782d8ffaa5581c338bdf697d48217cb0d93b575c336acf3874a48d7d16187"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/1524.txt.utf-8",
+      "sha256": "dc147ddc9c826dc168f84f934790f8e3fcabcca3d0c3fd5d452a80c719b64cbc"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/74.txt.utf-8",
+      "sha256": "916902210dff1b2818fbafa3a6239dc685129b7a08334312873015e88a1aed4a"
+    },
+    {
+      "source_key": "https://raw.githubusercontent.com/python/devguide/main/documentation/markup.rst",
+      "sha256": "3499ab2b52d7114cba67a1af019e4283909c7a29d556ec8fd704a5652da677bb"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/76.txt.utf-8",
+      "sha256": "c00901b5e87adb23b0008c70bbb11304b74abccad33ad4631b2b6b779271ce95"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/5200.txt.utf-8",
+      "sha256": "0fda77448c7d9d1438ec85f527454ee654d0463c98f88c8a3bbf533aef5e96f8"
+    },
+    {
+      "source_key": "https://www.gutenberg.org/ebooks/4300.txt.utf-8",
+      "sha256": "37664cbe7d0fd533749f6c8f18e0fa400af6fe2c1366f4a1b3b1d9b17517bfb3"
+    },
+    {
+      "source_key": "https://raw.githubusercontent.com/python/peps/main/peps/pep-0008.rst",
+      "sha256": "6028935c6cb2c674d5f4d512c7ba6ce2923713b1c47ce1a78adc690db817fc5d"
+    },
+    {
+      "source_key": "https://raw.githubusercontent.com/python/peps/main/peps/pep-0257.rst",
+      "sha256": "7db41c5aaea3bfde0463307c72b38d735dc604491cadd059d7f9fe94b8142c0e"
+    }
+  ]
+}
