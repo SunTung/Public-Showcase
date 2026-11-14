@@ -22,7 +22,7 @@ DISALLOWED_KEYS = {"private_path", "private_directory", "source_path", "private_
                    "secret", "private_file_list", "private_manifest"}
 
 SITE_FILES = (
-    "index.html", "research-index.html", "workboard.html",
+    "index.html", "research-index.html", "workboard.html", "public-catalog.json",
     "workboard.json", "workboard-latest.json", "workboard-p0-tasks.json",
     "workboard-events.json", "workboard-gates.json", "workboard-repositories.json",
     "workboard-research-topics.json", "workboard-repository-activity.json",
@@ -81,6 +81,20 @@ def validate(root=ROOT):
         errors.append("Public taxonomy privacy policy not set")
     if any(t.get("related_registered_project_ids") for t in taxonomy["records"]):
         errors.append("Private research/project crosswalk must not be published")
+    # Fail closed: public catalog may only repeat previously approved public labels.
+    board = json.loads((root / "workboard.json").read_text(encoding="utf-8"))
+    catalog = json.loads((root / "public-catalog.json").read_text(encoding="utf-8"))
+    allowed = {(r["id"], r["name"], r["category"]) for r in board["items"]}
+    actual_catalog = [(x["id"], x["title"], group["id"], x["status"])
+                      for group in catalog["groups"] for x in group["items"]]
+    if len(actual_catalog) != len(allowed):
+        errors.append("Public catalog does not match approved project count")
+    if {(a, b, c) for a, b, c, status in actual_catalog} != allowed:
+        errors.append("Public catalog contains non-allowlisted names or categories")
+    if any(status not in ("進行中", "待確認", "已完成") for _, _, _, status in actual_catalog):
+        errors.append("Public catalog contains unsupported status")
+    if any(status == "已完成" for _, _, _, status in actual_catalog):
+        errors.append("Completed labels require separate approved acceptance records")
     return errors
 
 if __name__ == "__main__":
