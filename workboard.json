@@ -316,7 +316,7 @@
       "overall_completion_pct": null,
       "monthly_plan_pct": 65,
       "next_gate": "依私人驗收清冊持續推進下一階段工作，公開頁僅保留概略進度。",
-      "verified_milestone": "工程進度已納入內部追蹤；具體測試、研究證據與技術內容不公開。",
+      "verified_milestone": "既有搜尋方法來源與受控路徑測試已有紀錄；SOP 獨立身份、完整成本及原生接口仍待驗證。",
       "evidence_date": "2026-11-14",
       "status_kind": "NEXT_GATE_OPEN",
       "gate_metric": null
@@ -333,7 +333,7 @@
       "overall_completion_pct": null,
       "monthly_plan_pct": 75,
       "next_gate": "依私人驗收清冊持續推進下一階段工作，公開頁僅保留概略進度。",
-      "verified_milestone": "工程進度已納入內部追蹤；具體測試、研究證據與技術內容不公開。",
+      "verified_milestone": "既有受控原生模擬、跨架構移轉與限定態族研究有證據；名稱對照及通用能力仍待驗收。",
       "evidence_date": "2026-11-14",
       "status_kind": "NEXT_GATE_OPEN",
       "gate_metric": null
@@ -350,7 +350,7 @@
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
       "next_gate": "依私人驗收清冊持續推進下一階段工作，公開頁僅保留概略進度。",
-      "verified_milestone": "工程進度已納入內部追蹤；具體測試、研究證據與技術內容不公開。",
+      "verified_milestone": "受控決策測試與歷史迷宮比較已保存；舊回歸、原生整合及跨場景驗證尚待完成。",
       "evidence_date": "2026-11-14",
       "status_kind": "NEXT_GATE_OPEN",
       "gate_metric": null
