@@ -310,8 +310,9 @@ def main():
     pairs = [(x["id"], x["title"], g["id"], x["status"]) for g in catalog["groups"] for x in g["items"]]
     assert len(pairs) == len(set(x[0] for x in pairs)) == 38
     assert {(a, b, c) for a, b, c, _ in pairs} == {(x["id"], x["name"], x["category"]) for x in board["items"]}
-    assert all(v in {"進行中", "待確認"} for _, _, _, v in pairs)
-    assert catalog["status_counts"] == {v: sum(x[3] == v for x in pairs) for v in {"進行中", "待確認"}}
+    assert all(v in {"進行中", "待確認", "已完成"} for _, _, _, v in pairs)
+    assert {a for a, _, _, v in pairs if v == "已完成"} == {"RL-GAME-STUDIO-V1"}
+    assert catalog["status_counts"] == {v: sum(x[3] == v for x in pairs) for v in {"進行中", "待確認", "已完成"}}
     assert "public-catalog.json" in (ROOT / "research-index.html").read_text(encoding="utf-8")
     children = read_json("public-subprojects.json")
     assert children["schema"] == "studio_public_subproject_catalog_v1"
