@@ -10,6 +10,7 @@ on:
       - 'OPS-F01-English-Corpus/catalog.py'
       - 'OPS-F01-English-Corpus/audit.py'
       - 'OPS-F01-English-Corpus/collect_technical.py'
+      - 'OPS-F01-English-Corpus/category_report.py'
 permissions:
   contents: write
 concurrency:
@@ -27,7 +28,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Check collector syntax
-        run: python -m py_compile OPS-F01-English-Corpus/collect.py OPS-F01-English-Corpus/catalog.py OPS-F01-English-Corpus/audit.py OPS-F01-English-Corpus/collect_technical.py
+        run: python -m py_compile OPS-F01-English-Corpus/collect.py OPS-F01-English-Corpus/catalog.py OPS-F01-English-Corpus/audit.py OPS-F01-English-Corpus/collect_technical.py OPS-F01-English-Corpus/category_report.py
       - name: Download up to three bounded public-domain texts
         shell: bash
         run: |
@@ -41,12 +42,14 @@ jobs:
         run: python OPS-F01-English-Corpus/collect_technical.py
       - name: Verify downloaded files against candidate ledger
         run: python OPS-F01-English-Corpus/audit.py
+      - name: Produce category coverage report
+        run: python OPS-F01-English-Corpus/category_report.py
       - name: Commit candidate and ledger
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add OPS-F01-English-Corpus/corpus OPS-F01-English-Corpus/indexes/ledger.json
+          git add OPS-F01-English-Corpus/corpus OPS-F01-English-Corpus/indexes/ledger.json OPS-F01-English-Corpus/reports/category_status.json
           if ! git diff --cached --quiet; then
             git commit -m "OPS-F01 public candidate increment"
             git pull --rebase origin "${GITHUB_REF_NAME}"
