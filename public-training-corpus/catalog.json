@@ -52,6 +52,22 @@
       "rights_basis": "1729 original literary text is public domain",
       "usage_notes": "Satirical political and social essay; do not present the provocative fictional proposal as factual guidance or contemporary policy",
       "training_approved_for_external_ingestion": true
+    },
+    {
+      "id": "gilman_the_yellow_wallpaper_1892",
+      "language": "en",
+      "category": "historical_literary_short_fiction",
+      "path": "texts/gilman_the_yellow_wallpaper_1892.txt",
+      "git_blob_sha": "82858b81e99acee473a12b3fd615e748565074c7",
+      "status": "published",
+      "original_document_year": 1892,
+      "edition": "Charlotte Perkins Gilman original historical short story; Project Gutenberg ebook #1952; plain original narrative, no added editorial prefatory text",
+      "source_urls": [
+        "https://www.gutenberg.org/ebooks/1952"
+      ],
+      "rights_basis": "1892 original work public domain",
+      "usage_notes": "Literary fictional narrative with historical attitudes to health and treatment; not medical or mental-health advice",
+      "training_approved_for_external_ingestion": true
     }
   ],
   "not_included": "Private research, private manuscripts, unreviewed web crawler content, confidential corpora",
