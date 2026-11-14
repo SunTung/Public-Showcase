@@ -94,9 +94,39 @@
       "language_candidate": "en",
       "global_verified": false,
       "search_topic": "technology"
+    },
+    "gutenberg-12": {
+      "source_id": 12,
+      "source_url": "https://www.gutenberg.org/ebooks/12.txt.utf-8",
+      "sha256": "60e577701490f54e7f67cadb5a8e94200aa5a393c86c7efdd40456a22657335b",
+      "candidate_bytes": 176745,
+      "language_candidate": "en",
+      "global_verified": false,
+      "search_topic": "literature",
+      "discovery_mode": "seed_fallback"
+    },
+    "gutenberg-1727": {
+      "source_id": 1727,
+      "source_url": "https://www.gutenberg.org/ebooks/1727.txt.utf-8",
+      "sha256": "642aedfbb46df030388a4620dde21496c28ee2d81575d56f44ee392fa784da42",
+      "candidate_bytes": 697997,
+      "language_candidate": "en",
+      "global_verified": false,
+      "search_topic": "literature",
+      "discovery_mode": "seed_fallback"
+    },
+    "gutenberg-6130": {
+      "source_id": 6130,
+      "source_url": "https://www.gutenberg.org/ebooks/6130.txt.utf-8",
+      "sha256": "97156b93e2d799296d7a00c6f2a3447962e859c1c39bf35f13bd933129a77095",
+      "candidate_bytes": 1141494,
+      "language_candidate": "en",
+      "global_verified": false,
+      "search_topic": "literature",
+      "discovery_mode": "seed_fallback"
     }
   },
-  "candidate_bytes": 8529339,
+  "candidate_bytes": 10545575,
   "runs": [
     {
       "at": "2026-11-12T23:23:47.837035+00:00",
@@ -163,14 +193,55 @@
       "status": "LOCAL_CANDIDATE_ADDED",
       "source_id": 768,
       "candidate_bytes": 674052
+    },
+    {
+      "at": "2026-11-14T00:17:26.306065+00:00",
+      "status": "LOCAL_CANDIDATE_ADDED",
+      "source_id": 12,
+      "candidate_bytes": 176745
+    },
+    {
+      "at": "2026-11-14T00:17:47.431664+00:00",
+      "status": "LOCAL_CANDIDATE_ADDED",
+      "source_id": 1727,
+      "candidate_bytes": 697997
+    },
+    {
+      "at": "2026-11-14T00:18:08.369557+00:00",
+      "status": "LOCAL_CANDIDATE_ADDED",
+      "source_id": 6130,
+      "candidate_bytes": 1141494
     }
   ],
   "catalog_page": 1,
   "blocked_sources": {},
-  "topic_cursor": 7,
+  "topic_cursor": 10,
   "topic_pages": {},
   "catalog_error": {
     "topic": "technology",
     "message": "The read operation timed out"
-  }
+  },
+  "discovery_runs": [
+    {
+      "topic": "philosophy",
+      "page": 1,
+      "mode": "seed_fallback",
+      "found": 0,
+      "error": "The read operation timed out; fallback: The read operation timed out"
+    },
+    {
+      "topic": "education",
+      "page": 1,
+      "mode": "seed_fallback",
+      "found": 0,
+      "error": "The read operation timed out; fallback: The read operation timed out"
+    },
+    {
+      "topic": "literature",
+      "page": 1,
+      "mode": "seed_fallback",
+      "found": 0,
+      "error": "The read operation timed out; fallback: The read operation timed out"
+    }
+  ]
 }
