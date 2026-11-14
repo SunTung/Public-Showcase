@@ -163,7 +163,7 @@
       "overall_completion_pct": null,
       "monthly_plan_pct": 19,
       "next_gate": "保留 V1.0 已驗證版本，後續維護與新版本視為不同工作。",
-      "verified_milestone": "V1.0 既有版本已完成階段性發行驗收；後續新版本另行追蹤。",
+      "verified_milestone": "V1.0 Windows 發行基線與封裝還原已完成驗收；後續版本獨立追蹤。",
       "evidence_date": "2026-11-14",
       "status_kind": "NEXT_GATE_OPEN",
       "gate_metric": null
@@ -180,7 +180,7 @@
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
       "next_gate": "依私人驗收清冊持續推進下一階段工作，公開頁僅保留概略進度。",
-      "verified_milestone": "工程進度已納入內部追蹤；具體測試、研究證據與技術內容不公開。",
+      "verified_milestone": "B3J Windows 完整 CI 與封裝還原已通過；實體 GUI 操作驗收另行追蹤。",
       "evidence_date": "2026-11-14",
       "status_kind": "NEXT_GATE_OPEN",
       "gate_metric": null
@@ -299,7 +299,7 @@
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
       "next_gate": "依私人驗收清冊持續推進下一階段工作，公開頁僅保留概略進度。",
-      "verified_milestone": "工程進度已納入內部追蹤；具體測試、研究證據與技術內容不公開。",
+      "verified_milestone": "小批次真實來源導入與資料契約驗證已通過；模型整合及跨來源關係驗收持續進行。",
       "evidence_date": "2026-11-14",
       "status_kind": "NEXT_GATE_OPEN",
       "gate_metric": null
