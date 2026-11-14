@@ -68,7 +68,7 @@ for book,url in queue:
             continue
         name=f"gutenberg-{book}"
         (OUT/(name+".txt")).write_bytes(data)
-        state["files"][name]={"source_id":book,"source_url":url,"sha256":sha,"candidate_bytes":len(data),"language_candidate":"en","global_verified":False,"search_topic":topic if discovery["mode"] in ("topic","search_fallback") else "literature","discovery_mode":discovery["mode"]}
+        state["files"][name]={"source_id":book,"source_url":url,"sha256":sha,"candidate_bytes":len(data),"language_candidate":"en","global_verified":False,"search_topic":topic if discovery["mode"] in ("topic","search_fallback") else "literature","content_category":"literature_unverified_subgenre","category_verified":False,"discovery_mode":discovery["mode"]}
         state["candidate_bytes"]=sum(v["candidate_bytes"] for v in state["files"].values())
         result={"at":result["at"],"status":"LOCAL_CANDIDATE_ADDED","source_id":book,"candidate_bytes":len(data)}
         break
