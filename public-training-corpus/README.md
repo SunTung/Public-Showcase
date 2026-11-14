@@ -8,13 +8,13 @@ This directory is a standalone **public-data collection**, separate from the res
 
 Only the files listed as `published` in the catalog are released text. Being published **does not imply** that the text is an up-to-date factual authority. Historical documents must be tagged as historical.
 
-The collection currently contains two released historical source texts. The first is a historic transcription of the **1787 U.S. Constitution without amendments**, from the public-domain original. The editorial preface was removed. The source edition differs in spelling and punctuation from other official transcriptions.
+The collection currently contains three released historical source texts. The first is a historic transcription of the **1787 U.S. Constitution without amendments**, from the public-domain original. The editorial preface was removed. The source edition differs in spelling and punctuation from other official transcriptions.
 
 Constitution source edition: [Project Gutenberg #5](https://www.gutenberg.org/ebooks/5). Documentary reference: [U.S. National Archives](https://www.archives.gov/founding-docs/constitution-transcript).
 
 Second source: a chapter-only historical excerpt from John Locke's [Second Treatise of Government](https://www.gutenberg.org/ebooks/7370), published in the USA as public domain. Prefatory editor commentary is not included.
 
-Use `python public-training-corpus/validate_public_corpus.py` after checkout to verify both release texts against the Git blob hashes in the catalog. Training consumers should cite source editions and preserve the historical-date labels.
+Third source: Jonathan Swift's 1729 satire [A Modest Proposal](https://www.gutenberg.org/ebooks/1080). Its provocative claims are historical satire, not recommendations or factual policy guidance.\n\nUse `python public-training-corpus/validate_public_corpus.py` after checkout to verify all release texts against the Git blob hashes in the catalog. Training consumers should cite source editions and preserve the historical-date labels.
 
 No private project files, internal storage paths, credentials, research records, unpublished literary manuscripts, or private training scripts are permitted in this directory.
 
@@ -28,3 +28,5 @@ python public-training-corpus/fetch_public_corpus.py --out ./external_corpus
 ```
 
 The downloader does not use credentials, access private repositories, execute downloaded content or overwrite existing files. It only accepts explicit `texts/*.txt` paths from the public catalog; newly discovered web content is not automatically published.
+
+Publishing gate: every file under `texts/` must appear in `catalog.json` with an approved source and exact Git blob SHA. Unlisted files, non-reviewed status, missing source evidence or SHA mismatch fail validation. Tests are in `.github/tests/test_public_corpus.py`; the CI must pass before the result is treated as independently accepted.
