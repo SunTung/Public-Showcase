@@ -20,6 +20,22 @@
       "rights_basis": "historical US government foundational document, public domain original",
       "usage_notes": "Historical 1787 unamended text, not authoritative statement of current constitutional law; proofread against official transcription before legal QA",
       "training_approved_for_external_ingestion": true
+    },
+    {
+      "id": "locke_second_treatise_book_ii_chapter_1",
+      "language": "en",
+      "category": "historical_political_philosophy",
+      "path": "texts/locke_second_treatise_book_ii_chapter_1.txt",
+      "git_blob_sha": "8eef4330be560e6fba22055aa905217c7a0e042b",
+      "status": "published",
+      "original_document_year": 1690,
+      "edition": "Second Treatise of Government, Book II, Chapter I only; edition from Gutenberg ebook #7370; introductory editor material excluded, italic markup normalized",
+      "source_urls": [
+        "https://www.gutenberg.org/ebooks/7370"
+      ],
+      "rights_basis": "John Locke original historic text, Gutenberg #7370 labels the ebook public domain in USA",
+      "usage_notes": "Historic political philosophy, not a statement of current policy or law",
+      "training_approved_for_external_ingestion": true
     }
   ],
   "not_included": "Private research, private manuscripts, unreviewed web crawler content, confidential corpora",
