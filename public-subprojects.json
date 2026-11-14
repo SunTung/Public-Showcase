@@ -1,0 +1,1154 @@
+{
+  "schema": "studio_public_subproject_catalog_v1",
+  "as_of": "2026-11-14",
+  "privacy_policy": "APPROVED_GENERIC_TITLES_ONLY",
+  "source_contract": "Parent project IDs must match public-catalog.json. Names are manually simplified public topic labels; private source paths, algorithms, receipts and metrics excluded.",
+  "project_count": 38,
+  "subproject_count": 157,
+  "status_counts": {
+    "已完成": 31,
+    "進行中": 120,
+    "待確認": 6
+  },
+  "overall_completion_pct": null,
+  "states": [
+    "已完成",
+    "進行中",
+    "待確認"
+  ],
+  "completion_note": "已完成僅對應明確的小型子工程或局部階段，不表示所屬主工程整體完成。",
+  "projects": [
+    {
+      "project_id": "CELL-CORE",
+      "subprojects": [
+        {
+          "id": "CELL-CORE-SUB-01",
+          "title": "來源與介面稽核",
+          "status": "已完成",
+          "completion_scope": "局部階段"
+        },
+        {
+          "id": "CELL-CORE-SUB-02",
+          "title": "原生核心整合",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "CELL-CORE-SUB-03",
+          "title": "圖結構與狀態管理",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "CELL-CORE-SUB-04",
+          "title": "資料保存與復原",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "CELL-CORE-SUB-05",
+          "title": "階段出口總驗收",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        }
+      ]
+    },
+    {
+      "project_id": "CELL-LANGUAGE",
+      "subprojects": [
+        {
+          "id": "CELL-LANGUAGE-SUB-01",
+          "title": "自然語言理解",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "CELL-LANGUAGE-SUB-02",
+          "title": "故事與應用文能力",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "CELL-LANGUAGE-SUB-03",
+          "title": "程式與數學能力",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "CELL-LANGUAGE-SUB-04",
+          "title": "自學習與代理能力",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "CELL-LANGUAGE-SUB-05",
+          "title": "跨來源能力驗收",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        }
+      ]
+    },
+    {
+      "project_id": "CELL-EN",
+      "subprojects": [
+        {
+          "id": "CELL-EN-SUB-01",
+          "title": "既有模型階段發布",
+          "status": "已完成",
+          "completion_scope": "局部階段"
+        },
+        {
+          "id": "CELL-EN-SUB-02",
+          "title": "增量訓練",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "CELL-EN-SUB-03",
+          "title": "英文生成品質驗證",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "CELL-EN-SUB-04",
+          "title": "模型載入與執行",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        }
+      ]
+    },
+    {
+      "project_id": "CELL-NERVE",
+      "subprojects": [
+        {
+          "id": "CELL-NERVE-SUB-01",
+          "title": "記憶擷取初步實驗",
+          "status": "已完成",
+          "completion_scope": "局部階段"
+        },
+        {
+          "id": "CELL-NERVE-SUB-02",
+          "title": "記憶關聯與排序",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "CELL-NERVE-SUB-03",
+          "title": "時間與事件記憶",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "CELL-NERVE-SUB-04",
+          "title": "新來源記憶驗證",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        }
+      ]
+    },
+    {
+      "project_id": "CELL-M",
+      "subprojects": [
+        {
+          "id": "CELL-M-SUB-01",
+          "title": "第一階段局部驗收",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "CELL-M-SUB-02",
+          "title": "向位結構研究",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "CELL-M-SUB-03",
+          "title": "跨語言原生整合",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "CELL-M-SUB-04",
+          "title": "完整功能驗收",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        }
+      ]
+    },
+    {
+      "project_id": "RRG",
+      "subprojects": [
+        {
+          "id": "RRG-SUB-01",
+          "title": "模型結構來源整理",
+          "status": "已完成",
+          "completion_scope": "局部階段"
+        },
+        {
+          "id": "RRG-SUB-02",
+          "title": "區域與關係結構",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "RRG-SUB-03",
+          "title": "多結構資料調度",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "RRG-SUB-04",
+          "title": "模型執行效能評估",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        }
+      ]
+    },
+    {
+      "project_id": "CELO",
+      "subprojects": [
+        {
+          "id": "CELO-SUB-01",
+          "title": "文字工作台階段測試",
+          "status": "已完成",
+          "completion_scope": "局部階段"
+        },
+        {
+          "id": "CELO-SUB-02",
+          "title": "工具調度整合",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "CELO-SUB-03",
+          "title": "原生運算介面",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "CELO-SUB-04",
+          "title": "平台整體驗收",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        }
+      ]
+    },
+    {
+      "project_id": "RL",
+      "subprojects": [
+        {
+          "id": "RL-SUB-01",
+          "title": "既有工具鏈階段驗證",
+          "status": "已完成",
+          "completion_scope": "局部階段"
+        },
+        {
+          "id": "RL-SUB-02",
+          "title": "語法與編譯器",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "RL-SUB-03",
+          "title": "原生執行與連結",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "RL-SUB-04",
+          "title": "語言完整性驗收",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        }
+      ]
+    },
+    {
+      "project_id": "RL-GAME-STUDIO-V1",
+      "subprojects": [
+        {
+          "id": "RL-GAME-STUDIO-V1-SUB-01",
+          "title": "Windows 原生版本階段驗收",
+          "status": "已完成",
+          "completion_scope": "局部階段"
+        },
+        {
+          "id": "RL-GAME-STUDIO-V1-SUB-02",
+          "title": "視窗與編輯介面",
+          "status": "已完成",
+          "completion_scope": "局部階段"
+        },
+        {
+          "id": "RL-GAME-STUDIO-V1-SUB-03",
+          "title": "封裝及復原",
+          "status": "已完成",
+          "completion_scope": "局部階段"
+        },
+        {
+          "id": "RL-GAME-STUDIO-V1-SUB-04",
+          "title": "後續版本維護",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        }
+      ]
+    },
+    {
+      "project_id": "RL-GAME-STUDIO",
+      "subprojects": [
+        {
+          "id": "RL-GAME-STUDIO-SUB-01",
+          "title": "原生編輯器基礎建置",
+          "status": "已完成",
+          "completion_scope": "局部階段"
+        },
+        {
+          "id": "RL-GAME-STUDIO-SUB-02",
+          "title": "場景與地圖編輯",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "RL-GAME-STUDIO-SUB-03",
+          "title": "遊戲執行視窗",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "RL-GAME-STUDIO-SUB-04",
+          "title": "Windows 圖形介面驗收",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "RL-GAME-STUDIO-SUB-05",
+          "title": "獨立封裝與發行",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        }
+      ]
+    },
+    {
+      "project_id": "ENDLESS",
+      "subprojects": [
+        {
+          "id": "ENDLESS-SUB-01",
+          "title": "世界規則與初始設定",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "ENDLESS-SUB-02",
+          "title": "場景與路線架構",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "ENDLESS-SUB-03",
+          "title": "角色與世界時間",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "ENDLESS-SUB-04",
+          "title": "戰鬥與互動系統",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "ENDLESS-SUB-05",
+          "title": "存檔與可玩版本",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        }
+      ]
+    },
+    {
+      "project_id": "CELL-DEFENDER",
+      "subprojects": [
+        {
+          "id": "CELL-DEFENDER-SUB-01",
+          "title": "手機遊戲基礎版本",
+          "status": "已完成",
+          "completion_scope": "局部階段"
+        },
+        {
+          "id": "CELL-DEFENDER-SUB-02",
+          "title": "關卡與敵人系統",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "CELL-DEFENDER-SUB-03",
+          "title": "視覺與音效調整",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "CELL-DEFENDER-SUB-04",
+          "title": "Android 實機驗收",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        }
+      ]
+    },
+    {
+      "project_id": "TAIWAN-KEYIN",
+      "subprojects": [
+        {
+          "id": "TAIWAN-KEYIN-SUB-01",
+          "title": "輸入法基礎字典",
+          "status": "已完成",
+          "completion_scope": "局部階段"
+        },
+        {
+          "id": "TAIWAN-KEYIN-SUB-02",
+          "title": "注音與拼音切換",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "TAIWAN-KEYIN-SUB-03",
+          "title": "候選字與輸入介面",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "TAIWAN-KEYIN-SUB-04",
+          "title": "手機實際輸入驗收",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        }
+      ]
+    },
+    {
+      "project_id": "POCKET-RECORDER",
+      "subprojects": [
+        {
+          "id": "POCKET-RECORDER-SUB-01",
+          "title": "錄音與檔案管理",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "POCKET-RECORDER-SUB-02",
+          "title": "播放與媒體控制",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "POCKET-RECORDER-SUB-03",
+          "title": "Android 建置修正",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "POCKET-RECORDER-SUB-04",
+          "title": "正式版本發行",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        }
+      ]
+    },
+    {
+      "project_id": "SPECIAL-DICTIONARY",
+      "subprojects": [
+        {
+          "id": "SPECIAL-DICTIONARY-SUB-01",
+          "title": "專有名詞主字典整理",
+          "status": "已完成",
+          "completion_scope": "局部階段"
+        },
+        {
+          "id": "SPECIAL-DICTIONARY-SUB-02",
+          "title": "索引與查詢介面",
+          "status": "已完成",
+          "completion_scope": "局部階段"
+        },
+        {
+          "id": "SPECIAL-DICTIONARY-SUB-03",
+          "title": "多語資料校正",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "SPECIAL-DICTIONARY-SUB-04",
+          "title": "模型接入與使用",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        }
+      ]
+    },
+    {
+      "project_id": "OPS-CORPUS",
+      "subprojects": [
+        {
+          "id": "OPS-CORPUS-SUB-01",
+          "title": "英文資料來源蒐集",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "OPS-CORPUS-SUB-02",
+          "title": "正文清理與去重",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "OPS-CORPUS-SUB-03",
+          "title": "收集管理工具",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "OPS-CORPUS-SUB-04",
+          "title": "訓練資料驗收",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        }
+      ]
+    },
+    {
+      "project_id": "DR-CELL",
+      "subprojects": [
+        {
+          "id": "DR-CELL-SUB-01",
+          "title": "醫學資料來源接入",
+          "status": "已完成",
+          "completion_scope": "局部階段"
+        },
+        {
+          "id": "DR-CELL-SUB-02",
+          "title": "專業術語與概念網路",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "DR-CELL-SUB-03",
+          "title": "文獻與證據索引",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "DR-CELL-SUB-04",
+          "title": "模型訓練與評估",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "DR-CELL-SUB-05",
+          "title": "跨學科整合",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        }
+      ]
+    },
+    {
+      "project_id": "SOP-SEARCH",
+      "subprojects": [
+        {
+          "id": "SOP-SEARCH-SUB-01",
+          "title": "搜尋理論來源整理",
+          "status": "已完成",
+          "completion_scope": "局部階段"
+        },
+        {
+          "id": "SOP-SEARCH-SUB-02",
+          "title": "演算法基準比較",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "SOP-SEARCH-SUB-03",
+          "title": "大型迷宮搜尋",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "SOP-SEARCH-SUB-04",
+          "title": "獨立演算法驗收",
+          "status": "待確認",
+          "completion_scope": "尚未整體驗收"
+        }
+      ]
+    },
+    {
+      "project_id": "SRV-QUANTUM",
+      "subprojects": [
+        {
+          "id": "SRV-QUANTUM-SUB-01",
+          "title": "既有模擬研究整理",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "SRV-QUANTUM-SUB-02",
+          "title": "數值模型與表示",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "SRV-QUANTUM-SUB-03",
+          "title": "跨平台模擬驗證",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "SRV-QUANTUM-SUB-04",
+          "title": "原始技術名稱與版本",
+          "status": "待確認",
+          "completion_scope": "尚未整體驗收"
+        }
+      ]
+    },
+    {
+      "project_id": "DECISION-SEARCH",
+      "subprojects": [
+        {
+          "id": "DECISION-SEARCH-SUB-01",
+          "title": "決策搜尋基礎測試",
+          "status": "已完成",
+          "completion_scope": "局部階段"
+        },
+        {
+          "id": "DECISION-SEARCH-SUB-02",
+          "title": "迷宮與路徑決策",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "DECISION-SEARCH-SUB-03",
+          "title": "多策略對照",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "DECISION-SEARCH-SUB-04",
+          "title": "標準基準與回歸驗收",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        }
+      ]
+    },
+    {
+      "project_id": "RGOS",
+      "subprojects": [
+        {
+          "id": "RGOS-SUB-01",
+          "title": "系統架構與規格",
+          "status": "已完成",
+          "completion_scope": "局部階段"
+        },
+        {
+          "id": "RGOS-SUB-02",
+          "title": "開機與核心執行",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "RGOS-SUB-03",
+          "title": "裝置驅動及資源管理",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "RGOS-SUB-04",
+          "title": "原生應用與輸入",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "RGOS-SUB-05",
+          "title": "真實硬體驗收",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        }
+      ]
+    },
+    {
+      "project_id": "CLAW",
+      "subprojects": [
+        {
+          "id": "CLAW-SUB-01",
+          "title": "代理架構整理",
+          "status": "已完成",
+          "completion_scope": "局部階段"
+        },
+        {
+          "id": "CLAW-SUB-02",
+          "title": "語言與模型訓練",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "CLAW-SUB-03",
+          "title": "工具操作與任務執行",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "CLAW-SUB-04",
+          "title": "獨立工作能力驗收",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        }
+      ]
+    },
+    {
+      "project_id": "SPACE-SIM",
+      "subprojects": [
+        {
+          "id": "SPACE-SIM-SUB-01",
+          "title": "基礎數學結構整理",
+          "status": "已完成",
+          "completion_scope": "局部階段"
+        },
+        {
+          "id": "SPACE-SIM-SUB-02",
+          "title": "物理與空間場模型",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "SPACE-SIM-SUB-03",
+          "title": "數值模擬驗證",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "SPACE-SIM-SUB-04",
+          "title": "動畫與圖形整合",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        }
+      ]
+    },
+    {
+      "project_id": "NAVIER-STOKES",
+      "subprojects": [
+        {
+          "id": "NAVIER-STOKES-SUB-01",
+          "title": "有限尺度數學推導",
+          "status": "已完成",
+          "completion_scope": "局部階段"
+        },
+        {
+          "id": "NAVIER-STOKES-SUB-02",
+          "title": "漩渦與流體模型",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "NAVIER-STOKES-SUB-03",
+          "title": "全域數學證明",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "NAVIER-STOKES-SUB-04",
+          "title": "論文審查與發表",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        }
+      ]
+    },
+    {
+      "project_id": "PERFECT-CUBOID",
+      "subprojects": [
+        {
+          "id": "PERFECT-CUBOID-SUB-01",
+          "title": "有限範圍數值搜尋",
+          "status": "已完成",
+          "completion_scope": "局部階段"
+        },
+        {
+          "id": "PERFECT-CUBOID-SUB-02",
+          "title": "精確數論驗證",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "PERFECT-CUBOID-SUB-03",
+          "title": "代數幾何研究",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "PERFECT-CUBOID-SUB-04",
+          "title": "完整問題證明",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        }
+      ]
+    },
+    {
+      "project_id": "KRENN",
+      "subprojects": [
+        {
+          "id": "KRENN-SUB-01",
+          "title": "限制範圍論證與驗證",
+          "status": "已完成",
+          "completion_scope": "局部階段"
+        },
+        {
+          "id": "KRENN-SUB-02",
+          "title": "獨立形式驗證",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "KRENN-SUB-03",
+          "title": "完整條件推廣",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "KRENN-SUB-04",
+          "title": "論文整理與發表",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        }
+      ]
+    },
+    {
+      "project_id": "JSP-000244",
+      "subprojects": [
+        {
+          "id": "JSP-000244-SUB-01",
+          "title": "有限範圍數學驗證",
+          "status": "已完成",
+          "completion_scope": "局部階段"
+        },
+        {
+          "id": "JSP-000244-SUB-02",
+          "title": "一般情況數學證明",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "JSP-000244-SUB-03",
+          "title": "論文校對與發表",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        }
+      ]
+    },
+    {
+      "project_id": "NERVE-PAPER",
+      "subprojects": [
+        {
+          "id": "NERVE-PAPER-SUB-01",
+          "title": "記憶研究架構整理",
+          "status": "已完成",
+          "completion_scope": "局部階段"
+        },
+        {
+          "id": "NERVE-PAPER-SUB-02",
+          "title": "比較實驗與反證",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "NERVE-PAPER-SUB-03",
+          "title": "論文結果更新",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "NERVE-PAPER-SUB-04",
+          "title": "獨立資料驗證",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        }
+      ]
+    },
+    {
+      "project_id": "CELL-RRG-PAPERS",
+      "subprojects": [
+        {
+          "id": "CELL-RRG-PAPERS-SUB-01",
+          "title": "模型結構理論整理",
+          "status": "已完成",
+          "completion_scope": "局部階段"
+        },
+        {
+          "id": "CELL-RRG-PAPERS-SUB-02",
+          "title": "實際模型推論比較",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "CELL-RRG-PAPERS-SUB-03",
+          "title": "效能評測",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "CELL-RRG-PAPERS-SUB-04",
+          "title": "論文修訂與發表",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        }
+      ]
+    },
+    {
+      "project_id": "DECISION-PAPERS",
+      "subprojects": [
+        {
+          "id": "DECISION-PAPERS-SUB-01",
+          "title": "決策理論與基本架構",
+          "status": "已完成",
+          "completion_scope": "局部階段"
+        },
+        {
+          "id": "DECISION-PAPERS-SUB-02",
+          "title": "數學推理比較實驗",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "DECISION-PAPERS-SUB-03",
+          "title": "獨立驗證",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "DECISION-PAPERS-SUB-04",
+          "title": "論文定稿",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        }
+      ]
+    },
+    {
+      "project_id": "RL-MATH-PAPERS",
+      "subprojects": [
+        {
+          "id": "RL-MATH-PAPERS-SUB-01",
+          "title": "數學規格與理論整理",
+          "status": "已完成",
+          "completion_scope": "局部階段"
+        },
+        {
+          "id": "RL-MATH-PAPERS-SUB-02",
+          "title": "數制與轉換驗證",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "RL-MATH-PAPERS-SUB-03",
+          "title": "浮點與邊界驗證",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "RL-MATH-PAPERS-SUB-04",
+          "title": "完整論證整理",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        }
+      ]
+    },
+    {
+      "project_id": "RI-STORY",
+      "subprojects": [
+        {
+          "id": "RI-STORY-SUB-01",
+          "title": "既有故事模型基線",
+          "status": "已完成",
+          "completion_scope": "局部階段"
+        },
+        {
+          "id": "RI-STORY-SUB-02",
+          "title": "敘事連貫與角色",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "RI-STORY-SUB-03",
+          "title": "內容重複與品質改善",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "RI-STORY-SUB-04",
+          "title": "讀者比較評測",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        }
+      ]
+    },
+    {
+      "project_id": "CELL-EARTH",
+      "subprojects": [
+        {
+          "id": "CELL-EARTH-SUB-01",
+          "title": "桌面世界模擬階段測試",
+          "status": "已完成",
+          "completion_scope": "局部階段"
+        },
+        {
+          "id": "CELL-EARTH-SUB-02",
+          "title": "世界狀態與存檔",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "CELL-EARTH-SUB-03",
+          "title": "文字與外部資料",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "CELL-EARTH-SUB-04",
+          "title": "獨立發行驗收",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        }
+      ]
+    },
+    {
+      "project_id": "GAME-SMALL",
+      "subprojects": [
+        {
+          "id": "GAME-SMALL-SUB-01",
+          "title": "遊戲集合來源清查",
+          "status": "待確認",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "GAME-SMALL-SUB-02",
+          "title": "各遊戲規則與關卡",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "GAME-SMALL-SUB-03",
+          "title": "手機平台整合",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "GAME-SMALL-SUB-04",
+          "title": "正式 APK 驗收",
+          "status": "待確認",
+          "completion_scope": "尚未整體驗收"
+        }
+      ]
+    },
+    {
+      "project_id": "RGOS-TOOLS",
+      "subprojects": [
+        {
+          "id": "RGOS-TOOLS-SUB-01",
+          "title": "網頁與介面工具",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "RGOS-TOOLS-SUB-02",
+          "title": "輸入裝置支援",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "RGOS-TOOLS-SUB-03",
+          "title": "原生系統整合",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "RGOS-TOOLS-SUB-04",
+          "title": "跨設備測試",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        }
+      ]
+    },
+    {
+      "project_id": "LITERATURE",
+      "subprojects": [
+        {
+          "id": "LITERATURE-SUB-01",
+          "title": "小說作品整理",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "LITERATURE-SUB-02",
+          "title": "新詩作品整理",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "LITERATURE-SUB-03",
+          "title": "文學獎投稿核對",
+          "status": "待確認",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "LITERATURE-SUB-04",
+          "title": "作品發表與保存",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        }
+      ]
+    },
+    {
+      "project_id": "PATENTS",
+      "subprojects": [
+        {
+          "id": "PATENTS-SUB-01",
+          "title": "研究成果與創意分類",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "PATENTS-SUB-02",
+          "title": "技術文件整理",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "PATENTS-SUB-03",
+          "title": "申請與法律狀態查證",
+          "status": "待確認",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "PATENTS-SUB-04",
+          "title": "商業化規劃",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        }
+      ]
+    },
+    {
+      "project_id": "LETGO-ANDROID",
+      "subprojects": [
+        {
+          "id": "LETGO-ANDROID-SUB-01",
+          "title": "圍棋基礎規則與狀態",
+          "status": "已完成",
+          "completion_scope": "局部階段"
+        },
+        {
+          "id": "LETGO-ANDROID-SUB-02",
+          "title": "Android 對局介面",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "LETGO-ANDROID-SUB-03",
+          "title": "線上對局與斷線復原",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "LETGO-ANDROID-SUB-04",
+          "title": "實機及完整對局驗收",
+          "status": "進行中",
+          "completion_scope": "尚未整體驗收"
+        }
+      ]
+    }
+  ]
+}
