@@ -4,9 +4,9 @@
   "privacy_policy": "APPROVED_GENERIC_TITLES_ONLY",
   "source_contract": "Parent project IDs must match public-catalog.json. Names are manually simplified public topic labels; private source paths, algorithms, receipts and metrics excluded.",
   "project_count": 38,
-  "subproject_count": 157,
+  "subproject_count": 158,
   "status_counts": {
-    "已完成": 31,
+    "已完成": 32,
     "進行中": 120,
     "待確認": 6
   },
@@ -726,9 +726,15 @@
       "subprojects": [
         {
           "id": "NAVIER-STOKES-SUB-01",
-          "title": "有限尺度數學推導",
+          "title": "有限尺度表示與導數重建閉合",
           "status": "已完成",
-          "completion_scope": "局部階段"
+          "completion_scope": "有限經典時間區間的表示閉合（已驗收）"
+        },
+        {
+          "id": "NAVIER-STOKES-SUB-05",
+          "title": "原方程重建與輔助變量消元",
+          "status": "已完成",
+          "completion_scope": "有限經典區間的計算閉合"
         },
         {
           "id": "NAVIER-STOKES-SUB-02",
