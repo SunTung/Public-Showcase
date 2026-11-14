@@ -13,6 +13,14 @@ done={v["source_id"] for v in state["files"].values()}
 # Source IDs confirmed present in the private inventory. Never expose its paths or text.
 PRIVATE_SOURCE_IDS=[11,84,1342,1661,2701,345,98,158,1400,1260,768,12,1727,6130,1513,1524,74,76,5200,4300]
 done.update(PRIVATE_SOURCE_IDS)
+CROSS=ROOT/"indexes"/"cross_repo_sources.json"
+cross=json.loads(CROSS.read_text(encoding="utf-8")) if CROSS.exists() else {"private":[],"public":[]}
+def source_key(url):
+    from urllib.parse import urlsplit
+    p=urlsplit(url)
+    return p.hostname.lower()+p.path.rstrip("/").lower() if p.hostname else url
+cross_keys={x["source_key"] for group in ("private","public") for x in cross.get(group,[]) if x.get("source_key")}
+cross_sha={x["sha256"] for group in ("private","public") for x in cross.get(group,[]) if x.get("sha256")}
 state.setdefault('catalog_page',1)
 state.setdefault('blocked_sources',{})
 # Rotate subject searches so literature does not monopolize the corpus.
@@ -49,7 +57,7 @@ if not queue:
     queue=[(book,f"https://www.gutenberg.org/ebooks/{book}.txt.utf-8") for book in BOOKS if book not in done]
 result={"at":datetime.datetime.now(datetime.timezone.utc).isoformat(),"status":"NO_NEW_SOURCE"}
 for book,url in queue:
-    if book in done:continue
+    if book in done or source_key(url) in cross_keys:continue
     if state['blocked_sources'].get(str(book),0)>=3:continue
     try:
         req=urllib.request.Request(url,headers={"User-Agent":"OPS-F01-research-collector/1.0"})
@@ -66,7 +74,7 @@ for book,url in queue:
         words=re.findall(r"[A-Za-z]{3,}",body)
         if len(words)<400:raise ValueError("INSUFFICIENT_ENGLISH")
         sha=hashlib.sha256(data).hexdigest()
-        if any(x["sha256"]==sha for x in state["files"].values()):
+        if sha in cross_sha or any(x["sha256"]==sha for x in state["files"].values()):
             result={"at":result["at"],"status":"DUPLICATE_SHA","source_id":book}
             continue
         name=f"gutenberg-{book}"
