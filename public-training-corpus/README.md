@@ -17,3 +17,14 @@ Second source: a chapter-only historical excerpt from John Locke's [Second Treat
 Use `python public-training-corpus/validate_public_corpus.py` after checkout to verify both release texts against the Git blob hashes in the catalog. Training consumers should cite source editions and preserve the historical-date labels.
 
 No private project files, internal storage paths, credentials, research records, unpublished literary manuscripts, or private training scripts are permitted in this directory.
+
+## External access | 外部下載
+
+The published files can be read directly from this public repository. To obtain only catalog-approved texts and verify each Git blob SHA before writing:
+
+```bash
+python public-training-corpus/fetch_public_corpus.py --out ./external_corpus --list
+python public-training-corpus/fetch_public_corpus.py --out ./external_corpus
+```
+
+The downloader does not use credentials, access private repositories, execute downloaded content or overwrite existing files. It only accepts explicit `texts/*.txt` paths from the public catalog; newly discovered web content is not automatically published.
