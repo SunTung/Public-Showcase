@@ -12,7 +12,7 @@ SECRET_MARKER = re.compile(
     rb"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----|"
     rb"ghp_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{30,}|"
     rb"sk-proj-[A-Za-z0-9_-]{20,}|"
-    rb"(?im)^\s*(?:api[_-]?key|access[_-]?token|password)\s*[:=]"
+    rb"(?im:^\s*(?:api[_-]?key|access[_-]?token|password)\s*[:=])"
 )
 
 def validate():
@@ -31,7 +31,7 @@ def validate():
             raise ValueError("Duplicate document id")
         ids.add(row["id"])
         relative = pathlib.PurePosixPath(row["path"])
-        if relative.is_absolute() or BAD_PATH.search(str(relative)) or not re.fullmatch(r"texts/[a-z0-9][a-z0-9_-]*\\.txt", str(relative)):
+        if relative.is_absolute() or BAD_PATH.search(str(relative)) or not re.fullmatch(r"texts/[a-z0-9][a-z0-9_-]*\.txt", str(relative)):
             raise ValueError("Unsafe corpus path")
         if row.get("training_approved_for_external_ingestion") is not True:
             raise ValueError("Not approved for external corpus ingestion")
