@@ -1,0 +1,27 @@
+{
+  "schema": "public_training_corpus_v1",
+  "published_at": "2026-11-14",
+  "dataset_scope": "public_text_only",
+  "publication_policy": "PUBLIC_ORIGIN_AND_CONTENT_REVIEW_REQUIRED",
+  "entries": [
+    {
+      "id": "us_constitution_1787_original_unamended",
+      "language": "en",
+      "category": "historical_civics",
+      "path": "texts/us_constitution_1787_unamended.txt",
+      "git_blob_sha": "147cf2299c50ffa377500a0a36d81e163f68b41b",
+      "status": "published",
+      "original_document_year": 1787,
+      "edition": "Project Gutenberg ebook 5; documentary historical transcription, prefatory editorial material removed",
+      "source_urls": [
+        "https://www.gutenberg.org/ebooks/5",
+        "https://www.archives.gov/founding-docs/constitution-transcript"
+      ],
+      "rights_basis": "historical US government foundational document, public domain original",
+      "usage_notes": "Historical 1787 unamended text, not authoritative statement of current constitutional law; proofread against official transcription before legal QA",
+      "training_approved_for_external_ingestion": true
+    }
+  ],
+  "not_included": "Private research, private manuscripts, unreviewed web crawler content, confidential corpora",
+  "auto_publish": false
+}
