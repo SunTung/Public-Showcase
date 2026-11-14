@@ -4,10 +4,10 @@
   "privacy_policy": "APPROVED_GENERIC_TITLES_ONLY",
   "source_contract": "Parent project IDs must match public-catalog.json. Names are manually simplified public topic labels; private source paths, algorithms, receipts and metrics excluded.",
   "project_count": 38,
-  "subproject_count": 241,
+  "subproject_count": 251,
   "status_counts": {
-    "已完成": 69,
-    "進行中": 166,
+    "已完成": 71,
+    "進行中": 174,
     "待確認": 6
   },
   "overall_completion_pct": null,
@@ -830,6 +830,36 @@
           "title": "手機實際輸入驗收",
           "status": "進行中",
           "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "TAIWAN-KEYIN-SUB-05",
+          "title": "Android 正式版建置與簽署",
+          "status": "已完成",
+          "completion_scope": "既有正式版驗收"
+        },
+        {
+          "id": "TAIWAN-KEYIN-SUB-06",
+          "title": "離線詞庫與候選測試",
+          "status": "已完成",
+          "completion_scope": "既有受限自動化測試"
+        },
+        {
+          "id": "TAIWAN-KEYIN-SUB-07",
+          "title": "四模式測試版產物核對",
+          "status": "進行中",
+          "completion_scope": "獨立版本驗收"
+        },
+        {
+          "id": "TAIWAN-KEYIN-SUB-08",
+          "title": "四模式輸入與切換實測",
+          "status": "進行中",
+          "completion_scope": "獨立功能驗收"
+        },
+        {
+          "id": "TAIWAN-KEYIN-SUB-09",
+          "title": "實體裝置跨應用驗收",
+          "status": "進行中",
+          "completion_scope": "獨立實機關卡"
         }
       ]
     },
@@ -859,6 +889,36 @@
           "title": "正式版本發行",
           "status": "進行中",
           "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "POCKET-RECORDER-SUB-05",
+          "title": "原生錄音功能來源建置",
+          "status": "進行中",
+          "completion_scope": "原始碼存在但新版建置未通過"
+        },
+        {
+          "id": "POCKET-RECORDER-SUB-06",
+          "title": "新版 Android 建置相容修復",
+          "status": "進行中",
+          "completion_scope": "已定位建置阻塞"
+        },
+        {
+          "id": "POCKET-RECORDER-SUB-07",
+          "title": "APK 與 AAB 產物驗收",
+          "status": "進行中",
+          "completion_scope": "獨立發行關卡"
+        },
+        {
+          "id": "POCKET-RECORDER-SUB-08",
+          "title": "錄音播放及檔案管理實測",
+          "status": "進行中",
+          "completion_scope": "獨立實機關卡"
+        },
+        {
+          "id": "POCKET-RECORDER-SUB-09",
+          "title": "廣告同意與商店上架驗收",
+          "status": "進行中",
+          "completion_scope": "獨立後續關卡"
         }
       ]
     },
