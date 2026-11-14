@@ -20,9 +20,17 @@ def run():
     state=json.loads(LEDGER.read_text(encoding="utf-8")) if LEDGER.exists() else {"files":{},"candidate_bytes":0,"runs":[]}
     state.setdefault("technical_runs",[])
     existing={x.get("sha256") for x in state["files"].values()}
+    cross_path=ROOT/"indexes"/"cross_repo_sources.json"
+    cross=json.loads(cross_path.read_text(encoding="utf-8")) if cross_path.exists() else {"private":[],"public":[]}
+    from urllib.parse import urlsplit
+    def source_key(url):
+        p=urlsplit(url)
+        return p.hostname.lower()+p.path.rstrip("/").lower() if p.hostname else url
+    cross_sources={x["source_key"] for group in ("private","public") for x in cross.get(group,[]) if x.get("source_key")}
+    cross_hashes={x["sha256"] for group in ("private","public") for x in cross.get(group,[]) if x.get("sha256")}
     report={"at":datetime.datetime.now(datetime.timezone.utc).isoformat(),"status":"NO_NEW_TECHNICAL_SOURCE"}
     for key,url,topic in SOURCES:
-        if key in state["files"] or url in PRIVATE_KNOWN_URLS:continue
+        if key in state["files"] or url in PRIVATE_KNOWN_URLS or source_key(url) in cross_sources:continue
         try:
             request=urllib.request.Request(url,headers={"User-Agent":"OPS-F01-research-collector/0.4"})
             with urllib.request.urlopen(request,timeout=15) as response:
@@ -33,7 +41,7 @@ def run():
             if len(re.findall(r"[A-Za-z]{3,}",body))<250:raise ValueError("INSUFFICIENT_ENGLISH")
             data=body.encode("utf-8")
             sha=hashlib.sha256(data).hexdigest()
-            if sha in existing:
+            if sha in existing or sha in cross_hashes:
                 report={"at":report["at"],"status":"DUPLICATE_LOCAL_SHA","source":key}
                 continue
             folder=ROOT/"corpus";folder.mkdir(exist_ok=True)
