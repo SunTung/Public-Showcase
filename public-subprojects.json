@@ -4,10 +4,10 @@
   "privacy_policy": "APPROVED_GENERIC_TITLES_ONLY",
   "source_contract": "Parent project IDs must match public-catalog.json. Names are manually simplified public topic labels; private source paths, algorithms, receipts and metrics excluded.",
   "project_count": 38,
-  "subproject_count": 211,
+  "subproject_count": 227,
   "status_counts": {
-    "已完成": 56,
-    "進行中": 149,
+    "已完成": 63,
+    "進行中": 158,
     "待確認": 6
   },
   "overall_completion_pct": null,
@@ -463,6 +463,36 @@
           "title": "語言完整性驗收",
           "status": "進行中",
           "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "RL-SUB-05",
+          "title": "既有原生編譯執行基線",
+          "status": "已完成",
+          "completion_scope": "歷史限定範圍驗收"
+        },
+        {
+          "id": "RL-SUB-06",
+          "title": "開發工具鏈基礎驗收",
+          "status": "已完成",
+          "completion_scope": "歷史工具鏈局部驗收"
+        },
+        {
+          "id": "RL-SUB-07",
+          "title": "語義與版本權威凍結",
+          "status": "進行中",
+          "completion_scope": "獨立後續關卡"
+        },
+        {
+          "id": "RL-SUB-08",
+          "title": "通用連結器與多模組驗收",
+          "status": "進行中",
+          "completion_scope": "獨立後續關卡"
+        },
+        {
+          "id": "RL-SUB-09",
+          "title": "跨平台發行關卡",
+          "status": "進行中",
+          "completion_scope": "獨立後續關卡"
         }
       ]
     },
@@ -592,6 +622,42 @@
           "title": "存檔與可玩版本",
           "status": "進行中",
           "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "ENDLESS-SUB-06",
+          "title": "專案存取與狀態管理基線",
+          "status": "已完成",
+          "completion_scope": "既有受限平台驗收"
+        },
+        {
+          "id": "ENDLESS-SUB-07",
+          "title": "戰鬥資料交換與回存基線",
+          "status": "已完成",
+          "completion_scope": "既有局部驗收"
+        },
+        {
+          "id": "ENDLESS-SUB-08",
+          "title": "市集與經濟原型驗收",
+          "status": "已完成",
+          "completion_scope": "既有局部驗收"
+        },
+        {
+          "id": "ENDLESS-SUB-09",
+          "title": "真實戰鬥完整整合",
+          "status": "進行中",
+          "completion_scope": "獨立後續關卡"
+        },
+        {
+          "id": "ENDLESS-SUB-10",
+          "title": "完整可玩流程驗收",
+          "status": "進行中",
+          "completion_scope": "獨立後續關卡"
+        },
+        {
+          "id": "ENDLESS-SUB-11",
+          "title": "Windows 實機試玩與發行",
+          "status": "進行中",
+          "completion_scope": "獨立後續關卡"
         }
       ]
     },
@@ -621,6 +687,36 @@
           "title": "Android 實機驗收",
           "status": "進行中",
           "completion_scope": "尚未整體驗收"
+        },
+        {
+          "id": "CELL-DEFENDER-SUB-05",
+          "title": "Android 應用程式建置驗收",
+          "status": "已完成",
+          "completion_scope": "既有 Android CI 範圍"
+        },
+        {
+          "id": "CELL-DEFENDER-SUB-06",
+          "title": "遊戲流程自動化驗收",
+          "status": "已完成",
+          "completion_scope": "既有腳本測試範圍"
+        },
+        {
+          "id": "CELL-DEFENDER-SUB-07",
+          "title": "Android 實機啟動與觸控驗收",
+          "status": "進行中",
+          "completion_scope": "獨立後續關卡"
+        },
+        {
+          "id": "CELL-DEFENDER-SUB-08",
+          "title": "關卡視覺與互動實機驗收",
+          "status": "進行中",
+          "completion_scope": "獨立後續關卡"
+        },
+        {
+          "id": "CELL-DEFENDER-SUB-09",
+          "title": "替代遊戲引擎建置驗收",
+          "status": "進行中",
+          "completion_scope": "獨立技術路線"
         }
       ]
     },
