@@ -72,7 +72,7 @@
           "id": "RL-GAME-STUDIO-V1",
           "title": "RL Game Studio V1.0",
           "category": "software",
-          "status": "進行中"
+          "status": "已完成"
         },
         {
           "id": "RL-GAME-STUDIO",
@@ -292,10 +292,11 @@
     "待確認",
     "已完成"
   ],
-  "completed_policy": "Only explicitly accepted end-to-end milestone may be marked 已完成; none inferred by file count or local tests.",
+  "completed_policy": "Only a historically verified, frozen release scope may be marked 已完成; RL Game Studio V1.0 release accepted, later versions tracked separately.",
   "project_count": 38,
   "status_counts": {
-    "進行中": 35,
+    "進行中": 34,
+    "已完成": 1,
     "待確認": 3
   }
 }
