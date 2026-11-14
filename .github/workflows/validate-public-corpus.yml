@@ -24,6 +24,16 @@ jobs:
           python-version: '3.11'
       - name: Compile and validate published corpus only
         run: |
-          python -m py_compile public-training-corpus/validate_public_corpus.py public-training-corpus/fetch_public_corpus.py
-          python public-training-corpus/validate_public_corpus.py
-          python -m unittest discover -s .github/tests -p 'test_public_corpus.py' -v
+          python - <<'PY'
+          from pathlib import Path
+          files = [
+              'public-training-corpus/validate_public_corpus.py',
+              'public-training-corpus/fetch_public_corpus.py',
+              '.github/tests/test_public_corpus.py',
+          ]
+          for name in files:
+              compile(Path(name).read_text(encoding='utf-8'), name, 'exec')
+          print('PASS: 3 Python files compile without generating .pyc')
+          PY
+          PYTHONDONTWRITEBYTECODE=1 python public-training-corpus/validate_public_corpus.py
+          PYTHONDONTWRITEBYTECODE=1 python -m unittest discover -s .github/tests -p 'test_public_corpus.py' -v
