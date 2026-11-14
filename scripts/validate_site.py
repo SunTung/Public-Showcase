@@ -300,6 +300,19 @@ def main():
     assert {"repoCount","topics","repoQuery","repos","projects"}.issubset(parser_research.ids)
     assert "research-index.html" in page
     assert "research-index.html" in (ROOT / "workboard.html").read_text(encoding="utf-8")
+    catalog = read_json("public-catalog.json")
+    assert set(catalog) == {"schema", "as_of", "policy", "source_scope", "groups", "status_values",
+                            "completed_policy", "project_count", "status_counts"}
+    assert catalog["schema"] == "studio_public_minimal_catalog_v1"
+    assert catalog["project_count"] == len(board["items"]) == 38
+    assert set(catalog["status_values"]) == {"進行中", "待確認", "已完成"}
+    assert len(catalog["groups"]) == 9
+    pairs = [(x["id"], x["title"], g["id"], x["status"]) for g in catalog["groups"] for x in g["items"]]
+    assert len(pairs) == len(set(x[0] for x in pairs)) == 38
+    assert {(a, b, c) for a, b, c, _ in pairs} == {(x["id"], x["name"], x["category"]) for x in board["items"]}
+    assert all(v in {"進行中", "待確認"} for _, _, _, v in pairs)
+    assert catalog["status_counts"] == {v: sum(x[3] == v for x in pairs) for v in {"進行中", "待確認"}}
+    assert "public-catalog.json" in (ROOT / "research-index.html").read_text(encoding="utf-8")
     print(f"PASS: HTML, {len(months)} month(s), {len(current['projects'])} monthly progress entries, {len(portfolio['items'])} public portfolio items, {len(products['products'])} products")
 
 if __name__ == "__main__":
