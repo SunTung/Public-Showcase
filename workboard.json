@@ -159,11 +159,11 @@
       "goal": "打造可進行遊戲設計、製作與測試的開發環境。",
       "priority": "P2",
       "source_reviewed": true,
-      "work_status": "內部工程持續追蹤",
+      "work_status": "已完成（V1.0 歷史版本）",
       "overall_completion_pct": null,
       "monthly_plan_pct": 19,
-      "next_gate": "依私人驗收清冊持續推進下一階段工作，公開頁僅保留概略進度。",
-      "verified_milestone": "工程進度已納入內部追蹤；具體測試、研究證據與技術內容不公開。",
+      "next_gate": "保留 V1.0 已驗證版本，後續維護與新版本視為不同工作。",
+      "verified_milestone": "V1.0 既有版本已完成階段性發行驗收；後續新版本另行追蹤。",
       "evidence_date": "2026-11-14",
       "status_kind": "NEXT_GATE_OPEN",
       "gate_metric": null
@@ -662,5 +662,5 @@
       "gate_metric": null
     }
   ],
-  "release": "R11-public-confidentiality-sanitized"
+  "release": "R12-public-subprojects"
 }
