@@ -1,0 +1,45 @@
+{
+  "status": "CANDIDATE_ONLY",
+  "total_candidate_bytes": 13695825,
+  "files": 23,
+  "categories": {
+    "biology": {
+      "files": 1,
+      "candidate_bytes": 913968
+    },
+    "history": {
+      "files": 1,
+      "candidate_bytes": 1038405
+    },
+    "law": {
+      "files": 1,
+      "candidate_bytes": 1064963
+    },
+    "literature": {
+      "files": 9,
+      "candidate_bytes": 5058404
+    },
+    "mathematics": {
+      "files": 1,
+      "candidate_bytes": 870540
+    },
+    "medicine": {
+      "files": 1,
+      "candidate_bytes": 787402
+    },
+    "science": {
+      "files": 1,
+      "candidate_bytes": 1256486
+    },
+    "technology": {
+      "files": 4,
+      "candidate_bytes": 782134
+    },
+    "unclassified": {
+      "files": 4,
+      "candidate_bytes": 1923523
+    }
+  },
+  "global_verified_bytes": null,
+  "cross_repository_dedup": "NOT_COMPLETE"
+}
