@@ -4,10 +4,10 @@
   "privacy_policy": "APPROVED_GENERIC_TITLES_ONLY",
   "source_contract": "Parent project IDs must match public-catalog.json. Names are manually simplified public topic labels; private source paths, algorithms, receipts and metrics excluded.",
   "project_count": 38,
-  "subproject_count": 227,
+  "subproject_count": 241,
   "status_counts": {
-    "已完成": 63,
-    "進行中": 158,
+    "已完成": 69,
+    "進行中": 166,
     "待確認": 6
   },
   "overall_completion_pct": null,
@@ -493,6 +493,30 @@
           "title": "跨平台發行關卡",
           "status": "進行中",
           "completion_scope": "獨立後續關卡"
+        },
+        {
+          "id": "RL-SUB-10",
+          "title": "原生受限執行鏈驗收",
+          "status": "已完成",
+          "completion_scope": "既有局部原生驗收"
+        },
+        {
+          "id": "RL-SUB-11",
+          "title": "語義與版本規格凍結",
+          "status": "進行中",
+          "completion_scope": "獨立後續關卡"
+        },
+        {
+          "id": "RL-SUB-12",
+          "title": "通用連結與執行階段",
+          "status": "進行中",
+          "completion_scope": "獨立後續關卡"
+        },
+        {
+          "id": "RL-SUB-13",
+          "title": "跨平台與正式發行驗收",
+          "status": "進行中",
+          "completion_scope": "獨立後續關卡"
         }
       ]
     },
@@ -658,6 +682,36 @@
           "title": "Windows 實機試玩與發行",
           "status": "進行中",
           "completion_scope": "獨立後續關卡"
+        },
+        {
+          "id": "ENDLESS-SUB-12",
+          "title": "遊戲原型局部驗收",
+          "status": "已完成",
+          "completion_scope": "既有局部 Linux 測試"
+        },
+        {
+          "id": "ENDLESS-SUB-13",
+          "title": "互動市集與角色行為原型",
+          "status": "已完成",
+          "completion_scope": "既有瀏覽器測試"
+        },
+        {
+          "id": "ENDLESS-SUB-14",
+          "title": "原生經濟與交易原型",
+          "status": "已完成",
+          "completion_scope": "既有局部測試"
+        },
+        {
+          "id": "ENDLESS-SUB-15",
+          "title": "真實戰鬥與存檔串接",
+          "status": "進行中",
+          "completion_scope": "獨立端到端關卡"
+        },
+        {
+          "id": "ENDLESS-SUB-16",
+          "title": "Windows 原生執行驗收",
+          "status": "進行中",
+          "completion_scope": "獨立後續關卡"
         }
       ]
     },
@@ -715,6 +769,36 @@
         {
           "id": "CELL-DEFENDER-SUB-09",
           "title": "替代遊戲引擎建置驗收",
+          "status": "進行中",
+          "completion_scope": "獨立技術路線"
+        },
+        {
+          "id": "CELL-DEFENDER-SUB-10",
+          "title": "Android 測試版建置驗收",
+          "status": "已完成",
+          "completion_scope": "既有 Gradle CI 範圍"
+        },
+        {
+          "id": "CELL-DEFENDER-SUB-11",
+          "title": "遊戲流程自動化測試",
+          "status": "已完成",
+          "completion_scope": "既有腳本測試範圍"
+        },
+        {
+          "id": "CELL-DEFENDER-SUB-12",
+          "title": "手機啟動與觸控實測",
+          "status": "進行中",
+          "completion_scope": "獨立實機關卡"
+        },
+        {
+          "id": "CELL-DEFENDER-SUB-13",
+          "title": "關卡與視覺功能實測",
+          "status": "進行中",
+          "completion_scope": "獨立實機關卡"
+        },
+        {
+          "id": "CELL-DEFENDER-SUB-14",
+          "title": "Unity 路線建置驗證",
           "status": "進行中",
           "completion_scope": "獨立技術路線"
         }
