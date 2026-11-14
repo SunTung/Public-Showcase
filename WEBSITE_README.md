@@ -20,3 +20,13 @@ This repository is the **public-only** presentation surface. Private GitHub repo
 ## Verification
 
 GitHub Actions `.github/workflows/studio-site.yml` runs the public data and script validation before GitHub Pages deployment.
+
+## R12 public child-work ledger (2026-11-14)
+
+The approved public main project catalog now has a companion, `public-subprojects.json`, representing 38 existing main-project IDs and 157 curated first-level child work entries. Each item contains **only** an ID, public-safe topic title, simple status and bounded-completion reminder. The private GitHub research ledger holds the authoritative evidence mapping and reconciliation receipts; none of that source data is included in this public artifact.
+
+The status breakdown at this first-level snapshot is 31 bounded-phase `已完成`, 120 `進行中`, 6 `待確認`. A completed bounded phase does **not** mean its parent engineering project is complete. The current 157 entries do not claim to cover every experiment, paper version, historic research topic or unreviewed directory.
+
+The `research-index.html#subprojects` view shows the title-only child directory by parent, searchable by title and status. The `workboard.html#subwork` view summarizes counts per parent and links to child details. CI compares child parent IDs to the preapproved 38-entry `workboard.json` and `public-catalog.json`, enforces a strict field allowlist, checks status arithmetic and rejects unexpected private-source fields.
+
+The independently retained private reviewer receipt records **38/38 parents and 157/157 titles/statuses with 0 mismatches**. This is a catalog/source reconciliation, not a test rerun or whole-project acceptance.
