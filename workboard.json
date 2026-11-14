@@ -146,7 +146,7 @@
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
       "next_gate": "依私人驗收清冊持續推進下一階段工作，公開頁僅保留概略進度。",
-      "verified_milestone": "既有原生編譯與工具鏈局部驗收已保存；通用連結、語義凍結及跨平台發行仍獨立追蹤。",
+      "verified_milestone": "既有原生受限執行與工具鏈基礎測試已通過；通用連結、語義凍結及正式發行仍獨立驗收。",
       "evidence_date": "2026-11-14",
       "status_kind": "NEXT_GATE_OPEN",
       "gate_metric": null
@@ -197,7 +197,7 @@
       "overall_completion_pct": null,
       "monthly_plan_pct": 15,
       "next_gate": "依私人驗收清冊持續推進下一階段工作，公開頁僅保留概略進度。",
-      "verified_milestone": "專案狀態、戰鬥資料及經濟市集已有局部驗收；完整可玩流程與 Windows 實機驗收仍待完成。",
+      "verified_milestone": "遊戲原型、市集互動及原生經濟已有局部測試；完整戰鬥、存檔與 Windows 可玩流程仍待驗收。",
       "evidence_date": "2026-11-14",
       "status_kind": "NEXT_GATE_OPEN",
       "gate_metric": null
@@ -214,7 +214,7 @@
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
       "next_gate": "依私人驗收清冊持續推進下一階段工作，公開頁僅保留概略進度。",
-      "verified_milestone": "Android 應用程式建置與遊戲腳本流程已有 CI 驗收；實機操作及其他引擎路線另行追蹤。",
+      "verified_milestone": "Android 測試版建置及腳本流程測試已有成功紀錄；實機操作與其他建置路線獨立追蹤。",
       "evidence_date": "2026-11-14",
       "status_kind": "NEXT_GATE_OPEN",
       "gate_metric": null
