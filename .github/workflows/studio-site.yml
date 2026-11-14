@@ -19,6 +19,7 @@ on:
       - workboard-research-topics.json
       - research-index.html
       - public-catalog.json
+      - public-subprojects.json
       - workboard.html
       - history/**
       - scripts/validate_site.py
@@ -88,7 +89,7 @@ jobs:
       - name: Assemble public-only artifact
         run: |
           mkdir -p _site
-          cp index.html workboard.html workboard.json workboard-events.json workboard-sync-status.json workboard-gates.json workboard-p0-tasks.json workboard-latest.json workboard-repositories.json workboard-research-topics.json research-index.html public-catalog.json progress.json products.json portfolio.json estimates.json _site/
+          cp index.html workboard.html workboard.json workboard-events.json workboard-sync-status.json workboard-gates.json workboard-p0-tasks.json workboard-latest.json workboard-repositories.json workboard-research-topics.json research-index.html public-catalog.json public-subprojects.json progress.json products.json portfolio.json estimates.json _site/
           cp -R history _site/history
           cp -R assets _site/assets
       - uses: actions/upload-pages-artifact@v3
