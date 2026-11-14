@@ -313,6 +313,25 @@ def main():
     assert all(v in {"進行中", "待確認"} for _, _, _, v in pairs)
     assert catalog["status_counts"] == {v: sum(x[3] == v for x in pairs) for v in {"進行中", "待確認"}}
     assert "public-catalog.json" in (ROOT / "research-index.html").read_text(encoding="utf-8")
+    children = read_json("public-subprojects.json")
+    assert children["schema"] == "studio_public_subproject_catalog_v1"
+    assert children["privacy_policy"] == "APPROVED_GENERIC_TITLES_ONLY"
+    assert children["project_count"] == len(children["projects"]) == 38
+    assert children["overall_completion_pct"] is None
+    assert set(children["states"]) == {"已完成", "進行中", "待確認"}
+    assert {x["project_id"] for x in children["projects"]} == {x["id"] for x in board["items"]}
+    assert len({x["project_id"] for x in children["projects"]}) == 38
+    children_flat = [(p["project_id"], x) for p in children["projects"] for x in p["subprojects"]]
+    assert len(children_flat) == children["subproject_count"]
+    assert len({x["id"] for _, x in children_flat}) == len(children_flat)
+    assert all(x["id"].startswith(pid + "-SUB-") for pid, x in children_flat)
+    assert all(set(x) == {"id", "title", "status", "completion_scope"} for _, x in children_flat)
+    assert all(x["status"] in children["states"] and 2 <= len(x["title"]) <= 48 for _, x in children_flat)
+    assert all(x["completion_scope"] == ("局部階段" if x["status"] == "已完成" else "尚未整體驗收") for _, x in children_flat)
+    assert children["status_counts"] == {k: sum(x["status"] == k for _, x in children_flat) for k in children["states"]}
+    assert sum(len(x["subprojects"]) for x in children["projects"]) == children["subproject_count"]
+    assert "public-subprojects.json" in (ROOT / "research-index.html").read_text(encoding="utf-8")
+    assert "public-subprojects.json" in (ROOT / "workboard.html").read_text(encoding="utf-8")
     print(f"PASS: HTML, {len(months)} month(s), {len(current['projects'])} monthly progress entries, {len(portfolio['items'])} public portfolio items, {len(products['products'])} products")
 
 if __name__ == "__main__":
