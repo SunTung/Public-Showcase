@@ -10,6 +10,9 @@ state=json.loads(LEDGER.read_text(encoding="utf-8")) if LEDGER.exists() else {"f
 # Source identifiers are public-domain classics; never copy private repository data.
 BOOKS=[11,84,1342,1661,2701,345,98,158,1400,1260,768,12,1727,6130,1513,1524,74,76,5200,4300]
 done={v["source_id"] for v in state["files"].values()}
+# Source IDs confirmed present in the private inventory. Never expose its paths or text.
+PRIVATE_SOURCE_IDS=[11,84,1342,1661,2701,345,98,158,1400,1260,768,12,1727,6130,1513,1524,74,76,5200,4300]
+done.update(PRIVATE_SOURCE_IDS)
 state.setdefault('catalog_page',1)
 state.setdefault('blocked_sources',{})
 # Rotate subject searches so literature does not monopolize the corpus.
