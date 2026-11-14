@@ -27,7 +27,7 @@
       "overall_completion_pct": null,
       "monthly_plan_pct": 14,
       "next_gate": "依私人驗收清冊持續推進下一階段工作，公開頁僅保留概略進度。",
-      "verified_milestone": "工程進度已納入內部追蹤；具體測試、研究證據與技術內容不公開。",
+      "verified_milestone": "原生平台來源與介面階段審核已完成；後續原生整合、裝置與安全隔離分項追蹤。",
       "evidence_date": "2026-11-14",
       "status_kind": "NEXT_GATE_OPEN",
       "gate_metric": null
@@ -44,7 +44,7 @@
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
       "next_gate": "依私人驗收清冊持續推進下一階段工作，公開頁僅保留概略進度。",
-      "verified_milestone": "工程進度已納入內部追蹤；具體測試、研究證據與技術內容不公開。",
+      "verified_milestone": "十階段能力基準已建立，既有語言工程基線可恢復；外部文本辨識及獨立盲測持續進行。",
       "evidence_date": "2026-11-14",
       "status_kind": "NEXT_GATE_OPEN",
       "gate_metric": null
@@ -61,7 +61,7 @@
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
       "next_gate": "依私人驗收清冊持續推進下一階段工作，公開頁僅保留概略進度。",
-      "verified_milestone": "工程進度已納入內部追蹤；具體測試、研究證據與技術內容不公開。",
+      "verified_milestone": "既有原生模型與增量發行基線已保存；下一批訓練預檢、去重及品質驗收獨立追蹤。",
       "evidence_date": "2026-11-14",
       "status_kind": "NEXT_GATE_OPEN",
       "gate_metric": null
