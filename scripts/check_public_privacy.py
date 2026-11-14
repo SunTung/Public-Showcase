@@ -93,8 +93,9 @@ def validate(root=ROOT):
         errors.append("Public catalog contains non-allowlisted names or categories")
     if any(status not in ("進行中", "待確認", "已完成") for _, _, _, status in actual_catalog):
         errors.append("Public catalog contains unsupported status")
-    if any(status == "已完成" for _, _, _, status in actual_catalog):
-        errors.append("Completed labels require separate approved acceptance records")
+    completed_ids = {project_id for project_id, _, _, status in actual_catalog if status == "已完成"}
+    if completed_ids != {"RL-GAME-STUDIO-V1"}:
+        errors.append("Completed main-project labels must match the separately reviewed frozen release scope")
     # Child topics have a strict public data shape: no source, measurements or receipts.
     subtree = json.loads((root / "public-subprojects.json").read_text(encoding="utf-8"))
     if subtree.get("privacy_policy") != "APPROVED_GENERIC_TITLES_ONLY":
