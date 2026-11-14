@@ -22,7 +22,7 @@ DISALLOWED_KEYS = {"private_path", "private_directory", "source_path", "private_
                    "secret", "private_file_list", "private_manifest"}
 
 SITE_FILES = (
-    "index.html", "research-index.html", "workboard.html", "public-catalog.json",
+    "index.html", "research-index.html", "workboard.html", "public-catalog.json", "public-subprojects.json",
     "workboard.json", "workboard-latest.json", "workboard-p0-tasks.json",
     "workboard-events.json", "workboard-gates.json", "workboard-repositories.json",
     "workboard-research-topics.json", "workboard-repository-activity.json",
@@ -95,6 +95,29 @@ def validate(root=ROOT):
         errors.append("Public catalog contains unsupported status")
     if any(status == "已完成" for _, _, _, status in actual_catalog):
         errors.append("Completed labels require separate approved acceptance records")
+    # Child topics have a strict public data shape: no source, measurements or receipts.
+    subtree = json.loads((root / "public-subprojects.json").read_text(encoding="utf-8"))
+    if subtree.get("privacy_policy") != "APPROVED_GENERIC_TITLES_ONLY":
+        errors.append("Public child list privacy policy missing")
+    base_ids = {r["id"] for r in board["items"]}
+    if {g["project_id"] for g in subtree["projects"]} != base_ids:
+        errors.append("Public child tree parent coverage differs from approved public list")
+    child_ids = set()
+    for g in subtree["projects"]:
+        if set(g) != {"project_id", "subprojects"}:
+            errors.append("Child group includes unexpected fields")
+        for item in g["subprojects"]:
+            if set(item) != {"id", "title", "status", "completion_scope"}:
+                errors.append("Child row includes non-allowlisted fields")
+            if item.get("id") in child_ids:
+                errors.append("Child row ID reused")
+            child_ids.add(item.get("id"))
+            if item.get("status") not in ("已完成", "進行中", "待確認"):
+                errors.append("Child row status not approved")
+            if item.get("status") == "已完成" and item.get("completion_scope") != "局部階段":
+                errors.append("Completed child not explicitly bounded")
+    if len(child_ids) != subtree.get("subproject_count"):
+        errors.append("Child catalog count mismatch")
     return errors
 
 if __name__ == "__main__":
