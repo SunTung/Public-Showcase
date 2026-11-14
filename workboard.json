@@ -78,7 +78,7 @@
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
       "next_gate": "依私人驗收清冊持續推進下一階段工作，公開頁僅保留概略進度。",
-      "verified_milestone": "工程進度已納入內部追蹤；具體測試、研究證據與技術內容不公開。",
+      "verified_milestone": "受控結構測試與研究反證已有紀錄；主要假說未獲支持，後續事件記憶實驗獨立追蹤。",
       "evidence_date": "2026-11-14",
       "status_kind": "NEXT_GATE_OPEN",
       "gate_metric": null
@@ -95,7 +95,7 @@
       "overall_completion_pct": null,
       "monthly_plan_pct": null,
       "next_gate": "依私人驗收清冊持續推進下一階段工作，公開頁僅保留概略進度。",
-      "verified_milestone": "工程進度已納入內部追蹤；具體測試、研究證據與技術內容不公開。",
+      "verified_milestone": "第一階段固定範圍已完成驗收與例外分類；尚有阻塞項，原生跨端整合另行追蹤。",
       "evidence_date": "2026-11-14",
       "status_kind": "NEXT_GATE_OPEN",
       "gate_metric": null
@@ -112,7 +112,7 @@
       "overall_completion_pct": null,
       "monthly_plan_pct": 13,
       "next_gate": "依私人驗收清冊持續推進下一階段工作，公開頁僅保留概略進度。",
-      "verified_milestone": "工程進度已納入內部追蹤；具體測試、研究證據與技術內容不公開。",
+      "verified_milestone": "既有結構來源整合及限定資料一致性驗收已記錄；完整執行與硬體驗收仍待完成。",
       "evidence_date": "2026-11-14",
       "status_kind": "NEXT_GATE_OPEN",
       "gate_metric": null
