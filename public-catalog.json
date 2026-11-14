@@ -1,0 +1,301 @@
+{
+  "schema": "studio_public_minimal_catalog_v1",
+  "as_of": "2026-11-14",
+  "policy": "Public category and approved title only. Internal evidence, milestones, metrics, paths, quantities, test details, and unpublished ideas withheld.",
+  "source_scope": "Existing approved public project titles only; no private-file discovery published",
+  "groups": [
+    {
+      "id": "ai",
+      "title": "人工智慧與認知",
+      "items": [
+        {
+          "id": "CELL-CORE",
+          "title": "CELL 人工細胞智能",
+          "category": "ai",
+          "status": "進行中"
+        },
+        {
+          "id": "CELL-LANGUAGE",
+          "title": "CELL 十階段語言能力",
+          "category": "ai",
+          "status": "進行中"
+        },
+        {
+          "id": "CELL-EN",
+          "title": "CELL 英文增量模型",
+          "category": "ai",
+          "status": "進行中"
+        },
+        {
+          "id": "CELL-NERVE",
+          "title": "CELL NERVE／觸手記憶",
+          "category": "ai",
+          "status": "進行中"
+        },
+        {
+          "id": "CELL-M",
+          "title": "CELL 向位與機制研究",
+          "category": "ai",
+          "status": "進行中"
+        },
+        {
+          "id": "RRG",
+          "title": "RRG 管理模式",
+          "category": "ai",
+          "status": "進行中"
+        },
+        {
+          "id": "CLAW",
+          "title": "CLAW 科研／電腦代理",
+          "category": "ai",
+          "status": "進行中"
+        }
+      ]
+    },
+    {
+      "id": "software",
+      "title": "軟體、系統與工具",
+      "items": [
+        {
+          "id": "CELO",
+          "title": "CELO 編譯工作平台",
+          "category": "software",
+          "status": "進行中"
+        },
+        {
+          "id": "RL",
+          "title": "Rl 語言及編譯器",
+          "category": "software",
+          "status": "進行中"
+        },
+        {
+          "id": "RL-GAME-STUDIO-V1",
+          "title": "RL Game Studio V1.0",
+          "category": "software",
+          "status": "進行中"
+        },
+        {
+          "id": "RL-GAME-STUDIO",
+          "title": "RL Game Studio V2.0",
+          "category": "software",
+          "status": "進行中"
+        },
+        {
+          "id": "TAIWAN-KEYIN",
+          "title": "CELL 臺灣注音輸入法",
+          "category": "software",
+          "status": "進行中"
+        },
+        {
+          "id": "POCKET-RECORDER",
+          "title": "PocketRecorder 手機錄音",
+          "category": "software",
+          "status": "進行中"
+        },
+        {
+          "id": "RGOS",
+          "title": "RGOS／RGSS 作業系統與應用",
+          "category": "software",
+          "status": "進行中"
+        },
+        {
+          "id": "RI-STORY",
+          "title": "RI 模型／老奶奶說故事",
+          "category": "software",
+          "status": "進行中"
+        },
+        {
+          "id": "RGOS-TOOLS",
+          "title": "RGOS Web/HID/系統附加工具",
+          "category": "software",
+          "status": "進行中"
+        },
+        {
+          "id": "LETGO-ANDROID",
+          "title": "letGo Android 圍棋／OGS 實際對局",
+          "category": "software",
+          "status": "進行中"
+        }
+      ]
+    },
+    {
+      "id": "game",
+      "title": "遊戲開發",
+      "items": [
+        {
+          "id": "ENDLESS",
+          "title": "無盡遠征｜大型復古遊戲",
+          "category": "game",
+          "status": "進行中"
+        },
+        {
+          "id": "CELL-DEFENDER",
+          "title": "CELL DEFENDER 手機遊戲",
+          "category": "game",
+          "status": "進行中"
+        },
+        {
+          "id": "CELL-EARTH",
+          "title": "CELL Earth World",
+          "category": "game",
+          "status": "進行中"
+        },
+        {
+          "id": "GAME-SMALL",
+          "title": "掌上小遊戲與數字遊戲",
+          "category": "game",
+          "status": "待確認"
+        }
+      ]
+    },
+    {
+      "id": "data",
+      "title": "資料、語料與字典",
+      "items": [
+        {
+          "id": "SPECIAL-DICTIONARY",
+          "title": "特殊名詞多語字典",
+          "category": "data",
+          "status": "進行中"
+        },
+        {
+          "id": "OPS-CORPUS",
+          "title": "OPS 英文語料收集",
+          "category": "data",
+          "status": "進行中"
+        }
+      ]
+    },
+    {
+      "id": "medical",
+      "title": "醫學及生命科學",
+      "items": [
+        {
+          "id": "DR-CELL",
+          "title": "DR_CELL 醫學研究模型",
+          "category": "medical",
+          "status": "進行中"
+        }
+      ]
+    },
+    {
+      "id": "research",
+      "title": "理論與跨學科研究",
+      "items": [
+        {
+          "id": "SOP-SEARCH",
+          "title": "SOP 通用搜尋結構理論",
+          "category": "research",
+          "status": "進行中"
+        },
+        {
+          "id": "SRV-QUANTUM",
+          "title": "量子模擬 SRV 技術",
+          "category": "research",
+          "status": "進行中"
+        },
+        {
+          "id": "DECISION-SEARCH",
+          "title": "RG 決策搜尋／數學迷宮",
+          "category": "research",
+          "status": "進行中"
+        },
+        {
+          "id": "SPACE-SIM",
+          "title": "空間、物理與動畫模擬",
+          "category": "research",
+          "status": "進行中"
+        }
+      ]
+    },
+    {
+      "id": "paper",
+      "title": "數學及研究論文",
+      "items": [
+        {
+          "id": "NAVIER-STOKES",
+          "title": "Navier–Stokes 漩渦數學論文系列",
+          "category": "paper",
+          "status": "進行中"
+        },
+        {
+          "id": "PERFECT-CUBOID",
+          "title": "Perfect Cuboid／環搜尋論文",
+          "category": "paper",
+          "status": "進行中"
+        },
+        {
+          "id": "KRENN",
+          "title": "Krenn K6,D3 數學論文／驗證",
+          "category": "paper",
+          "status": "進行中"
+        },
+        {
+          "id": "JSP-000244",
+          "title": "JSP-000244 數學研究論文",
+          "category": "paper",
+          "status": "進行中"
+        },
+        {
+          "id": "NERVE-PAPER",
+          "title": "NERVE CELL 原始學習研究論文",
+          "category": "paper",
+          "status": "進行中"
+        },
+        {
+          "id": "CELL-RRG-PAPERS",
+          "title": "CELL/RRG 模型數學論文",
+          "category": "paper",
+          "status": "進行中"
+        },
+        {
+          "id": "DECISION-PAPERS",
+          "title": "決策意向與推理論文",
+          "category": "paper",
+          "status": "進行中"
+        },
+        {
+          "id": "RL-MATH-PAPERS",
+          "title": "Rl 數學／證明系統研究",
+          "category": "paper",
+          "status": "進行中"
+        }
+      ]
+    },
+    {
+      "id": "literature",
+      "title": "文學與創作",
+      "items": [
+        {
+          "id": "LITERATURE",
+          "title": "文學、小說與詩作",
+          "category": "literature",
+          "status": "待確認"
+        }
+      ]
+    },
+    {
+      "id": "business",
+      "title": "專利與商業化",
+      "items": [
+        {
+          "id": "PATENTS",
+          "title": "專利與商業化研究",
+          "category": "business",
+          "status": "待確認"
+        }
+      ]
+    }
+  ],
+  "status_values": [
+    "進行中",
+    "待確認",
+    "已完成"
+  ],
+  "completed_policy": "Only explicitly accepted end-to-end milestone may be marked 已完成; none inferred by file count or local tests.",
+  "project_count": 38,
+  "status_counts": {
+    "進行中": 35,
+    "待確認": 3
+  }
+}
