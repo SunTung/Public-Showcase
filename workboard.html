@@ -33,8 +33,15 @@ async function loadSubwork(){
    add('研究目標',record?.goal);add('已核對成果',record?.verified_milestone);add('下一關卡',record?.next_gate);
    const completed=p.subprojects.filter(x=>x.status==='已完成').map(x=>x.title);
    const ongoing=p.subprojects.filter(x=>x.status==='進行中').map(x=>x.title);
-   add('已完成細項',completed.length?completed.join('、'):'尚無已驗收細項');
-   add('進行中細項',ongoing.length?ongoing.join('、'):'目前無公開進行中細項');
+   add('已完成細項',completed.length?completed.length+' 項（逐項見下表）':'尚無已驗收細項');
+   add('進行中細項',ongoing.length?ongoing.length+' 項（逐項見下表）':'目前無公開進行中細項');
+   const subTable=document.createElement('table');subTable.style.minWidth='0';subTable.style.width='100%';
+   const subHead=document.createElement('thead'),headRow=document.createElement('tr');
+   for(const label of ['子工程','目前狀態','驗收範圍']){const th=document.createElement('th');th.textContent=label;headRow.appendChild(th)}
+   subHead.appendChild(headRow);subTable.appendChild(subHead);
+   const subBody=document.createElement('tbody');
+   for(const item of p.subprojects){const row=document.createElement('tr');cell(row,item.title,item.id);cell(row,item.status);cell(row,item.completion_scope||'尚未標明');subBody.appendChild(row)}
+   subTable.appendChild(subBody);details.appendChild(subTable);
    const a=document.createElement('a');a.href='./research-index.html?project='+encodeURIComponent(p.project_id)+'#subprojects';a.textContent='查看全部子工程';details.appendChild(a);
    td.appendChild(details);tr.appendChild(td);tbody.appendChild(tr);
   }
