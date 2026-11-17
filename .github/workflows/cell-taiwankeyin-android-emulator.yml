@@ -2,7 +2,7 @@ name: CELL TaiwanKeyin Android emulator smoke
 
 on:
   push:
-    branches: [main, feature/taiwankeyin-pinyin-toggle-20261109]
+    branches: [main, feature/taiwankeyin-pinyin-toggle-20261109, feature/taiwankeyin-voice-20261117]
     paths:
       - '公開展示/cl_Taiwankeyin/AndroidMobile/**'
       - '.github/workflows/cell-taiwankeyin-android-emulator.yml'
