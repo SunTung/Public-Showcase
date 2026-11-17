@@ -1,6 +1,14 @@
 package tw.cell.taiwankeyin.android;
 
 import android.content.SharedPreferences;
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.content.Intent;
+import android.speech.RecognitionListener;
+import android.speech.RecognizerIntent;
+import android.speech.SpeechRecognizer;
+import android.os.Bundle;
+import java.util.Locale;
 import android.content.ClipboardManager;
 import android.content.ClipData;
 import android.content.Context;
@@ -44,6 +52,14 @@ import java.util.Random;
 public final class TaiwanKeyinImeService extends InputMethodService {
     private static final String TAG = "CellTaiwanKeyin";
     private static final String LEXICON = "imported_lexicon.tsv";
+    private SpeechRecognizer voiceRecognizer;
+    private final Handler voiceHandler = new Handler(Looper.getMainLooper());
+    private boolean voiceActive;
+    private boolean voiceStopping;
+    private String voicePartial = "";
+    private String voiceStatus = "";
+    private final Runnable voiceTimeout = () -> finishVoice();
+    private final Runnable voicePause = () -> finishVoice();
     private ExperienceDatabase store;
     private FullLexiconStore verifiedFullLexicon;
     private final KeyboardLayout.LatinShift latinShift = new KeyboardLayout.LatinShift();
@@ -162,6 +178,7 @@ public final class TaiwanKeyinImeService extends InputMethodService {
     }
     @Override public void onStartInput(EditorInfo attribute, boolean restarting) {
         super.onStartInput(attribute, restarting);
+        cancelVoice();
         stopDeleteRepeat();
         reloadLexicon();
         memory.resetContext();
@@ -173,6 +190,7 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         if (root != null) updatePreview();
     }
     @Override public void onFinishInput() {
+        cancelVoice();
         stopDeleteRepeat();
         session.clear();
         if (pinyin != null) pinyin.clear();
@@ -180,6 +198,8 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         super.onFinishInput();
     }
     @Override public void onDestroy() {
+        cancelVoice();
+        if (voiceRecognizer != null) { voiceRecognizer.destroy(); voiceRecognizer = null; }
         stopDeleteRepeat();
         if (store != null) store.close();
         if (verifiedFullLexicon != null) verifiedFullLexicon.close();
@@ -411,6 +431,93 @@ public final class TaiwanKeyinImeService extends InputMethodService {
             updatePreview();
         }
     }
+    private void cancelVoice() {
+        voiceHandler.removeCallbacks(voiceTimeout);
+        voiceHandler.removeCallbacks(voicePause);
+        if (voiceRecognizer != null && voiceActive) voiceRecognizer.cancel();
+        voiceActive = false; voiceStopping = false;
+        voicePartial = ""; voiceStatus = "";
+    }
+    private void finishVoice() {
+        if (!voiceActive || voiceStopping) return;
+        voiceStopping = true; voiceStatus = "辨識確認中…";
+        voiceHandler.removeCallbacks(voiceTimeout);
+        voiceHandler.removeCallbacks(voicePause);
+        if (voiceRecognizer != null) voiceRecognizer.stopListening();
+        updatePreview();
+    }
+    private void toggleVoice() {
+        if (voiceActive) { finishVoice(); return; }
+        if (sensitiveField) { voiceStatus = "密碼欄位不可使用語音"; updatePreview(); return; }
+        if (checkSelfPermission(Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+            voiceStatus = "請先到 CELL 設定授權麥克風"; updatePreview(); return;
+        }
+        if (!SpeechRecognizer.isRecognitionAvailable(this)) {
+            voiceStatus = "系統未提供語音辨識服務"; updatePreview(); return;
+        }
+        try {
+            if (voiceRecognizer == null) voiceRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
+            voiceRecognizer.setRecognitionListener(new RecognitionListener() {
+                @Override public void onReadyForSpeech(Bundle params) {
+                    voiceStatus = "正在聆聽…"; updatePreview();
+                }
+                @Override public void onBeginningOfSpeech() {
+                    voiceStatus = "辨識中…"; updatePreview();
+                }
+                @Override public void onRmsChanged(float rmsdB) {}
+                @Override public void onBufferReceived(byte[] buffer) {}
+                @Override public void onEndOfSpeech() { finishVoice(); }
+                @Override public void onError(int error) {
+                    voiceHandler.removeCallbacks(voiceTimeout);
+                    voiceHandler.removeCallbacks(voicePause);
+                    voiceActive = false; voiceStopping = false;
+                    voiceStatus = "語音辨識失敗（" + error + "）";
+                    voicePartial = ""; updatePreview();
+                }
+                @Override public void onResults(Bundle results) {
+                    voiceHandler.removeCallbacks(voiceTimeout);
+                    voiceHandler.removeCallbacks(voicePause);
+                    voiceActive = false; voiceStopping = false;
+                    ArrayList<String> matches = results == null ? null
+                        : results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+                    String recognized = matches == null || matches.isEmpty() ? "" : matches.get(0).trim();
+                    voicePartial = "";
+                    voiceStatus = recognized.isEmpty() ? "未辨識到文字" : "";
+                    if (!recognized.isEmpty()) {
+                        InputConnection ic = getCurrentInputConnection();
+                        if (ic != null) ic.commitText(recognized, 1);
+                    }
+                    updatePreview();
+                }
+                @Override public void onPartialResults(Bundle results) {
+                    if (!voiceActive || voiceStopping) return;
+                    ArrayList<String> matches = results == null ? null
+                        : results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+                    voicePartial = matches == null || matches.isEmpty() ? "" : matches.get(0);
+                    voiceStatus = "辨識中…";
+                    voiceHandler.removeCallbacks(voicePause);
+                    voiceHandler.postDelayed(voicePause, 1500);
+                    updatePreview();
+                }
+                @Override public void onEvent(int eventType, Bundle params) {}
+            });
+            Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault().toLanguageTag());
+            intent.putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, true);
+            intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 1);
+            intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS, 1500L);
+            intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS, 1500L);
+            voiceActive = true; voiceStopping = false; voicePartial = "";
+            voiceStatus = "啟動麥克風…";
+            voiceRecognizer.startListening(intent);
+            voiceHandler.postDelayed(voiceTimeout, 8000);
+            updatePreview();
+        } catch (RuntimeException ex) {
+            Log.e(TAG, "Speech recognition startup failed", ex);
+            cancelVoice(); voiceStatus = "無法啟動語音辨識"; updatePreview();
+        }
+    }
     private void spaceBar() {
         if(pinyinActive() && pinyin != null && pinyin.active()){
             if(!pinyin.candidates().isEmpty())choosePinyin(0);
@@ -554,6 +661,7 @@ public final class TaiwanKeyinImeService extends InputMethodService {
             session.clear(); if(pinyin!=null)pinyin.clear(); inputMode.toggleSymbols();
             rebuildKeys(); updatePreview();
         },2,theme.accent,14);
+        addKey(controls,"🎤 語音",this::toggleVoice,1.6f,theme.accent,13);
         addKey(controls,"貼上",this::pasteClipboard,1.5f,theme.accent,14);
         addKey(controls,"空白 / 選字",this::spaceBar,3,theme.panel,13);
         addKey(controls,"⌫",this::backspace,2,theme.panel,23);
@@ -563,6 +671,12 @@ public final class TaiwanKeyinImeService extends InputMethodService {
     private void updatePreview() {
         if (candidateRow == null || session == null) return;
         candidateRow.removeAllViews();
+        if (!voiceStatus.isEmpty() || !voicePartial.isEmpty()) {
+            TextView speech = label(voiceStatus + (voicePartial.isEmpty() ? "" : " " + voicePartial), 15, theme.text);
+            speech.setSingleLine(true);
+            candidateRow.addView(speech);
+            return;
+        }
         String pending = inputMode.isEnglish() ? englishPrefix()
                 : pinyinActive() && pinyin != null ? pinyin.preedit() : session.preedit();
         // No permanent headline or instruction row. Show live preedit only in the candidate strip.
