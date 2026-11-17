@@ -487,7 +487,6 @@ public final class TaiwanKeyinImeService extends InputMethodService {
                     voiceHandler.removeCallbacks(voiceTimeout);
                     voiceHandler.removeCallbacks(voicePause);
                     voiceHandler.removeCallbacks(voiceFinalTimeout);
-                    voiceHandler.removeCallbacks(voiceFinalTimeout);
                     voiceActive = false; voiceStopping = false;
                     voiceStatus = "語音辨識失敗（" + error + "）";
                     voicePartial = ""; updatePreview();
@@ -496,6 +495,7 @@ public final class TaiwanKeyinImeService extends InputMethodService {
                     if (currentVoiceGeneration != voiceGeneration) return;
                     voiceHandler.removeCallbacks(voiceTimeout);
                     voiceHandler.removeCallbacks(voicePause);
+                    voiceHandler.removeCallbacks(voiceFinalTimeout);
                     voiceActive = false; voiceStopping = false;
                     ArrayList<String> matches = results == null ? null
                         : results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
