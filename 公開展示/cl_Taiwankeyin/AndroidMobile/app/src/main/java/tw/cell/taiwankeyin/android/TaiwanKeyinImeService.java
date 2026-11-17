@@ -56,6 +56,7 @@ public final class TaiwanKeyinImeService extends InputMethodService {
     private final Handler voiceHandler = new Handler(Looper.getMainLooper());
     private boolean voiceActive;
     private boolean voiceStopping;
+    private int voiceGeneration;
     private String voicePartial = "";
     private String voiceStatus = "";
     private final Runnable voiceTimeout = () -> finishVoice();
@@ -432,6 +433,7 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         }
     }
     private void cancelVoice() {
+        voiceGeneration++;
         voiceHandler.removeCallbacks(voiceTimeout);
         voiceHandler.removeCallbacks(voicePause);
         if (voiceRecognizer != null && voiceActive) voiceRecognizer.cancel();
@@ -457,17 +459,23 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         }
         try {
             if (voiceRecognizer == null) voiceRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
+            final int currentVoiceGeneration = ++voiceGeneration;
             voiceRecognizer.setRecognitionListener(new RecognitionListener() {
                 @Override public void onReadyForSpeech(Bundle params) {
+                    if (currentVoiceGeneration != voiceGeneration) return;
                     voiceStatus = "正在聆聽…"; updatePreview();
                 }
                 @Override public void onBeginningOfSpeech() {
+                    if (currentVoiceGeneration != voiceGeneration) return;
                     voiceStatus = "辨識中…"; updatePreview();
                 }
                 @Override public void onRmsChanged(float rmsdB) {}
                 @Override public void onBufferReceived(byte[] buffer) {}
-                @Override public void onEndOfSpeech() { finishVoice(); }
+                @Override public void onEndOfSpeech() {
+                    if (currentVoiceGeneration == voiceGeneration) finishVoice();
+                }
                 @Override public void onError(int error) {
+                    if (currentVoiceGeneration != voiceGeneration) return;
                     voiceHandler.removeCallbacks(voiceTimeout);
                     voiceHandler.removeCallbacks(voicePause);
                     voiceActive = false; voiceStopping = false;
@@ -475,6 +483,7 @@ public final class TaiwanKeyinImeService extends InputMethodService {
                     voicePartial = ""; updatePreview();
                 }
                 @Override public void onResults(Bundle results) {
+                    if (currentVoiceGeneration != voiceGeneration) return;
                     voiceHandler.removeCallbacks(voiceTimeout);
                     voiceHandler.removeCallbacks(voicePause);
                     voiceActive = false; voiceStopping = false;
@@ -490,13 +499,11 @@ public final class TaiwanKeyinImeService extends InputMethodService {
                     updatePreview();
                 }
                 @Override public void onPartialResults(Bundle results) {
-                    if (!voiceActive || voiceStopping) return;
+                    if (currentVoiceGeneration != voiceGeneration || !voiceActive || voiceStopping) return;
                     ArrayList<String> matches = results == null ? null
                         : results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
                     voicePartial = matches == null || matches.isEmpty() ? "" : matches.get(0);
                     voiceStatus = "辨識中…";
-                    voiceHandler.removeCallbacks(voicePause);
-                    voiceHandler.postDelayed(voicePause, 1500);
                     updatePreview();
                 }
                 @Override public void onEvent(int eventType, Bundle params) {}
