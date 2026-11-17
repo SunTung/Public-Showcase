@@ -1,6 +1,9 @@
 package tw.cell.taiwankeyin.android;
 
 import android.app.Activity;
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -40,6 +43,13 @@ public final class SettingsActivity extends Activity {
                 + "內建完整 Chewing 臺灣正體字詞庫（158,905筆）；也可匯入 UTF-8 TSV 詞庫補充。");
         desc.setTextSize(15);desc.setPadding(0,dp(14),0,dp(12));content.addView(desc);
         add(content,"1. 開啟 Android 輸入法設定",()->startActivity(new Intent(Settings.ACTION_INPUT_METHOD_SETTINGS)));
+        add(content,"🎤 授權語音輸入（麥克風）",()->{
+            if (Build.VERSION.SDK_INT >= 23 &&
+                    checkSelfPermission(Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED)
+                requestPermissions(new String[]{Manifest.permission.RECORD_AUDIO}, 73);
+            else new AlertDialog.Builder(this).setMessage("麥克風權限已開啟，可返回鍵盤使用 🎤 語音。")
+                    .setPositiveButton("確定",null).show();
+        });
         add(content,"2. 選擇 CELL 臺灣注音鍵盤",()->{
             InputMethodManager manager=(InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
             if(manager!=null)manager.showInputMethodPicker();
