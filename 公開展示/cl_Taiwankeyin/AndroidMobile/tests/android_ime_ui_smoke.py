@@ -75,7 +75,7 @@ def main():
     # Force Android to re-scan newly installed input methods after the package install.
     # A fresh emulator can have an IMMS snapshot created before the pilot is installed.
     adb("shell", "input", "keyevent", "82")
-    adb("shell", "cmd", "package", "set-enabled-setting", PACKAGE, "enabled", "0")
+    adb("shell", "pm", "enable", PACKAGE)
     time.sleep(2)
     print("IME package service:", adb("shell", "dumpsys", "package", PACKAGE).split("Service Resolver Table:")[-1][:900], flush=True)
     # Android PackageManager/IME service registration can lag behind adb install.
