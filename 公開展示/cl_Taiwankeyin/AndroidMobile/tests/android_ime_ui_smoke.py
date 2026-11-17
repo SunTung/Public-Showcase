@@ -90,6 +90,16 @@ def main():
             break
         time.sleep(1)
     if not registered:
+        # Distinguish a bad APK service declaration from a stale InputMethodManager
+        # registration snapshot; never claim voice UI coverage when registration fails.
+        service_dump = adb("shell", "dumpsys", "package", PACKAGE)
+        declared = ("android.view.InputMethod" in service_dump and
+                    "TaiwanKeyinImeService" in service_dump and
+                    "android.permission.BIND_INPUT_METHOD" in service_dump)
+        print("IME_DIAGNOSTIC package_installed=PASS service_declared=" +
+              ("PASS" if declared else "FAIL") +
+              " registered=FAIL", flush=True)
+        print("IME list all:", adb("shell", "ime", "list", "-a")[:4500], flush=True)
         details = adb("shell", "dumpsys", "input_method")
         print("Package dump:", adb("shell", "dumpsys", "package", PACKAGE)[-8000:], flush=True)
         raise AssertionError("IME not registered after install. ime list -s: {!r}; dumpsys: {}".format(
