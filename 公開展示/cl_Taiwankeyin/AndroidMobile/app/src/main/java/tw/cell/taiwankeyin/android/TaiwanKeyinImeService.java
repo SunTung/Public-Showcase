@@ -60,6 +60,12 @@ public final class TaiwanKeyinImeService extends InputMethodService {
     private String voicePartial = "";
     private String voiceStatus = "";
     private final Runnable voiceTimeout = () -> finishVoice();
+    private final Runnable voiceFinalTimeout = () -> {
+        if (!voiceActive || !voiceStopping) return;
+        cancelVoice();
+        voiceStatus = "語音辨識逾時，請重試";
+        updatePreview();
+    };
     private final Runnable voicePause = () -> finishVoice();
     private ExperienceDatabase store;
     private FullLexiconStore verifiedFullLexicon;
@@ -436,6 +442,7 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         voiceGeneration++;
         voiceHandler.removeCallbacks(voiceTimeout);
         voiceHandler.removeCallbacks(voicePause);
+        voiceHandler.removeCallbacks(voiceFinalTimeout);
         if (voiceRecognizer != null && voiceActive) voiceRecognizer.cancel();
         voiceActive = false; voiceStopping = false;
         voicePartial = ""; voiceStatus = "";
@@ -446,10 +453,11 @@ public final class TaiwanKeyinImeService extends InputMethodService {
         voiceHandler.removeCallbacks(voiceTimeout);
         voiceHandler.removeCallbacks(voicePause);
         if (voiceRecognizer != null) voiceRecognizer.stopListening();
+        voiceHandler.postDelayed(voiceFinalTimeout, 5000);
         updatePreview();
     }
     private void toggleVoice() {
-        if (voiceActive) { finishVoice(); return; }
+        if (voiceActive) { if (voiceStopping) cancelVoice(); else finishVoice(); updatePreview(); return; }
         if (sensitiveField) { voiceStatus = "密碼欄位不可使用語音"; updatePreview(); return; }
         if (checkSelfPermission(Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
             voiceStatus = "請先到 CELL 設定授權麥克風"; updatePreview(); return;
@@ -478,6 +486,8 @@ public final class TaiwanKeyinImeService extends InputMethodService {
                     if (currentVoiceGeneration != voiceGeneration) return;
                     voiceHandler.removeCallbacks(voiceTimeout);
                     voiceHandler.removeCallbacks(voicePause);
+                    voiceHandler.removeCallbacks(voiceFinalTimeout);
+                    voiceHandler.removeCallbacks(voiceFinalTimeout);
                     voiceActive = false; voiceStopping = false;
                     voiceStatus = "語音辨識失敗（" + error + "）";
                     voicePartial = ""; updatePreview();
